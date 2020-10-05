@@ -1,0 +1,1 @@
+ssh -i niaga-key-ecdsa u7590166@srv73.niagahoster.com -p 65002
