@@ -3,6 +3,6 @@
     <img src="{{ asset('assets_admin/image/avataradmin.png')}}" class="img-circle elevation-2" alt="User Image">
   </div>
   <div class="info">
-    <a href="#" class="d-block">{{session('data')['email']}}</a>
+    <a href="#" class="d-block">{{ auth()->user()->name }}</a>
   </div>
 </div>

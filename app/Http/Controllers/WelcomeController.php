@@ -45,6 +45,8 @@ class WelcomeController extends Controller
         $data['count_cart'] = count($cart);
         $data['cart'] = $cart;
 
+        $data['status_login'] = '';
+
     	return view('layouts.content',$data);
     }
     function category(Request $request)

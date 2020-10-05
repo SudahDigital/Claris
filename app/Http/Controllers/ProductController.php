@@ -41,6 +41,7 @@ class ProductController extends Controller
 
         $data['count_cart'] = count($cart);
         $data['cart'] = $cart;
+        
         // return $input;die;
     	return view('layouts.content',$data);
     }

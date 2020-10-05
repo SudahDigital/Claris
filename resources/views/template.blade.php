@@ -120,14 +120,25 @@
                 </li>
             </ul>
 
-            <ul class="list-unstyled user-auth">
-                <li>
-                    <a href="{{route('login')}}" class="login">Login</a>
-                </li>
-                <li>
-                    <a href="{{route('register')}}" class="register">Register</a>
-                </li>
-            </ul>
+            @if($status_login == '')
+                <ul class="list-unstyled user-auth">
+                    <li>
+                        <a href="{{URL::route('cust_login')}}" class="login">Login</a>
+                    </li>
+                    <li>
+                        <a href="{{route('register')}}" class="register">Register</a>
+                    </li>
+                </ul>
+            @elseif($status_login != '')
+                <ul class="list-unstyled user-auth">
+                    <li>
+                        <a>Wellcome, {{$status_login}}</a>
+                    </li>
+                    <li>
+                        <a href="{{URL::route('cust_logout')}}" class="logout">Logout</a>
+                    </li>
+                </ul>
+            @endif
 
              <div class="row text-center">
                 <div class="col-12 my-auto mx-auto">

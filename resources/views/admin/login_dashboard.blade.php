@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Orideli | Admin Log in</title>
+  <title>Baby Stardaz | Admin Login</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -30,7 +30,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Admin Orideli</b></a>
+    <a href="#"><b>Admin Baby Stardaz</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -40,10 +40,11 @@
       <form action="{{route('checklogin')}}" method="post">
         @csrf
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="email" placeholder="Email" required>
+          <input type="text" class="form-control" name="name" placeholder="Username" required>
+          <input type="hidden" name="role" value="admin">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>

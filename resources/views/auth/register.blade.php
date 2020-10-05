@@ -25,6 +25,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <input type="hidden" name="role" value="customer">
                             </div>
                             <div class="form-group">
                                 <input type="email" name="email" class="form-control contact_input @error('email') is-invalid @enderror" placeholder="Email" id="email" required autocomplete="off" value="{{ old('email') }}">

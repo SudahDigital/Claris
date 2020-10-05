@@ -15,7 +15,7 @@
             <div class="col-sm-12 mb-5">
                 <h1 class="text-center" style="color: #41B1CD; font-weight: bold;">Sign In</h1>
                 <h6 class="text-center">Use your account</h6>
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('cust_cek_login') }}">
                     @csrf
                     <div class="contact_card">
                         <div class="card-body">
@@ -27,6 +27,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <input type="hidden" name="role" value="customer">
                             </div>
                             <div class="form-group">
                                 <input type="password" name="password" class="form-control contact_input @error('password') is-invalid @enderror" placeholder="Password" id="password" required autocomplete="off" value="{{ old('password') }}">

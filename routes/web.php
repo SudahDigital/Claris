@@ -16,35 +16,41 @@ use Illuminate\Support\Facades\Route;
 
 // welcome
 
+//*** CUSTOMER ***//
+
 Route::get('/', ['as'=>'category','uses'=>'WelcomeController@index']);
-Route::get('/category', ['as'=>'category','uses'=>'WelcomeController@category']);
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/login', 'LoginController@index')->name('cust_login');
+Route::post('/beranda', 'LoginController@login')->name('cust_cek_login');
+Route::get('/logout', 'LoginController@logout')->name('cust_logout');
 
-// product
-Route::get('/product/category/', 'ProductController@category')->name('product_category');
-Route::get('/product/search/', 'ProductController@search')->name('product_search');
-Route::get('/product/detail/', 'ProductController@detail')->name('product_detail');
+Route::middleware('auth.admin')->group(function () {
 
-// cart
-Route::post('/cart/add/', 'CartController@add')->name('add_cart');
-Route::get('/cart/', 'CartController@index')->name('cart');
-Route::get('/cart/delete/{id}', 'CartController@delete')->name('cart_delete');
-Route::get('/cart/update_mount/', 'CartController@update_mount')->name('update_mount');
-Route::post('/cart/pay', 'CartController@pay')->name('cart_pay');
-// order
-Route::post('/cart/order/', 'CartController@order')->name('order');
+	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/category', ['as'=>'category','uses'=>'WelcomeController@category']);
+	// product
+	Route::get('/product/category/', 'ProductController@category')->name('product_category');
+	Route::get('/product/search/', 'ProductController@search')->name('product_search');
+	Route::get('/product/detail/', 'ProductController@detail')->name('product_detail');
 
+	// cart
+	Route::post('/cart/add/', 'CartController@add')->name('add_cart');
+	Route::get('/cart/', 'CartController@index')->name('cart');
+	Route::get('/cart/delete/{id}', 'CartController@delete')->name('cart_delete');
+	Route::get('/cart/update_mount/', 'CartController@update_mount')->name('update_mount');
+	Route::post('/cart/pay', 'CartController@pay')->name('cart_pay');
 
+	// order
+	Route::post('/cart/order/', 'CartController@order')->name('order');
 
-// cara belanja
-Route::get('/cara-belanja', 'CaraBelanjaController@index')->name('cara_belanja');
+	// cara belanja
+	Route::get('/cara-belanja', 'CaraBelanjaController@index')->name('cara_belanja');
 
-
-// contact us
-Route::get('/contact', 'ContactController@index')->name('contact');
+	// contact us
+	Route::get('/contact', 'ContactController@index')->name('contact');
+});
 
 //*** ADMIN ***//
 

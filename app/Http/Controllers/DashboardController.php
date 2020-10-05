@@ -28,7 +28,10 @@ class DashboardController extends Controller
 
         $user = User::where($credentials)->first();
 
-        if ($user) { 
+        $sql = User::where('name',$request->name)->where('password',$request->password)->whererole('admin','==',$request->role)->get();
+        $rst = $sql->count();
+
+        if ($user && $rst!='0') { 
             // reff : https://vegibit.com/how-to-create-user-registration-in-laravel/
             auth()->login($user); // agar bs dipanggil auth()->user()->name
 

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Product;
+use App\Category;
+use App\Cart;
 
 
 class HomeController extends Controller
@@ -14,10 +18,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth');
-    }
+    }*/
 
     /**
      * Show the application dashboard.
@@ -26,7 +30,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return $product = Product::all();
-        // return view('home');
+        // return $product = Product::all();
     }
 }
