@@ -41,6 +41,7 @@ class ProductController extends Controller
 
         $data['count_cart'] = count($cart);
         $data['cart'] = $cart;
+        $data['status_login'] = '';
         
         // return $input;die;
     	return view('layouts.content',$data);
@@ -66,6 +67,8 @@ class ProductController extends Controller
 
         $data['count_cart'] = count($cart);
         $data['cart'] = $cart;
+        $data['status_login'] = '';
+
     	return view('layouts.content',$data);
     }
     public function detail(Request $request)
@@ -93,6 +96,7 @@ class ProductController extends Controller
         $data['count_cart'] = count($cart);
 
         $data['cart'] = $cart;
+        $data['status_login'] = '';
     	return view('layouts.detail',$data);
     }
 }

@@ -16,12 +16,12 @@
                     <h3 class="title-page">Filter by Category <i class="fas fa-sliders-h"></i></h3>
                 @endif
                 <button class="btn button_filter" style="color: #fff;">Semua Produk</button>
-                <button class="btn button_filter" href="{{URL::route('product_category', ['id'=>'1', 'category_name'=>'Kamar Mandi'] )}}" style="color: #fff;">Kamar Mandi</button>
-                <button class="btn button_filter" style="color: #fff;">Kamar Tidur</button>
-                <button class="btn button_filter" style="color: #fff;">Ruang Makan</button>
-                <button class="btn button_filter" style="color: #fff;">Dapur</button>
-                <button class="btn button_filter" style="color: #fff;">Taman</button>
-                <button class="btn button_filter" style="color: #fff;">Kidzone</button>
+                <a href="{{URL::route('product_category', ['id'=>'1', 'category_name'=>'Kamar Mandi'] )}}" ><button class="btn button_filter" style="color: #fff;">Kamar Mandi</button></a>
+                <a href="{{URL::route('product_category', ['id'=>'2', 'category_name'=>'Kamar Tidur'] )}}" ><button class="btn button_filter" style="color: #fff;">Kamar Tidur</button>
+                <a href="{{URL::route('product_category', ['id'=>'3', 'category_name'=>'Ruang Makan'] )}}" ><button class="btn button_filter" style="color: #fff;">Ruang Makan</button>
+                <a href="{{URL::route('product_category', ['id'=>'5', 'category_name'=>'Dapur'] )}}" ><button class="btn button_filter" style="color: #fff;">Dapur</button>
+                <a href="{{URL::route('product_category', ['id'=>'6', 'category_name'=>'Taman'] )}}" ><button class="btn button_filter" style="color: #fff;">Taman</button>
+                <a href="{{URL::route('product_category', ['id'=>'7', 'category_name'=>'Kidzone'] )}}" ><button class="btn button_filter" style="color: #fff;">Kidzone</button>
             </div>
             @if($page == 'category')
                 <div class="col-sm-12 col-md-12">
