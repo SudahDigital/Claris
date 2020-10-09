@@ -35,7 +35,7 @@
            
             <div class="sidebar-header mx-auto">
                 <a href="{{ url('/') }}">
-                    <img src="{{ asset('assets/image/babystardaz01.jpg') }}" width="120px" height="120px" class="d-inline-block align-top" alt="" loading="lazy">
+                    <img src="{{ asset('assets/image/white.png') }}" width="120px" height="120px" class="d-inline-block align-top" alt="" loading="lazy">
                 </a>
             </div>
             <ul class="list-unstyled components">

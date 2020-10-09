@@ -26,8 +26,7 @@ Route::get('/login', 'LoginController@index')->name('cust_login');
 Route::post('/beranda', 'LoginController@login')->name('cust_cek_login');
 Route::get('/logout', 'LoginController@logout')->name('cust_logout');
 
-Route::middleware('auth.admin')->group(function () {
-
+// Route::middleware('auth.admin')->group(function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/category', ['as'=>'category','uses'=>'WelcomeController@category']);
 	// product
@@ -50,7 +49,7 @@ Route::middleware('auth.admin')->group(function () {
 
 	// contact us
 	Route::get('/contact', 'ContactController@index')->name('contact');
-});
+// });
 
 //*** ADMIN ***//
 

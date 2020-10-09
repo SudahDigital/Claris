@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Orideli</title>
+    <title>Claris</title>
 
     <link rel="icon" href="{{ asset('assets/image/icon.png')}}" type="image/png" sizes="16x16">
     <!-- Bootstrap CSS CDN -->
@@ -30,15 +30,30 @@
     @endif
 
     <div class="wrapper">
-        <div id="content"> 
+        <div id="content" style="background-image: url('{{ asset('assets/image/claris/UI Web Claris-23.png') }}'), url('{{ asset('assets/image/claris/UI Web Claris-22.png') }}');"> 
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1;">
                 <div class="container-fluid">
-
-                    <a class="navbar-brand ml-md-5 mx-auto" href="/" style="margin: auto !important">
-                        <img src="{{ asset('assets/image/babystardaz.jpg') }}" width="120px" height="120px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
-                    </a>
-                    
+                    <div class="col-5 my-auto">
+                        <button type="button" id="sidebarCollapse" class="btn btn-primary button-burger-menu btn-lg">
+                            <i class="fas fa-align-justify fa-lg"></i>
+                        </button>
+                    </div>
+                    <div class="col-2 my-auto">
+                        <a class="navbar-brand ml-md-5 mx-auto" href="/" style="margin: auto !important">
+                            <img src="{{ asset('assets/image/white.png') }}" width="100px" height="100px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="col-4 my-auto">
+                        <div class="col-8 float-right">
+                            <form action="{{route('product_search')}}"  class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
+                                <div class="input-group">
+                                    <button class="btn search_botton_navbar" type="submit" id="button-search-addon"><i class="fa fa-search fa-lg"></i></button>
+                                    <input class="form-control search_input_navbar text-center" name="keyword" type="text" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </nav>
 

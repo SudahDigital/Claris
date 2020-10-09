@@ -16,11 +16,11 @@
                 <div class="mx-auto item_product h-100">
                     <div class="row card-body">
                     <div class="col-12 col-md-4 float-left my-auto d-none d-md-inline-block">
-                        <img src="assets/image/carabelanja-search.png" class="card-img-top" alt="...">
+                        <img src="assets/image/carabelanja_search.png" class="card-img-top" alt="...">
                     </div>
                     <div class="col-12 col-md-8 float-right my-auto">
                         <h5 class="card-title">1. Cari Produk</h5>
-                        <img src="assets/image/search_product.png" class="card-img-top d-md-none d-inline-block" alt="...">
+                        <img src="assets/image/carabelanja_search.png" class="card-img-top d-md-none d-inline-block" alt="...">
                         <p>Di Baby Stardaz Shop terdapat banyak pilihan untuk kebutuhan harian kamu, dan dapat dilihat dan dicari di halaman utama dan category.</p>
                     </div>
                     </div>
@@ -30,11 +30,11 @@
                 <div class="mx-auto item_product h-100">
                     <div class="row card-body">
                     <div class="col-12 col-md-4 float-left my-auto d-none d-md-inline-block">
-                        <img src="{{ asset('assets/image/carabelanja-addtocart.png') }}" class="card-img-top" alt="...">
+                        <img src="{{ asset('assets/image/carabelanja_addtocart.png') }}" class="card-img-top" alt="...">
                     </div>
                     <div class="col-12 col-md-8 float-right my-auto">
                         <h5 class="card-title">2. Masukkan dalam keranjang belanja</h5>
-                        <img src="{{ asset('assets/image/add_to_cart.png') }}" class="card-img-top d-md-none d-inline-block" alt="...">
+                        <img src="{{ asset('assets/image/carabelanja_addtocart.png') }}" class="card-img-top d-md-none d-inline-block" alt="...">
                         <p>Bila kamu sudah menemukannya, masukkan pilihan produk yang kamu
                             butuhkan dengan menekan tombol Add to Cart pada bagian bawah.</p>
                     </div>
@@ -47,11 +47,11 @@
                 <div class="mx-auto item_product h-100">
                     <div class="row card-body">
                     <div class="col-12 col-md-4 float-left my-auto d-none d-md-inline-block">
-                        <img src="{{ asset('assets/image/carabelanja-addocument.png') }}" class="card-img-top" alt="...">
+                        <img src="{{ asset('assets/image/carabelanja_addocument.png') }}" class="card-img-top" alt="...">
                     </div>
                     <div class="col-12 col-md-8 float-right my-auto">
                         <h5 class="card-title">3. Isi Data</h5>
-                        <img src="{{ asset('assets/image/add_document.png') }}" class="card-img-top d-md-none d-inline-block" alt="...">
+                        <img src="{{ asset('assets/image/carabelanja_addocument.png') }}" class="card-img-top d-md-none d-inline-block" alt="...">
                         <p>Proses bisa kamu lanjutkan dengan mengisi data pemesan, penerima, dan pengiriman.
                             Lalu kamu konfirmasikan daftar ini di halaman Konfirmasi Pemesanan sebelum kamu
                             mengirimkan kepada admin Baby Stardaz Shop.</p>
@@ -63,11 +63,11 @@
                 <div class="mx-auto item_product h-100">
                     <div class="row card-body">
                     <div class="col-12 col-md-4 float-left my-auto d-none d-md-inline-block">
-                        <img src="{{ asset('assets/image/carabelanja-confirmed.png') }}" class="card-img-top" alt="...">
+                        <img src="{{ asset('assets/image/carabelanja_confirmed.png') }}" class="card-img-top" alt="...">
                     </div>
                     <div class="col-12 col-md-8 float-right my-auto">
                         <h5 class="card-title">4. Konfirmasi via WhatsApp</h5>
-                        <img src="{{ asset('assets/image/order_confirmed.png') }}" class="card-img-top d-md-none d-inline-block" alt="...">
+                        <img src="{{ asset('assets/image/carabelanja_confirmed.png') }}" class="card-img-top d-md-none d-inline-block" alt="...">
                         <p>Bila sudah dipastikan, tinggal tekan tombol Kirim Pesanan ke Imaji Shop.
                             Order yang kamu masukkan akan secara otomatis kami buatkan dan kamu tinggal
                             menyampaikannya kepada admin WhatsApp kami.</p>

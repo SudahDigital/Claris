@@ -87,7 +87,7 @@
            
             <div class="sidebar-header mx-auto">
                 <a href="{{ url('/') }}">
-                    <img src="{{ asset('assets/image/babystardaz01.jpg') }}" width="120px" height="120px" class="d-inline-block align-top" alt="" loading="lazy" style="margin: auto !important">
+                    <img src="{{ asset('assets/image/logo_claris.png') }}" width="120px" height="60px" class="d-inline-block align-top" alt="" loading="lazy" style="margin: auto !important">
                 </a>
             </div>
             <ul class="list-unstyled components">
@@ -103,20 +103,20 @@
                     <a href="{{ url('/') }}" style="border-bottom: 3px solid white;">Beranda</a>
                 </li>
                 <li>
-                    <a style="border-bottom: 3px solid white" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Kategori Produk</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Kategori Produk</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         @foreach($category as $key => $value)
                         <li>
-                            <a style="border-bottom: 3px solid white" href="{{URL::route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" style="font-size: 1.1em !important;">{{$value->category_name}}</a>
+                            <a href="{{URL::route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" style="font-size: 1.1em !important;">{{$value->category_name}}</a>
                         </li>
                         @endforeach
                     </ul>
                 </li>
                 <li>
-                    <a style="border-bottom: 3px solid white" href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
+                    <a href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
                 </li>
                 <li>
-                    <a style="border-bottom: 3px solid white" href="{{URL::route('contact')}}">Kontak Kami</a>
+                    <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
             </ul>
 
@@ -167,7 +167,7 @@
                     </div>
                     <div class="col-2 my-auto">
                         <a class="navbar-brand ml-md-5 mx-auto" href="/" style="margin: auto !important">
-                            <img src="{{ asset('assets/image/babystardaz.jpg') }}" width="100px" height="100px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
+                            <img src="{{ asset('assets/image/logo_claris.png') }}" width="120px" height="70px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                         </a>
                     </div>
                     <div class="col-4 my-auto">
@@ -215,11 +215,11 @@
                             <!-- The slideshow -->
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="{{ asset('assets/image/babystardaz_banner.jpg') }}" class="w-100 h-100">
+                                    <img src="{{ asset('assets/image/banner01.jpg') }}" class="w-100 h-100">
                                 </div>
-                                <div class="carousel-item">
-                                    <img src="{{ asset('assets/image/babystardaz_banner01.jpg') }}" class="w-100 h-100">
-                                </div>
+                                <!-- <div class="carousel-item">
+                                    <img src="{{ asset('assets/image/logo_claris.png') }}" class="w-100 h-100">
+                                </div> -->
                                 <!-- <div class="carousel-item">
                                     <img src="{{ asset('assets/image/banner-3.jpg') }}" class="w-100">
                                 </div> -->
@@ -242,7 +242,7 @@
 
             <footer class="footer fixed-bottom">
                 <div id="footer">
-                    <div class="row">
+                    <div class="row" style="background-color: #EA7D08; border-radius: 20px;">
                         <div class="col-5 my-auto" id="cart_icon">
                             <?php
                                 if(!empty($cart)) {
@@ -264,7 +264,6 @@
                             ?>
                                 <p class="float-left p-0 my-auto" style="color: #fff;"><strong>Rp 0</strong></p>
                                 <a href="{{route('cart')}}" class="float-right mr-1 mr-md-3 cart" style="position: relative;">
-                                    <!-- <p class="count-cart-one">{{ $count_cart }}</p> -->
                                     <img src="{{ asset('assets/image/troli-01.png') }}" alt="" class="img-fluid" style="width: 30px;">
                                 </a>
                                 {{-- <button type="button" class="btn btn-success button-pesan mb-0 float-right mr-3" data-toggle="modal" data-target="#modalCheckout">Pesan</button> --}}
@@ -281,7 +280,7 @@
                            <p class="float-right mr-1 mr-md-3" style="color: #fff; line-height: 50px;"><strong style="color: #fff;">( {{$count_cart}} Item )</strong></p>
                         </div>
                     </div>
-                    <div class="hidden row" id="book">
+                    <div class="hidden row" id="book" style="background-color: #EA7D08;">
                         <div class="scroll w-100 h-100" id="table_c" style="display: none;">
                             @php
                              $total = 0 ;
@@ -312,18 +311,10 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <!-- <a class="btn btn-sm btn-danger" href="{{route('cart_delete',$value->id)}}" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini dari keranjang belanja Anda?');"><i class="fa fa-times"></i></a> -->
                                     <a class="btn btn-sm btn-danger float-center" onclick="valDel('{{$value->id}}')"><i class="fa fa-times" style="color: white;"></i></a>
                                 </div>
                             </div>
                             @endforeach
-                            <!-- <div class="row">
-                                <div class="col-12">
-                                    <div class="float-left">
-                                        <span style="background: #41B1CD;font-size: 250%">&nbsp;</span>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                     <div id="listcart" class="col-12 my-auto" style="background-color: #41B1CD; height: 50px; display: none;">
@@ -334,20 +325,10 @@
                         Pesan Sekarang
                         </a>  
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-12 my-auto proses_to_chart_slide"  style="background-color: white;">
-                            {{ $count_cart }} Item | <span id="total_">Rp {{ number_format($total, 0, ',', '.') }}</span>
-                            <a href="{{route('cart')}}" class="btn btn-success align-self-right btn-sm" style="background-color: #41B1CD">
-                            <i class="fa fa-shopping-basket ml-1"></i>
-                            <input type="hidden" id="total" value="{{$total}}">
-                            Pesan Sekarang
-                            </a>                                
-                        </div>
-                    </div> -->
                 </div>
-                <div id="bottom-footer">
+                <div id="bottom-footer" style="background-color: #41B1CD;">
                     <div class = "inner-wrap clearfix">
-                        <img src="{{ asset('assets/image/babystardaz01.jpg') }}" width="50px" height="50px">
+                        <img src="{{ asset('assets/image/logo_claris_white.png') }}" width="70px" height="40px">
                     </div>
                     <div class = "inner-wrap clearfix">
                         <div class="row text-center">
@@ -372,6 +353,23 @@
                     </div>
                 </div>
             </footer>
+
+           <!--  <footer class="page-footer font-small cyan darken-3 fixed-bottom" >
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12 py-5" style="background-color: #41B1CD">
+                    <div class="mb-5 flex-center">
+                      <a class="fb-ic">
+                        //
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-copyright text-center py-3" style="background-color: #000">© 2020 Copyright:
+                <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+              </div>
+            </footer> -->
 
         </div>
     </div>

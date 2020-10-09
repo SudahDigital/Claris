@@ -1,11 +1,27 @@
 @extends('template')
 @section('content')
+    <div class="banner">
+        <img src="{{ asset('assets/image/2.jpg') }}" style="width:100%;">
+        <div class="img-banner"><img src="{{ asset('assets/image/logo_cool.png') }}" style="width: 30%;"></div>
+        <!-- <div class="txt-banner"> Menjadi ibu rumah tangga yang aktif dan produktif merupakan suatu hal yang positif untuk dibagikan selain menjadi penopang dalam rumah tangga , anda bisa mengisi keseharian anda dengan banyak hal-hal yang positif. Temukan inspirasi-inspirasi menarik seperti mengatur tatanan rumah, memasak dan bermacam-macam hobi yang bisa anda lakukan.</div> -->
+    </div>
+    <div class="row align-middle">
+        <img src="{{ asset('assets/image/banner02.jpg') }}"  class="w-100 h-100">
+    </div>
     <div class="container" style="{{ $page == 'home' ? 'margin-top: 30px' : 'margin-top: 80px' }}">
         <div class="row align-middle" style="{{ $page == 'home' ? 'margin-bottom: 20px' : 'margin-bottom: 10px' }}">
-            <div class="col-sm-12 col-md-6 order-2 order-md-1">
+            <div class="col-sm-12 order-2 order-md-1">
                 @if($page == 'home')
-                    <h3 class="title-page">Semua Produk</h3>
+                    <!-- <h3 class="title-page">Semua Produk</h3> -->
+                    <h3 class="title-page">Filter by Category <i class="fas fa-sliders-h"></i></h3>
                 @endif
+                <button class="btn button_filter" style="color: #fff;">Semua Produk</button>
+                <button class="btn button_filter" href="{{URL::route('product_category', ['id'=>'1', 'category_name'=>'Kamar Mandi'] )}}" style="color: #fff;">Kamar Mandi</button>
+                <button class="btn button_filter" style="color: #fff;">Kamar Tidur</button>
+                <button class="btn button_filter" style="color: #fff;">Ruang Makan</button>
+                <button class="btn button_filter" style="color: #fff;">Dapur</button>
+                <button class="btn button_filter" style="color: #fff;">Taman</button>
+                <button class="btn button_filter" style="color: #fff;">Kidzone</button>
             </div>
             @if($page == 'category')
                 <div class="col-sm-12 col-md-12">
@@ -33,8 +49,8 @@
                 <h5 class="ml-3">Pencarian tidak ditemukan!</h5>
             @endif
             @foreach($product as $key => $value)
-                <div class="col-6 col-md-6 col-lg-3 mb-5">
-                    <div class="card item_product " style="border: none;">
+                <div class="col-6 col-md-6 col-lg-4 mb-5">
+                    <div class="card item_product" style="border: none;">
                         <div class="card-img-top" style="position: relative;">
                             <div class="embed-responsive embed-responsive-4by3">
                                 <div class="embed-responsive-item">
@@ -52,9 +68,6 @@
                         </div>
                         <div class="card-body p-0">
                             <p style="font-size: 20px">Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</p>
-                        </div>
-                        <div class="card-body p-0">
-                            <p><a class="fas fa-star" style="color: yellow;"></a> Rating</p>
                         </div>
                         <div class="card-body p-0">
                             <div class="float-left px-2 py-2">

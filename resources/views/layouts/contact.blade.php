@@ -42,29 +42,29 @@
                 </form> -->
                 <div class="row section_content">
                     <div class="col-sm-12 col-md-6 mb-5">
-                        <div class="card" style="background-color: #41B1CD; border-radius: 25px;">
+                        <div class="card" style="background-color: #ffffff; border-radius: 25px; border: none;">
                             <div class="row card-body">
                                 <div class="col-12 col-md-4 float-left my-auto d-none d-md-inline-block text-right">
-                                    <i class="fa fa-phone fa-5x" style="color: #ffffff;"></i>
+                                    <img src="{{ asset('assets/image/contact_phone.png') }}" class="card-img-top" alt="...">
                                 </div>
-                                <div class="col-12 col-md-8 float-right my-auto text-center" style="color: #ffffff;">
-                                    <a class="card-img-top d-md-none d-inline-block fa fa-phone fa-lg"></a>
-                                    <h5 class="card-title" style="font-size: 20px;">Telepon</h5>
-                                    <h5 class="card-title" style="font-size: 15px">{{$telp}}</h5>
+                                <div class="col-12 col-md-8 float-right my-auto text-center" style="color: #000;">
+                                    <a class="card-img-top d-md-none d-inline-block"><img src="{{ asset('assets/image/contact_phone.png') }}" class="card-img-top" alt="..." style="height: 50px; width: 50px;"></a>
+                                    <h5 class="card-title" style="font-size: 30px; color: #F77C22; font-weight: bold;">Telepon</h5>
+                                    <h5 class="card-title" style="font-size: 20px">{{$telp}}</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6 mb-5">
-                        <div class="card" style="background-color: #41B1CD; border-radius: 25px;">
+                        <div class="card" style="background-color: #ffffff; border-radius: 25px; border: none;">
                             <div class="row card-body">
                                 <div class="col-12 col-md-4 float-left my-auto d-none d-md-inline-block text-center">
-                                    <i class="fa fa-envelope fa-5x" style="color: #ffffff;"></i>
+                                    <img src="{{ asset('assets/image/contact_email.png') }}" class="card-img-top" alt="...">
                                 </div>
-                                <div class="col-12 col-md-8 float-right my-auto text-center" style="color: #ffffff;">
-                                    <a class="card-img-top d-md-none d-inline-block fa fa-envelope fa-lg"></a>
-                                    <h5 class="card-title" style="font-size: 20px;">Email</h5>
-                                    <h5 class="card-title" style="font-size: 15px">{{$email}}</h5>
+                                <div class="col-12 col-md-8 float-right my-auto text-center">
+                                    <a class="card-img-top d-md-none d-inline-block"><img src="{{ asset('assets/image/contact_email.png') }}" class="card-img-top" alt="..." style="height: 50px; width: 50px;"></a>
+                                    <h5 class="card-title" style="font-size: 30px; color: #C13EB7; font-weight: bold;">Email</h5>
+                                    <h5 class="card-title" style="font-size: 20px;">{{$email}}</h5>
                                 </div>
                             </div>
                         </div>
