@@ -87,7 +87,7 @@
            
             <div class="sidebar-header mx-auto">
                 <a href="{{ url('/') }}">
-                    <img src="{{ asset('assets/image/logo_claris.png') }}" width="120px" height="60px" class="d-inline-block align-top" alt="" loading="lazy" style="margin: auto !important">
+                    <img src="{{ asset('assets/image/logo_claris.png') }}" width="120px" height="70px" class="d-inline-block align-top" alt="" loading="lazy" style="margin: auto !important">
                 </a>
             </div>
             <ul class="list-unstyled components">

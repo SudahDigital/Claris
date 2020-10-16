@@ -34,7 +34,7 @@
         <nav id="sidebar">
             <div class="sidebar-header">
                 <a href="{{ url('/') }}">
-                    <img src="{{ asset('assets/image/logo_claris.png') }}" width="120px" height="60px" class="d-inline-block align-top" alt="" loading="lazy">
+                    <img src="{{ asset('assets/image/logo_claris.png') }}" width="120px" height="70px" class="d-inline-block align-top" alt="" loading="lazy">
                 </a>
             </div>
             <ul class="list-unstyled components">

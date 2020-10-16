@@ -35,7 +35,7 @@
            
             <div class="sidebar-header mx-auto">
                 <a href="{{ url('/') }}">
-                    <img src="{{ asset('assets/image/white.png') }}" width="120px" height="120px" class="d-inline-block align-top" alt="" loading="lazy">
+                    <img src="{{ asset('assets/image/logo_claris.png') }}" width="120px" height="70px" class="d-inline-block align-top" alt="" loading="lazy">
                 </a>
             </div>
             <ul class="list-unstyled components">
@@ -48,23 +48,23 @@
                     </div>
                 </form>
                 <li class="active">
-                    <a style="border-bottom: 3px solid white" href="{{ url('/') }}">Beranda</a>
+                    <a href="{{ url('/') }}">Beranda</a>
                 </li>
                 <li>
-                    <a style="border-bottom: 3px solid white" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Kategori Produk</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Kategori Produk</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         @foreach($category as $key => $value)
                         <li>
-                            <a style="border-bottom: 3px solid white" href="{{URL::route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" style="font-size: 1.1em !important;">{{$value->category_name}}</a>
+                            <a href="{{URL::route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" style="font-size: 1.1em !important;">{{$value->category_name}}</a>
                         </li>
                         @endforeach
                     </ul>
                 </li>
                 <li>
-                    <a style="border-bottom: 3px solid white" href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
+                    <a href="{{URL::route('cara_belanja')}}">Cara Berbelanja</a>
                 </li>
                 <li>
-                    <a style="border-bottom: 3px solid white" href="{{URL::route('contact')}}">Kontak</a>
+                    <a href="{{URL::route('contact')}}">Kontak</a>
                 </li>
             </ul>
 
@@ -102,9 +102,9 @@
                             <i class="fas fa-align-justify fa-lg"></i>
                         </button>
                     </div>
-                    <div class="col-2 my-auto">
+                     <div class="col-2 my-auto">
                         <a class="navbar-brand ml-md-5 mx-auto" href="/" style="margin: auto !important">
-                            <img src="{{ asset('assets/image/babystardaz.jpg') }}" width="100px" height="100px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
+                            <img src="{{ asset('assets/image/logo_claris.png') }}" width="120px" height="70px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                         </a>
                     </div>
                     <div class="col-4 my-auto">
