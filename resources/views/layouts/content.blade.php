@@ -5,7 +5,7 @@
         <div class="img-banner"><img src="{{ asset('assets/image/logo_cool.png') }}" style="width: 30%;"></div>
         <!-- <div class="txt-banner"> Menjadi ibu rumah tangga yang aktif dan produktif merupakan suatu hal yang positif untuk dibagikan selain menjadi penopang dalam rumah tangga , anda bisa mengisi keseharian anda dengan banyak hal-hal yang positif. Temukan inspirasi-inspirasi menarik seperti mengatur tatanan rumah, memasak dan bermacam-macam hobi yang bisa anda lakukan.</div> -->
     </div>
-    <div class="row align-middle" style="width: 375px; height: 100px">
+    <div class="row align-middle banner_header">
         <img src="{{ asset('assets/image/banner02.jpg') }}"  class="w-100 h-100">
     </div>
     <div class="container" style="{{ $page == 'home' ? 'margin-top: 30px' : 'margin-top: 80px' }}">
@@ -90,7 +90,7 @@
                             </div>
                             <div class="float-right col-6 px-1 py-2" style="width: 50%; text-align: center;">
                                 <button class="btn button_plus d-inline-display" onclick="button_plus('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff;">+</button>
-                                <p id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; margin-left: 1px !important; margin-right: 1px !important; font-size: 20px;">1</p>
+                                <p id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; margin-left: 1px !important; margin-right: 1px !important; font-size: 20px; border: 1px #000 solid;">1</p>
                                 <button class="btn button_minus d-inline-display" onclick="button_minus('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff;">-</button>
                             </div>
                         </div>
