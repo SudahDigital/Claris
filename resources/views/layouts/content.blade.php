@@ -10,7 +10,7 @@
     </div>
     <div class="container" style="{{ $page == 'home' ? 'margin-top: 30px' : 'margin-top: 80px' }}">
         <div class="row align-middle" style="{{ $page == 'home' ? 'margin-bottom: 20px' : 'margin-bottom: 10px' }}">
-            <div class="col-sm-12 order-2 order-md-1">
+            <div class="col-sm-12 order-2 order-md-1 form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
                 @if($page == 'home')
                     <!-- <h3 class="title-page">Semua Produk</h3> -->
                     <h3 class=" title-page">Filter by Category <i class="fas fa-sliders-h"></i></h3>
