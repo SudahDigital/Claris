@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <div class="card-body col-12 p-0">
-                            <div class="float-left col-6 px-2 py-2" style="text-align: right;">
+                            <div class="float-left col-6 px-1 py-2" style="text-align: right;">
                                 <form method="post" action="{{route('add_cart')}}">
                                     @csrf
                                     <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
@@ -88,7 +88,7 @@
                                     <button class="btn btn-block button_add_to_cart" style="color: #fff;">Tambah</button>
                                 </form>
                             </div>
-                            <div class="float-right col-6 px-2 py-2" style="width: 50%; text-align: center;">
+                            <div class="float-right col-6 px-1 py-2" style="width: 50%; text-align: center;">
                                 <button class="btn button_plus d-inline-display" onclick="button_plus('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff;">+</button>
                                 <p id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; margin-left: 1px !important; margin-right: 1px !important; font-size: 20px;">1</p>
                                 <button class="btn button_minus d-inline-display" onclick="button_minus('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff;">-</button>
