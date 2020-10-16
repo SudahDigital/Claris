@@ -40,7 +40,7 @@
                     <div class="col-sm-12 col-md-8 mb-6">
                         <div class="card mx-auto cart_card">
                             <div class="card-body table-responsive">
-                                <table class="table text-nowrap" style="width: 100%;">
+                                <table class="table" style="width: 100%;">
                                     <tbody>
                                         @php
                                          $total = 0 ;
@@ -58,7 +58,7 @@
 
                                         @endphp
                                         <tr>
-                                            <td class="align-middle img-product" scope="row">
+                                            <td class="align-middle img-product" scope="row" style="width: 80px">
                                                 <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'sleek.jpg').'') }}" class="card-img-top img-fluid">
                                             </td>
                                             <td class="align-middle">
