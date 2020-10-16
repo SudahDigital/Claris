@@ -48,6 +48,7 @@ class CartController extends Controller
         $data['cart'] = $cart;
         $data['count_cart'] = $count;
         $data['category'] = Category::all();
+        $data['status_login'] = '';
         // return $input;die;
         // return $data;die;
     	return view('layouts.cart_old',$data);

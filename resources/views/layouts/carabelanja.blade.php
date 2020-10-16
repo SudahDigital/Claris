@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-12 col-md-8 float-right my-auto">
                         <h5 class="card-title">1. Cari Produk</h5>
-                        <img src="assets/image/carabelanja_search.png" class="card-img-top d-md-none d-inline-block" alt="...">
+                        <img src="assets/image/carabelanja_search.png" class="card-img-top d-md-none d-inline-block" alt="..." style="height: 70px; width: 70px;">
                         <p>Di Baby Stardaz Shop terdapat banyak pilihan untuk kebutuhan harian kamu, dan dapat dilihat dan dicari di halaman utama dan category.</p>
                     </div>
                     </div>
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-12 col-md-8 float-right my-auto">
                         <h5 class="card-title">2. Masukkan dalam keranjang belanja</h5>
-                        <img src="{{ asset('assets/image/carabelanja_addtocart.png') }}" class="card-img-top d-md-none d-inline-block" alt="...">
+                        <img src="{{ asset('assets/image/carabelanja_addtocart.png') }}" class="card-img-top d-md-none d-inline-block" alt="..." style="height: 70px; width: 70px;">
                         <p>Bila kamu sudah menemukannya, masukkan pilihan produk yang kamu
                             butuhkan dengan menekan tombol Add to Cart pada bagian bawah.</p>
                     </div>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="col-12 col-md-8 float-right my-auto">
                         <h5 class="card-title">3. Isi Data</h5>
-                        <img src="{{ asset('assets/image/carabelanja_addocument.png') }}" class="card-img-top d-md-none d-inline-block" alt="...">
+                        <img src="{{ asset('assets/image/carabelanja_addocument.png') }}" class="card-img-top d-md-none d-inline-block" alt="..." style="height: 70px; width: 70px;">
                         <p>Proses bisa kamu lanjutkan dengan mengisi data pemesan, penerima, dan pengiriman.
                             Lalu kamu konfirmasikan daftar ini di halaman Konfirmasi Pemesanan sebelum kamu
                             mengirimkan kepada admin Baby Stardaz Shop.</p>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="col-12 col-md-8 float-right my-auto">
                         <h5 class="card-title">4. Konfirmasi via WhatsApp</h5>
-                        <img src="{{ asset('assets/image/carabelanja_confirmed.png') }}" class="card-img-top d-md-none d-inline-block" alt="...">
+                        <img src="{{ asset('assets/image/carabelanja_confirmed.png') }}" class="card-img-top d-md-none d-inline-block" alt="..." style="height: 70px; width: 70px;">
                         <p>Bila sudah dipastikan, tinggal tekan tombol Kirim Pesanan ke Imaji Shop.
                             Order yang kamu masukkan akan secara otomatis kami buatkan dan kamu tinggal
                             menyampaikannya kepada admin WhatsApp kami.</p>
