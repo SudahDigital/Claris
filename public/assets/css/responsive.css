@@ -22,10 +22,6 @@
         width: 50px;
     }
 
-    #content .button_all_filter {
-        padding: 10px;
-    }
-
     #content .button_success_block, .button_add_to_cart, .button-pesan, .button_order {
         font-size: 12px;
         padding: 6px 0;
