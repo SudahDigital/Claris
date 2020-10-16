@@ -532,7 +532,7 @@ a.register:hover {
 #content .item_product:hover {
     box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.2);
     border: 3px solid #41B1CD !important;
-    border-radius: 25px;
+    border-radius: 40px;
     padding: 4px;
 }
 

@@ -5,7 +5,7 @@
         <div class="img-banner"><img src="{{ asset('assets/image/logo_cool.png') }}" style="width: 30%;"></div>
         <!-- <div class="txt-banner"> Menjadi ibu rumah tangga yang aktif dan produktif merupakan suatu hal yang positif untuk dibagikan selain menjadi penopang dalam rumah tangga , anda bisa mengisi keseharian anda dengan banyak hal-hal yang positif. Temukan inspirasi-inspirasi menarik seperti mengatur tatanan rumah, memasak dan bermacam-macam hobi yang bisa anda lakukan.</div> -->
     </div>
-    <div class="row align-middle">
+    <div class="row align-middle" style="width: 375px; height: 100px">
         <img src="{{ asset('assets/image/banner02.jpg') }}"  class="w-100 h-100">
     </div>
     <div class="container" style="{{ $page == 'home' ? 'margin-top: 30px' : 'margin-top: 80px' }}">
@@ -51,12 +51,12 @@
             @endif
             @foreach($product as $key => $value)
                 <div class="col-6 col-md-6 col-lg-4 mb-5">  <!--px-5 py-2-->
-                    <div class="card item_product" style="border: 0,5px solid #E1DFDC; border-radius: 60px; box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); ">
+                    <div class="card item_product" style="border: 0,5px solid #E1DFDC; border-radius: 40px; box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); ">
                         <?php
                             //echo $key;
                             $bg = ['#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F'];
                               // echo $bg[$key];
-                            echo '<div id="nmprd" class="text-center" style="background-color: '.$bg[$key].' ; padding:15px; border-top-right-radius: 60px;border-top-left-radius: 60px; color: #fff;">';
+                            echo '<div id="nmprd" class="text-center" style="background-color: '.$bg[$key].' ; padding:15px; border-top-right-radius: 40px;border-top-left-radius: 40px; color: #fff;">';
                         ?>
                         <!-- <div class="text-center" style="background-color:yellow; padding:15px; border-top-right-radius: 60px;border-top-left-radius: 60px; color: #fff;"> -->
                             Detail Produk
