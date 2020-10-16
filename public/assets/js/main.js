@@ -339,7 +339,7 @@ function rupiah(bilangan)
     separator = sisa ? ',' : '';
     rupiah += separator + ribuan.join(',');
   }
-   hasil = 'RP '+rupiah
+   hasil = 'Rp '+rupiah
   return hasil;
 }
 
@@ -376,26 +376,26 @@ function rupiah(bilangan)
           $( "#book" ).slideDown( "slow", function() {
             if (isi=='true') {
                     $('#tombol_click').removeClass();
-                    $('#tombol_click').addClass('col-12');
+                    $('#tombol_click').addClass('col-2 my-auto');
                     $('#table_c').css({'display':'block'});
                     $('.proses_to_chart_slide').css({'display':'block'});
                     $('#listcart').show();
                     $('#clickme').html('<i class="fas fa-chevron-down fa-lg"></i>');
                     $('#clickme').attr('isi','false');
-                    $('#cart_icon').css({'display':'none'})
-                    $('#sosmed').css({'display':'none'})
+                    // $('#cart_icon').css({'display':'none'})
+                    // $('#sosmed').css({'display':'none'})
                     $('.hidden').toggleClass('open');
                     $('#bottom-footer').css({'display':'none'});
 
             }else{
                     $('#tombol_click').removeClass();
-                    $('#tombol_click').addClass('col-2');
+                    $('#tombol_click').addClass('col-2 my-auto');
                     $('.proses_to_chart_slide').css({'display':'none'});
                     $('#listcart').hide();
                     $('#clickme').html('<i class="fas fa-chevron-up fa-lg"></i>');
                     $('#clickme').attr('isi','true');
-                    $('#cart_icon').css({'display':'block'})
-                    $('#sosmed').css({'display':'block'})
+                    // $('#cart_icon').css({'display':'block'})
+                    // $('#sosmed').css({'display':'block'})
                     $('.hidden').toggleClass('open');
                     $('#table_c').css({'display':'none'});
                     $('#bottom-footer').css({'display':'block'});

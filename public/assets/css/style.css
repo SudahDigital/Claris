@@ -515,6 +515,13 @@ a.register:hover {
     animation-duration: 2s;
 }
 
+#content .filter-animation {
+    -webkit-animation-name: GerakanKeKanan;
+    animation-name: GerakanKeKanan;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+}
+
 #content .section_content {
     -webkit-animation-name: GerakanKeAtas;
     animation-name: GerakanKeAtas;
@@ -523,8 +530,8 @@ a.register:hover {
 }
 
 #content .item_product:hover {
-    /*box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.2);*/
-    border: 3px solid #F7CD11 !important;
+    box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.2);
+    border: 3px solid #41B1CD !important;
     border-radius: 25px;
     padding: 4px;
 }
@@ -1085,7 +1092,18 @@ a.register:hover {
 
 #bottom-footer{
   background: #41B1CD;
-  height:90px;
+  height:100px;
+  text-align: center;
+}
+
+#footer {
+  padding: 10px 20px;
+  text-align: center;
+  /*vertical-align: middle !important;*/
+  /*border-top: 2px solid #dfe7d9;*/
+  /*display: block;*/
+  /*background-color: #41B1CD !important;*/
+
 }
 
 footer.footer {

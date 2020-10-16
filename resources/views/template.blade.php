@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Website | Baby Stardaz</title>
+    <title>Claris</title>
 
     <link rel="icon" href="{{ asset('assets/image/icon.png')}}" type="image/png" sizes="16x16">
     <!-- Bootstrap CSS CDN -->
@@ -240,7 +240,7 @@
             <!-- Page Content  -->
             @yield('content')
 
-            <footer class="footer fixed-bottom">
+            <footer class=" fixed-bottom"> <!--footer-->
                 <div id="footer">
                     <div class="row" style="background-color: #EA7D08; border-radius: 20px;">
                         <div class="col-5 my-auto" id="cart_icon">
@@ -280,7 +280,7 @@
                            <p class="float-right mr-1 mr-md-3" style="color: #fff; line-height: 50px;"><strong style="color: #fff;">( {{$count_cart}} Item )</strong></p>
                         </div>
                     </div>
-                    <div class="hidden row" id="book" style="background-color: #EA7D08;">
+                    <div class="hidden row" id="book" style="background-color: #fff;">
                         <div class="scroll w-100 h-100" id="table_c" style="display: none;">
                             @php
                              $total = 0 ;
@@ -298,12 +298,12 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="float-left">
-                                        <h5 class="product-name" style="color: #fff !important; font-weight: bold;">{{$value->product_name}}</h5>
-                                        <span id="mount2_{{$value->id}}" style="color: #fff !important;">Rp {{ number_format($amount, 0, ',', '.') }}</span>
+                                        <h5 class="product-name" style="color: #000 !important; font-weight: bold;">{{$value->product_name}}</h5>
+                                        <span id="mount2_{{$value->id}}" style="color: #000 !important;">Rp {{ number_format($amount, 0, ',', '.') }}</span>
                                         <div class="text-left">
-                                            <button type="button" class="btn btn-primary button_minus" onclick="cart('{{$value->id}}','min')" style="padding: 0; text-align: center;">-</button>
-                                            <span class="mr-1 ml-1" id="show_m2{{$value->id}}" style="color: #fff"> {{$value->mount}} </span>
-                                            <button type="button" class="btn btn-primary button_plus" onclick="cart('{{$value->id}}','plus')" style="padding: 0; text-align: center;">+</button>
+                                            <button type="button" class="btn btn-primary button_minus" onclick="cart('{{$value->id}}','min')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000">-</button>
+                                            <span class="mr-1 ml-1" id="show_m2{{$value->id}}" style="color: #000; border: 1px #000 solid; padding: 3px;"> {{$value->mount}} </span>
+                                            <button type="button" class="btn btn-primary button_plus" onclick="cart('{{$value->id}}','plus')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000">+</button>
                                             <input type="hidden" id="{{$value->id}}" value="{{$value->mount}}">
                                             <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
                                             <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">
@@ -317,13 +317,14 @@
                             @endforeach
                         </div>
                     </div>
-                    <div id="listcart" class="col-12 my-auto" style="background-color: #41B1CD; height: 50px; display: none;">
-                        {{ $count_cart }} Item | <span id="total_">Rp {{ number_format($total, 0, ',', '.') }}</span>
-                        <a href="{{route('cart')}}" class="btn btn-primary align-self-right btn-sm" style="background-color: #fff; color: #41B1CD">
-                        <i class="fa fa-shopping-basket ml-1"></i>
-                        <input type="hidden" id="total" value="{{$total}}">
-                        Pesan Sekarang
-                        </a>  
+                    <div id="listcart" class="col-12 my-auto text-right" style="background-color: #fff; height: 50px; display: none;">
+                        <!-- {{ $count_cart }} Item | <span id="total_">Rp {{ number_format($total, 0, ',', '.') }}</span> -->
+                        <!-- <div class="col-6"> -->
+                            <a href="{{route('cart')}}" class="btn btn-primary align-self-right btn-md" style="background-color: #41B1CD; color: #fff">
+                            <input type="hidden" id="total" value="{{$total}}">
+                            Beli Sekarang
+                            </a>  
+                        <!-- </div>   -->
                     </div>
                 </div>
                 <div id="bottom-footer" style="background-color: #41B1CD;">

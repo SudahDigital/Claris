@@ -13,15 +13,16 @@
             <div class="col-sm-12 order-2 order-md-1">
                 @if($page == 'home')
                     <!-- <h3 class="title-page">Semua Produk</h3> -->
-                    <h3 class="title-page">Filter by Category <i class="fas fa-sliders-h"></i></h3>
+                    <h3 class=" title-page">Filter by Category <i class="fas fa-sliders-h"></i></h3>
                 @endif
-                <button class="btn button_filter" style="color: #fff;">Semua Produk</button>
-                <a href="{{URL::route('product_category', ['id'=>'1', 'category_name'=>'Kamar Mandi'] )}}" ><button class="btn button_filter" style="color: #fff;">Kamar Mandi</button></a>
-                <a href="{{URL::route('product_category', ['id'=>'2', 'category_name'=>'Kamar Tidur'] )}}" ><button class="btn button_filter" style="color: #fff;">Kamar Tidur</button>
-                <a href="{{URL::route('product_category', ['id'=>'3', 'category_name'=>'Ruang Makan'] )}}" ><button class="btn button_filter" style="color: #fff;">Ruang Makan</button>
+                <a href="{{ url('/') }}"><button class="btn button_filter" style="color: #fff;">Semua Produk</button></a>
+                <a href="{{URL::route('product_category', ['id'=>'1', 'category_name'=>'Kamar Mandi'] )}}"><button class="btn button_filter" style="color: #fff;">Kamar Mandi</button></a>
+                <a href="{{URL::route('product_category', ['id'=>'2', 'category_name'=>'Kamar Tidur'] )}}"><button class="btn button_filter" style="color: #fff;">Kamar Tidur</button>
+                <a href="{{URL::route('product_category', ['id'=>'3', 'category_name'=>'Ruang Makan'] )}}"><button class="btn button_filter" style="color: #fff;">Ruang Makan</button>
                 <a href="{{URL::route('product_category', ['id'=>'5', 'category_name'=>'Dapur'] )}}" ><button class="btn button_filter" style="color: #fff;">Dapur</button>
-                <a href="{{URL::route('product_category', ['id'=>'6', 'category_name'=>'Taman'] )}}" ><button class="btn button_filter" style="color: #fff;">Taman</button>
-                <a href="{{URL::route('product_category', ['id'=>'7', 'category_name'=>'Kidzone'] )}}" ><button class="btn button_filter" style="color: #fff;">Kidzone</button>
+                <a href="{{URL::route('product_category', ['id'=>'6', 'category_name'=>'Taman'] )}}"><button class="btn button_filter" style="color: #fff;">Taman</button>
+                <a href="{{URL::route('product_category', ['id'=>'7', 'category_name'=>'Kidzone'] )}}"><button class="btn button_filter" style="color: #fff;">Kidzone</button>
+                    <!--class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block"-->
             </div>
             @if($page == 'category')
                 <div class="col-sm-12 col-md-12">
@@ -49,28 +50,39 @@
                 <h5 class="ml-3">Pencarian tidak ditemukan!</h5>
             @endif
             @foreach($product as $key => $value)
-                <div class="col-6 col-md-6 col-lg-4 mb-5">
-                    <div class="card item_product" style="border: none;">
+                <div class="col-6 col-md-6 col-lg-4 mb-5">  <!--px-5 py-2-->
+                    <div class="card item_product" style="border: 0,5px solid #E1DFDC; border-radius: 60px; box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); ">
+                        <?php
+                            //echo $key;
+                            $bg = ['#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F'];
+                              // echo $bg[$key];
+                            echo '<div id="nmprd" class="text-center" style="background-color: '.$bg[$key].' ; padding:15px; border-top-right-radius: 60px;border-top-left-radius: 60px; color: #fff;">';
+                        ?>
+                        <!-- <div class="text-center" style="background-color:yellow; padding:15px; border-top-right-radius: 60px;border-top-left-radius: 60px; color: #fff;"> -->
+                            Detail Produk
+                        </div>
                         <div class="card-img-top" style="position: relative;">
                             <div class="embed-responsive embed-responsive-4by3">
                                 <div class="embed-responsive-item">
                                     <a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->product_name)])}}">
-                                        <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'sleek.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="..." style="border-radius: 25px;">
-                                        <!-- <h5 class="card-title product-name px-1 py-2 mb-0" style="background-color: #4db849 !important; color: #fff !important; position: absolute; bottom: 0; width: 100%; opacity: 0.8;">{{$value->product_name}}</h5> -->
+                                        <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'sleek.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
                                     </a>
                                 </div>
                             </div>
+                            <!-- <br><p class="product-price-header mb-0" style="color: #000 !important;">{{$value->product_name}}</p><br>
+                            <p style="font-size: 25px; text-align: center; color: #41B1CD;">Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</p> -->
                         </div>
-                        <div class="card-body p-0" style="background-color: #fff !important;">
+                        <div class="card-body" style="background-color: #fff !important;">
                             <div class="float-left px-1 py-2" style="width: 100%;">
-                                <p class="product-price-header mb-0" style="color: #000 !important;">{{$value->product_name}}</p>
+                                <p class="product-price-header mb-0" style="color: #000 !important;">{{$value->product_name}}</p><br>
+                                <p style="font-size: 20px; text-align: center; color: #41B1CD;">Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</p>
                             </div>
                         </div>
-                        <div class="card-body p-0">
+                       <!--  <div class="card-body">
                             <p style="font-size: 20px">Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</p>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="float-left px-2 py-2">
+                        </div> -->
+                        <div class="card-body col-12">
+                            <div class="float-left col-6 px-2 py-2">
                                 <form method="post" action="{{route('add_cart')}}">
                                     @csrf
                                     <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
@@ -79,10 +91,10 @@
                                     <button class="btn btn-block button_add_to_cart" style="color: #fff;">Tambah</button>
                                 </form>
                             </div>
-                            <div class="float-right px-1 py-2 text-center" style="width: 43%;">
-                                <button class="btn button_plus d-inline-display" onclick="button_plus('{{$value->id}}')" style="padding: 0; text-align: center; border-radius: 100%; background-color: #fff;">+</button>
-                                <p id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; margin-left: 1px !important; margin-right: 1px !important;">1</p>
-                                <button class="btn button_minus d-inline-display" onclick="button_minus('{{$value->id}}')" style="padding: 0; text-align: center; border-radius: 100%; background-color: #fff;">-</button>
+                            <div class="float-right col-6 px-2 py-2" style="width: 50%; text-align: center;">
+                                <button class="btn button_plus d-inline-display" onclick="button_plus('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff;">+</button>
+                                <p id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; margin-left: 1px !important; margin-right: 1px !important; font-size: 20px;">1</p>
+                                <button class="btn button_minus d-inline-display" onclick="button_minus('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff;">-</button>
                             </div>
                         </div>
                     </div>
