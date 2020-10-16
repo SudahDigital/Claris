@@ -18,6 +18,12 @@
         height: 35vh;
     }
 
+    #content .button_add_to_cart {
+        width: 50px;
+    }
+
+
+
     #content .button_success_block, .button_add_to_cart, .button-pesan, .button_order {
         font-size: 12px;
         padding: 6px 0;

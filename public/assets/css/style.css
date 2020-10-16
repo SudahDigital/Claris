@@ -584,6 +584,7 @@ a.register:hover {
     border: none;
     background-color: #EA7D08 !important;
     border-radius: 10px;
+    width: 100px;
 }
 
 #content .button_filter {

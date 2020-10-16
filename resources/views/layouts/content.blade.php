@@ -51,7 +51,7 @@
             @endif
             @foreach($product as $key => $value)
                 <div class="col-6 col-md-6 col-lg-4 mb-5">  <!--px-5 py-2-->
-                    <div class="card item_product" style="border: 0,5px solid #E1DFDC; border-radius: 40px; box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); ">
+                    <div class="card item_product" style="border: 0,5px solid #E1DFDC; border-radius: 45px; box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); ">
                         <?php
                             //echo $key;
                             $bg = ['#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F'];
@@ -72,17 +72,14 @@
                             <!-- <br><p class="product-price-header mb-0" style="color: #000 !important;">{{$value->product_name}}</p><br>
                             <p style="font-size: 25px; text-align: center; color: #41B1CD;">Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</p> -->
                         </div>
-                        <div class="card-body" style="background-color: #fff !important;">
+                        <div class="card-body p-0" style="background-color: #fff !important;">
                             <div class="float-left px-1 py-2" style="width: 100%;">
                                 <p class="product-price-header mb-0" style="color: #000 !important;">{{$value->product_name}}</p><br>
                                 <p style="font-size: 20px; text-align: center; color: #41B1CD;">Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</p>
                             </div>
                         </div>
-                       <!--  <div class="card-body">
-                            <p style="font-size: 20px">Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</p>
-                        </div> -->
-                        <div class="card-body col-12">
-                            <div class="float-left col-6 px-2 py-2">
+                        <div class="card-body col-12 p-0">
+                            <div class="float-left col-6 px-2 py-2" style="text-align: right;">
                                 <form method="post" action="{{route('add_cart')}}">
                                     @csrf
                                     <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
