@@ -19,6 +19,7 @@ class CaraBelanjaController extends Controller
     	$count = Cart::where('user_id', $user_id)->count();
         $data['category'] = Category::all();
         $data['count_cart'] = $count;
+        $data['status_login'] = '';
         return view('layouts.carabelanja', $data);
     }
 }

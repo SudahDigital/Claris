@@ -26,6 +26,7 @@ class ContactController extends Controller
 
         $data['email'] = $sql[0]->email;
         $data['telp'] = $sql[0]->no_telp;
+        $data['status_login'] = '';
 
         return view('layouts.contact', $data);
     }
