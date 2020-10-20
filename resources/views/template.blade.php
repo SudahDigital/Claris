@@ -254,8 +254,8 @@
                                 
                             ?>
                                 <a href="#" class="float-left cart" style="position: relative;">
-                                    <img src="{{ asset('assets/image/troli.png') }}" alt="" style="width: 10px;">
-                                    <span style="color: #fff;" class="text-footer"><strong>Rp {{ number_format($total, 0, ',', '.') }}</strong></span>
+                                    <img src="{{ asset('assets/image/troli.png') }}" alt="" style="width: 20px;">
+                                    <span style="color: #fff;" class="teks-footer"><strong>Rp {{ number_format($total, 0, ',', '.') }}</strong></span>
                                 </a>
                                    
                             <?php
@@ -275,7 +275,7 @@
                             </a>
                         </div>
                         <div class="col-5 my-auto align-self-center" id="sosmed">
-                            <span style="color: #fff;" class="text-footer"><strong class="float-right">( {{$count_cart}} Item )</strong></span>
+                            <span style="color: #fff;" class="teks-footer"><strong class="float-right">( {{$count_cart}} Item )</strong></span>
                         </div>
                     </div>
                     <div class="hidden row" id="book" style="background-color: #fff;">
