@@ -6,7 +6,7 @@
         <!-- <div class="txt-banner"> Menjadi ibu rumah tangga yang aktif dan produktif merupakan suatu hal yang positif untuk dibagikan selain menjadi penopang dalam rumah tangga , anda bisa mengisi keseharian anda dengan banyak hal-hal yang positif. Temukan inspirasi-inspirasi menarik seperti mengatur tatanan rumah, memasak dan bermacam-macam hobi yang bisa anda lakukan.</div> -->
     </div>
     <div class="row align-middle banner_header">
-        <img src="{{ asset('assets/image/banner02.jpg') }}"  class="w-100 h-100">
+        <img src="{{ asset('assets/image/banner02.jpg') }}"  style="width:99%;">
     </div>
     <div class="container" style="{{ $page == 'home' ? 'margin-top: 30px' : 'margin-top: 80px' }}">
         <div class="row align-middle" style="{{ $page == 'home' ? 'margin-bottom: 20px' : 'margin-bottom: 10px' }}">
@@ -77,18 +77,9 @@
                             </div>
                             <div class="card-body p-0">
                                 <div class="float-middle px-1 py-0 " style="width: 100%;">
-                                    <p style="color: #41B1CD;" class="label-harga mb-0">Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</p>
+                                    <p style="color: #41B1CD;" class="label-harga mb-0"><strong>Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</strong></p>
                                 </div>
                             </div>
-                            <!-- <div class="px-1 py-2 text-center" style="width: 100%;">
-                                <button class="btn button_plus float-middle d-inline-display" onclick="button_plus_br('{{$value->id}}')" style="padding: 0; text-align: center; border-radius: 100%;">+</button>
-                                <p id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; margin-left: 1px !important; margin-right: 1px !important;">0</p>
-                                <button class="float-middle btn button_minus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; text-align: center; border-radius: 100%;">-</button>
-                                @csrf
-                                <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
-                                <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
-                                <input type="hidden" name="product_id" value="{{$value->id}}">
-                            </div> -->
                             <div class="button-cart">
                                 <div class="row">
                                     <div class="col-2 p-0" style="text-align: center;">
