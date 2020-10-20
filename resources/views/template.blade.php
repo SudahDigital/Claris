@@ -254,7 +254,7 @@
                                 
                             ?>
                                 <a href="#" class="float-left cart" style="position: relative;">
-                                    <img src="{{ asset('assets/image/troli.png') }}" alt="" class="img-fluid" style="width: 30px;">
+                                    <img src="{{ asset('assets/image/troli.png') }}" alt="" class="img-troli">
                                     <span style="color: #fff;" class="text-footer"><strong>Rp {{ number_format($total, 0, ',', '.') }}</strong></span>
                                 </a>
                                    
