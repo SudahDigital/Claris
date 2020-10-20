@@ -20,7 +20,7 @@ class WelcomeController extends Controller
     {	
         session_start();
 
-        $ses_id =  session_id(); //$request->header('User-Agent');
+        $ses_id =  $request->header('User-Agent'); //session_id();
 
         $user_id = Auth::id();
         if (empty($user_id)) {
@@ -43,7 +43,7 @@ class WelcomeController extends Controller
             ->leftJoin('products', 'products.id', '=', 'carts.product_id')
             ->leftJoin('product_images', 'product_images.product_id', '=', 'carts.product_id')
             ->select('carts.*', 'products.product_name', 'products.product_harga', 'product_images.image_link')
-            // ->where('product_images.is_tumbnail', 'yes')
+            ->where('carts.session_id', $ses_id)
             ->get();
         // return $cart;die;
         $data['count_cart'] = count($cart);

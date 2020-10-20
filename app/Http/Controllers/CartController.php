@@ -55,7 +55,7 @@ class CartController extends Controller
 		session_start();
 		
 		$user_id = Auth::id();
-		$ses_id = session_id();
+		$ses_id = $request->header('User-Agent'); //session_id();
 
 		if (empty($user_id)) {
 			# code...

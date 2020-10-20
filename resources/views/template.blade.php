@@ -279,7 +279,7 @@
                         </div>
                     </div>
                     <div class="hidden row" id="book" style="background-color: #fff;">
-                        <div class="scroll w-100 h-100" id="table_c" style="display: none; padding-top: 20px;">
+                        <div class="scroll w-100 h-100" id="table_c" style="display: none;">
                             @php
                              $total = 0 ;
                             @endphp
@@ -291,17 +291,21 @@
                             <div class="row mb-3">
                                 <div class="col-4">
                                     <div class="text-center">
-                                        <img class="img-thumbnail img-fluid" src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'sleek.jpg').'') }}" style="max-width: 100px;max-height: 100px;" class="img-fluid">
+                                        <img class="img-thumbnail img-fluid" src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'sleek.jpg').'') }}" style="max-width: 90px;max-height: 90px;" class="img-fluid">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="float-left">
-                                        <h6 class="product-name" style="color: #000 !important;"><strong>{{$value->product_name}}</strong></h6>
-                                        <span id="mount2_{{$value->id}}" style="color: #41B1CD !important; font-weight: bold; font-size: 25px;"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></span>
+                                        <div class="px-1 py-0">
+                                            <p class="product-name m-0" style="color: #000 !important;"><strong>{{$value->product_name}}</strong></p>
+                                        </div>
+                                        <div class="px-1 py-0">
+                                            <p class="m-0" id="mount2_{{$value->id}}" style="color: #41B1CD !important; font-weight: bold; font-size: 20px;"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
+                                        </div>
                                         <div class="text-left">
-                                            <button type="button" class="btn btn-primary button_plus" onclick="cart('{{$value->id}}','plus')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000"><i class="fa fa-plus"></i></button>
-                                            <span class="mr-1 ml-1" id="show_m2{{$value->id}}" style="color: #000; padding: 3px; font-weight: bold;"> {{$value->mount}} </span>
-                                            <button type="button" class="btn btn-primary button_minus" onclick="cart('{{$value->id}}','min')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000"><i class="fa fa-minus"></i></button>
+                                            <button type="button" class="btn btn-primary button_plus" onclick="cart('{{$value->id}}','plus')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-plus"></i></button>
+                                            <span class="product-name mr-1 ml-1" id="show_m2{{$value->id}}" style="color: #000; padding: 3px; font-weight: bold;"> {{$value->mount}} </span>
+                                            <button type="button" class="btn btn-primary button_minus" onclick="cart('{{$value->id}}','min')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-minus"></i></button>
                                             <input type="hidden" id="{{$value->id}}" value="{{$value->mount}}">
                                             <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
                                             <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">
