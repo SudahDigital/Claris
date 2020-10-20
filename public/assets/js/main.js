@@ -49,7 +49,7 @@ function button_minus(id)
 
     harga = "Rp " + rupiah;
 
-    if (jumlah<1) {
+    if (jumlah<0) {
       alert('Jumlah Tidak Boleh Kosong')
     } else {
       $('#'+id).val(jumlah);
@@ -60,8 +60,9 @@ function button_minus(id)
 
 function button_plus(id)
 {
-    var jumlah = $('#'+id).val();
-    var jumlah = parseInt(jumlah) + 1;
+    var jum = $('#'+id).val();
+    var jumlah = parseInt(jum) + 1;
+    // alert(jum);
 
     // AMBIL NILAI HARGA
     var harga = $('#harga'+id).val();;
@@ -81,11 +82,11 @@ function button_plus(id)
     harga = "Rp " + rupiah;
     
     // alert(jumlah)
-    if (jumlah<1) {
+    if (jumlah<0) { 
       alert('Jumlah Tidak Boleh Kosong')
     } else {
-      $('#'+id).val(jumlah)
-      $('#show_'+id).html(jumlah)
+      $('#'+id).val(jum)
+      $('#show_'+id).html(jum)
       $('#productPrice'+id).text(harga);
     }
 }

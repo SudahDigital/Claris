@@ -16,8 +16,12 @@ use App\Cart;
 class WelcomeController extends Controller
 {
     //
-    function index()
+    function index(Request $request)
     {	
+        session_start();
+
+        $ses_id =  session_id(); //$request->header('User-Agent');
+
         $user_id = Auth::id();
         if (empty($user_id)) {
             # code...

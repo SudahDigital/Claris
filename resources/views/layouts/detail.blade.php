@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-6 mb-3">
-                <div class="card mx-auto">
+                <div class="card mx-auto" style="border: none;">
                     <div class="card-body m-0 p-0">
                         <h5 class="card-title product-name px-3 pt-3">{{$product->product_name}}</h5>
                         <p class="product-description px-3">{{$product->product_description}}</p>
@@ -43,7 +43,7 @@
                                     <input type="hidden" id="{{$product->id}}" name="jumlah" value="1">
                                     <input type="hidden" id="harga{{$product->id}}" name="harga" value="{{ $product->product_harga }}">
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
-                                    <button class="btn btn-block btn-success button_add_to_cart">Tambah Ke Keranjang</button>
+                                    <button class="btn btn-block" style="background-color: #EA7D08; color: #fff;">Tambah Ke Keranjang</button>
                                 </form>
                             </div>
                         </div>

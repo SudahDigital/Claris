@@ -10,19 +10,22 @@
     </div>
     <div class="container" style="{{ $page == 'home' ? 'margin-top: 30px' : 'margin-top: 80px' }}">
         <div class="row align-middle" style="{{ $page == 'home' ? 'margin-bottom: 20px' : 'margin-bottom: 10px' }}">
-            <div class="col-sm-12 order-2 order-md-1 form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
+            <div class="col-sm-12 order-2 order-md-1">
                 @if($page == 'home')
                     <!-- <h3 class="title-page">Semua Produk</h3> -->
-                    <h3 class=" title-page">Filter by Category <i class="fas fa-sliders-h"></i></h3>
+                    <h3 class="title-page">Filter by Category <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
+                        <i class="fas fa-sliders-h fa-xs"></i>
+                    </button></h3>
+
+                    <div id="demo" class="collapse" style="">
+                        <div class="col-md-12 " style="margin-bottom: 20px;">
+                        <a href="{{ url('/') }}"><button class="btn button_filter" style="color: #fff;">Semua Produk</button></a>
+                        @foreach($category as $key => $value)
+                            <a href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" type="button" class="btn button_filter" style="color: #fff;">{{$value->category_name}}</a>
+                        @endforeach
+                        </div>
+                    </div> 
                 @endif
-                <a href="{{ url('/') }}"><button class="btn button_filter" style="color: #fff;">Semua Produk</button></a>
-                <a href="{{URL::route('product_category', ['id'=>'1', 'category_name'=>'Kamar Mandi'] )}}"><button class="btn button_filter" style="color: #fff;">Kamar Mandi</button></a>
-                <a href="{{URL::route('product_category', ['id'=>'2', 'category_name'=>'Kamar Tidur'] )}}"><button class="btn button_filter" style="color: #fff;">Kamar Tidur</button>
-                <a href="{{URL::route('product_category', ['id'=>'3', 'category_name'=>'Ruang Makan'] )}}"><button class="btn button_filter" style="color: #fff;">Ruang Makan</button>
-                <a href="{{URL::route('product_category', ['id'=>'5', 'category_name'=>'Dapur'] )}}" ><button class="btn button_filter" style="color: #fff;">Dapur</button>
-                <a href="{{URL::route('product_category', ['id'=>'6', 'category_name'=>'Taman'] )}}"><button class="btn button_filter" style="color: #fff;">Taman</button>
-                <a href="{{URL::route('product_category', ['id'=>'7', 'category_name'=>'Kidzone'] )}}"><button class="btn button_filter" style="color: #fff;">Kidzone</button>
-                    <!--class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block"-->
             </div>
             @if($page == 'category')
                 <div class="col-sm-12 col-md-12">
@@ -45,74 +48,85 @@
                 </div>
             @endif
         </div>
-        <div class="row section_content">
-            @if(count($product) < 1)
-                <h5 class="ml-3">Pencarian tidak ditemukan!</h5>
-            @endif
-            @foreach($product as $key => $value)
-                <div class="col-6 col-md-6 col-lg-4 mb-5">  <!--px-5 py-2-->
-                    <div class="card item_product" style="border: 0,5px solid #E1DFDC; border-radius: 45px; box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); ">
-                        <?php
-                            //echo $key;
-                            $bg = ['#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F'];
-                              // echo $bg[$key];
-                            echo '<div id="nmprd" class="text-center" style="background-color: '.$bg[$key].' ; padding:15px; border-top-right-radius: 40px;border-top-left-radius: 40px; color: #fff;">';
-                        ?>
-                        <!-- <div class="text-center" style="background-color:yellow; padding:15px; border-top-right-radius: 60px;border-top-left-radius: 60px; color: #fff;"> -->
-                            Detail Produk
-                        </div>
-                        <div class="card-img-top" style="position: relative;">
-                            <div class="embed-responsive embed-responsive-4by3">
-                                <div class="embed-responsive-item">
-                                    <a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->product_name)])}}">
-                                        <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'sleek.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
-                                    </a>
+        <div class="col-md-12">
+            <div class="row section_content">
+                @if(count($product) < 1)
+                    <h5 class="ml-3">Pencarian tidak ditemukan!</h5>
+                @endif
+                @foreach($product as $key => $value)
+                    <div class="col-6 col-lg-4 mb-5">  <!--px-5 py-2-->
+                        <div class="card mx-auto item_product" style="border: 0,5px solid #E1DFDC; border-radius: 45px; box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); ">
+                            <?php
+                                $bg = ['#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F'];
+                                echo '<div id="nmprd" class="text-center" style="background-color: '.$bg[$key].' ; padding:12px; border-top-right-radius: 40px;border-top-left-radius: 40px; color: #fff;">Detail Produk</div>';
+                            ?>
+                            <!-- <div class="text-center" style="background-color:yellow; padding:15px; border-top-right-radius: 60px;border-top-left-radius: 60px; color: #fff;"> -->
+                            <div class="card-img-top" style="position: relative;">
+                                <div class="embed-responsive embed-responsive-4by3">
+                                    <div class="embed-responsive-item">
+                                        <a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->product_name)])}}">
+                                            <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'sleek.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- <br><p class="product-price-header mb-0" style="color: #000 !important;">{{$value->product_name}}</p><br>
-                            <p style="font-size: 25px; text-align: center; color: #41B1CD;">Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</p> -->
-                        </div>
-                        <div class="card-body p-0" style="background-color: #fff !important;">
-                            <div class="float-left px-1 py-2" style="width: 100%;">
-                                <p class="product-price-header mb-0" style="color: #000 !important;">{{$value->product_name}}</p><br>
-                                <p style="font-size: 20px; text-align: center; color: #41B1CD;">Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</p>
+                            <div class="card-body p-0" style="background-color: #fff !important;">
+                                <div class="float-left px-1 py-0" style="width: 100%;">
+                                    <p class="product-price-header mb-0" style="color: #000 !important;">{{$value->product_name}}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-body col-12 p-0">
-                            <div class="float-left col-6 px-1 py-2" style="text-align: right;">
-                                <form method="post" action="{{route('add_cart')}}">
-                                    @csrf
-                                    <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
-                                    <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
-                                    <input type="hidden" name="product_id" value="{{$value->id}}">
-                                    <button class="btn btn-block button_add_to_cart" style="color: #fff;">Tambah</button>
-                                </form>
+                            <div class="card-body p-0">
+                                <div class="float-middle px-1 py-0 " style="width: 100%;">
+                                    <p style="color: #41B1CD;" class="label-harga mb-0">Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</p>
+                                </div>
                             </div>
-                            <div class="float-right col-6 px-1 py-2" style="width: 50%; text-align: center;">
-                                <button class="btn button_plus d-inline-display" onclick="button_plus('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff;">+</button>
-                                <p id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; margin-left: 1px !important; margin-right: 1px !important; font-size: 20px; border: 1px #000 solid;">1</p>
-                                <button class="btn button_minus d-inline-display" onclick="button_minus('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff;">-</button>
+                            <!-- <div class="px-1 py-2 text-center" style="width: 100%;">
+                                <button class="btn button_plus float-middle d-inline-display" onclick="button_plus_br('{{$value->id}}')" style="padding: 0; text-align: center; border-radius: 100%;">+</button>
+                                <p id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; margin-left: 1px !important; margin-right: 1px !important;">0</p>
+                                <button class="float-middle btn button_minus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; text-align: center; border-radius: 100%;">-</button>
+                                @csrf
+                                <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
+                                <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
+                                <input type="hidden" name="product_id" value="{{$value->id}}">
+                            </div> -->
+                            <div class="button-cart">
+                                <div class="row">
+                                    <div class="col-2 p-0" style="text-align: center;">
+                                        <form method="post" action="{{route('add_cart')}}">
+                                            @csrf
+                                            <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
+                                            <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
+                                            <input type="hidden" name="product_id" value="{{$value->id}}">
+                                            <button class="btn button_plus d-inline-display" onclick="button_plus('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff; color:#000;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                        </form>
+                                    </div>
+                                    <div class="col-2" style="text-align: center;">
+                                        <p id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center">0</p>
+                                    </div>
+                                    <div class="col-2" style="text-align: center;">
+                                        <form method="post" action="{{route('add_cart')}}">
+                                            @csrf
+                                            <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
+                                            <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
+                                            <input type="hidden" name="product_id" value="{{$value->id}}">
+                                            <button class="btn button_plus d-inline-display" onclick="button_plus('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff; color:#000;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="clearfix mt-3">
-                        <form method="post" action="{{route('add_cart')}}">
-                            @csrf
-                            <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
-                            <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
-                            <input type="hidden" name="product_id" value="{{$value->id}}">
-                            <button class="btn btn-block btn-success button_add_to_cart">Tambah Ke Keranjang</button>
-                        </form>
-                    </div> -->
-                </div>
-            @endforeach
-        </div>
-        <div class="row justify-content-md-center">
-            <div class="col col-lg-2">
-                {{ $product->links() }}
+                @endforeach
             </div>
         </div>
-        <br><br><br><br><br><br><br>
+        <div class="col-md-12">
+            <div class="row justify-content-center" >
+                <div class="page" style="margin-top:0; margin-bottom:1rem;">
+                    {{ $product->links() }}
+                </div>
+            </div>
+        </div>
+        <br><br><br><br><br><br><br><br>
         <!-- Modal -->
         <div class="modal fade" id="modalCheckout" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered" style="width: 100%; max-width:1700px;">
@@ -188,4 +202,84 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function button_minus_br(id)
+        {
+            var jumlah = $('#'+id).val();
+            var jumlah = parseInt(jumlah) - 1;
+
+            // AMBIL NILAI HARGA
+            var harga = $('#harga'+id).val();;
+            var harga = parseInt(harga) * jumlah;
+
+            // UBAH FORMAT UANG INDONESIA
+            var number_string = harga.toString();
+            var sisa    = number_string.length % 3;
+            var rupiah  = number_string.substr(0, sisa);
+            var ribuan  = number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+              separator = sisa ? '.' : '';
+              rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp " + rupiah;
+
+            if (jumlah<0) {
+              alert('Jumlah Tidak Boleh Kosong')
+            } else {
+              $('#'+id).val(jum);
+              $('#show_'+id).html(jum);
+              $('#productPrice'+id).text(harga);
+            }
+        }
+
+        function button_plus_br(id)
+        {
+            var jum = $('#'+id).val();
+            var jumlah = parseInt(jum) + 1;
+            // alert(jum);
+
+            // AMBIL NILAI HARGA
+            var harga = $('#harga'+id).val();;
+            var harga = parseInt(harga) * jumlah;
+
+            // UBAH FORMAT UANG INDONESIA
+            var number_string = harga.toString();
+            var sisa    = number_string.length % 3;
+            var rupiah  = number_string.substr(0, sisa);
+            var ribuan  = number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+              separator = sisa ? '.' : '';
+              rupiah += separator + ribuan.join('.');
+            }
+
+            harga = "Rp " + rupiah;
+            
+            // alert(jumlah)
+            if (jumlah<0) { 
+              alert('Jumlah Tidak Boleh Kosong')
+            } else {
+
+                // $.ajax({
+                //     type: "POST",
+                //     url: "{{url('/cart/add')}}"+'/'+id,
+                //     data: {id:id},
+                //     success: function (data) {
+                //         Swal.fire({
+                //            title: 'Sukses',
+                //            text: 'Item ini berhasil di hapus',
+                //            icon: 'success'}).then(function(){ 
+                //         location.reload();
+                //         });
+                //     }         
+                // });
+
+              $('#'+id).val(jum)
+              $('#show_'+id).html(jum)
+              $('#productPrice'+id).text(harga);
+            }
+        }
+    </script>
 @endsection

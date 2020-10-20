@@ -160,12 +160,12 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1;">
                 <div class="container-fluid">
-                    <div class="col-5 my-auto">
+                    <div class="col-4 my-auto">
                         <button type="button" id="sidebarCollapse" class="btn btn-primary button-burger-menu btn-lg">
                             <i class="fas fa-align-justify fa-lg"></i>
                         </button>
                     </div>
-                    <div class="col-2 my-auto">
+                    <div class="col-3 my-auto text-center">
                         <a class="navbar-brand ml-md-5 mx-auto" href="/" style="margin: auto !important">
                             <img src="{{ asset('assets/image/logo_claris.png') }}" width="120px" height="70px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                         </a>
@@ -254,7 +254,7 @@
                                 
                             ?>
                                 <a href="#" class="float-left cart" style="position: relative;">
-                                    <img src="{{ asset('assets/image/troli-01.png') }}" alt="" class="img-fluid" style="width: 30px;">
+                                    <img src="{{ asset('assets/image/troli.png') }}" alt="" class="img-fluid" style="width: 30px;">
                                 </a>
                                 <div>
                                     <p class="float-left" style="color: #fff; line-height: 50px;"><strong style="color: #fff;">Rp {{ number_format($total, 0, ',', '.') }}</strong></p>
@@ -264,7 +264,7 @@
                             ?>
                                 <p class="float-left p-0 my-auto" style="color: #fff;"><strong>Rp 0</strong></p>
                                 <a href="{{route('cart')}}" class="float-right mr-1 mr-md-3 cart" style="position: relative;">
-                                    <img src="{{ asset('assets/image/troli-01.png') }}" alt="" class="img-fluid" style="width: 30px;">
+                                    <img src="{{ asset('assets/image/troli.png') }}" alt="" class="img-fluid" style="width: 30px;">
                                 </a>
                                 {{-- <button type="button" class="btn btn-success button-pesan mb-0 float-right mr-3" data-toggle="modal" data-target="#modalCheckout">Pesan</button> --}}
                             <?php
@@ -327,11 +327,12 @@
                         <!-- </div>   -->
                     </div>
                 </div>
-                <div id="bottom-footer" style="background-color: #41B1CD;">
-                    <div class = "inner-wrap clearfix">
-                        <img src="{{ asset('assets/image/logo_claris_white.png') }}" width="70px" height="40px">
+                <div class="col-md-12" id="bottom-footer" style="background-color: #41B1CD;">
+                    <br>
+                    <div class = "col-md-4">
+                        <img src="{{ asset('assets/image/logo_claris_white.png') }}" width="80px" height="45px">
                     </div>
-                    <div class = "inner-wrap clearfix">
+                    <div class = "col-md-4">
                         <div class="row text-center">
                             <div class="col-12 my-auto mx-auto">
                                 <a href="https://www.facebook.com/" class="mr-1 mr-md-3">
@@ -349,7 +350,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class = "inner-wrap clearfix">
+                    <div class = "col-md-4">
                         <a style="color: #fff; font-size: 12px;">@Copyright 2020</a>
                     </div>
                 </div>

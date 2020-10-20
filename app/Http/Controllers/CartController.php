@@ -31,7 +31,6 @@ class CartController extends Controller
     }
     public function index()
     {
-
     	$user_id = Auth::id();
     	if (empty($user_id)) {
     		# code...
@@ -49,23 +48,26 @@ class CartController extends Controller
         $data['count_cart'] = $count;
         $data['category'] = Category::all();
         $data['status_login'] = '';
-        // return $input;die;
-        // return $data;die;
     	return view('layouts.cart_old',$data);
     }
     public function add(Request $request)
 	{
+		session_start();
+		
 		$user_id = Auth::id();
+		$ses_id = session_id();
+
 		if (empty($user_id)) {
 			# code...
 			$user_id = 0;
 		}
-		$cek = Cart::where([['product_id',$request->product_id],['user_id',$user_id]])->first();
+		$cek = Cart::where([['product_id',$request->product_id],['user_id',$user_id],['session_id',$ses_id]])->first();
 		if (!empty($cek)) {
 			# code...
 			$jumlah = $request->jumlah + $cek->mount;
 			$cart = Cart::where('product_id',$request->product_id)
 					->where('user_id',$user_id)
+					->where('session_id',$ses_id)
 					->update([
 						'product_id' => $request->product_id,
 						'mount' => $jumlah,
@@ -76,6 +78,7 @@ class CartController extends Controller
 				'product_id' => $request->product_id,
 				'mount' => $request->jumlah,
 				'user_id' => $user_id,
+				'session_id' => $ses_id
 			]);
 		}
 		return redirect()->back()->with(['success' => 'Product Berhasil Dimasukan Kekeranjang']);

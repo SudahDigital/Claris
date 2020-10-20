@@ -55,10 +55,16 @@
 
     .product-price-header {
         font-size: 10px;
-        width: 120px;
+        width: 100px;
         overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        word-wrap: break-word;
+        /*text-overflow: ellipsis;*/
+    }
+
+    #content .button_filter {
+        padding: 5px 10px;
+        width: 90px;
+        font-size: 10px;
     }
 
     #content .button_plus, #content .button_minus {
@@ -105,12 +111,35 @@
 
     #nmprd {
         font-size: 10px !important;
+        border-top-right-radius: 20px !important;
+        border-top-left-radius: 20px !important;
+        padding: 5px !important;
     }
 
-/*    #icon-email {
-        background-color: #C13EB7; 
-        border-radius: 100px; 
-        height: 150px;
-    }*/
-      
+    #content .label-harga {
+      font-size: 14px !important;
+      font-weight: 800 !important;
+      text-align: center;
+    }    
+
+    #content .item_product{
+      width:100% !important; 
+      border-radius:25px !important;
+    }  
+
+    #content .title-page {
+        font-size: 15px !important;
+    }
+
+    #bottom-footer{
+      background: #41B1CD;
+      height:120px;
+      text-align: center;
+    }
+
+    #content .button-cart {
+      width: 100%; 
+      padding: 10px; 
+      margin-left: 20px;
+    }
 }
