@@ -604,6 +604,7 @@ a.register:hover {
     background-color: #06B89B !important;
     border-radius: 7px;
     padding: 7px 35px;
+    margin: 0 auto;
 }
 
 #content .button_filter:hover {

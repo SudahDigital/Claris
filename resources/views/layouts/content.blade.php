@@ -9,21 +9,21 @@
         <img src="{{ asset('assets/image/banner02.jpg') }}"  style="width:100%;">
     </div>
     <div class="container" style="{{ $page == 'home' ? 'margin-top: 30px' : 'margin-top: 30px' }}">
-        <div class="row align-middle" style="{{ $page == 'home' ? 'margin-bottom: 20px' : 'margin-bottom: 10px' }}">
-            <div class="col-sm-12 order-2 order-md-1">
-                <h3 class="title-page">Filter by Category <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
-                    <i class="fas fa-sliders-h fa-xs"></i>
-                </button></h3>
+        <div class="col-sm-12 order-2 order-md-1">
+            <h3 class="title-page">Filter by Category <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
+                <i class="fas fa-sliders-h fa-xs"></i>
+            </button></h3>
 
-                <div id="demo" class="collapse" style="">
-                    <div class="col-md-12 px-2 p-0" style="margin-bottom: 20px;">
-                    <a href="{{ url('/') }}"><button class="btn button_filter" style="color: #fff;">Semua Produk</button></a>
-                    @foreach($category as $key => $value)
-                        <a href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" type="button" class="btn button_filter" style="color: #fff;">{{$value->category_name}}</a>
-                    @endforeach
-                    </div>
-                </div> 
-            </div>
+            <div id="demo" class="collapse" style="">
+                <div class="col-md-12 px-2 p-0" style="margin-bottom: 20px;">
+                <a href="{{ url('/') }}"><button class="btn button_filter" style="color: #fff;">Semua Produk</button></a>
+                @foreach($category as $key => $value)
+                    <a href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" type="button" class="btn button_filter" style="color: #fff;">{{$value->category_name}}</a>
+                @endforeach
+                </div>
+            </div> 
+        </div>
+        <div class="row align-middle" style="{{ $page == 'home' ? 'margin-bottom: 20px' : 'margin-bottom: 10px' }}">
             <!-- <div class="col-sm-12 order-2 order-md-1">
                 @if($page == 'home')
                     <h3 class="title-page">Filter by Category <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
