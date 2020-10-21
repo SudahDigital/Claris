@@ -298,10 +298,10 @@
                                 <div class="col-6">
                                     <div class="float-left">
                                         <div class="px-1 py-0">
-                                            <p class="product-name m-0" style="color: #000 !important;"><strong>{{$value->product_name}}</strong></p>
+                                            <p class="product-price-header2 m-0" style="color: #000 !important;"><strong>{{$value->product_name}}</strong></p>
                                         </div>
                                         <div class="px-1 py-0">
-                                            <p class="m-0" id="mount2_{{$value->id}}" style="color: #41B1CD !important; font-weight: bold; font-size: 20px;"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
+                                            <p class="label-harga2 m-0" id="mount2_{{$value->id}}" style="color: #41B1CD !important; font-weight: bold;"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
                                         </div>
                                         <div class="text-left">
                                             <button type="button" class="btn btn-primary button_plus" onclick="cart('{{$value->id}}','plus')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-plus"></i></button>
@@ -323,7 +323,7 @@
                     <div id="listcart" class="col-12 my-auto text-right" style="background-color: #fff; height: 50px; display: none;">
                         <!-- {{ $count_cart }} Item | <span id="total_">Rp {{ number_format($total, 0, ',', '.') }}</span> -->
                         <!-- <div class="col-6"> -->
-                            <a href="{{route('cart')}}" class="btn btn-primary align-self-right btn-md button_pesan" style="background-color: #41B1CD; color: #fff">
+                            <a href="{{route('cart')}}" class="btn btn-sm btn-primary align-self-right button_pesan" style="background-color: #41B1CD; color: #fff">
                             <input type="hidden" id="total" value="{{$total}}">
                             Beli Sekarang
                             </a>  
