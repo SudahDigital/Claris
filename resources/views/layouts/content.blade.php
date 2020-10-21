@@ -65,7 +65,7 @@
                                 <div class="embed-responsive embed-responsive-4by3">
                                     <div class="embed-responsive-item">
                                         <a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->product_name)])}}">
-                                            <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'none.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                            <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'none.jpg').'') }}" class="img-fluid img-responsive" alt="...">
                                         </a>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                 </div>
             </div>
         </div>
-        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br>
         <!-- Modal -->
         <div class="modal fade" id="modalCheckout" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered" style="width: 100%; max-width:1700px;">
