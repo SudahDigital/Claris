@@ -65,9 +65,9 @@
                                                 <h5 class="product-price-header2" style="color: #000 !important; font-weight: bold;">{{$value->product_name}}</h5>  
                                                 <p class="label-harga2" id="mount3_{{$value->id}}" style="color: #41B1CD !important; text-align: left"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
                                                 <div>
-                                                    <button id="plus" value="{{$value->id}}" type="button" class="btn btn-primary button_plus" onclick="cart_plus('{{$value->id}}')" style="padding: 0; text-align: center;">+</button>
+                                                    <button id="plus" value="{{$value->id}}" type="button" class="btn btn-primary button_plus" onclick="cart_plus('{{$value->id}}')" style="padding: 0; text-align: center;"><i class="fa fa-plus"></i></button>
                                                     <span class="mr-1 ml-1" id="show_m3{{$value->id}}">{{$value->mount}}</span>
-                                                    <button id="minus" value="{{$value->id}}" type="button" class="btn btn-primary button_minus" onclick="cart_minus('{{$value->id}}')" style="padding: 0; text-align: center;">-</button>
+                                                    <button id="minus" value="{{$value->id}}" type="button" class="btn btn-primary button_minus" onclick="cart_minus('{{$value->id}}')" style="padding: 0; text-align: center;"><i class="fa fa-minus"></i></button>
                                                     <input type="hidden" id="{{$value->id}}" value="{{$value->mount}}">
                                                     <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
                                                     <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">
