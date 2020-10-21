@@ -274,7 +274,10 @@
                 Swal.fire({
                     title: 'Sukses',
                     text: 'Item Berhasil dimasukan kekeranjang',
-                    icon: 'success'}).then(function(){ 
+                    icon: 'success',
+                   showConfirmButton: false,
+                   timer: 1500
+                }).then(function(){ 
                     location.reload();
                 });
             }
