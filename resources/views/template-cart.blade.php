@@ -39,14 +39,11 @@
                 </a>
             </div>
             <ul class="list-unstyled components">
-                <form class="d-md-none d-block px-3" action="{{route('product_search')}}">
+                <!-- <form class="d-md-none d-block px-3" action="{{route('product_search')}}">
                     <div class="input-group mb-4">
                         <input class="form-control text-center" type="search" name="keyword" placeholder="Search" aria-label="Search" aria-describedby="button-addon">
-                        <!-- <div class="input-group-append">
-                            <button class="btn btn-ligth search-sidebar" type="submit" id="button-addon"><i class="fa fa-search"></i></button>
-                        </div> -->
                     </div>
-                </form>
+                </form> -->
                 <li class="active">
                     <a href="{{ url('/') }}">Beranda</a>
                 </li>
