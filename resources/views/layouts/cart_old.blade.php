@@ -61,13 +61,13 @@
                                             <td class="align-middle img-product" scope="row" style="width: 80px">
                                                 <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'none.jpg').'') }}" class="card-img-top img-fluid">
                                             </td>
-                                            <td class="align-middle">
-                                                <h5 class="product-name" style="color: #41B1CD !important; font-weight: bold;">{{$value->product_name}}</h5>
-                                                <p id="mount3_{{$value->id}}" style="color: #41B1CD !important;">Rp {{ number_format($amount, 0, ',', '.') }}</p>
+                                            <td class="align-left">
+                                                <h5 class="product-price-header2" style="color: #000 !important; font-weight: bold;">{{$value->product_name}}</h5>  
+                                                <p class="label-harga2" id="mount3_{{$value->id}}" style="color: #41B1CD !important; text-align: left"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
                                                 <div>
-                                                    <button id="minus" value="{{$value->id}}" type="button" class="btn btn-primary button_minus" onclick="cart_minus('{{$value->id}}')" style="padding: 0; text-align: center;">-</button>
-                                                    <span class="mr-1 ml-1" id="show_m3{{$value->id}}">{{$value->mount}}</span>
                                                     <button id="plus" value="{{$value->id}}" type="button" class="btn btn-primary button_plus" onclick="cart_plus('{{$value->id}}')" style="padding: 0; text-align: center;">+</button>
+                                                    <span class="mr-1 ml-1" id="show_m3{{$value->id}}">{{$value->mount}}</span>
+                                                    <button id="minus" value="{{$value->id}}" type="button" class="btn btn-primary button_minus" onclick="cart_minus('{{$value->id}}')" style="padding: 0; text-align: center;">-</button>
                                                     <input type="hidden" id="{{$value->id}}" value="{{$value->mount}}">
                                                     <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
                                                     <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">

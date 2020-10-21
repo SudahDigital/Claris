@@ -1383,7 +1383,7 @@ footer.footer .cart .count-cart-three {
 #content .label-harga2 {
   font-size: 20px !important;
   font-weight: 800 !important;
-
+  text-align: left !important;
 }
 
 #content .product-price-header2 {
