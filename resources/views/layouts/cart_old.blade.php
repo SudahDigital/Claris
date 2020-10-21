@@ -62,7 +62,7 @@
                                                 <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'none.jpg').'') }}" class="card-img-top img-fluid">
                                             </td>
                                             <td class="align-left">
-                                                <h5 class="product-price-header2" style="color: #000 !important; font-weight: bold;">{{$value->product_name}}</h5>  
+                                                <h5 class="product-price-header2" style="color: #000 !important; font-weight: bold;">{{$value->product_name}}</h5><br>  
                                                 <p class="label-harga2" id="mount3_{{$value->id}}" style="color: #41B1CD !important; text-align: left"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
                                                 <div>
                                                     <button id="plus" value="{{$value->id}}" type="button" class="btn btn-primary button_plus" onclick="cart_plus('{{$value->id}}')" style="padding: 0; text-align: center;"><i class="fa fa-plus"></i></button>
