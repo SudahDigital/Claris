@@ -240,8 +240,8 @@
             <!-- Page Content  -->
             @yield('content')
 
-            <footer class=" fixed-bottom"> <!--footer-->
-                <div id="footer">
+            <footer class="fixed-bottom"> <!--fixed-bottom-->
+                <div id="footer"> <!--class="fixed-bottom"-->
                     <div class="row" style="background-color: #EA7D08; border-radius: 10px; padding: 10px;">
                         <div class="col-5 my-auto align-self-center" id="cart_icon">
                             <?php
@@ -329,46 +329,34 @@
                         <!-- </div>   -->
                     </div>
                 </div>
-                <div id="bottom-footer" style="background-color: #41B1CD;">
-                    <br>
-                    <img src="{{ asset('assets/image/logo_claris_white.png') }}" width="80px" height="45px">
+                <div id="bottom-footer text-center" style="background-color: #41B1CD;">
+                    <div class="text-center py-1">
+                        <img src="{{ asset('assets/image/logo_claris_white.png') }}" width="50px" height="30px">
+                    </div>
                     <div class="row text-center">
                         <div class="col-12 my-auto mx-auto">
                             <a href="https://www.facebook.com/" class="mr-1 mr-md-3">
-                                <img src="{{ asset('assets/image/icon_facebook.png') }}" alt="" class="img-fluid" style="width: 10px;">
+                                <img src="{{ asset('assets/image/icon_facebook.png') }}" alt="" class="img-fluid" style="width: 7px;">
                             </a>
                             <a href="https://www.instagram.com/" class="mr-1 mr-md-3">
-                                <img src="{{ asset('assets/image/icon_instagram.png') }}" alt="" class="img-fluid" style="width: 20px;">
+                                <img src="{{ asset('assets/image/icon_instagram.png') }}" alt="" class="img-fluid" style="width: 15px;">
                             </a>
                             <a href="https://www.youtube.com/" class="mr-1 mr-md-3">
-                                <img src="{{ asset('assets/image/icon_youtube.png') }}" alt="" class="img-fluid" style="width: 20px;">
+                                <img src="{{ asset('assets/image/icon_youtube.png') }}" alt="" class="img-fluid" style="width: 15px;">
                             </a>
                             <a href="https://twitter.com/" class="mr-1 mr-md-3">
-                                <img src="{{ asset('assets/image/icon_twitter.png') }}" alt="" class="img-fluid" style="width: 20px;">
+                                <img src="{{ asset('assets/image/icon_twitter.png') }}" alt="" class="img-fluid" style="width: 15px;">
                             </a>
                         </div>
                     </div>
-                    <a style="color: #fff; font-size: 12px;">@Copyright 2020</a>
-                </div>
-            </footer>
-
-           <!--  <footer class="page-footer font-small cyan darken-3 fixed-bottom" >
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-12 py-5" style="background-color: #41B1CD">
-                    <div class="mb-5 flex-center">
-                      <a class="fb-ic">
-                        //
-                      </a>
+                    <div class="text-center">
+                        <a style="color: #fff; font-size: 12px;">© Copyright 2020</a>
                     </div>
-                  </div>
                 </div>
-              </div>
-              <div class="footer-copyright text-center py-3" style="background-color: #000">© 2020 Copyright:
-                <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
-              </div>
-            </footer> -->
-
+                <!-- <div class="footer-copyright text-center py-3" style="background-color: #000">© 2020 Copyright:
+                    <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+                </div> -->
+            </footer>
         </div>
     </div>
 
