@@ -7,7 +7,7 @@
 
     <title>Claris</title>
 
-    <link rel="icon" href="{{ asset('assets/image/icon.png')}}" type="image/png" sizes="16x16">
+    <link rel="icon" href="{{ asset('assets/image/logo_claris.png')}}" type="image/png" sizes="16x30">
     <!-- Bootstrap CSS CDN -->
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -278,8 +278,8 @@
                             <span style="color: #fff;" class="teks-footer"><strong class="float-right">( {{$count_cart}} Item )</strong></span>
                         </div>
                     </div>
-                    <div class="hidden row" id="book" style="background-color: #fff;">
-                        <div class="scroll w-100 h-100" id="table_c" style="display: none;">
+                    <div class="hidden row" id="book" style="background-color: #fff; max-height: 350px;">
+                        <div class="scroll w-100 h-100" id="table_c" style="display: none; margin: 30px;">
                             @php
                              $total = 0 ;
                             @endphp
@@ -288,7 +288,7 @@
                             $amount = $value->product_harga * $value->mount;
                             $total += $amount;
                             @endphp
-                            <div class="row mb-3">
+                            <div class="row mb-3" style="margin-bottom: 40px;">
                                 <div class="col-4">
                                     <div class="text-center">
                                         <img class="img-thumbnail img-fluid" src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'sleek.jpg').'') }}" style="max-width: 90px;max-height: 90px;" class="img-fluid">
