@@ -54,10 +54,11 @@
     }
 
     .product-price-header {
-        font-size: 10px;
+        font-size: 10px !important;
         width: 100px;
         overflow: hidden;
         word-wrap: break-word;
+        font-weight: bolder !important;
         /*text-overflow: ellipsis;*/
     }
 
@@ -117,8 +118,8 @@
     }
 
     #content .label-harga {
-      font-size: 17px !important;
-      font-weight: 800 !important;
+      font-size: 15px !important;
+      font-weight: bolder !important;
       text-align: center;
     }    
 
