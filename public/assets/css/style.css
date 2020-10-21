@@ -598,12 +598,9 @@ a.register:hover {
 }
 
 #content .button_filter {
-    text-decoration: none;
-    display: inline-block;
     transition: .2s all;
     position: relative;
     z-index: 0;
-    border: none;
     background-color: #06B89B !important;
     border-radius: 7px;
     padding: 7px 35px;

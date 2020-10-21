@@ -16,7 +16,7 @@
                 </button></h3>
 
                 <div id="demo" class="collapse" style="">
-                    <div class="col-md-12 px-2" style="margin-bottom: 20px;">
+                    <div class="col-md-12 px-2 p-0" style="margin-bottom: 20px;">
                     <a href="{{ url('/') }}"><button class="btn button_filter" style="color: #fff;">Semua Produk</button></a>
                     @foreach($category as $key => $value)
                         <a href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" type="button" class="btn button_filter" style="color: #fff;">{{$value->category_name}}</a>
