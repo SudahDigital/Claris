@@ -59,7 +59,7 @@
                                         @endphp
                                         <tr>
                                             <td class="align-middle img-product" scope="row" style="width: 80px">
-                                                <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'sleek.jpg').'') }}" class="card-img-top img-fluid">
+                                                <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'none.jpg').'') }}" class="card-img-top img-fluid">
                                             </td>
                                             <td class="align-middle">
                                                 <h5 class="product-name" style="color: #41B1CD !important; font-weight: bold;">{{$value->product_name}}</h5>

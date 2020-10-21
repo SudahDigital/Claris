@@ -292,7 +292,7 @@
                             <div class="row mb-3" style="margin-bottom: 40px;">
                                 <div class="col-4">
                                     <div class="text-center">
-                                        <img class="img-thumbnail img-fluid" src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'sleek.jpg').'') }}" style="max-width: 90px;max-height: 90px;" class="img-fluid">
+                                        <img class="img-thumbnail img-fluid" src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'none.jpg').'') }}" style="max-width: 90px;max-height: 90px;" class="img-fluid">
                                     </div>
                                 </div>
                                 <div class="col-6">

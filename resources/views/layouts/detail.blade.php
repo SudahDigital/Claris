@@ -14,7 +14,7 @@
         <div class="row section_content">
             <div class="col-sm-12 col-md-6 mb-3">
                 <div class="card mx-auto" style="width: 300px">
-                    <img src="{{ asset('assets/image/product/'.(($product->image_link!='') ? $product->image_link : 'sleek.jpg').'') }}" class="card-img-top img-fluid " alt="...">
+                    <img src="{{ asset('assets/image/product/'.(($product->image_link!='') ? $product->image_link : 'none.jpg').'') }}" class="card-img-top img-fluid " alt="...">
                 </div>
             </div>
             <div class="col-sm-12 col-md-6 mb-3">

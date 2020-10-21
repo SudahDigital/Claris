@@ -65,7 +65,7 @@
                                 <div class="embed-responsive embed-responsive-4by3">
                                     <div class="embed-responsive-item">
                                         <a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->product_name)])}}">
-                                            <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'sleek.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
+                                            <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'none.jpg').'') }}" class="img-fluid h-100 w-100 img-responsive" alt="...">
                                         </a>
                                     </div>
                                 </div>
