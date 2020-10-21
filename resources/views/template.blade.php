@@ -158,9 +158,9 @@
             </div>
         </nav>
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1;">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1.5;">
                 <div class="container-fluid">
-                    <div class="col-4 my-auto">
+                    <div class="col-2 my-auto">
                         <button type="button" id="sidebarCollapse" class="btn btn-primary button-burger-menu btn-lg">
                             <i class="fas fa-align-justify fa-lg"></i>
                         </button>
@@ -178,6 +178,7 @@
                                     <input class="form-control search_input_navbar text-center" name="keyword" type="text" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
                                 </div>
                             </form>
+                            <a href="#searh_responsive" class="btn btn-info d-md-none" data-toggle="modal" data-target="#searchModal" style="border-radius: 50px; background:#41B1CD; border:none;"><i class="fa fa-search" style=""></i></a>
                         </div>
                     </div>
                 </div>
@@ -279,7 +280,7 @@
                         </div>
                     </div>
                     <div class="hidden row" id="book" style="background-color: #fff; max-height: 350px;">
-                        <div class="scroll w-100 h-100" id="table_c" style="display: none; margin: 30px;">
+                        <div class="scroll w-100 h-100" id="table_c" style="display: none;">
                             @php
                              $total = 0 ;
                             @endphp
@@ -407,6 +408,27 @@
     </div>
 
     <div class="overlay"></div>
+
+    <div class="modal fade" id="searchModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background: #fff">
+                <div class="modal-body">
+                    <div class="row justify-content-center">
+                        <form action="{{route('product_search')}}">
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                        <button class="btn search_botton_navbar" type="submit" id="button-search-addon" style="border-radius: 50%;"><i class="fa fa-search"></i></button>
+                                        <input class="form-control d-block search_input_navbar" name="keyword" type="text" value="{{Request::get('keyword')}}" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
+                                </div>
+                                    
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>

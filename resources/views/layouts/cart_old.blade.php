@@ -1,6 +1,6 @@
 @extends('template-cart')
 @section('content')
-            <div class="container" style="margin-top: 30px;">
+            <div class="container" style="margin-top: 50px;">
                 <div class="row align-middle">
                     <div class="col-sm-12 col-md-12">
                         <nav aria-label="breadcrumb" class="">
@@ -117,7 +117,7 @@
                     var nm_brg    = $('#nm_brg').val();
 
                     if(nm!='' && almt!='' && tlp!='' && email!='' && total_brg!=''){
-                        window.open('https://api.whatsapp.com/send?phone=+6281212610009&text=*Nama*:%20'+nm+'%0A*Alamat*:%20'+almt+'%0A*Telp*:%20'+tlp+'%0A*Email*:%20'+email+'%0A*Total Item*:%20'+total_brg+'%0A*Total Harga*:%20'+total_pay+'%0A*Pesanan*:%20'+nm_brg);
+                        window.open('https://api.whatsapp.com/send?phone=+6281290388223&text=*Nama*:%20'+nm+'%0A*Alamat*:%20'+almt+'%0A*Telp*:%20'+tlp+'%0A*Email*:%20'+email+'%0A*Total Item*:%20'+total_brg+'%0A*Total Harga*:%20'+total_pay+'%0A*Pesanan*:%20'+nm_brg);
                     }else{
                         Swal.fire({ text: 'Silahkan isi data terlebih dahulu!', confirmButtonColor: '#4db849'});
                     }

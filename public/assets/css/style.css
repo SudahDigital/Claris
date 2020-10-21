@@ -567,6 +567,10 @@ a.register:hover {
 #content .button_plus, #content .button_minus {
   width: 25px; 
   height: 25px;
+  background-color: #fff !important; 
+  border: none;
+  color: #000;
+  border-radius: 50px;
 }
 
 #content .button_plus:hover, #content .button_minus:hover {

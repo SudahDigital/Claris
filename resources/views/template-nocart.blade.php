@@ -128,18 +128,26 @@
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1;">
                 <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn btn-primary button-burger-menu btn-lg">
-                        <i class="fas fa-align-justify fa-lg"></i>
-                    </button>
-                    <a class="navbar-brand ml-md-5 mx-auto" href="/" style="margin: auto !important">
-                        <img src="{{ asset('assets/image/white.png') }}" width="120px" height="120px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
-                    </a>
-                    <form action="{{route('product_search')}}" class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
-                        <div class="input-group">
-                            <button class="btn search_botton_navbar" type="submit" id="button-search-addon"><i class="fa fa-search fa-lg"></i></button>
-                            <input class="form-control search_input_navbar text-center" name="keyword" type="text" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
+                    <div class="col-4 my-auto">
+                        <button type="button" id="sidebarCollapse" class="btn btn-primary button-burger-menu btn-lg">
+                            <i class="fas fa-align-justify fa-lg"></i>
+                        </button>
+                    </div>
+                    <div class="col-3 my-auto text-center">
+                        <a class="navbar-brand ml-md-5 mx-auto" href="/" style="margin: auto !important">
+                            <img src="{{ asset('assets/image/logo_claris.png') }}" width="120px" height="70px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="col-4 my-auto">
+                        <div class="col-8 float-right">
+                            <form action="{{route('product_search')}}"  class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
+                                <div class="input-group">
+                                    <button class="btn search_botton_navbar" type="submit" id="button-search-addon"><i class="fa fa-search"></i></button>
+                                    <input class="form-control search_input_navbar text-center" name="keyword" type="text" placeholder="Search" aria-label="Search" aria-describedby="button-search-addon">
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </nav>
 
