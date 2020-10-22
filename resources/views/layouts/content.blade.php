@@ -210,8 +210,8 @@
     <script type="text/javascript">
         function button_minus_br(id)
         {
-            var jumlah = $('#'+id).val();
-            var jumlah = parseInt(jumlah) - 1;
+            var jum = $('#'+id).val();
+            var jumlah = parseInt(jum) - 1;
 
             // AMBIL NILAI HARGA
             var harga = $('#harga'+id).val();;
@@ -230,11 +230,13 @@
 
             harga = "Rp " + rupiah;
 
+            // alert(jumlah);
+
             if (jumlah<0) {
               alert('Jumlah Tidak Boleh Kurang dari 0')
             } else {
-              $('#'+id).val(jum);
-              $('#show_'+id).html(jum);
+              $('#'+id).val(jumlah);
+              $('#show_'+id).html(jumlah);
               $('#productPrice'+id).text(harga);
             }
         }
