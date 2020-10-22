@@ -232,7 +232,7 @@
 
             // alert(jumlah);
 
-            if (jumlah<0) {
+            if (jumlah<1) {
               // alert('Jumlah Tidak Boleh Kurang dari 0')
                 Swal.fire({
                     title: 'Failed',
