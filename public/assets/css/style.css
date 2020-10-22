@@ -491,9 +491,11 @@ a.register:hover {
 
 .txt-banner {
   position: absolute;
-  top: 50%;
-  right: 0%;
-  transform: translate(-50%, -50%);
+  top: 70%;
+  left: 40%;
+  right: 10%;
+  transform: translate(-10%, -80%);
+  font-size: 25px !important;
 }
 
 #content .button_breadcrumb {
@@ -1389,5 +1391,64 @@ footer.footer .cart .count-cart-three {
 #content .product-price-header2 {
     float: left;
     font-size: 12px;
-  }
+}
+
+#content .button_detail {
+  text-decoration: none;
+  display: inline-block;
+  transition: .2s all;
+  position: relative;
+  z-index: 0;
+  border: none;
+  font-size: 12px;
+  background-color: #06B89B !important;
+}
+
+#content .button_detail:hover {
+  outline:0px !important;
+  -webkit-appearance:none;
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3); 
+}
+
+#content .button_detail:focus {
+  outline:0px !important;
+  -webkit-appearance:none;
+  -webkit-transform: translateY(-1px);
+  transform: translateY(-1px);
+  box-shadow: 0px 0.5rem 1rem rgba(0, 0, 0, 0.3); 
+}
+
+#content .button_detail:active {
+  outline:0px !important;
+  -webkit-appearance:none;
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+  box-shadow: 0px 0.3rem 1rem rgba(0, 0, 0, 0.3); 
+}
+
+#content .button_detail::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10rem;
+  z-index: -1;
+  transition: .2s all;
+  opacity: 1; 
+  background-color: #06B89B !important;
+}
+
+#content .button_detail:hover::after {
+  -webkit-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
+  opacity: 0; 
+}
+
+
+
+
 

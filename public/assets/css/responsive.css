@@ -162,4 +162,28 @@
       float: left;
       font-size: 10px;
     }
+
+    #content .button_detail {
+      margin: 0px;
+      padding: 7px 10px;
+      width: 50px;
+      font-size: 10px;
+      background-color: #06B89B !important;
+    }
+
+    .img-banner {
+      position: absolute;
+      top: 50%;
+      left: 20%;
+      transform: translate(-50%, -50%);
+    }
+
+    .txt-banner {
+      position: absolute;
+      top: 70%;
+      left: 40%;
+      right: 10%;
+      transform: translate(-10%, -80%);
+      font-size: 6px !important;
+    }
 }
