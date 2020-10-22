@@ -233,7 +233,17 @@
             // alert(jumlah);
 
             if (jumlah<0) {
-              alert('Jumlah Tidak Boleh Kurang dari 0')
+              // alert('Jumlah Tidak Boleh Kurang dari 0')
+                Swal.fire({
+                    title: 'Failed',
+                    text: 'Jumlah Tidak Boleh Kurang dari 0',
+                    icon: 'warning',
+                   showConfirmButton: false,
+                   timer: 1500
+                })
+                /*.then(function(){ 
+                    location.reload();})*/
+                ;
             } else {
               $('#'+id).val(jumlah);
               $('#show_'+id).html(jumlah);
