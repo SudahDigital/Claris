@@ -186,4 +186,13 @@
       transform: translate(-10%, -80%);
       font-size: 6px !important;
     }
+
+    .txt-banner2 {
+      position: absolute;
+      top: 20%;
+      left: 40%;
+      right: 10%;
+      transform: translate(-30%, -80%);
+      font-size: 15px !important;
+    }
 }

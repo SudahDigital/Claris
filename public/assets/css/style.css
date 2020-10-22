@@ -498,6 +498,15 @@ a.register:hover {
   font-size: 25px !important;
 }
 
+.txt-banner2 {
+  position: absolute;
+  top: 15%;
+  left: 40%;
+  right: 10%;
+  transform: translate(-30%, -80%);
+  font-size: 30px !important;
+}
+
 #content .button_breadcrumb {
   -webkit-animation-name: GerakanKeKanan;
   animation-name: GerakanKeKanan;
