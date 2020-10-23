@@ -1,4 +1,4 @@
-@media (max-width: 670px) {
+@media screen and (max-width: 670px) {
     .title-page, .button_back, .modal-title {
         font-size: 5.5vw;
     }
@@ -174,7 +174,7 @@
     .img-banner {
       position: absolute;
       top: 50%;
-      left: 20%;
+      left: 17%;
       transform: translate(-50%, -50%);
     }
 
@@ -182,9 +182,10 @@
       position: absolute;
       top: 70%;
       left: 40%;
-      right: 10%;
+      right: 5%;
       transform: translate(-10%, -80%);
-      font-size: 6px !important;
+      font-size: 8vw !important;
+      padding: 5px !important;
     }
 
     .txt-banner2 {

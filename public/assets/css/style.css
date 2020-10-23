@@ -485,13 +485,13 @@ a.register:hover {
 .img-banner {
   position: absolute;
   top: 50%;
-  left: 20%;
+  left: 17%;
   transform: translate(-50%, -50%);
 }
 
 .txt-banner {
   position: absolute;
-  top: 70%;
+  top: 65%;
   left: 40%;
   right: 10%;
   transform: translate(-10%, -80%);
