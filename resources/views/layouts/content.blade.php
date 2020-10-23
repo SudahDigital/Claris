@@ -98,6 +98,18 @@
                             <div class="button-cart">
                                 <div class="row">
                                     <div class="col-2 p-0" style="text-align: center;">
+                                         <!-- <form method="post" action="{{route('add_cart')}}">
+                                            @csrf
+                                            <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
+                                            <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
+                                            <input type="hidden" name="product_id" value="{{$value->id}}"> -->
+                                            <button class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff; color:#000;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                        <!-- </form> -->
+                                    </div>
+                                    <div class="col-2" style="text-align: center;">
+                                        <p id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center">0</p>
+                                    </div>
+                                    <div class="col-2" style="text-align: center;">
                                         <form method="post" action="{{route('add_cart')}}">
                                             @csrf
                                             <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
@@ -105,18 +117,6 @@
                                             <input type="hidden" name="product_id" value="{{$value->id}}">
                                             <button class="btn button_plus d-inline-display" onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff; color:#000;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                         </form>
-                                    </div>
-                                    <div class="col-2" style="text-align: center;">
-                                        <p id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center">0</p>
-                                    </div>
-                                    <div class="col-2" style="text-align: center;">
-                                        <!-- <form method="post" action="{{route('add_cart')}}">
-                                            @csrf
-                                            <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
-                                            <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
-                                            <input type="hidden" name="product_id" value="{{$value->id}}"> -->
-                                            <button class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff; color:#000;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                        <!-- </form> -->
                                     </div>
                                 </div>
                             </div>

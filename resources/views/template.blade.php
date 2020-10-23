@@ -115,6 +115,7 @@
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
+                
             </ul>
 
             @if($status_login == '')
@@ -301,9 +302,9 @@
                                             <p class="label-harga2 m-0" id="mount2_{{$value->id}}" style="color: #41B1CD !important; font-weight: bold;"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
                                         </div>
                                         <div class="text-left">
-                                            <button type="button" class="btn btn-primary button_plus" onclick="cart('{{$value->id}}','plus')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-plus"></i></button>
-                                            <span class="product-name mr-1 ml-1" id="show_m2{{$value->id}}" style="color: #000; padding: 3px; font-weight: bold;"> {{$value->mount}} </span>
                                             <button type="button" class="btn btn-primary button_minus" onclick="cart('{{$value->id}}','min')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-minus"></i></button>
+                                            <span class="product-name mr-1 ml-1" id="show_m2{{$value->id}}" style="color: #000; padding: 3px; font-weight: bold;"> {{$value->mount}} </span>
+                                            <button type="button" class="btn btn-primary button_plus" onclick="cart('{{$value->id}}','plus')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-plus"></i></button>
                                             <input type="hidden" id="{{$value->id}}" value="{{$value->mount}}">
                                             <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
                                             <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">
@@ -423,7 +424,6 @@
                     </div>
                 </div>
             </div>
-        
         </div>
     </div>
 
