@@ -112,7 +112,7 @@
                                     <div class="col-2" style="text-align: center;">
                                         <form method="post" action="{{route('add_cart')}}">
                                             @csrf
-                                            <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
+                                            <input type="hidden" id="{{$value->id}}" name="jumlah" value="0">
                                             <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
                                             <input type="hidden" name="product_id" value="{{$value->id}}">
                                             <button class="btn button_plus d-inline-display" onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff; color:#000;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
@@ -281,8 +281,8 @@
               alert('Jumlah Tidak Boleh Kosong')
             } else {
 
-              $('#'+id).val(jum)
-              $('#show_'+id).html(jum)
+              $('#'+id).val(jumlah)
+              $('#show_'+id).html(jumlah)
               $('#productPrice'+id).text(harga);
 
                 Swal.fire({

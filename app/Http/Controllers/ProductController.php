@@ -73,6 +73,7 @@ class ProductController extends Controller
     }
     public function detail(Request $request)
     {
+        $ses_id = $request->header('User-Agent'); //session_id();
         $user_id = Auth::id();
         if (empty($user_id)) {
             # code...
@@ -89,6 +90,7 @@ class ProductController extends Controller
         $cart = DB::table('carts')
             ->leftJoin('products', 'products.id', '=', 'carts.product_id')
             ->leftJoin('product_images', 'product_images.product_id', '=', 'carts.product_id')
+            ->where('session_id', $ses_id)
             ->select('carts.*', 'products.product_name', 'products.product_harga', 'product_images.image_link')
             // ->where('product_images.is_tumbnail', 'yes')
             ->get();

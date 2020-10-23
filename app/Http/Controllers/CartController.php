@@ -29,8 +29,9 @@ class CartController extends Controller
         Veritrans_Config::$isSanitized = config('services.midtrans.isSanitized');
         Veritrans_Config::$is3ds = config('services.midtrans.is3ds');
     }
-    public function index()
+    public function index(Request $request)
     {
+    	$ses_id = $request->header('User-Agent'); //session_id();
     	$user_id = Auth::id();
     	if (empty($user_id)) {
     		# code...
@@ -41,6 +42,7 @@ class CartController extends Controller
 		$cart = DB::table('carts')
             ->leftJoin('products', 'products.id', '=', 'carts.product_id')
             ->leftJoin('product_images', 'product_images.product_id', '=', 'carts.product_id')
+            ->where('session_id', $ses_id)
 			->select('carts.*', 'products.product_name', 'products.product_harga', 'product_images.image_link')
 			// ->where('product_images.is_tumbnail', 'yes')
             ->get();
@@ -114,6 +116,7 @@ class CartController extends Controller
 			'email_cust' => $request->costumer_email,
 			'amount' => $request->total_pay
 		]);
+
 
 		return redirect('cart')->with(['success' => 'Product Berhasil di Proses']);
 

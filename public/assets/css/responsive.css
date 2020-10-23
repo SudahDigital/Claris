@@ -196,4 +196,8 @@
       transform: translate(-30%, -80%);
       font-size: 15px !important;
     }
+
+    .detail {
+      margin-left: 110px;
+    }
 }
