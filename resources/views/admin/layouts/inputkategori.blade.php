@@ -87,6 +87,12 @@
                 <p>Kontak</p>
             </a>
           </li>
+          <li class="nav-item has-treeview">
+            <a href="{{URL::route('dash_user')}}" class="nav-link">
+                <i class="fas fa-user nav-icon"></i>
+                <p>User Admin</p>
+            </a>
+          </li>
           <li class="nav-header">PREFERENCES</li>
           <li class="nav-item has-treeview">
             <a href="{{URL::route('logout')}}"class="nav-link">

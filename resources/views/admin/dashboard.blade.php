@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Admin Dashboard</title>
+
+  <link rel="icon" href="{{ asset('assets/image/logo_claris.png')}}" type="image/png" sizes="16x30">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -156,7 +158,7 @@
               <div class="inner">
                 <h3>{{ $total_penjualan }}</h3>
 
-                <p>Total Penjualan (Item)</p>
+                <p>Total Penjualan</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>

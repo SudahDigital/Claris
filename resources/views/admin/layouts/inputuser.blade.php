@@ -69,8 +69,8 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="{{URL::route('dash_produk')}}" class="nav-link active">
+          <li class="nav-item has-treeview">
+            <a href="{{URL::route('dash_produk')}}" class="nav-link">
                 <i class="fas fa-lightbulb nav-icon"></i>
                 <p>Produk</p>
             </a>
@@ -85,6 +85,12 @@
             <a href="{{URL::route('dash_kontak')}}" class="nav-link">
                 <i class="fas fa-phone nav-icon"></i>
                 <p>Kontak</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview  menu-open">
+            <a href="{{URL::route('dash_user')}}" class="nav-link active">
+                <i class="fas fa-user nav-icon"></i>
+                <p>User Admin</p>
             </a>
           </li>
           <li class="nav-header">PREFERENCES</li>
