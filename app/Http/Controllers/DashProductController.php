@@ -30,7 +30,7 @@ class DashProductController extends Controller
 
     public function edit(Request $request)
     {
-    	$sql = "select a.*, b.image_link from products as a inner join product_images as b on a.id = b.product_id where a.id= '".$request->id."'";
+    	$sql = "select a.*, b.image_link from products as a left join product_images as b on a.id = b.product_id where a.id= '".$request->id."'";
     	$product = DB::select($sql);
 
     	$sql_c = "select * from categorys";

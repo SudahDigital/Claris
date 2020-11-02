@@ -156,7 +156,7 @@
               <div class="inner">
                 <h3>{{ $total_penjualan }}</h3>
 
-                <p>Total Penjualan</p>
+                <p>Total Penjualan (Item)</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>

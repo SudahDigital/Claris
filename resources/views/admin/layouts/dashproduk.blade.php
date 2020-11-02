@@ -151,7 +151,7 @@
            </a>
           </div>
         </div>
-        <div class="card-body p-0" style="overflow-y:auto !important ;height: 600px;">
+        <div class="card-body p-0" style="overflow-y:auto !important ; height: 600px;">
           <table class="table">
               <thead>
                   <tr >

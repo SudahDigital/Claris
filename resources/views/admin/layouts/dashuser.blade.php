@@ -81,10 +81,16 @@
                 <p>Kategori Produk</p>
             </a>
           </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="{{URL::route('dash_kontak')}}" class="nav-link active">
+          <li class="nav-item has-treeview">
+            <a href="{{URL::route('dash_kontak')}}" class="nav-link">
                 <i class="fas fa-phone nav-icon"></i>
                 <p>Kontak</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{URL::route('dash_user')}}" class="nav-link active">
+                <i class="fas fa-user nav-icon"></i>
+                <p>User Admin</p>
             </a>
           </li>
           <li class="nav-header">PREFERENCES</li>
@@ -146,7 +152,7 @@
           </div>
         </div>
         <div class="card-body p-0">
-          <table class="table" style="overflow-y:auto !important ;height: 600px;">
+          <table class="table" style="overflow:auto !important ; height: 600px;">
               <thead>
                   <tr>
                       <th style="width: 20%">
