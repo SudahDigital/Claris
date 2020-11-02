@@ -27,7 +27,8 @@ class DashUserController extends Controller
     {
 		if($_POST['user_nama']!="" && $_POST['email_user']!="" && $_POST['password']!=""){
     		$errors= array();
-    		$pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    		// $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    		$pass = $_POST['password'];
 
   			$user = User::create([
 				'name' => $_POST['user_nama'],
@@ -54,7 +55,8 @@ class DashUserController extends Controller
 
     public function update(Request $request)
     {
-    	$pass = password_hash($request->password, PASSWORD_DEFAULT);
+    	// $pass = password_hash($request->password, PASSWORD_DEFAULT);
+    	$pass = $request->password;
 
     	$update = "update users set 
     					name = '".$request->user_nama."',
