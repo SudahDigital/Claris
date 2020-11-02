@@ -151,10 +151,10 @@
            </a>
           </div>
         </div>
-        <div class="card-body p-0">
+        <div class="card-body p-0" style="overflow-y:auto !important ;height: 600px;">
           <table class="table">
               <thead>
-                  <tr>
+                  <tr >
                       <th style="width: 1%">
                           Id
                       </th>

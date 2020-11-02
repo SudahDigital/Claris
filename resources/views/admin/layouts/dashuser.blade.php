@@ -146,7 +146,7 @@
           </div>
         </div>
         <div class="card-body p-0">
-          <table class="table">
+          <table class="table" style="overflow-y:auto !important ;height: 600px;">
               <thead>
                   <tr>
                       <th style="width: 20%">
