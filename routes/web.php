@@ -49,6 +49,7 @@ Route::get('/logout', 'LoginController@logout')->name('cust_logout');
 
 	// contact us
 	Route::get('/contact', 'ContactController@index')->name('contact');
+
 // });
 
 //*** ADMIN ***//
@@ -132,6 +133,16 @@ Route::middleware('auth')->group(function () {
 	Route::get('/admin/dash-kontak', 'DashContactController@index')->name('dash_kontak');
 	Route::get('/admin/form-edit-kontak', 'DashContactController@edit')->name('form_edit_kontak');
 	Route::post('/admin/edit-kontak', 'DashContactController@update')->name('edit_kontak');
+
+	//admin user
+	Route::get('/admin/dash-user', 'DashUserController@index')->name('dash_user');
+	Route::get('/admin/form-user', 'DashUserController@add')->name('form_user');
+	Route::post('/admin/input-user', 'DashUserController@create')->name('input_user');
+
+	Route::get('/admin/form-edit-user', 'DashUserController@edit')->name('form_edit_user');
+	Route::post('/admin/edit-user', 'DashUserController@update')->name('edit_user');
+
+	Route::get('/admin/hapus-user/{id}', 'DashUserController@delete')->name('hapus_user');
 });
 
 

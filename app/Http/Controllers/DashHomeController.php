@@ -9,7 +9,7 @@ use DB;
 class DashHomeController extends Controller
 {
     public function index() {
-    	$sql = DB::select('select * from users');
+    	$sql = DB::select("select * from users where role = 'customer'");
     	$count = count($sql);
     	$data['total_konsumen'] = $count;
 

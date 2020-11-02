@@ -115,7 +115,6 @@
                 <li>
                     <a href="{{URL::route('contact')}}">Kontak Kami</a>
                 </li>
-                
             </ul>
 
             @if($status_login == '')

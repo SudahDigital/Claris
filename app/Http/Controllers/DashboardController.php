@@ -37,7 +37,7 @@ class DashboardController extends Controller
 
             $request->session()->put('data',$request->input());
 
-	    	$sql_user = DB::select('select * from users');
+	    	$sql_user = DB::select("select * from users where role = 'customer' ");
 	    	$count = count($sql_user);
 	    	$data['total_konsumen'] = $count;
 

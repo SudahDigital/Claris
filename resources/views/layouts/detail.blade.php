@@ -23,7 +23,7 @@
                         <h5 class="card-title product-name px-1 pt-3">{{$product->product_name}}</h5>
                         <h3 class="card-title product-name px-1" style="color: #41B1CD; font-weight: bold;"><strong>Rp {{ number_format($product->product_harga, 0, ',', '.') }},-</strong></h3>
                         <p class="product-description px-1">{{$product->product_description}}</p>
-                        <div class="row col-6 py-4 px-0 detail">
+                        <div class="row col-6 py-4 px-0 "> <!--detail-->
                             <div class="col-2 p-0" style="text-align: right;">
                                  <!-- <form method="post" action="{{route('add_cart')}}">
                                     @csrf
