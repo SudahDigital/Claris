@@ -19,19 +19,19 @@
                         <div class="card mx-auto cart_card">
                             <div class="card-body">
                                     <div class="form-group">
-                                        <input style="border:1px solid #41B1CD" type="text" required="true" name="costumer_name" class="form-control" placeholder="Nama" id="name"required autofocus autocomplete="off">
+                                        <input style="border:1px solid #ff0000" type="text" name="costumer_name" class="form-control" placeholder="Nama" id="name">
                                         <!-- <label for="name" class="cart_label">Nama</label> -->
                                     </div>
                                     <div class="form-group">
-                                        <textarea style="border:1px solid #41B1CD" class="form-control" required="true"  name="costumer_adress" rows="5" placeholder="Alamat Pengiriman" id="deliveryAddress" required autocomplete="off"></textarea>
+                                        <textarea style="border:1px solid #ff0000" class="form-control"  name="costumer_adress" rows="5" placeholder="Alamat Pengiriman" id="deliveryAddress"></textarea>
                                         <!-- <label for="deliveryAddress" class="cart_label">Alamat Pengiriman</label> -->
                                     </div>  
                                     <div class="form-group">
-                                        <input style="border:1px solid #41B1CD" type="number"  name="costumer_phone" required="true" class="form-control" placeholder="Nomor Telepon" id="phoneNumber" required autocomplete="off">
+                                        <input style="border:1px solid #ff0000" type="number"  name="costumer_phone" class="form-control" placeholder="Nomor Telepon" id="phoneNumber">
                                         <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                                     </div>
                                     <div class="form-group">
-                                        <input style="border:1px solid #41B1CD" type="email" required="true"  name="costumer_email" class="form-control" placeholder="Email" id="email" required autocomplete="off">
+                                        <input style="border:1px solid #ff0000" type="email"  name="costumer_email" class="form-control" placeholder="Email" id="email" >
                                         <!-- <label for="email" class="cart_label">Email</label> -->
                                     </div>
                             </div>
@@ -64,7 +64,7 @@
                                             <td class="align-left">
                                                 <h5 class="product-price-header2" style="color: #000 !important; font-weight: bold;">{{$value->product_name}}</h5><br>  
                                                 <p class="label-harga2" id="mount3_{{$value->id}}" style="color: #41B1CD !important; text-align: left"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
-                                                <div>
+                                                <!-- <div> -->
                                                     <button id="minus" value="{{$value->id}}" type="button" class="btn btn-primary button_minus" onclick="cart_minus('{{$value->id}}')" style="padding: 0; text-align: center;"><i class="fa fa-minus"></i></button>
                                                     <span class="mr-1 ml-1" id="show_m3{{$value->id}}">{{$value->mount}}</span>
                                                     <button id="plus" value="{{$value->id}}" type="button" class="btn btn-primary button_plus" onclick="cart_plus('{{$value->id}}')" style="padding: 0; text-align: center;"><i class="fa fa-plus"></i></button>
@@ -72,11 +72,12 @@
                                                     <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
                                                     <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">
                                                     <input type="hidden" id="total_brg" value="{{$total_brg}}">
-                                                </div>
+                                                <!-- </div> -->
                                             </td>
                                             <td class="align-middle">
                                                 <!-- <a class="btn btn-sm btn-danger" href="{{route('cart_delete',$value->id)}}" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini dari keranjang belanja Anda?');"><i class="fa fa-times"></i></a> -->
-                                                <button id="containner" value="{{$value->id}}" class="btn btn-sm btn-danger"><i class="fa fa-times" style="color: white;"></i></button>
+                                                <button id="delete_prod" value="{{$value->id}}" type="button" class="btn btn-sm btn-danger" onclick="valDel('{{ $value->id }}');"><i class="fa fa-times" style="color: white;"></i></button>
+                                                
                                             </td>
                                         </tr>
                                         @endforeach
@@ -104,9 +105,59 @@
 
             <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
             <!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script> -->
-
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
             <script type="text/javascript">
+                $(document).ready(function() {  
+                    $('#name').on('keyup', function(){ 
+
+                        var isi = $(this).val();
+                        if(isi == ""){
+                             $(this).removeClass('data_input');
+                            $(this).addClass('data_input_empty');
+                        }else{
+                             $(this).removeClass('data_input_empty');
+                            $(this).addClass('data_input');
+                        }
+                    });
+
+                    $('#deliveryAddress').on('keyup', function(){ 
+
+                        var isi = $(this).val();
+                        if(isi == ""){
+                             $(this).removeClass('data_input');
+                            $(this).addClass('data_input_empty');
+                        }else{
+                             $(this).removeClass('data_input_empty');
+                            $(this).addClass('data_input');
+                        }
+                    });
+
+                    $('#phoneNumber').on('keyup', function(){ 
+
+                        var isi = $(this).val();
+                        if(isi == ""){
+                             $(this).removeClass('data_input');
+                            $(this).addClass('data_input_empty');
+                        }else{
+                             $(this).removeClass('data_input_empty');
+                            $(this).addClass('data_input');
+                        }
+                    });
+
+                    $('#email').on('keyup', function(){ 
+
+                        var isi = $(this).val();
+                        if(isi == ""){
+                            $(this).removeClass('data_input');
+                            $(this).addClass('data_input_empty');
+                        }else{
+                            $(this).removeClass('data_input_empty');
+                            $(this).addClass('data_input');
+                        }
+                    });
+
+                });
+
                 function whatsapp(){
                     var nm      = $('#name').val();
                     var almt    = $('#deliveryAddress').val(); 
@@ -118,14 +169,56 @@
 
                     if(nm!='' && almt!='' && tlp!='' && email!='' && total_brg!=''){
                         window.open('https://api.whatsapp.com/send?phone=+6281290388223&text=*Nama*:%20'+nm+'%0A*Alamat*:%20'+almt+'%0A*Telp*:%20'+tlp+'%0A*Email*:%20'+email+'%0A*Total Item*:%20'+total_brg+'%0A*Total Harga*:%20'+total_pay+'%0A*Pesanan*:%20'+nm_brg);
-                    }else{
-                        Swal.fire({ text: 'Silahkan isi data terlebih dahulu!', confirmButtonColor: '#4db849'});
+                    }else if (nm==''){
+                        Swal.fire({ text: 'Silahkan isi Nama terlebih dahulu!', confirmButtonColor: '#4db849'});
+                    }else if (almt==''){
+                        Swal.fire({ text: 'Silahkan isi Alamat terlebih dahulu!', confirmButtonColor: '#4db849'});
+                    }else if (tlp==''){
+                        Swal.fire({ text: 'Silahkan isi data Telepon terlebih dahulu!', confirmButtonColor: '#4db849'});
+                    }else if (email==''){
+                        Swal.fire({ text: 'Silahkan isi data Email terlebih dahulu!', confirmButtonColor: '#4db849'});
+                    }else if (total_brg==''){
+                        Swal.fire({ text: 'Tidak ada barang yang dipesan!', confirmButtonColor: '#4db849'});
                     }
                 }
 
+                function valDel(id){
+                    Swal.fire({
+                      title: 'Hapus barang ?',
+                      text: "Item ini akan di hapus dari keranjangmu",
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#4db849',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Hapus',
+                      cancelButtonText: "Batal"
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+
+                        $.ajax({
+                            type: "GET",
+                            url: "{{url('/cart/delete')}}"+'/'+id,
+                            data: {id:id},
+                            success: function (data) {
+                                Swal.fire({
+                                   title: 'Sukses',
+                                   text: 'Item ini berhasil di hapus',
+                                   icon: 'success',
+                                   showConfirmButton: false,
+                                   timer: 1500
+                               }).then(function(){ 
+                                location.reload();
+                                });
+                            }         
+                        });
+                      }
+                      
+                    });
+                }
+
                 $(function( $ ){
-                    $('#containner').click(function(){
-                        // alert($(this).val());
+
+                    $('#delete_prod').click(function(){
                         var id_prod = $(this).val();
 
                         Swal.fire({
