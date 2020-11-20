@@ -1461,7 +1461,13 @@ footer.footer .cart .count-cart-three {
   margin-left: 500px !important;
 }
 
+.data_input {
+  border:1px solid #4CD31E !important;
+}
 
+.data_input_empty {
+  border:1px solid #ff0000 !important;
+}
 
 
 
