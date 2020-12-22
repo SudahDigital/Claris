@@ -23,7 +23,6 @@ class DashProductController extends Controller
 
     	$product = DB::select($sql);
         $data['product'] = $product;
-
         return view ('admin.product.list_product', $data);   
     }
 
@@ -77,7 +76,7 @@ class DashProductController extends Controller
     	$data['produk_harga'] = $product[0]->product_harga;
     	$data['produk_kategori'] = $product[0]->category_id;
         $data['produk_stock'] = $product[0]->product_stock;
-        $data['produk_discount'] = $product[0]->product_discount;
+        $data['diskon_produk'] = $product[0]->product_discount;
     	$data['image_nama'] = $product[0]->product_image;
     	$data['kategori'] = $category;
 
@@ -107,6 +106,15 @@ class DashProductController extends Controller
                         $top_produk = $_POST['top_produk'];
                     }
 
+                    //--price promo--//
+                        if($_POST['diskon_produk'] > 0){
+                            $diskon         = $_POST['diskon_produk'];
+                            $harga          = $_POST['harga_produk'];
+                            $potongan       = $harga * ($diskon / 100);
+                            $price_promo    = $harga - $potongan;
+                        }
+                    //--price promo--//
+
                     $product = DB::insert("
                                 INSERT INTO products (
                                     category_id,
@@ -117,6 +125,7 @@ class DashProductController extends Controller
                                     product_discount,
                                     flag_top,
                                     product_image,
+                                    price_promo,
                                     created_at
                                 ) VALUES (
                                     '".$_POST['kat_produk']."',
@@ -127,6 +136,7 @@ class DashProductController extends Controller
                                     '".$_POST['diskon_produk']."',
                                     '".$top_produk."',
                                     '".$file_name."',
+                                    '".$price_promo."',
                                     now()
                                 );
                             ");
@@ -158,6 +168,16 @@ class DashProductController extends Controller
             if($file_name) { $product_image = "product_image = '".$file_name."'," ;}
 
 		    if(empty($errors)==true){
+
+                //--price promo--//
+                    if($request->diskon_produk > 0){
+                        $diskon         = $request->diskon_produk;
+                        $harga          = $request->harga_produk;
+                        $potongan       = $harga * ($diskon / 100);
+                        $price_promo    = $harga - $potongan;
+                    }
+                //--price promo--//
+
                 $update = "UPDATE products SET 
                         product_name = '".$request->produk_nama."', 
                         product_description = '".$request->ket_produk."', 
@@ -165,6 +185,7 @@ class DashProductController extends Controller
                         product_stock = '".$request->stock_produk."',
                         product_discount = '".$request->diskon_produk."', 
                         flag_top = '".$request->top_produk."',
+                        price_promo = '".$price_promo."',
                         $product_image
                         category_id = '".$request->kat_produk."'
                     WHERE id = '".$request->produk_id."' 

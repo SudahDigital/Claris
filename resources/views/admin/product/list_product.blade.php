@@ -44,7 +44,10 @@
                           Price (Rp)
                       </th>
                       <th>
-                          Stock
+                          Stock (Pcs)
+                      </th>
+                      <th>
+                          Discount (%)
                       </th>
                       <th style="text-align: center;">
                         Action
@@ -77,12 +80,22 @@
                       </td>
                       <td style="text-align: right;">
                           <a>
-                             {{ number_format($value->product_harga) }}
+                            @if($value->product_discount > 0)
+                              <del>{{ number_format($value->product_harga) }}</del><br>
+                              {{ number_format($value->price_promo) }}
+                            @else
+                              {{ number_format($value->product_harga) }}
+                            @endif
                           </a>
                       </td>
                       <td style="text-align: center;">
                           <a>
                              {{ $value->product_stock }}
+                          </a>
+                      </td>
+                      <td style="text-align: center;">
+                          <a>
+                             {{ $value->product_discount }}
                           </a>
                       </td>
                       <td class="project-actions text-center">

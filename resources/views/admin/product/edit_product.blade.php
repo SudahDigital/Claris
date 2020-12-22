@@ -57,7 +57,7 @@
                         </div>
                         <div class="form-group">
                           <label for="diskon_produk">Product Discount (%)</label>
-                          <input maxlength="3" type="number" name="diskon_produk" class="form-control" placeholder="Ex: 70" id="diskon_produk" autofocus autocomplete="off" value="">
+                          <input maxlength="3" type="number" name="diskon_produk" class="form-control" placeholder="Ex: 70" id="diskon_produk" autofocus autocomplete="off" value="{{ $diskon_produk }}">
                         </div>
                         <div class="form-group">
                           <div class="custom-control custom-checkbox">
