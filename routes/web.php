@@ -113,20 +113,17 @@ Route::middleware('auth')->group(function () {
 	Route::get('/admin/dash-produk', 'DashProductController@index')->name('dash_produk');
 	Route::get('/admin/form-produk', 'DashProductController@add')->name('form_produk');
 	Route::post('/admin/input-produk', 'DashProductController@create')->name('input_produk');
-
 	Route::get('/admin/form-edit-produk', 'DashProductController@edit')->name('form_edit_produk');
 	Route::post('/admin/edit-produk', 'DashProductController@update')->name('edit_produk');
-
 	Route::get('/admin/hapus-produk/{id}', 'DashProductController@delete')->name('hapus_produk');
+	Route::get('/admin/view-produk', 'DashProductController@view')->name('view_produk');
 
 	// admin kategori
 	Route::get('/admin/dash-kategori', 'DashCategoryController@index')->name('dash_kategori');
 	Route::get('/admin/form-kategori', 'DashCategoryController@add')->name('form_kategori');
 	Route::post('/admin/input-kategori', 'DashCategoryController@create')->name('input_kategori');
-
 	Route::get('/admin/form-edit-kategori', 'DashCategoryController@edit')->name('form_edit_kategori');
 	Route::post('/admin/edit-kategori', 'DashCategoryController@update')->name('edit_kategori');
-
 	Route::get('/admin/hapus-kategori/{id}', 'DashCategoryController@delete')->name('hapus_kategori');
 
 	// admin kontak
@@ -138,10 +135,8 @@ Route::middleware('auth')->group(function () {
 	Route::get('/admin/dash-user', 'DashUserController@index')->name('dash_user');
 	Route::get('/admin/form-user', 'DashUserController@add')->name('form_user');
 	Route::post('/admin/input-user', 'DashUserController@create')->name('input_user');
-
 	Route::get('/admin/form-edit-user', 'DashUserController@edit')->name('form_edit_user');
 	Route::post('/admin/edit-user', 'DashUserController@update')->name('edit_user');
-
 	Route::get('/admin/hapus-user/{id}', 'DashUserController@delete')->name('hapus_user');
 });
 

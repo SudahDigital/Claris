@@ -12,7 +12,7 @@ class DashUserController extends Controller
 {
     public function index()
     {
-    	$sql = "select * from users where role = 'admin';";
+    	$sql = "select * from users";
         $data['users'] = DB::select($sql);
 
         return view ('admin.layouts.dashuser', $data);   
@@ -43,14 +43,18 @@ class DashUserController extends Controller
 
     public function edit(Request $request)
     {
-    	$sql = "select * from users where role = 'admin' and id= '".$request->id."'";
-    	$user_sql = DB::select($sql);
+    	$role_user = Auth::user();
+        $user_status        = $role_user->role;
 
-    	$data['username'] 	= $user_sql[0]->name;
-    	$data['email'] 		= $user_sql[0]->email;
-    	$data['id'] 		= $user_sql[0]->id;
+        $sql = "select * from users where id= '".$request->id."'";
+        $user_sql = DB::select($sql);
 
-        return view ('admin.layouts.edituser', $data);   
+        $data['role_user']  = $user_sql[0]->role;
+        $data['username']   = $user_sql[0]->name;
+        $data['email']      = $user_sql[0]->email;
+        $data['id']         = $user_sql[0]->id;
+
+        return view ('admin.layouts.edituser', $data);     
     }
 
     public function update(Request $request)

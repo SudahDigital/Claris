@@ -28,26 +28,23 @@ class DashboardController extends Controller
 
         $user = User::where($credentials)->first();
 
-        $sql = User::where('name',$request->name)->where('password',$request->password)->whererole('admin','==',$request->role)->get();
-        $rst = $sql->count();
-
-        if ($user && $rst!='0') { 
+        if ($user) { 
             // reff : https://vegibit.com/how-to-create-user-registration-in-laravel/
             auth()->login($user); // agar bs dipanggil auth()->user()->name
 
             $request->session()->put('data',$request->input());
 
-	    	$sql_user = DB::select("select * from users where role = 'customer' ");
-	    	$count = count($sql_user);
-	    	$data['total_konsumen'] = $count;
+            $sql_user = DB::select('select * from users');
+            $count = count($sql_user);
+            $data['total_konsumen'] = $count;
 
-	    	$sql_pay = DB::select('select * from pay');
-	    	$count = count($sql_pay);
-	    	$data['total_penjualan'] = $count;
-	    	$data['status']="Selamat Datang";
-	        return view('admin/dashboard', $data);
+            $sql_pay = DB::select('select * from pay');
+            $count = count($sql_pay);
+            $data['total_penjualan'] = $count;
+            $data['status']="Selamat Datang";
+            return view('admin/dashboard', $data);
         }else{
-        	return redirect()->back();
+            return redirect()->back();
         }
     }
 

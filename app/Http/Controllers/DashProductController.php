@@ -8,29 +8,64 @@ use Illuminate\Support\Facades\DB;
 
 use App\Product;
 use App\ProductImage;
+use App\Category;
 
 class DashProductController extends Controller
 {
     public function index()
     {
-        $sql = "select a.*, b.image_link, c.category_name from products as a 
-        		left join product_images as b on a.id = b.product_id 
-        		left join categorys as c on c.id = a.category_id";
-    	$product = DB::select($sql);
+        $sql = "SELECT 
+                    a.*, 
+                    b.category_name 
+                from products as a 
+        		left join categorys as b on b.id = a.category_id
+            ";
 
+    	$product = DB::select($sql);
         $data['product'] = $product;
 
-        return view ('admin.layouts.dashproduk', $data);   
+        return view ('admin.product.list_product', $data);   
     }
 
     public function add()
     {
-        return view ('admin.layouts.inputproduk');   
+        $data['category'] = Category::all();
+        return view ('admin.product.create_product', $data);   
+    }
+
+    public function view(Request $request)
+    {
+        $sql = "SELECT 
+                    a.* ,
+                    b.category_name
+                FROM products a 
+                INNER JOIN categorys b ON b.id = a.category_id
+                WHERE 
+                    a.id = '".$request->id."'";
+
+        $rst    = DB::select($sql);
+        $data   = $rst;
+        $data['formatharga'] = "Rp. ".number_format($rst[0]->product_harga).",-";
+
+        if($rst[0]->flag_top == 'Y'){
+            $data['flag_top'] = '<span class="badge bg-primary" style="color: #fff;">YES</span>';
+        }else{
+            $data['flag_top'] = '<span class="badge bg-danger" style="color: #fff;">NO</span>';
+        }
+
+        return ($data);
     }
 
     public function edit(Request $request)
     {
-    	$sql = "select a.*, b.image_link from products as a left join product_images as b on a.id = b.product_id where a.id= '".$request->id."'";
+    	$sql = "SELECT 
+                    a.* ,
+                    b.category_name
+                FROM products a 
+                INNER JOIN categorys b ON b.id = a.category_id
+                WHERE 
+                    a.id = '".$request->id."'
+            ";
     	$product = DB::select($sql);
 
     	$sql_c = "select * from categorys";
@@ -41,14 +76,17 @@ class DashProductController extends Controller
     	$data['produk_desc'] = $product[0]->product_description;
     	$data['produk_harga'] = $product[0]->product_harga;
     	$data['produk_kategori'] = $product[0]->category_id;
-    	$data['image_nama'] = $product[0]->image_link;
+        $data['produk_stock'] = $product[0]->product_stock;
+        $data['produk_discount'] = $product[0]->product_discount;
+    	$data['image_nama'] = $product[0]->product_image;
     	$data['kategori'] = $category;
 
-        return view ('admin.layouts.editproduk', $data);   
+        return view ('admin.product.edit_product', $data);   
     }
 
     public function create(Request $request)
     {
+        // print_r($_POST);exit();
 		if(isset($_FILES['upl_image'])){
     		$errors= array();
 	      	$file_name = $_FILES['upl_image']['name'];
@@ -63,40 +101,47 @@ class DashProductController extends Controller
 		    if(empty($errors)==true){
 			    if(move_uploaded_file($file_tmp,"assets/image/product/".$file_name)) {
 
-		  			$product = Product::create([
-						'category_id' => $_POST['kat_produk'],
-						'product_name' => $_POST['produk_nama'],
-						'product_harga' => $_POST['harga_produk'],
-						'product_description' => $_POST['ket_produk']
-					]);
+                    if (empty($_POST['top_produk'])){ 
+                        $top_produk = ''; 
+                    }else{
+                        $top_produk = $_POST['top_produk'];
+                    }
 
-		  			$sql = "select id from products where product_name = '".$_POST['produk_nama']."' ";
-		  			$rst = DB::select($sql);
-
-		  			$product_image = ProductImage::create([
-						'image_link' => $file_name,
-						'product_id' => $rst[0]->id,
-						'is_tumbnail' => ''
-					]);
+                    $product = DB::insert("
+                                INSERT INTO products (
+                                    category_id,
+                                    product_name,
+                                    product_harga,
+                                    product_description,
+                                    product_stock,
+                                    product_discount,
+                                    flag_top,
+                                    product_image,
+                                    created_at
+                                ) VALUES (
+                                    '".$_POST['kat_produk']."',
+                                    '".$_POST['produk_nama']."',
+                                    '".$_POST['harga_produk']."',
+                                    '".$_POST['ket_produk']."',
+                                    '".$_POST['stock_produk']."',
+                                    '".$_POST['diskon_produk']."',
+                                    '".$top_produk."',
+                                    '".$file_name."',
+                                    now()
+                                );
+                            ");
+                    if($product){
+                        return redirect('admin/dash-produk')->with(['hasil' => 'Success']);
+                    }
 		        }
 		    }
 	    }
 
-		return redirect('admin/dash-produk')->with(['success' => 'Product Berhasil di Proses']);
+		return redirect('admin/dash-produk')->with(['hasil' => 'Failed']);
     }
 
     public function update(Request $request)
     {
-
-    	$update = "update products set 
-    					product_name = '".$request->produk_nama."', 
-    					product_description = '".$request->ket_produk."', 
-    					product_harga = '".$request->harga_produk."', 
-    					category_id = '".$request->kat_produk."' 
-    				where id = '".$request->produk_id."' 
-    			";
-
-    	$product = DB::update($update);
 
     	if(isset($_FILES['upl_image'])){
     		$errors= array();
@@ -109,15 +154,25 @@ class DashProductController extends Controller
 		        $errors[]='File size must be excately 2 MB';
 		    }
 
-		    if(empty($errors)==true){
-			    if(move_uploaded_file($file_tmp,"assets/image/product/".$file_name)) {
-		  			echo "success";
+            $product_image ="";
+            if($file_name) { $product_image = "product_image = '".$file_name."'," ;}
 
-		  			$update_img = "update product_images set
-		    						image_link = '".$file_name."'
-		    					where product_id = '".$request->produk_id."'
-		    				";
-		    		$product_image = DB::update($update_img);
+		    if(empty($errors)==true){
+                $update = "UPDATE products SET 
+                        product_name = '".$request->produk_nama."', 
+                        product_description = '".$request->ket_produk."', 
+                        product_harga = '".$request->harga_produk."',
+                        product_stock = '".$request->stock_produk."',
+                        product_discount = '".$request->diskon_produk."', 
+                        flag_top = '".$request->top_produk."',
+                        $product_image
+                        category_id = '".$request->kat_produk."'
+                    WHERE id = '".$request->produk_id."' 
+                ";
+                $product = DB::update($update);
+
+			    if($product) {
+                    move_uploaded_file($file_tmp,"assets/image/product/".$file_name);
 		        }
 		    }
 	    }
@@ -128,8 +183,9 @@ class DashProductController extends Controller
     public function delete($id)
     {
     	$delete = Product::where('id',$id)->delete();
-    	$delete_img = ProductImage::where('product_id',$id)->delete();
-
-		return redirect('admin/dash-produk')->with(['success' => 'Product Berhasil di Hapus']);
+        if($delete){
+		  return redirect('admin/dash-produk')->with(['hasil' => 'success']);
+        }
+        return redirect('admin/dash-produk')->with(['hasil' => 'failed']);
     }
 }

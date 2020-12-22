@@ -14,59 +14,31 @@
   <link rel="stylesheet" href="{{ asset('assets_admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets_admin/plugins/daterangepicker/daterangepicker.css') }}">
   <link rel="stylesheet" href="{{ asset('assets_admin/plugins/summernote/summernote-bs4.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets_admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets_admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link href="{{ asset('assets_admin/css/simple-sidebar.css') }}" rel="stylesheet">
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-      @include('admin.header_sidebar')
-      @include('admin.sidebar')
-      @include('admin.menu_sidebar')
+  @include('admin.header_sidebar')
+  @include('admin.sidebar')
+  @include('admin.menu_sidebar')
 
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="padding-top: 50px">
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
+            <h1 class="m-0 text-dark">Product</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
+              <li class="breadcrumb-item active">Manage Product</li>
             </ol>
           </div>
         </div>
       </div>
     </div>
-
-    <section class="content">
-      <div class="container-fluid">
-        Hi {{ auth()->user()->name }}, You are logged in !
-      </div>
-    </section>
-  </div>
-
-  @include('admin.footer')
-
-  <aside class="control-sidebar control-sidebar-dark">
-  </aside>
-</div>
-
-
-
-<script src="{{ asset('assets_admin/plugins/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('assets_admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('assets_admin/dist/js/adminlte.js') }}"></script>
-<script src="{{ asset('assets_admin/dist/js/demo.js') }}"></script>
-
-<script>
-  $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-  });
-</script>
-</body>
-</html>

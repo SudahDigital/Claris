@@ -13,5 +13,5 @@ class Product extends Model
 	}
 
 	protected $table ='products';
-    protected $fillable = ['category_id','product_name','product_harga','product_description'];
+    protected $fillable = ['category_id','product_name','product_harga','product_description','product_image','product_stock','product_discount','flag_top'];
 }

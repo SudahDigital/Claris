@@ -26,6 +26,9 @@
   <link rel="stylesheet" href="{{ asset('assets_admin/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('assets_admin/plugins/summernote/summernote-bs4.css') }}">
+
+  <link rel="stylesheet" href="{{ asset('assets_admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets_admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -33,87 +36,9 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{ asset('assets_admin/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">Admin Dashboard</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      @include('admin.sidebar')
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-           <li class="nav-header">HOME</li>
-          <li class="nav-item has-treeview">
-            <a href="{{URL::route('dashboard')}}" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="{{URL::route('dash_produk')}}" class="nav-link">
-                <i class="fas fa-lightbulb nav-icon"></i>
-                <p>Produk</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="{{URL::route('dash_kategori')}}" class="nav-link">
-                <i class="fas fa-lightbulb nav-icon"></i>
-                <p>Kategori Produk</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="{{URL::route('dash_kontak')}}" class="nav-link">
-                <i class="fas fa-phone nav-icon"></i>
-                <p>Kontak</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="{{URL::route('dash_user')}}" class="nav-link active">
-                <i class="fas fa-user nav-icon"></i>
-                <p>User Admin</p>
-            </a>
-          </li>
-          <li class="nav-header">PREFERENCES</li>
-          <li class="nav-item has-treeview">
-            <a href="{{URL::route('logout')}}" class="nav-link">
-                <i class="nav-icon fas fa-power-off"></i>
-                <p>Log-Out</p>
-            </a>
-          </li>
-          <!-- <li class="nav-item has-treeview menu-open">
-            <a href="{{URL::route('dash_carabelanja')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Cara belanja</p>
-            </a>
-          </li> -->
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
+  @include('admin.header_sidebar')
+  @include('admin.sidebar')
+  @include('admin.menu_sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -122,12 +47,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">User Admin</h1>
+            <h1 class="m-0 text-dark">Manage User</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">User Admin</li>
+              <li class="breadcrumb-item active">Manage User</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -153,8 +78,8 @@
            </a>
           </div>
         </div>
-        <div class="card-body p-0">
-          <table class="table" style="overflow:auto !important ; height: 600px;">
+        <div class="card-body">
+          <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
               <thead>
                   <tr>
                       <th style="width: 20%">
@@ -256,13 +181,7 @@
     </div>
 
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.5
-    </div>
-  </footer>
+  @include('admin.footer')
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -272,7 +191,24 @@
 </div>
 <!-- ./wrapper -->
 
+<script src="{{ asset('assets_admin/plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('assets_admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets_admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets_admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets_admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets_admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets_admin/dist/js/adminlte.js') }}"></script>
+<script src="{{ asset('assets_admin/dist/js/demo.js') }}"></script>
 <script type="text/javascript">
+    $(document).ready(function () {
+      $('#dtBasicExample').DataTable();
+    });
+
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+
     function delUser(id){
 
         Swal.fire({
@@ -304,20 +240,5 @@
         });
     }
 </script>
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<!-- <script src="{{ asset('assets/js/main.js')}}"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<!-- <script src="{{ asset('assets/js/main.js')}}"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<!-- jQuery -->
-<script src="{{ asset('assets_admin/plugins/jquery/jquery.min.js') }}"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{{ asset('assets_admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-
-<script src="{{ asset('assets_admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-<script src="{{ asset('assets_admin/dist/js/adminlte.js') }}"></script>
 </body>
 </html>
