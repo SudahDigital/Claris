@@ -14,23 +14,23 @@ class DashCategoryController extends Controller
     {
         $data['category'] = Category::all();
 
-        return view ('admin.layouts.dashkategori', $data);   
+        return view ('admin.category.list_category', $data);   
     }
 
     public function add()
     {
-        return view ('admin.layouts.inputkategori');   
+        return view ('admin.category.create_category');   
     }
 
     public function edit(Request $request)
     {
-    	$sql = "select * from categorys where id = ".$request->id."";
+    	$sql = "SELECT * FROM categorys WHERE id = ".$request->id."";
     	$kategori = DB::select($sql);
 
     	$data['kategori_id'] = $kategori[0]->id;
     	$data['kategori_nama'] = $kategori[0]->category_name;
 
-        return view ('admin.layouts.editkategori', $data);   
+        return view ('admin.category.edit_category', $data);   
     }
 
     public function create(Request $request)
