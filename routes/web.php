@@ -117,6 +117,7 @@ Route::middleware('auth')->group(function () {
 	Route::post('/admin/edit-produk', 'DashProductController@update')->name('edit_produk');
 	Route::get('/admin/hapus-produk/{id}', 'DashProductController@delete')->name('hapus_produk');
 	Route::get('/admin/view-produk', 'DashProductController@view')->name('view_produk');
+	Route::get('/admin/exec-produk/{id}', 'DashProductController@execute')->name('exec_produk');
 
 	// admin kategori
 	Route::get('/admin/dash-kategori', 'DashCategoryController@index')->name('dash_kategori');
@@ -138,6 +139,13 @@ Route::middleware('auth')->group(function () {
 	Route::get('/admin/form-edit-user', 'DashUserController@edit')->name('form_edit_user');
 	Route::post('/admin/edit-user', 'DashUserController@update')->name('edit_user');
 	Route::get('/admin/hapus-user/{id}', 'DashUserController@delete')->name('hapus_user');
+
+	//admin manage order
+	Route::get('/admin/list-order', 'DashOrderController@list_order')->name('list_order');
+	Route::get('/admin/detail-order', 'DashOrderController@detail')->name('detail_order');
+	Route::post('/admin/update-order', 'DashOrderController@update_order')->name('update_order');
+	Route::get('/admin/form-edit-order', 'DashOrderController@edit')->name('form_edit_order');
+	Route::post('/admin/edit-order', 'DashOrderController@edit_order')->name('edit_order');
 });
 
 
