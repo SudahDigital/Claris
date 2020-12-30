@@ -25,6 +25,29 @@
 	        <p>Manage Contact</p>
 	    </a>
 	  </li>
+	  <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-shopping-bag"></i>
+          <p>
+            Manage Order
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{URL::route('list_order')}}" class="nav-link">
+              <i class="fas fa-angle-right nav-icon"></i>
+              <p>List Order</p>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item has-treeview">
+	    <a href="" class="nav-link">
+	       	<i class="fas fa-image nav-icon"></i>
+	        <p>Manage Banner</p>
+	    </a>
+	  </li>
       @if(auth()->user()->role == 'superadmin')
 		  <li class="nav-item has-treeview">
 		    <a href="{{URL::route('dash_user')}}" class="nav-link">
