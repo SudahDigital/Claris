@@ -15,7 +15,7 @@ class DashContactController extends Controller
     	$sql = "select * from contacts;";
         $data['contact'] = DB::select($sql);
 
-        return view ('admin.layouts.dashkontak', $data);   
+        return view ('admin.contact.list_contact', $data);   
     }
 
     public function edit(Request $request)
@@ -26,7 +26,7 @@ class DashContactController extends Controller
     	$data['email'] = $kontak[0]->email;
     	$data['no_telp'] = $kontak[0]->no_telp;
 
-        return view ('admin.layouts.editkontak', $data);   
+        return view ('admin.contact.edit_contact', $data);   
     }
 
     public function update(Request $request)
