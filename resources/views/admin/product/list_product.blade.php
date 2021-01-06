@@ -1,15 +1,17 @@
 
 @include('admin.product.dash_product')
-
+    
     <section class="content">
        <div class="card">
         <div class="card-header">
           <h3 class="card-title">Data</h3>
           <div class="card-tools">
-            <a class="btn btn-success btn-sm" href="{{URL::route('form_produk')}}">
-              <i class="fas fa-plus">
-              </i>
-              Create Product 
+            <!-- <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fas fa-times"></i></button> -->
+           <a class="btn btn-success btn-sm" href="{{URL::route('form_produk')}}">
+              <i class="fas fa-plus"></i> Create Product 
            </a>
           </div>
         </div>
@@ -24,7 +26,108 @@
           </div>
         @endif
 
-        <div class="card-body">
+        <div class="card-body content px-3 py-4">
+          <nav class="w-100">
+            <div class="nav nav-tabs" id="product-tab" role="tablist">
+              <a class="nav-item nav-link {{Request::get('status') == NULL && Request::get('status') == '' || Request::get('status') == 'publish' ? 'active' : ''}}" href="{{URL::route('dash_produk', ['status' =>'publish'])}}" role="tab" style="{{Request::get('status') == NULL && Request::get('status') == '' || Request::get('status') == 'publish' ? 'background-color: #D2EBD8;' : ''}}">Publish Product</a>
+              <a class="nav-item nav-link {{Request::get('status') == 'draft' ? 'active' : ''}}" href="{{URL::route('dash_produk', ['status' =>'draft'])}}"  role="tab" style="{{Request::get('status') == 'draft' ? 'background-color: #D2EBD8;' : ''}}">Draft Product</a>            
+            </div>
+          </nav>
+          <div class="tab-content p-3" id="nav-tabContent">
+            <div class="tab-pane fade show active">
+              <table id="tableprod" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>
+                            No
+                        </th>
+                        <th class="text-center">
+                           Image
+                        </th>
+                        <th>
+                            Product Name
+                        </th>
+                        <th>
+                            Category
+                        </th>
+                        <th>
+                            Price (Rp)
+                        </th>
+                        <th>
+                            Stock (Pcs)
+                        </th>
+                        <th>
+                            Discount (%)
+                        </th>
+                        <th style="text-align: center;">
+                          Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                  @foreach($product as $key => $value)
+                    @php
+                      $no = $key + 1;
+                    @endphp
+                    <tr>
+                        <td class="text-center">
+                            {{ $no }}.
+                        </td>
+                        <td class="text-center">
+                            <a>
+                                <img class="img-thumbnail img-fluid" src="{{ asset('assets/image/product/'.(($value->product_image!='') ? $value->product_image : '20200621_184223_0016.jpg').'') }}" style="max-width: 50px;max-height: 50px;" class="img-fluid">
+                            </a>
+                        </td>
+                        <td>
+                            <a>
+                                {{ $value->product_name }}
+                            </a>
+                        </td>
+                        <td>
+                            <a>
+                               {{$value->category_id}} - {{ $value->category_name }}
+                            </a>
+                        </td>
+                        <td style="text-align: right;">
+                          @if($value->product_discount > 0)
+                            <a><del>{{ number_format($value->product_harga) }}</del></a><br>
+                            <a style="color:red;">{{ number_format($value->price_promo) }}</a>
+                          @else
+                            <a>{{ number_format($value->product_harga) }}</a>
+                          @endif  
+                        </td>
+                        <td style="text-align: center;">
+                            <a>
+                               {{ $value->product_stock }}
+                            </a>
+                        </td>
+                        <td style="text-align: center;">
+                            <a>
+                               {{ $value->product_discount }}
+                            </a>
+                        </td>
+                        <td class="project-actions text-center">
+                            <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-view" onclick="viewProduct('{{ $value->id }}');">
+                                <i class="fas fa-eye">
+                                </i>
+                            </a>
+                            <a class="btn btn-success btn-sm" href="{{URL::route('form_edit_produk', ['id'=>$value->id])}}">
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                            </a>
+                            <a class="btn btn-danger btn-sm" href="#"  onclick="delProduct('{{ $value->id }}');">
+                                <i class="fas fa-trash">
+                                </i>
+                            </a>
+                        </td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+        </div>
+
+        <!-- <div class="card-body">
           <table id="tableprod" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
               <thead>
                   <tr>
@@ -32,7 +135,7 @@
                           No
                       </th>
                       <th class="text-center">
-                          Product Image
+                         Image
                       </th>
                       <th>
                           Product Name
@@ -79,14 +182,12 @@
                           </a>
                       </td>
                       <td style="text-align: right;">
-                          <a>
-                            @if($value->product_discount > 0)
-                              <del>{{ number_format($value->product_harga) }}</del><br>
-                              {{ number_format($value->price_promo) }}
-                            @else
-                              {{ number_format($value->product_harga) }}
-                            @endif
-                          </a>
+                        @if($value->product_discount > 0)
+                          <a><del>{{ number_format($value->product_harga) }}</del></a><br>
+                          <a style="color:red;">{{ number_format($value->price_promo) }}</a>
+                        @else
+                          <a>{{ number_format($value->product_harga) }}</a>
+                        @endif  
                       </td>
                       <td style="text-align: center;">
                           <a>
@@ -116,7 +217,7 @@
                 @endforeach
               </tbody>
           </table>
-        </div>
+        </div> -->
       </div>
     </section>
     <!-- /.content -->
@@ -180,9 +281,16 @@
 <script src="{{ asset('assets_admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets_admin/dist/js/adminlte.js') }}"></script>
 <script src="{{ asset('assets_admin/dist/js/demo.js') }}"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
-      $('#tableprod').DataTable();
+        $('#tableprod').DataTable({
+          scrollY:        "400px",
+          scrollX:        true,
+          scrollCollapse: true,
+          paging:         false,
+          fixedColumns: true
+        });
 
         var hasil = $('#status_data').val();
         if(hasil == 'Success'){
@@ -203,7 +311,22 @@
       $("#wrapper").toggleClass("toggled");
     });
 
-    function delProduct(id){
+    function Execute(){
+      var filter_status = $("#filter_status").val();
+      if(filter_status!=''){
+        $.ajax({
+          type: "GET",
+          url: "{{url('/admin/exec-produk')}}"+'/'+filter_status,
+          data: {par:filter_status},
+          success: function (data) {
+            $('.wrapper').html(data);
+            $('.modal-backdrop').hide();
+          }         
+        });
+      }
+    }
+
+    function delProduct(id, par){
         Swal.fire({
           title: 'Hapus Produk ?',
           icon: 'warning',
@@ -217,11 +340,11 @@
             $.ajax({
                 type: "GET",
                 url: "{{url('/admin/hapus-produk')}}"+'/'+id,
-                data: {id:id},
+                data: {id:id, par: par},
                 success: function (data) {
                     Swal.fire({
                        title: 'Sukses',
-                       text: 'Item ini berhasil di hapus',
+                       text: 'Item ini berhasil di draft',
                        icon: 'success'}).then(function(){ 
                     location.reload();
                     });

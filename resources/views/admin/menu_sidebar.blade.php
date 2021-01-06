@@ -43,7 +43,7 @@
         </ul>
       </li>
       <li class="nav-item has-treeview">
-	    <a href="" class="nav-link">
+	    <a href="{{URL::route('dash_banner')}}" class="nav-link">
 	       	<i class="fas fa-image nav-icon"></i>
 	        <p>Manage Banner</p>
 	    </a>

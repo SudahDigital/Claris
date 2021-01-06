@@ -61,7 +61,7 @@
                         </div>
                         <div class="form-group">
                           <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="top_produk" name="top_produk">
+                            <input class="custom-control-input" type="checkbox" id="top_produk" name="top_produk" value="Y">
                             <label class="custom-control-label" for="top_produk">TOP PRODUCT</label>
                           </div>
                         </div>
@@ -69,6 +69,7 @@
                     </div>
                     <div class="card-footer text-right">
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a class="btn btn-warning" href="{{ route('dash_produk') }}">Cancel</a>
                     </div>
                 </div>
             </div>

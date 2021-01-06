@@ -151,7 +151,8 @@ class DashOrderController extends Controller
                         alamat_cust     = '".$request->alamat_cust."',
                         telepon_cust    = '".$request->telepon_cust."',
                         email_cust      = '".$request->email_cust."',
-                        status          = '".$request->status."'
+                        status          = '".$request->status."',
+                        updated_at      = now()
                     where id = '".$request->order_id."' 
                 ";
         $rst_pay = DB::update($pay);
@@ -167,7 +168,8 @@ class DashOrderController extends Controller
                         telepon_cust    = '".$request->telepon_cust."',
                         email_cust      = '".$request->email_cust."',
                         status          = '".$request->status."',
-                        mount           = '".$_POST['mount_'.$i]."'
+                        mount           = '".$_POST['mount_'.$i]."',
+                        updated_at      = now()
                     WHERE 
                         id              = '".$_POST['id_detail_'.$i]."'
                         AND product_id  = '".$_POST['product_id_'.$i]."' 

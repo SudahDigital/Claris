@@ -12,18 +12,42 @@ use App\Category;
 
 class DashProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $where = ($request->status == 'draft') ? "WHERE a.flag_draft = 'Y'" : "WHERE a.flag_draft is NULL OR a.flag_draft = 'N'" ;
+
         $sql = "SELECT 
+                a.*, 
+                b.category_name 
+            FROM products as a 
+            LEFT JOIN categorys as b on b.id = a.category_id
+            $where
+
+        ";
+        $product = DB::select($sql);
+        $data['product'] = $product;
+        $data['status']  = $request->status;
+
+        return view ('admin.product.list_product', $data);   
+    }
+
+    public function execute($par)
+    {
+        $where = ($par == 'draft') ? "WHERE a.flag_draft = 'Y'" : '' ;
+        $sql_draft = "SELECT 
                     a.*, 
                     b.category_name 
-                from products as a 
-        		left join categorys as b on b.id = a.category_id
+                FROM products as a 
+                LEFT JOIN categorys as b on b.id = a.category_id
+                $where
             ";
 
-    	$product = DB::select($sql);
-        $data['product'] = $product;
-        return view ('admin.product.list_product', $data);   
+        // echo $sql_draft; exit();
+
+        $product_draft = DB::select($sql_draft);
+        $data['product'] = $product_draft;
+
+        return view ('admin.product.list_product', $data);
     }
 
     public function add()
@@ -101,17 +125,18 @@ class DashProductController extends Controller
 			    if(move_uploaded_file($file_tmp,"assets/image/product/".$file_name)) {
 
                     if (empty($_POST['top_produk'])){ 
-                        $top_produk = ''; 
+                        $top_produk = 'N'; 
                     }else{
                         $top_produk = $_POST['top_produk'];
                     }
 
                     //--price promo--//
+                        $price_promo = "NULL";
                         if($_POST['diskon_produk'] > 0){
                             $diskon         = $_POST['diskon_produk'];
                             $harga          = $_POST['harga_produk'];
                             $potongan       = $harga * ($diskon / 100);
-                            $price_promo    = $harga - $potongan;
+                            $price_promo    = "'".$harga - $potongan."'";
                         }
                     //--price promo--//
 
@@ -136,7 +161,7 @@ class DashProductController extends Controller
                                     '".$_POST['diskon_produk']."',
                                     '".$top_produk."',
                                     '".$file_name."',
-                                    '".$price_promo."',
+                                    ".$price_promo.",
                                     now()
                                 );
                             ");
@@ -169,13 +194,20 @@ class DashProductController extends Controller
 
 		    if(empty($errors)==true){
 
+                if (empty($request->top_produk)){ 
+                    $top_produk = 'N'; 
+                }else{
+                    $top_produk = $request->top_produk;
+                }
+
                 //--price promo--//
-                    if($request->diskon_produk > 0){
-                        $diskon         = $request->diskon_produk;
-                        $harga          = $request->harga_produk;
-                        $potongan       = $harga * ($diskon / 100);
-                        $price_promo    = $harga - $potongan;
-                    }
+                $price_promo = "NULL";
+                if($request->diskon_produk > 0){
+                    $diskon         = $request->diskon_produk;
+                    $harga          = $request->harga_produk;
+                    $potongan       = $harga * ($diskon / 100);
+                    $price_promo    = "'".($harga - $potongan)."'";
+                }
                 //--price promo--//
 
                 $update = "UPDATE products SET 
@@ -184,12 +216,14 @@ class DashProductController extends Controller
                         product_harga = '".$request->harga_produk."',
                         product_stock = '".$request->stock_produk."',
                         product_discount = '".$request->diskon_produk."', 
-                        flag_top = '".$request->top_produk."',
-                        price_promo = '".$price_promo."',
+                        flag_top = '".$top_produk."',
+                        price_promo = ".$price_promo.",
                         $product_image
                         category_id = '".$request->kat_produk."'
                     WHERE id = '".$request->produk_id."' 
                 ";
+
+                // echo $update; exit();
                 $product = DB::update($update);
 
 			    if($product) {
@@ -201,9 +235,9 @@ class DashProductController extends Controller
 		return redirect('admin/dash-produk')->with(['success' => 'Product Berhasil di Update']);
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
-    	$delete = Product::where('id',$id)->delete();
+    	$delete = DB::update("UPDATE products SET flag_draft = 'Y' WHERE id = '".$request->id."'");
         if($delete){
 		  return redirect('admin/dash-produk')->with(['hasil' => 'success']);
         }

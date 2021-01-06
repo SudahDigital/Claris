@@ -20,11 +20,9 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
-      @include('admin.header_sidebar')
-      @include('admin.sidebar')
-      @include('admin.menu_sidebar')
-
+    @include('admin.header_sidebar')
+    @include('admin.sidebar')
+    @include('admin.menu_sidebar')
   <div class="content-wrapper">
     <div class="content-header">
       <div class="container-fluid">

@@ -57,6 +57,7 @@
                     </div>
                     <div class="card-footer text-right">
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a class="btn btn-warning" href="{{ route('dash_produk') }}">Cancel</a>
                     </div>
                 </div>
             </div>
