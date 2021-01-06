@@ -7,6 +7,12 @@
 	      <p>Dashboard</p>
 	    </a>
 	  </li>
+      <li class="nav-item has-treeview">
+	    <a href="{{URL::route('dash_banner')}}" class="nav-link">
+	       	<i class="fas fa-image nav-icon"></i>
+	        <p>Manage Banner</p>
+	    </a>
+	  </li>
 	  <li class="nav-item has-treeview">
 	    <a href="{{URL::route('dash_produk')}}" class="nav-link">
 	        <i class="fas fa-lightbulb nav-icon"></i>
@@ -42,12 +48,6 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item has-treeview">
-	    <a href="{{URL::route('dash_banner')}}" class="nav-link">
-	       	<i class="fas fa-image nav-icon"></i>
-	        <p>Manage Banner</p>
-	    </a>
-	  </li>
       @if(auth()->user()->role == 'superadmin')
 		  <li class="nav-item has-treeview">
 		    <a href="{{URL::route('dash_user')}}" class="nav-link">
