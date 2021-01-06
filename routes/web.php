@@ -146,6 +146,13 @@ Route::middleware('auth')->group(function () {
 	Route::post('/admin/update-order', 'DashOrderController@update_order')->name('update_order');
 	Route::get('/admin/form-edit-order', 'DashOrderController@edit')->name('form_edit_order');
 	Route::post('/admin/edit-order', 'DashOrderController@edit_order')->name('edit_order');
+
+	//admin manage banner
+  	Route::get('/admin/dash-banner', 'DashBannerController@index')->name('dash_banner');
+  	Route::get('/admin/form-banner', 'DashBannerController@add')->name('form_banner');
+  	Route::post('/admin/input-banner', 'DashBannerController@create')->name('input_banner');
+  	Route::get('/admin/form-edit-banner', 'DashBannerController@edit')->name('form_edit_banner');
+  	Route::get('/admin/hapus-banner/{id}', 'DashBannerController@delete')->name('hapus_banner');
 });
 
 
