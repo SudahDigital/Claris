@@ -15,12 +15,12 @@ class DashUserController extends Controller
     	$sql = "select * from users";
         $data['users'] = DB::select($sql);
 
-        return view ('admin.layouts.dashuser', $data);   
+        return view ('admin.user.list_user', $data);   
     }
 
     public function add()
     {
-        return view ('admin.layouts.inputuser');   
+        return view ('admin.user.create_user');   
     }
 
     public function create(Request $request)
@@ -54,7 +54,7 @@ class DashUserController extends Controller
         $data['email']      = $user_sql[0]->email;
         $data['id']         = $user_sql[0]->id;
 
-        return view ('admin.layouts.edituser', $data);     
+        return view ('admin.user.edit_user', $data);     
     }
 
     public function update(Request $request)
@@ -80,5 +80,13 @@ class DashUserController extends Controller
     	$delete = User::where('id',$id)->delete();
 
 		return redirect('admin/dash-user')->with(['success' => 'User Berhasil di Hapus']);
+    }
+
+    public function test()
+    {
+    	$sql = "select * from users";
+        $data['users'] = DB::select($sql);
+
+        return view ('admin.test', $data);   
     }
 }

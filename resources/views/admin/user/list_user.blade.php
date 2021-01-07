@@ -1,10 +1,10 @@
 @extends('admin.master')
-@section('title') Contact List @endsection
-@section('title2') Manage Contact @endsection
+@section('title') User List @endsection
+@section('title2') Manage User Admin @endsection
 @section('content')
 
 <section class="content">
-  <div class="card">
+   <div class="card">
     <div class="card-header">
       <h3 class="card-title">Data</h3>
 
@@ -13,37 +13,56 @@
           <i class="fas fa-minus"></i></button>
         <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
           <i class="fas fa-times"></i></button> -->
-        <a class="btn btn-success btn-sm" href="{{URL::route('form_edit_kontak')}}">
-          <i class="fas fa-pencil-alt">
-          </i>
-          Edit Contact
+        <a class="btn btn-success btn-sm" href="{{URL::route('form_user')}}">
+          <i class="fas fa-pencil-alt"></i>Create User
        </a>
       </div>
     </div>
     <div class="card-body">
-       <table id="tablecontact" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+      <table id="tableuser" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
           <thead>
-              <tr>
-                  <th style="width: 50%">
-                      Email
+              <tr class="text-center">
+                  <th>
+                      User Name
                   </th>
-                  <th style="width: 50%">
-                      No Telepon
+                  <th>
+                      User Email
+                  </th>
+                  <th>
+                      User Status
+                  </th>
+                  <th>
+                    Action
                   </th>
               </tr>
           </thead>
           <tbody>
-            @foreach($contact as $key => $value)
+            @foreach($users as $key => $value)
               @php
                 $no = 1;
               @endphp
               <tr>
                   <td>
-                      {{ $value->email }}
+                      {{ $value->name }}
                   </td>
                   <td>
                       <a>
-                          {{ $value->no_telp }}
+                          {{ $value->email }}
+                      </a>
+                  </td>
+                  <td>
+                      <a>
+                          {{ $value->role }}
+                      </a>
+                  </td>
+                  <td class="project-actions text-center">
+                      <a class="btn btn-info btn-sm" href="{{URL::route('form_edit_user', ['id'=>$value->id])}}">
+                          <i class="fas fa-pencil-alt">
+                          </i>
+                      </a>
+                      <a class="btn btn-danger btn-sm" href="#"  onclick="delUser('{{ $value->id }}');">
+                          <i class="fas fa-trash">
+                          </i>
                       </a>
                   </td>
               </tr>
@@ -62,16 +81,26 @@
 <script src="{{ asset('assets_admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets_admin/dist/js/adminlte.js') }}"></script>
 <script src="{{ asset('assets_admin/dist/js/demo.js') }}"></script>
-
 <script type="text/javascript">
     $(document).ready(function () {
-      $('#tablecontact').DataTable();
+      $('#tableuser').DataTable({
+          scrollY:        "400px",
+          scrollX:        true,
+          scrollCollapse: true,
+          paging:         false,
+          fixedColumns: true
+        });
     });
 
-    function delCategory(id){
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+
+    function delUser(id){
 
         Swal.fire({
-          title: 'Hapus Kategori ?',
+          title: 'Hapus User ?',
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#4db849',
@@ -83,12 +112,12 @@
 
             $.ajax({
                 type: "GET",
-                url: "{{url('/admin/hapus-kategori')}}"+'/'+id,
+                url: "{{url('/admin/hapus-user')}}"+'/'+id,
                 data: {id:id},
                 success: function (data) {
                     Swal.fire({
                        title: 'Sukses',
-                       text: 'Kategori berhasil di hapus',
+                       text: 'User berhasil di hapus',
                        icon: 'success'}).then(function(){ 
                     location.reload();
                     });
@@ -99,11 +128,6 @@
         });
     }
 </script>
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="{{ asset('assets_admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-<script src="{{ asset('assets_admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 </body>
 </html>
 
