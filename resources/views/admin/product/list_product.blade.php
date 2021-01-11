@@ -265,11 +265,13 @@
 </div>
 
 <script src="{{ asset('assets_admin/plugins/jquery/jquery.min.js') }}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="{{ asset('assets_admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets_admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets_admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('assets_admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('assets_admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- <script src="{{ asset('assets_admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script> -->
 <script src="{{ asset('assets_admin/dist/js/adminlte.js') }}"></script>
 <script src="{{ asset('assets_admin/dist/js/demo.js') }}"></script>
 

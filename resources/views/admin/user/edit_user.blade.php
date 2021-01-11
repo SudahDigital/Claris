@@ -4,7 +4,7 @@
 @section('content')
 
 <section class="content">
-   <form method="post" action="{{route('edit_user')}}" enctype="multipart/form-data">
+  <form method="post" action="{{route('edit_user')}}" enctype="multipart/form-data">
     @csrf
     <div class="row section_content mb-5" style="margin-bottom: 30px">
         <div class="col-md-12">
@@ -42,6 +42,7 @@
             </div>
         </div>
     </div>
+  </form>
 </section>
 
 <script type="text/javascript">

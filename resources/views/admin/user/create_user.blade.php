@@ -5,48 +5,49 @@
 
 <section class="content">
    <form method="post" action="{{route('input_user')}}" enctype="multipart/form-data">
-    @csrf
-    <div class="row section_content mb-5" style="margin-bottom: 30px">
-        <div class="col-md-12">
-            <div class="card mx-auto cart_card">
-                <div class="card-header">
-                    <h3 class="card-title">Form Input</h3>
-                </div>
-                <div class="card-body">
-                    <!-- <div class="form-group">
-                        <div class="form-line">
-                            <label for="produk_nama">Upload Image</label>
-                            <input type="file" name="avatar" id="avatar" autocomplete="off">
-                        </div>
-                    </div> -->
-                    <div class="form-group">
-                        <label for="produk_nama">Username <span style="color: red;">*</span></label>
-                        <input type="text" required="true" name="user_nama" class="form-control" placeholder="Username" id="user_nama" required autofocus autocomplete="off" >
-                    </div>
-                    <div class="form-group">
-                        <label for="ket_produk">Email <span style="color: red;">*</span></label>
-                        <input class="form-control" required="true" type="email" name="email_user" placeholder="Email User" id="email_user" required autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <label for="harga_produk">Password <span style="color: red;">*</span></label>
-                        <input type="password" required="true" name="password" class="form-control" placeholder="Password" id="password" maxlength="15" required autofocus autocomplete="off">
-                        <input type="checkbox" onclick="myPass()"> Show Password
-                    </div>
-                    <div class="form-group">
-                      <label>User Status <span style="color: red;">*</span></label>
-                      <select class="form-control" required="true"  name="status"  id="role_user" >
-                        <option value="admin">ADMIN</option>
-                        <option value="superadmin">SUPER ADMIN</option>
-                      </select>
-                    </div>
-                </div>
-                <div class="card-footer text-right">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <a type="cancel" class="btn btn-warning" href="{{URL::route('dash_user')}}">Cancel</a>
-                </div>
-            </div>
-        </div>
-    </div>
+      @csrf
+      <div class="row section_content mb-5" style="margin-bottom: 30px">
+          <div class="col-md-12">
+              <div class="card mx-auto cart_card">
+                  <div class="card-header">
+                      <h3 class="card-title">Form Input</h3>
+                  </div>
+                  <div class="card-body">
+                      <!-- <div class="form-group">
+                          <div class="form-line">
+                              <label for="produk_nama">Upload Image</label>
+                              <input type="file" name="avatar" id="avatar" autocomplete="off">
+                          </div>
+                      </div> -->
+                      <div class="form-group">
+                          <label for="produk_nama">Username <span style="color: red;">*</span></label>
+                          <input type="text" required="true" name="user_nama" class="form-control" placeholder="Username" id="user_nama" required autofocus autocomplete="off" >
+                      </div>
+                      <div class="form-group">
+                          <label for="ket_produk">Email <span style="color: red;">*</span></label>
+                          <input class="form-control" required="true" type="email" name="email_user" placeholder="Email User" id="email_user" required autocomplete="off">
+                      </div>
+                      <div class="form-group">
+                          <label for="harga_produk">Password <span style="color: red;">*</span></label>
+                          <input type="password" required="true" name="password" class="form-control" placeholder="Password" id="password" maxlength="15" required autofocus autocomplete="off">
+                          <input type="checkbox" onclick="myPass()"> Show Password
+                      </div>
+                      <div class="form-group">
+                        <label>User Status <span style="color: red;">*</span></label>
+                        <select class="form-control" required="true"  name="status"  id="role_user" >
+                          <option value="admin">ADMIN</option>
+                          <option value="superadmin">SUPER ADMIN</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="card-footer text-right">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <a type="cancel" class="btn btn-warning" href="{{URL::route('dash_user')}}">Cancel</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </form>
 </section>
 
 <script src="{{ asset('assets_admin/plugins/jquery/jquery.min.js') }}"></script>

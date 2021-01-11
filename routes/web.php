@@ -153,6 +153,10 @@ Route::middleware('auth')->group(function () {
   	Route::post('/admin/input-banner', 'DashBannerController@create')->name('input_banner');
   	Route::get('/admin/form-edit-banner', 'DashBannerController@edit')->name('form_edit_banner');
   	Route::get('/admin/hapus-banner/{id}', 'DashBannerController@delete')->name('hapus_banner');
+
+  	//admin change password
+  	Route::get('/admin/view-pass', 'ChangePasswordController@index')->name('view_pass');
+  	Route::get('/admin/update-pass', 'ChangePasswordController@update')->name('update_pass');
 });
 
 

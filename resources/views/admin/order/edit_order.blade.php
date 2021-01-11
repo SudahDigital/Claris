@@ -118,6 +118,7 @@
             </div>
         </div>
     </div>
+  </form>
 </section>
 
 <script src="{{ asset('assets_admin/plugins/jquery/jquery.min.js') }}"></script>

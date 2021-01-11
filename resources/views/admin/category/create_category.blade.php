@@ -5,26 +5,27 @@
 
 <section class="content">
    <form method="post" action="{{route('input_kategori')}}">
-    @csrf
-    <div class="row section_content mb-5" style="margin-bottom: 30px">
-        <div class="col-md-12">
-            <div class="card mx-auto cart_card">
-                <!-- <div class="card-header">
-                    <h3 class="card-title">Form Input</h3>
-                </div> -->
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="produk_nama">Category</label>
-                        <input type="text" required="true" name="kategori_nama" class="form-control" placeholder="Category Name" id="kategori_nama"required autofocus autocomplete="off">
+        @csrf
+        <div class="row section_content mb-5" style="margin-bottom: 30px">
+            <div class="col-md-12">
+                <div class="card mx-auto cart_card">
+                    <!-- <div class="card-header">
+                        <h3 class="card-title">Form Input</h3>
+                    </div> -->
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="produk_nama">Category</label>
+                            <input type="text" required="true" name="kategori_nama" class="form-control" placeholder="Category Name" id="kategori_nama"required autofocus autocomplete="off">
+                        </div>
                     </div>
-                </div>
-                <div class="card-footer text-right">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <a class="btn btn-warning" href="{{ route('dash_kategori') }}">Cancel</a>
+                    <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a class="btn btn-warning" href="{{ route('dash_kategori') }}">Cancel</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </section>
 
 <script type="text/javascript">

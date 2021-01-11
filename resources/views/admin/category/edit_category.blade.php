@@ -5,27 +5,28 @@
 
 <section class="content">
    <form method="post" action="{{route('edit_kategori')}}">
-    @csrf
-    <div class="row section_content mb-5" style="margin-bottom: 30px">
-        <div class="col-md-12">
-            <div class="card mx-auto cart_card">
-                <div class="card-header">
-                    <h3 class="card-title">Edit Category</h3>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="produk_nama">Category Name</label>
-                        <input type="text" required="true" name="kategori_nama" class="form-control" placeholder="Nama Kategori" id="kategori_nama"required autofocus autocomplete="off" value="{{ $kategori_nama }}">
-                        <input type="hidden" name="kategori_id" id="kategori_id" value="{{ $kategori_id }}">
+        @csrf
+        <div class="row section_content mb-5" style="margin-bottom: 30px">
+            <div class="col-md-12">
+                <div class="card mx-auto cart_card">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit Category</h3>
                     </div>
-                </div>
-                <div class="card-footer text-right">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <a class="btn btn-warning" href="{{ route('dash_kategori') }}">Cancel</a>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="produk_nama">Category Name</label>
+                            <input type="text" required="true" name="kategori_nama" class="form-control" placeholder="Nama Kategori" id="kategori_nama"required autofocus autocomplete="off" value="{{ $kategori_nama }}">
+                            <input type="hidden" name="kategori_id" id="kategori_id" value="{{ $kategori_id }}">
+                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a class="btn btn-warning" href="{{ route('dash_kategori') }}">Cancel</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </section>
 
 <script type="text/javascript">
