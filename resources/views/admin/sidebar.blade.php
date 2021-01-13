@@ -7,7 +7,7 @@
   <div class="sidebar">
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="info">
-        <a href="#" class="d-block">{{ auth()->user()->full_name }}</a>
+        <a href="#" class="d-block">{{ auth()->user()->full_name}}</a>
         <a href="#" class="text-muted text-sm">{{ auth()->user()->email }}</a>
       </div>
     </div>
