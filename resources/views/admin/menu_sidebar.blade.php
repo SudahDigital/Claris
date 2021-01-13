@@ -48,6 +48,12 @@
 		          </li>
 		        </ul>
 		      </li>
+		      <li class="nav-item has-treeview">
+			    <a href="{{URL::route('dash_voucher')}}" class="nav-link">
+			        <i class="fas fa-tags nav-icon"></i>
+			        <p>Manage Voucher</p>
+			    </a>
+			  </li>
 		      @if(auth()->user()->role == 'superadmin')
 				  <li class="nav-item has-treeview">
 				    <a href="{{URL::route('dash_user')}}" class="nav-link">

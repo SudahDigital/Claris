@@ -157,6 +157,14 @@ Route::middleware('auth')->group(function () {
   	//admin change password
   	Route::get('/admin/view-pass', 'ChangePasswordController@index')->name('view_pass');
   	Route::get('/admin/update-pass', 'ChangePasswordController@update')->name('update_pass');
+
+  	//admin manage voucher
+  	Route::get('/admin/dash-voucher', 'DashVoucherController@index')->name('dash_voucher');
+  	Route::get('/admin/form-voucher', 'DashVoucherController@add')->name('form_voucher');
+  	Route::post('/admin/input-voucher', 'DashVoucherController@create')->name('input_voucher');
+  	Route::get('/admin/form-edit-voucher', 'DashVoucherController@edit')->name('form_edit_voucher');
+  	Route::post('/admin/edit-voucher', 'DashVoucherController@update')->name('edit_voucher');
+	Route::get('/admin/hapus-voucher/{id}', 'DashVoucherController@delete')->name('hapus_voucher');
 });
 
 

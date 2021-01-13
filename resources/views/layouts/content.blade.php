@@ -11,7 +11,7 @@
         <div class="txt-banner2" style="color: #fff;"> Top Product <span class="fa fa-star" style="color: #fff;"></span></div>
     </div>
     <div class="container" style="{{ $page == 'home' ? 'margin-top: 30px' : 'margin-top: 30px' }}">
-        <div class="col-sm-12 order-2 order-md-1">
+        <div class="row align-middle">
             <h3 class="title-page">Filter by Category <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
                 <i class="fas fa-sliders-h fa-xs"></i>
             </button></h3>
@@ -26,22 +26,6 @@
             </div> 
         </div>
         <div class="row align-middle" style="{{ $page == 'home' ? 'margin-bottom: 20px' : 'margin-bottom: 10px' }}">
-            <!-- <div class="col-sm-12 order-2 order-md-1">
-                @if($page == 'home')
-                    <h3 class="title-page">Filter by Category <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
-                        <i class="fas fa-sliders-h fa-xs"></i>
-                    </button></h3>
-
-                    <div id="demo" class="collapse" style="">
-                        <div class="col-md-12 " style="margin-bottom: 20px;">
-                        <a href="{{ url('/') }}"><button class="btn button_filter" style="color: #fff;">Semua Produk</button></a>
-                        @foreach($category as $key => $value)
-                            <a href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" type="button" class="btn button_filter" style="color: #fff;">{{$value->category_name}}</a>
-                        @endforeach
-                        </div>
-                    </div> 
-                @endif
-            </div> -->
             @if($page == 'category')
                 <div class="col-sm-12 col-md-12">
                     <nav aria-label="breadcrumb">
@@ -63,67 +47,65 @@
                 </div>
             @endif
         </div>
-        <div class="col-md-12">
-            <div class="row section_content">
-                @if(count($product) < 1)
-                    <h5 class="ml-3">Pencarian tidak ditemukan!</h5>
-                @endif
-                @foreach($product as $key => $value)
-                    <div class="col-6 col-lg-4 mb-5">  <!--px-5 py-2-->
-                        <div class="card mx-auto item_product" style="border: 0,5px solid #E1DFDC; border-radius: 45px; box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); ">
-                            <?php
-                                $bg = ['#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F','#D4088D','#EA7D08','#8AE50F'];
-                                echo '<div id="nmprd" class="text-center" style="background-color: '.$bg[$key].' ; padding:12px; border-top-right-radius: 40px;border-top-left-radius: 40px; color: #fff;">Detail Produk</div>';
-                            ?>
-                            <!-- <div class="text-center" style="background-color:yellow; padding:15px; border-top-right-radius: 60px;border-top-left-radius: 60px; color: #fff;"> -->
-                            <div class="card-img-top" style="position: relative;">
-                                <div class="embed-responsive embed-responsive-4by3">
-                                    <div class="embed-responsive-item">
-                                        <a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->product_name)])}}">
-                                            <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'none.jpg').'') }}" class="img-fluid img-responsive" alt="...">
-                                        </a>
-                                    </div>
+        <div class="row section_content">
+            @if(count($product) < 1)
+                <h5 class="ml-3">Pencarian tidak ditemukan!</h5>
+            @endif
+            @foreach($product as $key => $value)
+                <div class="col-12 col-lg-3 mb-5">  <!--px-5 py-2--><!--col-6 col-lg-4 mb-5-->
+                    <div class="card mx-auto item_product" style="border: 0,5px solid #E1DFDC; border-radius: 35px; box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); ">
+                        <?php
+                            $bg = ['#D4088D','#EA7D08','#8AE50F','#D4088D','#D4088D','#EA7D08','#8AE50F','#D4088D','#D4088D','#EA7D08','#8AE50F','#D4088D','#D4088D','#EA7D08','#8AE50F','#D4088D','#D4088D','#EA7D08','#8AE50F','#D4088D','#D4088D','#EA7D08','#8AE50F', '#D4088D'];
+                            echo '<div id="nmprd" class="text-center" style="background-color: '.$bg[$key].' ; padding:12px; border-top-right-radius: 30px;border-top-left-radius: 30px; color: #fff;">Detail Produk</div>';
+                        ?>
+                        <!-- <div class="text-center" style="background-color:yellow; padding:15px; border-top-right-radius: 60px;border-top-left-radius: 60px; color: #fff;"> -->
+                        <div class="card-img-top" style="position: relative;">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <div class="embed-responsive-item">
+                                    <a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->product_name)])}}">
+                                        <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'none.jpg').'') }}" class="img-fluid img-responsive" alt="...">
+                                    </a>
                                 </div>
                             </div>
-                            <div class="card-body p-0" style="background-color: #fff !important;">
-                                <div class="float-left px-1 py-0" style="width: 100%;">
-                                    <p class="product-price-header mb-0" style="color: #000 !important;">{{$value->product_name}}</p>
-                                </div>
+                        </div>
+                        <div class="card-body p-0" style="background-color: #fff !important;">
+                            <div class="float-left px-1 py-0" style="width: 100%;">
+                                <p class="product-price-header mb-0" style="color: #000 !important;">{{$value->product_name}}</p>
                             </div>
-                            <div class="card-body p-0">
-                                <div class="float-middle px-1 py-0 " style="width: 100%;">
-                                    <p style="color: #41B1CD;" class="label-harga mb-0"><strong>Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</strong></p>
-                                </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="float-middle px-1 py-0 " style="width: 100%;">
+                                <p style="color: #41B1CD;" class="label-harga mb-0"><strong>Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</strong></p>
                             </div>
-                            <div class="button-cart">
-                                <div class="row">
-                                    <div class="col-2 p-0" style="text-align: center;">
-                                         <!-- <form method="post" action="{{route('add_cart')}}">
-                                            @csrf
-                                            <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
-                                            <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
-                                            <input type="hidden" name="product_id" value="{{$value->id}}"> -->
-                                            <button class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff; color:#000;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                        <!-- </form> -->
-                                    </div>
-                                    <div class="col-2" style="text-align: center;">
-                                        <p id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center">0</p>
-                                    </div>
-                                    <div class="col-2" style="text-align: center;">
-                                        <form method="post" action="{{route('add_cart')}}">
-                                            @csrf
-                                            <input type="hidden" id="{{$value->id}}" name="jumlah" value="0">
-                                            <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
-                                            <input type="hidden" name="product_id" value="{{$value->id}}">
-                                            <button class="btn button_plus d-inline-display" onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff; color:#000;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                        </form>
-                                    </div>
+                        </div>
+                        <div class="button-cart">
+                            <div class="row">
+                                <div class="col-2 p-0" style="text-align: center;">
+                                     <!-- <form method="post" action="{{route('add_cart')}}">
+                                        @csrf
+                                        <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
+                                        <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
+                                        <input type="hidden" name="product_id" value="{{$value->id}}"> -->
+                                        <button class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff; color:#000;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                    <!-- </form> -->
+                                </div>
+                                <div class="col-2" style="text-align: center;">
+                                    <p id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center">0</p>
+                                </div>
+                                <div class="col-2" style="text-align: center;">
+                                    <form method="post" action="{{route('add_cart')}}">
+                                        @csrf
+                                        <input type="hidden" id="{{$value->id}}" name="jumlah" value="0">
+                                        <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
+                                        <input type="hidden" name="product_id" value="{{$value->id}}">
+                                        <button class="btn button_plus d-inline-display" onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff; color:#000;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endforeach
-            </div>
+                </div>
+            @endforeach
         </div>
         <div class="col-md-12">
             <div class="row justify-content-center" >

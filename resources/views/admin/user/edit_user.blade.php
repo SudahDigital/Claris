@@ -19,12 +19,16 @@
                         <input type="hidden" name="id" id="id" value="{{ $id }}">
                     </div>
                     <div class="form-group">
+                          <label for="produk_nama">Full Name <span style="color: red;">*</span></label>
+                          <input type="text" required="true" name="full_nama" class="form-control" placeholder="Full Name" id="full_nama" value="{{ $full_name }}" required autofocus autocomplete="off" >
+                      </div>
+                    <div class="form-group">
                         <label for="ket_produk">Email <span style="color: red;">*</span></label>
                         <input class="form-control" required="true" type="email" name="email_user" placeholder="Email User" id="email_user" value="{{ $email }}" required autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="harga_produk">Password <span style="color: red;">*</span></label>
-                        <input type="password" required="true" name="password" class="form-control" placeholder="Password" id="password" maxlength="15" required autofocus autocomplete="off">
+                        <input type="password" name="password" class="form-control" placeholder="Password" id="password" maxlength="15" autofocus autocomplete="off">
                         <input type="checkbox" onclick="myPass()"> Show Password
                     </div>
                     <div class="form-group">

@@ -39,7 +39,7 @@
       <form action="{{route('checklogin')}}" method="post">
         @csrf
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="email" placeholder="Username" required>
+          <input type="text" class="form-control" name="name" placeholder="Username" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>

@@ -4,6 +4,15 @@
 @section('content')
 
 <section class="content">
+  @if(session('hasil'))
+    <div style="display:none;">
+      <input id="status_data" name="status_data" type="hidden" value="{{session('hasil')}}">
+    </div>
+  @else
+    <div style="display:none;">
+      <input id="status_data" name="status_data" type="hidden" value="empty">
+    </div>
+  @endif
    <div class="card">
     <div class="card-header">
       <h3 class="card-title">Data</h3>
@@ -14,7 +23,7 @@
         <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
           <i class="fas fa-times"></i></button> -->
         <a class="btn btn-success btn-sm" href="{{URL::route('form_user')}}">
-          <i class="fas fa-pencil-alt"></i>Create User
+          <i class="fas fa-pencil-alt"></i> Create User
        </a>
       </div>
     </div>
@@ -24,6 +33,9 @@
               <tr class="text-center">
                   <th>
                       User Name
+                  </th>
+                  <th>
+                      Full Name
                   </th>
                   <th>
                       User Email
@@ -46,14 +58,13 @@
                       {{ $value->name }}
                   </td>
                   <td>
-                      <a>
-                          {{ $value->email }}
-                      </a>
+                      {{ $value->full_name }}
                   </td>
                   <td>
-                      <a>
-                          {{ $value->role }}
-                      </a>
+                      {{ $value->email }}
+                  </td>
+                  <td>
+                      {{ $value->role }}
                   </td>
                   <td class="project-actions text-center">
                       <a class="btn btn-info btn-sm" href="{{URL::route('form_edit_user', ['id'=>$value->id])}}">
@@ -74,6 +85,8 @@
 </section>
 
 <script src="{{ asset('assets_admin/plugins/jquery/jquery.min.js') }}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="{{ asset('assets_admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets_admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets_admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -91,6 +104,34 @@
           fixedColumns: true
         });
     });
+
+    var toastMixin = Swal.mixin({
+      toast: true,
+      icon: 'success',
+      title: 'General Title',
+      animation: false,
+      position: 'top-right',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    });
+
+    var popup = $('#status_data').val();
+    if(popup == 'success'){
+      toastMixin.fire({
+        animation: true,
+        title: 'Successfully save New User'
+      });
+    }else if(popup == 'failed'){
+      toastMixin.fire({
+        title: 'Failed saved User',
+        icon: 'error'
+      });
+    }
 
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
