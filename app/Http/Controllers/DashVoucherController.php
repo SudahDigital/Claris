@@ -88,11 +88,11 @@ class DashVoucherController extends Controller
 
     public function delete($id)
     {
-    	$delete = User::where('id',$id)->delete();
+    	$delete = Vouchers::where('id',$id)->delete();
 
 		if($delete){
-            return redirect('admin/dash-user')->with(['hasil' => 'success']);
+            return redirect('admin/dash-voucher')->with(['hasil' => 'success']);
         }
-        return redirect('admin/dash-user')->with(['hasil' => 'failed']);
+        return redirect('admin/dash-voucher')->with(['hasil' => 'failed']);
     }
 }

@@ -189,7 +189,7 @@
 
     function delData(id){
         Swal.fire({
-          title: 'Hapus Kategori ?',
+          title: 'Hapus Voucher ?',
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#4db849',
@@ -201,12 +201,12 @@
 
             $.ajax({
                 type: "GET",
-                url: "{{url('/admin/hapus-kategori')}}"+'/'+id,
+                url: "{{url('/admin/hapus-voucher')}}"+'/'+id,
                 data: {id:id},
                 success: function (data) {
                     Swal.fire({
                        title: 'Sukses',
-                       text: 'Kategori berhasil di hapus',
+                       text: 'Voucher berhasil di hapus',
                        icon: 'success'}).then(function(){ 
                     location.reload();
                     });
