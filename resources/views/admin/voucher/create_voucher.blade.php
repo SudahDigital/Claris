@@ -86,9 +86,18 @@
     $(document).ready(function () {
         //
     });
+
     $('.date').datepicker({  
        format: 'dd/mm/yyyy'
     });  
+
+    $("#code_voucher").on('keyup',function() {
+        var text = $(this).val();
+        var formattext = text.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&\ \@\#\%\=\;\:\'\"])/g, '');
+        var hasil = $(this).val(formattext);
+        return hasil;
+    });
+    
 </script>
 <script src="{{ asset('assets_admin/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
