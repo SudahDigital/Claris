@@ -1,11 +1,11 @@
 @extends('template')
 @section('content')
-    <div class="banner">
+    <!-- <div class="banner">
         <img src="{{ asset('assets/image/6.jpg') }}" style="width:100%;">
-        <div class="img-banner"><img src="{{ asset('assets/image/logo_cool.png') }}" style="width: 30%;"></div>
+        <div class="img-banner"><img src="{{ asset('assets/image/logo_cool.png') }}" style="width: 30%;"></div> -->
 
         <!-- <div class="txt-banner"> Menjadi ibu rumah tangga yang aktif dan produktif merupakan suatu hal yang positif untuk dibagikan selain menjadi penopang dalam rumah tangga , anda bisa mengisi keseharian anda dengan banyak hal-hal yang positif. Temukan inspirasi-inspirasi menarik seperti mengatur tatanan rumah, memasak dan bermacam-macam hobi yang bisa anda lakukan.</div> -->
-    </div>
+    <!-- </div> -->
     <div class="banner">
         <img src="{{ asset('assets/image/banner02A.jpg') }}"  style="width:100%;">
         <div class="txt-banner2" style="color: #fff;"> Top Product <span class="fa fa-star" style="color: #fff;"></span></div>
