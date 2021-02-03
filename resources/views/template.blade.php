@@ -51,10 +51,49 @@
             padding: 10px;
             display: none;
         }
+
+        #my-welcome-message {
+            display: none;
+            z-index: 9998;
+            position: fixed;
+            border-radius: 10px;
+            width: 42%;
+            left: 29%;
+            top: 5%;
+            padding: 0;
+            background: #FDD8AF;
+            box-shadow: 5px 10px 18px #0000;
+        }
+
+        .preloader{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-color: #fff;
+            opacity : 0.9;
+        }
+
+        .preloader .loading {
+            position: absolute;
+            left: 53%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            font: 14px arial;
+        }
+
         @media screen and (max-width: 600px) {
             .nav-center {
                 position: absolute;
                 left: 40%;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
             }
         }
         @media screen and (min-width: 768px) {
@@ -62,12 +101,24 @@
                 position: absolute;
                 left: 45%;
             }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
+            }
         }
 
         @media screen and (min-width: 1920px) {
             .nav-center {
                 position: absolute;
                 left: 50%;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
             }
         }
     </style>
@@ -80,6 +131,18 @@
           <strong>{{ $message }}</strong>
       </div>
     @endif
+
+    <div class="preloader" id="preloader">
+        <div class="loading">
+          <img src="{{ asset('assets/image/loader.jpg') }}" width="80" alt="preloader">
+          <p style="font-weight:900;line-height:2;color:#174C7C;margin-left: -10%;">Please Wait...</p>
+        </div>
+    </div>
+
+    <div id="my-welcome-message" class="">
+        <img src="{{ asset('assets/image/lg-popup-welcome.jpg') }}" class="d-none d-md-block d-md-none w-100" alt="popup-cara-belanja-lg-web-demo" style="">
+        <img src="{{ asset('assets/image/popup-welcome.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja-web-demo" style="">
+    </div>
 
     <div class="wrapper">
         <!-- Sidebar  -->
@@ -437,6 +500,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('assets/js/main.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('assets/js/jquery.firstVisitPopup.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function() {  
             /*$('#edit-modal').on('show.bs.modal', function() {
@@ -459,6 +523,15 @@
                 var id_modal = $("#modal-input-id").val();
                 Swal.fire('Yes!');
             });
+
+            $(function () {
+                $('#my-welcome-message').firstVisitPopup({
+                    cookieName : 'homepage',
+                    showAgainSelector: '#show-message'
+                });
+            });
+
+            $(".preloader").fadeOut();
         });
 
         function valDel(id){
