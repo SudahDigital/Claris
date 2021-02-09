@@ -344,62 +344,58 @@ function rupiah(bilangan)
   return hasil;
 }
 
+$("#sidebar").mCustomScrollbar({
+    theme: "minimal"
+});
 
+$('#dismiss, .overlay').on('click', function () {
+    $('#sidebar').removeClass('active');
+    $('.overlay').removeClass('active');
+});
 
+$('#sidebarCollapse').on('click', function () {
+    $('#sidebar').addClass('active');
+    $('.overlay').addClass('active');
+    $('.collapse.in').toggleClass('in');
+    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+});
 
+$(document).ready(function(){
+    $(".button_add_to_cart").click(function(){                  
+      $("#totalBottomFixed").removeClass("d-none");
+      $("#totalBottomFixed").addClass("d-inline-block");
+    });
+});
 
-            $("#sidebar").mCustomScrollbar({
-                theme: "minimal"
-            });
+$( "#clickme" ).click(function() {
+    var isi = $("#clickme").attr('isi');
+    // alert(isi)
+  $( "#book" ).slideDown( "slow", function() {
+    if (isi=='true') {
+            $('#tombol_click').removeClass();
+            $('#tombol_click').addClass('col-2 my-auto');
+            $('#table_c').css({'display':'block'});
+            $('.proses_to_chart_slide').css({'display':'block'});
+            $('#listcart').show();
+            $('#clickme').html('<i class="fas fa-chevron-down fa-lg"></i>');
+            $('#clickme').attr('isi','false');
+            // $('#cart_icon').css({'display':'none'})
+            // $('#sosmed').css({'display':'none'})
+            $('.hidden').toggleClass('open');
+            $('#bottom-footer').css({'display':'none'});
 
-            $('#dismiss, .overlay').on('click', function () {
-                $('#sidebar').removeClass('active');
-                $('.overlay').removeClass('active');
-            });
-
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').addClass('active');
-                $('.overlay').addClass('active');
-                $('.collapse.in').toggleClass('in');
-                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-            });
-
-            $(document).ready(function(){
-                $(".button_add_to_cart").click(function(){                  
-                  $("#totalBottomFixed").removeClass("d-none");
-                  $("#totalBottomFixed").addClass("d-inline-block");
-                });
-            });
-
-        $( "#clickme" ).click(function() {
-            var isi = $("#clickme").attr('isi');
-            // alert(isi)
-          $( "#book" ).slideDown( "slow", function() {
-            if (isi=='true') {
-                    $('#tombol_click').removeClass();
-                    $('#tombol_click').addClass('col-2 my-auto');
-                    $('#table_c').css({'display':'block'});
-                    $('.proses_to_chart_slide').css({'display':'block'});
-                    $('#listcart').show();
-                    $('#clickme').html('<i class="fas fa-chevron-down fa-lg"></i>');
-                    $('#clickme').attr('isi','false');
-                    // $('#cart_icon').css({'display':'none'})
-                    // $('#sosmed').css({'display':'none'})
-                    $('.hidden').toggleClass('open');
-                    $('#bottom-footer').css({'display':'none'});
-
-            }else{
-                    $('#tombol_click').removeClass();
-                    $('#tombol_click').addClass('col-2 my-auto');
-                    $('.proses_to_chart_slide').css({'display':'none'});
-                    $('#listcart').hide();
-                    $('#clickme').html('<i class="fas fa-chevron-up fa-lg"></i>');
-                    $('#clickme').attr('isi','true');
-                    // $('#cart_icon').css({'display':'block'})
-                    // $('#sosmed').css({'display':'block'})
-                    $('.hidden').toggleClass('open');
-                    $('#table_c').css({'display':'none'});
-                    $('#bottom-footer').css({'display':'block'});
-            }
-          });
-        });
+    }else{
+            $('#tombol_click').removeClass();
+            $('#tombol_click').addClass('col-2 my-auto');
+            $('.proses_to_chart_slide').css({'display':'none'});
+            $('#listcart').hide();
+            $('#clickme').html('<i class="fas fa-chevron-up fa-lg"></i>');
+            $('#clickme').attr('isi','true');
+            // $('#cart_icon').css({'display':'block'})
+            // $('#sosmed').css({'display':'block'})
+            $('.hidden').toggleClass('open');
+            $('#table_c').css({'display':'none'});
+            $('#bottom-footer').css({'display':'block'});
+    }
+  });
+});

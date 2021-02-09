@@ -7,23 +7,34 @@
         <!-- <div class="txt-banner"> Menjadi ibu rumah tangga yang aktif dan produktif merupakan suatu hal yang positif untuk dibagikan selain menjadi penopang dalam rumah tangga , anda bisa mengisi keseharian anda dengan banyak hal-hal yang positif. Temukan inspirasi-inspirasi menarik seperti mengatur tatanan rumah, memasak dan bermacam-macam hobi yang bisa anda lakukan.</div> -->
     <!-- </div> -->
     <div class="banner">
-        <img src="{{ asset('assets/image/banner02A.jpg') }}"  style="width:100%;">
-        <div class="txt-banner2" style="color: #fff;"> Top Product <span class="fa fa-star" style="color: #fff;"></span></div>
+        <div style="width:100%; background-color: #fff; font-size: 15px; padding: 25px;"><b>Top Product </b><span class="fa fa-star" style="color: #3CC2B1;"></span></div>
+    </div>
+    <div class="banner">
+        <img src="{{ asset('assets/image/top-product.jpg') }}"  style="width:100%;">
+        <!-- <div class="txt-banner2" style="color: #fff;"> Top Product <span class="fa fa-star" style="color: #fff;"></span></div> -->
     </div>
     <div class="container" style="{{ $page == 'home' ? 'margin-top: 30px' : 'margin-top: 30px' }}">
-        <div class="row align-middle">
-            <h3 class="title-page">Filter by Category <button type="button" class="btn" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
-                <i class="fas fa-sliders-h fa-xs"></i>
-            </button></h3>
-
-            <div id="demo" class="collapse" style="">
-                <div class="col-md-12 px-2 p-0" style="margin-bottom: 20px;">
-                <a href="{{ url('/') }}"><button class="btn button_filter" style="color: #fff;">Semua Produk</button></a>
-                @foreach($category as $key => $value)
-                    <a href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" type="button" class="btn button_filter" style="color: #fff;">{{$value->category_name}}</a>
-                @endforeach
+        <div class="row align-middle col-md-12">
+            <div class="col-md-6">
+                <h3 class="title-page">Product</h3>
+            </div>
+            <div class="col-md-6 text-right">
+                <!-- <div class="col-md-3 text-right">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
-            </div> 
+                <div class="col-md-3 text-right"> -->
+                    <h5 class="title-page filter_category">Filter by Category <button type="button" class="btn filter_category" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
+                    <i class="fas fa-caret-down fa-lg"></i></button></h5>
+                    <div id="demo" class="collapse" style="">
+                        <div class="col-md-12 px-2 p-0" style="margin-bottom: 20px;">
+                        <a href="{{ url('/') }}"><button class="btn button_filter" style="color: #fff;">Semua Produk</button></a>
+                        @foreach($category as $key => $value)
+                            <a href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" type="button" class="btn button_filter" style="color: #fff;">{{$value->category_name}}</a>
+                        @endforeach
+                        </div>
+                    </div> 
+                <!-- </div> -->
+            </div>
         </div>
         <div class="row align-middle" style="{{ $page == 'home' ? 'margin-bottom: 20px' : 'margin-bottom: 10px' }}">
             @if($page == 'category')
@@ -55,7 +66,7 @@
                 <div class="col-12 col-lg-3 mb-5">  <!--px-5 py-2--><!--col-6 col-lg-4 mb-5-->
                     <div class="card mx-auto item_product" style="border: 0,5px solid #E1DFDC; border-radius: 35px; box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); ">
                         <?php
-                            $bg = ['#D4088D','#EA7D08','#8AE50F','#D4088D','#D4088D','#EA7D08','#8AE50F','#D4088D','#D4088D','#EA7D08','#8AE50F','#D4088D','#D4088D','#EA7D08','#8AE50F','#D4088D','#D4088D','#EA7D08','#8AE50F','#D4088D','#D4088D','#EA7D08','#8AE50F', '#D4088D'];
+                            $bg = ['#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1'];
                             echo '<div id="nmprd" class="text-center" style="background-color: '.$bg[$key].' ; padding:12px; border-top-right-radius: 30px;border-top-left-radius: 30px; color: #fff;">Detail Produk</div>';
                         ?>
                         <!-- <div class="text-center" style="background-color:yellow; padding:15px; border-top-right-radius: 60px;border-top-left-radius: 60px; color: #fff;"> -->
@@ -107,14 +118,15 @@
                 </div>
             @endforeach
         </div>
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
             <div class="row justify-content-center" >
                 <div class="page" style="margin-top:0; margin-bottom:1rem;">
                     {{ $product->links() }}
                 </div>
             </div>
-        </div>
-        <br><br><br><br><br><br>
+        </div> -->
+
+        <!-- <br><br><br><br><br><br> -->
         <!-- Modal -->
         <div class="modal fade" id="modalCheckout" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered" style="width: 100%; max-width:1700px;">
@@ -190,6 +202,35 @@
             </div>
         </div>
     </div>
+     <footer>
+            <div style="width:100%; background-color: #DADADA; font-size: 15px; padding: 20px;">
+                <img src="{{ asset('assets/image/logo_cool.png') }}" width="100px" height="40px">
+            </div>
+            <div id="bottom-footer text-center" class="bottom-footer">
+                <div class="text-center" style="padding-top: 150px;">
+                    <img src="{{ asset('assets/image/logo_claris_white.png') }}" width="300px" height="150px">
+                </div>
+                <!-- <div class="row text-center">
+                    <div class="col-12 my-auto mx-auto">
+                        <a href="https://www.facebook.com/" class="mr-1 mr-md-3">
+                            <img src="{{ asset('assets/image/icon_facebook.png') }}" alt="" class="img-fluid" style="width: 7px;">
+                        </a>
+                        <a href="https://www.instagram.com/" class="mr-1 mr-md-3">
+                            <img src="{{ asset('assets/image/icon_instagram.png') }}" alt="" class="img-fluid" style="width: 15px;">
+                        </a>
+                        <a href="https://www.youtube.com/" class="mr-1 mr-md-3">
+                            <img src="{{ asset('assets/image/icon_youtube.png') }}" alt="" class="img-fluid" style="width: 15px;">
+                        </a>
+                        <a href="https://twitter.com/" class="mr-1 mr-md-3">
+                            <img src="{{ asset('assets/image/icon_twitter.png') }}" alt="" class="img-fluid" style="width: 15px;">
+                        </a>
+                    </div>
+                </div> -->
+                <div class="text-center">
+                    <a style="color: #fff; font-size: 20px;">© Copyright 2020</a>
+                </div>
+            </div>
+        </footer>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         function button_minus_br(id)

@@ -1110,9 +1110,9 @@ a.register:hover {
   opacity: 0; 
 }
 
-#bottom-footer{
-  background: #41B1CD;
-  height:120px;
+.bottom-footer{
+  background-color: #3CC2B1 !important;
+  height:500px;
   text-align: center;
 }
 
@@ -1467,6 +1467,15 @@ footer.footer .cart .count-cart-three {
 
 .data_input_empty {
   border:1px solid #ff0000 !important;
+}
+
+.filter_category {
+  background-color: #41B1CD !important;
+  /*border: 2px solid #41B1CD;*/
+  color: #fff;
+  /*border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;*/
+  border-radius: 100px;
 }
 
 

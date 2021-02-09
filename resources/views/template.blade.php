@@ -52,8 +52,8 @@
             display: none;
         }
 
-        #my-welcome-message {
-            display: none;
+        #welcome-message {
+            /*display: none;*/
             z-index: 9998;
             position: fixed;
             border-radius: 10px;
@@ -90,7 +90,7 @@
                 left: 40%;
             }
 
-            #my-welcome-message {
+            #welcome-message {
                 width: 42%;
                 left: 29%;
                 top: 5%;
@@ -102,7 +102,7 @@
                 left: 45%;
             }
 
-            #my-welcome-message {
+            #welcome-message {
                 width: 42%;
                 left: 29%;
                 top: 5%;
@@ -115,7 +115,7 @@
                 left: 50%;
             }
 
-            #my-welcome-message {
+            #welcome-message {
                 width: 42%;
                 left: 29%;
                 top: 5%;
@@ -139,9 +139,9 @@
         </div>
     </div>
 
-    <div id="my-welcome-message" class="">
+    <div id="welcome-message" class="">
         <img src="{{ asset('assets/image/lg-popup-welcome.jpg') }}" class="d-none d-md-block d-md-none w-100" alt="popup-cara-belanja-lg-web-demo" style="">
-        <img src="{{ asset('assets/image/popup-welcome.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja-web-demo" style="">
+        <img src="{{ asset('assets/image/lg-popup-welcome.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja-web-demo" style="">
     </div>
 
     <div class="wrapper">
@@ -220,11 +220,11 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1.5;">
                 <div class="container-fluid">
-                    <div class="col-4 my-auto">
+                    <!-- <div class="col-4 my-auto">
                         <button type="button" id="sidebarCollapse" class="btn btn-primary button-burger-menu btn-lg">
                             <i class="fas fa-align-justify fa-lg"></i>
                         </button>
-                    </div>
+                    </div> -->
                     <div class="col-4 my-auto text-center">
                         <a class="navbar-brand ml-md-5 mx-auto" href="/" style="margin: auto !important">
                             <img src="{{ asset('assets/image/logo_claris.png') }}" width="120px" height="70px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
@@ -300,125 +300,126 @@
             
             <!-- Page Content  -->
             @yield('content')
+            
+        </div>
 
-            <footer class="fixed-bottom"> <!--fixed-bottom-->
-                <div id="footer"> <!--class="fixed-bottom"-->
-                    <div class="row" style="background-color: #EA7D08; border-radius: 10px; padding: 10px;">
-                        <div class="col-5 my-auto align-self-center" id="cart_icon">
-                            <?php
-                                if(!empty($cart)) {
-                                    $total = 0;
-                                    foreach($cart as $key => $value) {
-                                        $amount = $value->product_harga * $value->mount;
-                                        $total += $amount;
-                                    }
-                                
-                            ?>
-                                <a href="#" class="float-left cart" style="position: relative;">
-                                    <img src="{{ asset('assets/image/troli.png') }}" alt="" style="width: 20px;">
-                                    <span style="color: #fff;" class="teks-footer"><strong>Rp {{ number_format($total, 0, ',', '.') }}</strong></span>
-                                </a>
-                                   
-                            <?php
-                                } else {
-                            ?>
-                                <p class="float-left p-0 my-auto" style="color: #fff;"><strong>Rp 0</strong></p>
-                                <a href="{{route('cart')}}" style="position: relative;">
-                                    <img src="{{ asset('assets/image/troli.png') }}" alt="" style="width: 30px;">
-                                </a>
-                            <?php
+        <footer> <!--fixed-bottom-->
+            <div id="footer" class="fixed-bottom"> <!--class="fixed-bottom"-->
+                <div class="row" style="background-color: #EA7D08; border-radius: 10px; padding: 10px;">
+                    <div class="col-5 my-auto align-self-center" id="cart_icon">
+                        <?php
+                            if(!empty($cart)) {
+                                $total = 0;
+                                foreach($cart as $key => $value) {
+                                    $amount = $value->product_harga * $value->mount;
+                                    $total += $amount;
                                 }
-                            ?>
-                        </div>
-                        <div id="tombol_click" class="col-2 my-auto align-self-center">
-                            <a href="#" id="clickme" isi="true" style="color: #fff !important">
-                                <i class="fas fa-chevron-up fa-lg"></i>
+                            
+                        ?>
+                            <a href="#" class="float-left cart" style="position: relative;">
+                                <img src="{{ asset('assets/image/troli.png') }}" alt="" style="width: 20px;">
+                                <span style="color: #fff;" class="teks-footer"><strong>Rp {{ number_format($total, 0, ',', '.') }}</strong></span>
                             </a>
-                        </div>
-                        <div class="col-5 my-auto align-self-center" id="sosmed">
-                            <span style="color: #fff;" class="teks-footer"><strong class="float-right">( {{$count_cart}} Item )</strong></span>
-                        </div>
+                               
+                        <?php
+                            } else {
+                        ?>
+                            <p class="float-left p-0 my-auto" style="color: #fff;"><strong>Rp 0</strong></p>
+                            <a href="{{route('cart')}}" style="position: relative;">
+                                <img src="{{ asset('assets/image/troli.png') }}" alt="" style="width: 30px;">
+                            </a>
+                        <?php
+                            }
+                        ?>
                     </div>
-                    <div class="hidden row" id="book" style="background-color: #fff; max-height: 350px;">
-                        <div class="scroll w-100 h-100" id="table_c" style="display: none;">
-                            @php
-                             $total = 0 ;
-                            @endphp
-                            @foreach($cart as $key => $value)
-                            @php
-                            $amount = $value->product_harga * $value->mount;
-                            $total += $amount;
-                            @endphp
-                            <div class="row mb-3" style="margin-bottom: 40px;">
-                                <div class="col-4">
-                                    <div class="text-center">
-                                        <img class="img-thumbnail img-fluid" src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'none.jpg').'') }}" style="max-width: 90px;max-height: 90px;" class="img-fluid">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="float-left">
-                                        <div class="px-1 py-0">
-                                            <p class="product-price-header2 m-0" style="color: #000 !important;"><strong>{{$value->product_name}}</strong></p>
-                                        </div>
-                                        <div class="px-1 py-0">
-                                            <p class="label-harga2 m-0" id="mount2_{{$value->id}}" style="color: #41B1CD !important; font-weight: bold;"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
-                                        </div>
-                                        <div class="text-left">
-                                            <button type="button" class="btn btn-primary button_minus" onclick="cart('{{$value->id}}','min')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-minus"></i></button>
-                                            <span class="product-name mr-1 ml-1" id="show_m2{{$value->id}}" style="color: #000; padding: 3px; font-weight: bold;"> {{$value->mount}} </span>
-                                            <button type="button" class="btn btn-primary button_plus" onclick="cart('{{$value->id}}','plus')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-plus"></i></button>
-                                            <input type="hidden" id="{{$value->id}}" value="{{$value->mount}}">
-                                            <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
-                                            <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-2 align-self-center">
-                                    <button class="btn btn-sm btn-danger" onclick="valDel('{{$value->id}}')" style="border-radius: 10px;"><i class="fa fa-times" style="color: white;"></i></button>
+                    <div id="tombol_click" class="col-2 my-auto align-self-center">
+                        <a href="#" id="clickme" isi="true" style="color: #fff !important">
+                            <i class="fas fa-chevron-up fa-lg"></i>
+                        </a>
+                    </div>
+                    <div class="col-5 my-auto align-self-center" id="sosmed">
+                        <span style="color: #fff;" class="teks-footer"><strong class="float-right">( {{$count_cart}} Item )</strong></span>
+                    </div>
+                </div>
+                <div class="hidden row" id="book" style="background-color: #fff; max-height: 350px;">
+                    <div class="scroll w-100 h-100" id="table_c" style="display: none;">
+                        @php
+                         $total = 0 ;
+                        @endphp
+                        @foreach($cart as $key => $value)
+                        @php
+                        $amount = $value->product_harga * $value->mount;
+                        $total += $amount;
+                        @endphp
+                        <div class="row mb-3" style="margin-bottom: 40px;">
+                            <div class="col-4">
+                                <div class="text-center">
+                                    <img class="img-thumbnail img-fluid" src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'none.jpg').'') }}" style="max-width: 90px;max-height: 90px;" class="img-fluid">
                                 </div>
                             </div>
-                            @endforeach
+                            <div class="col-6">
+                                <div class="float-left">
+                                    <div class="px-1 py-0">
+                                        <p class="product-price-header2 m-0" style="color: #000 !important;"><strong>{{$value->product_name}}</strong></p>
+                                    </div>
+                                    <div class="px-1 py-0">
+                                        <p class="label-harga2 m-0" id="mount2_{{$value->id}}" style="color: #41B1CD !important; font-weight: bold;"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
+                                    </div>
+                                    <div class="text-left">
+                                        <button type="button" class="btn btn-primary button_minus" onclick="cart('{{$value->id}}','min')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-minus"></i></button>
+                                        <span class="product-name mr-1 ml-1" id="show_m2{{$value->id}}" style="color: #000; padding: 3px; font-weight: bold;"> {{$value->mount}} </span>
+                                        <button type="button" class="btn btn-primary button_plus" onclick="cart('{{$value->id}}','plus')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-plus"></i></button>
+                                        <input type="hidden" id="{{$value->id}}" value="{{$value->mount}}">
+                                        <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
+                                        <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2 align-self-center">
+                                <button class="btn btn-sm btn-danger" onclick="valDel('{{$value->id}}')" style="border-radius: 10px;"><i class="fa fa-times" style="color: white;"></i></button>
+                            </div>
                         </div>
-                    </div>
-                    <div id="listcart" class="col-12 my-auto text-right" style="background-color: #fff; height: 50px; display: none;">
-                        <!-- {{ $count_cart }} Item | <span id="total_">Rp {{ number_format($total, 0, ',', '.') }}</span> -->
-                        <!-- <div class="col-6"> -->
-                            <a href="{{route('cart')}}" class="btn btn-sm btn-primary align-self-right button_pesan" style="background-color: #41B1CD; color: #fff">
-                            <input type="hidden" id="total" value="{{$total}}">
-                            Beli Sekarang
-                            </a>  
-                        <!-- </div>   -->
+                        @endforeach
                     </div>
                 </div>
-                <div id="bottom-footer text-center" style="background-color: #41B1CD;">
-                    <div class="text-center py-1">
-                        <img src="{{ asset('assets/image/logo_claris_white.png') }}" width="50px" height="30px">
-                    </div>
-                    <div class="row text-center">
-                        <div class="col-12 my-auto mx-auto">
-                            <a href="https://www.facebook.com/" class="mr-1 mr-md-3">
-                                <img src="{{ asset('assets/image/icon_facebook.png') }}" alt="" class="img-fluid" style="width: 7px;">
-                            </a>
-                            <a href="https://www.instagram.com/" class="mr-1 mr-md-3">
-                                <img src="{{ asset('assets/image/icon_instagram.png') }}" alt="" class="img-fluid" style="width: 15px;">
-                            </a>
-                            <a href="https://www.youtube.com/" class="mr-1 mr-md-3">
-                                <img src="{{ asset('assets/image/icon_youtube.png') }}" alt="" class="img-fluid" style="width: 15px;">
-                            </a>
-                            <a href="https://twitter.com/" class="mr-1 mr-md-3">
-                                <img src="{{ asset('assets/image/icon_twitter.png') }}" alt="" class="img-fluid" style="width: 15px;">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <a style="color: #fff; font-size: 12px;">© Copyright 2020</a>
-                    </div>
+                <div id="listcart" class="col-12 my-auto text-right" style="background-color: #fff; height: 50px; display: none;">
+                    <!-- {{ $count_cart }} Item | <span id="total_">Rp {{ number_format($total, 0, ',', '.') }}</span> -->
+                    <!-- <div class="col-6"> -->
+                        <a href="{{route('cart')}}" class="btn btn-sm btn-primary align-self-right button_pesan" style="background-color: #41B1CD; color: #fff">
+                        <input type="hidden" id="total" value="{{$total}}">
+                        Beli Sekarang
+                        </a>  
+                    <!-- </div>   -->
                 </div>
-                <!-- <div class="footer-copyright text-center py-3" style="background-color: #000">© 2020 Copyright:
-                    <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+            </div>
+            <div id="bottom-footer text-center" class="bottom-footer">
+                <div class="text-center py-3">
+                    <img src="{{ asset('assets/image/logo_claris_white.png') }}" width="50px" height="30px">
+                </div>
+                <!-- <div class="row text-center">
+                    <div class="col-12 my-auto mx-auto">
+                        <a href="https://www.facebook.com/" class="mr-1 mr-md-3">
+                            <img src="{{ asset('assets/image/icon_facebook.png') }}" alt="" class="img-fluid" style="width: 7px;">
+                        </a>
+                        <a href="https://www.instagram.com/" class="mr-1 mr-md-3">
+                            <img src="{{ asset('assets/image/icon_instagram.png') }}" alt="" class="img-fluid" style="width: 15px;">
+                        </a>
+                        <a href="https://www.youtube.com/" class="mr-1 mr-md-3">
+                            <img src="{{ asset('assets/image/icon_youtube.png') }}" alt="" class="img-fluid" style="width: 15px;">
+                        </a>
+                        <a href="https://twitter.com/" class="mr-1 mr-md-3">
+                            <img src="{{ asset('assets/image/icon_twitter.png') }}" alt="" class="img-fluid" style="width: 15px;">
+                        </a>
+                    </div>
                 </div> -->
-            </footer>
-        </div>
+                <div class="text-center">
+                    <a style="color: #fff; font-size: 12px;">© Copyright 2020</a>
+                </div>
+            </div>
+            <!-- <div class="footer-copyright text-center py-3" style="background-color: #000">© 2020 Copyright:
+                <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+            </div> -->
+        </footer>
     </div>
 
     <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="edit-modal-label" aria-hidden="true">
@@ -502,6 +503,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('assets/js/jquery.firstVisitPopup.js')}}"></script>
     <script type="text/javascript">
+        $(function () {
+            $('#welcome-message').firstVisitPopup({
+                cookieName : 'homepage',
+                showAgainSelector: '#show-message'
+            });
+        });
         $(document).ready(function() {  
             /*$('#edit-modal').on('show.bs.modal', function() {
                 var el = $(".edit-item-trigger-clicked"); // See how its usefull right here? 
@@ -522,13 +529,6 @@
             $('#btn-yes').on('click', function(){
                 var id_modal = $("#modal-input-id").val();
                 Swal.fire('Yes!');
-            });
-
-            $(function () {
-                $('#my-welcome-message').firstVisitPopup({
-                    cookieName : 'homepage',
-                    showAgainSelector: '#show-message'
-                });
             });
 
             $(".preloader").fadeOut();
