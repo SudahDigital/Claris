@@ -141,7 +141,6 @@
 
     <div id="welcome-message" class="">
         <img src="{{ asset('assets/image/lg-popup-welcome.jpg') }}" class="d-none d-md-block d-md-none w-100" alt="popup-cara-belanja-lg-web-demo" style="">
-        <img src="{{ asset('assets/image/lg-popup-welcome.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja-web-demo" style="">
     </div>
 
     <div class="wrapper">
@@ -314,7 +313,6 @@
                                     $amount = $value->product_harga * $value->mount;
                                     $total += $amount;
                                 }
-                            
                         ?>
                             <a href="#" class="float-center cart" style="position: relative;">
                                 <img src="{{ asset('assets/image/keranjang.png') }}" alt="" style="width: 30px;">

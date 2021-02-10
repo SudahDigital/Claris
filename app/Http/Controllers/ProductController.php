@@ -26,6 +26,7 @@ class ProductController extends Controller
         $data['category'] = Category::all();
         // return $input;die;        
         $user_id = Auth::id();
+        $ses_id =  $request->header('User-Agent'); //session_id();
         if (empty($user_id)) {
             # code...
             $user_id = 0;
@@ -36,7 +37,7 @@ class ProductController extends Controller
             ->leftJoin('products', 'products.id', '=', 'carts.product_id')
             ->leftJoin('product_images', 'product_images.product_id', '=', 'carts.product_id')
             ->select('carts.*', 'products.product_name', 'products.product_harga', 'product_images.image_link')
-            // ->where('product_images.is_tumbnail', 'yes')
+            ->where('carts.session_id', $ses_id)
             ->get();
 
         $data['count_cart'] = count($cart);
@@ -50,6 +51,7 @@ class ProductController extends Controller
     public function search(Request $request)
     {
     	$input = $request->all();
+        $ses_id =  $request->header('User-Agent'); //session_id();
         $user_id = Auth::id();
         if (empty($user_id)) {
             # code...
@@ -62,7 +64,7 @@ class ProductController extends Controller
             ->leftJoin('products', 'products.id', '=', 'carts.product_id')
             ->leftJoin('product_images', 'product_images.product_id', '=', 'carts.product_id')
             ->select('carts.*', 'products.product_name', 'products.product_harga', 'product_images.image_link')
-            // ->where('product_images.is_tumbnail', 'yes')
+            ->where('carts.session_id', $ses_id)
             ->get();
 
         $data['count_cart'] = count($cart);

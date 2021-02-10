@@ -23,20 +23,27 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
                 <div class="col-md-3 text-right"> -->
-                    <h6 class="title-page filter_category">Filter by Category <button type="button" class="btn filter_category" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
+                    <!-- <h6 class="title-page filter_category">Filter by Category <button type="button" class="btn filter_category" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
                     <i class="fas fa-caret-down fa-lg"></i></button></h6>
                     <div id="demo" class="collapse" style="">
-                        <div class="col-md-12 px-2 p-0" style="margin-bottom: 20px;">
-                        <a href="{{ url('/') }}"><button class="btn button_filter" style="color: #fff;">Semua Produk</button></a>
-                        @foreach($category as $key => $value)
-                            <a href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" type="button" class="btn button_filter" style="color: #fff;">{{$value->category_name}}</a>
-                        @endforeach
-                        </div>
-                    </div> 
+                        <div class="col-md-12 px-2 p-0" style="margin-bottom: 20px;"> -->
+                            <div class="dropdown">
+                                <button class="btn filter_category" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <b>Filter By Category</b> <i class="fas fa-caret-down fa-lg"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="{{ url('/') }}" style="color: #3CC2B1;"><b>Semua Produk</b></a>
+                                    @foreach($category as $key => $value)
+                                        <a class="dropdown-item" href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" style="color: #000;"><b>{{$value->category_name}}</b></a>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        <!-- </div>
+                    </div> --> 
                 <!-- </div> -->
             </div>
         </div>
-        <div class="row align-middle" style="{{ $page == 'home' ? 'margin-bottom: 20px' : 'margin-bottom: 10px' }}">
+        <!-- <div class="row align-middle" style="{{ $page == 'home' ? 'margin-bottom: 20px' : 'margin-bottom: 10px' }}">
             @if($page == 'category')
                 <div class="col-sm-12 col-md-12">
                     <nav aria-label="breadcrumb">
@@ -57,8 +64,8 @@
                     </nav>
                 </div>
             @endif
-        </div>
-        <div class="row section_content">
+        </div> -->
+        <div class="row section_content" style="margin: 20px;">
             @if(count($product) < 1)
                 <h5 class="ml-3">Pencarian tidak ditemukan!</h5>
             @endif
@@ -68,7 +75,7 @@
                         <?php
                             $bg = ['#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1'];
                             echo '<div id="nmprd" style="background-color: '.$bg[$key].' ; padding:12px; border-top-right-radius: 20px;border-top-left-radius: 20px; color: #fff;">
-                                <div class="col-12 row"><div class="col-3 float-left"><a onclick="detailImg('.$value->id.')"><i class="fa fa-eye button_eye" style="cursor: pointer;"></i></a></div><div class="col-9 text-right"><span style="font-size: 12px;"><b>Detail Produk</b></span></div></div></div>';
+                                <div class="col-12 row"><div class="col-3 float-left"><a onclick="detailImg('.$value->id.')"><i class="fa fa-eye button_eye" data-toggle="modal" data-target="#ImgModal" style="cursor: pointer;"></i></a></div><div class="col-9 text-right"><span style="font-size: 12px;"><b>Detail Produk</b></span></div></div></div>';
                         ?>
                         <!-- <div class="text-center" style="background-color:yellow; padding:15px; border-top-right-radius: 60px;border-top-left-radius: 60px; color: #fff;"> -->
                         <div class="card-img-top" style="position: relative;">
@@ -128,13 +135,13 @@
                 </div>
             @endforeach
         </div>
-        <!-- <div class="col-md-12">
+        <div class="col-md-12">
             <div class="row justify-content-center" >
                 <div class="page" style="margin-top:0; margin-bottom:1rem;">
                     {{ $product->links() }}
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <br><br><br><br><br><br>
         <!-- Modal -->
@@ -243,6 +250,19 @@
             </div>
         </div>
     </footer> -->
+
+    <div class="modal fade" id="ImgModal" role="dialog" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background: #fff">
+                <div class="modal-body">
+                    <div class="row justify-content-center">
+                        Image view <p id="id_img"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         function button_minus_br(id)
@@ -333,7 +353,9 @@
         }
 
         function detailImg(id){
-            alert(id+'detail img');
+            $('#ImgModal').show();
+            alert(id);
+
         }
     </script>
 @endsection
