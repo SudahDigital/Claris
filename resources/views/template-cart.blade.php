@@ -85,7 +85,7 @@
                 </ul>
             @endif
         </nav>
-        <div id="content">
+        <div id="content" style="background-color: #3CC2B1; background-image: url('{{ asset('assets/image/UI Web Claris New-26.png') }}'), url('{{ asset('assets/image/UI Web Claris New-27.png') }}');">
 
            <!--  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1;">
                 <div class="container-fluid">
@@ -105,17 +105,17 @@
             </nav> -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1;">
                 <div class="container-fluid">
-                    <div class="col-4 my-auto">
+                    <!-- <div class="col-4 my-auto">
                         <button type="button" id="sidebarCollapse" class="btn btn-primary button-burger-menu btn-lg">
                             <i class="fas fa-align-justify fa-lg"></i>
                         </button>
-                    </div>
-                    <div class="col-3 my-auto text-center">
+                    </div> -->
+                    <div class="col-12 my-auto text-center">
                         <a class="navbar-brand ml-md-5 mx-auto" href="/" style="margin: auto !important">
                             <img src="{{ asset('assets/image/logo_claris.png') }}" width="120px" height="70px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                         </a>
                     </div>
-                    <div class="col-4 my-auto">
+                    <!-- <div class="col-4 my-auto">
                         <div class="col-8 float-right">
                             <form action="{{route('product_search')}}"  class="form-inline my-2 my-lg-0 ml-auto d-none d-md-inline-block">
                                 <div class="input-group">
@@ -124,7 +124,7 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </nav>
 

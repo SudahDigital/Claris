@@ -23,8 +23,8 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
                 <div class="col-md-3 text-right"> -->
-                    <h5 class="title-page filter_category">Filter by Category <button type="button" class="btn filter_category" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
-                    <i class="fas fa-caret-down fa-lg"></i></button></h5>
+                    <h6 class="title-page filter_category">Filter by Category <button type="button" class="btn filter_category" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
+                    <i class="fas fa-caret-down fa-lg"></i></button></h6>
                     <div id="demo" class="collapse" style="">
                         <div class="col-md-12 px-2 p-0" style="margin-bottom: 20px;">
                         <a href="{{ url('/') }}"><button class="btn button_filter" style="color: #fff;">Semua Produk</button></a>
@@ -64,10 +64,11 @@
             @endif
             @foreach($product as $key => $value)
                 <div class="col-12 col-lg-3 mb-5">  <!--px-5 py-2--><!--col-6 col-lg-4 mb-5-->
-                    <div class="card mx-auto item_product" style="border: 0,5px solid #E1DFDC; border-radius: 35px; box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); ">
+                    <div class="card mx-auto item_product" style="border: none; border-radius:20px;">
                         <?php
-                            $bg = ['#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1'];
-                            echo '<div id="nmprd" class="text-center" style="background-color: '.$bg[$key].' ; padding:12px; border-top-right-radius: 30px;border-top-left-radius: 30px; color: #fff;">Detail Produk</div>';
+                            $bg = ['#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1'];
+                            echo '<div id="nmprd" style="background-color: '.$bg[$key].' ; padding:12px; border-top-right-radius: 20px;border-top-left-radius: 20px; color: #fff;">
+                                <div class="col-12 row"><div class="col-3 float-left"><a onclick="detailImg('.$value->id.')"><i class="fa fa-eye button_eye" style="cursor: pointer;"></i></a></div><div class="col-9 text-right"><span style="font-size: 12px;"><b>Detail Produk</b></span></div></div></div>';
                         ?>
                         <!-- <div class="text-center" style="background-color:yellow; padding:15px; border-top-right-radius: 60px;border-top-left-radius: 60px; color: #fff;"> -->
                         <div class="card-img-top" style="position: relative;">
@@ -79,38 +80,47 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body p-0" style="background-color: #fff !important;">
-                            <div class="float-left px-1 py-0" style="width: 100%;">
-                                <p class="product-price-header mb-0" style="color: #000 !important;">{{$value->product_name}}</p>
-                            </div>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="float-middle px-1 py-0 " style="width: 100%;">
-                                <p style="color: #41B1CD;" class="label-harga mb-0"><strong>Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</strong></p>
-                            </div>
-                        </div>
-                        <div class="button-cart">
-                            <div class="row">
-                                <div class="col-2 p-0" style="text-align: center;">
-                                     <!-- <form method="post" action="{{route('add_cart')}}">
-                                        @csrf
-                                        <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
-                                        <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
-                                        <input type="hidden" name="product_id" value="{{$value->id}}"> -->
-                                        <button class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff; color:#000;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                    <!-- </form> -->
+                        <div class="card-body" style="background-color: {{$bg[$key]}}; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
+                            <div class="p-0" style="background-color: #fff !important;">
+                                <div class="float-left px-1 py-0" style="width: 100%;">
+                                    <p class="product-price-header mb-0"><b>{{$value->product_name}}</b></p>
                                 </div>
-                                <div class="col-2" style="text-align: center;">
-                                    <p id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center">0</p>
+                            </div>
+                            <div class="p-0">
+                                <div class="float-middle px-1 py-0 " style="width: 100%;">
+                                    <p class="label-harga mb-0"><strong>Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</strong></p>
                                 </div>
-                                <div class="col-2" style="text-align: center;">
-                                    <form method="post" action="{{route('add_cart')}}">
+                            </div>
+                            <div class="p-0 button-cart">
+                                <div class="row col-12">
+                                    <div class="float-left px-1 py-2 col-6">
                                         @csrf
-                                        <input type="hidden" id="{{$value->id}}" name="jumlah" value="0">
+                                        <input type="hidden" id="{{$value->id}}" name="jumlah" id="jumlah" value="1">
                                         <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
-                                        <input type="hidden" name="product_id" value="{{$value->id}}">
-                                        <button class="btn button_plus d-inline-display" onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; background-color: #fff; color:#000;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                    </form>
+                                        <input type="hidden" id="product_id" name="product_id" value="{{$value->id}}">
+                                        <a href="#" type="button" class="btn button_filter" style="color: #fff; font-size: 12px;"><b>Tambah</b></a>
+                                    </div>
+                                    <div class="float-right px-1 py-2 col-2">
+                                         <!-- <form method="post" action="{{route('add_cart')}}">
+                                            @csrf
+                                            <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
+                                            <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
+                                            <input type="hidden" name="product_id" value="{{$value->id}}"> -->
+                                            <a class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#fff;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                        <!-- </form> -->
+                                    </div>
+                                    <div class="float-right px-1 py-2 col-2">
+                                        <p id="show_{{$value->id}}" class="d-inline" style="color: #fff !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; border: 2px solid #fff;">0</p>
+                                    </div>
+                                    <div class="float-right px-1 py-2 col-2">
+                                        <form method="post" action="{{route('add_cart')}}">
+                                            <!-- @csrf
+                                            <input type="hidden" id="{{$value->id}}" name="jumlah" value="0">
+                                            <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
+                                            <input type="hidden" name="product_id" value="{{$value->id}}"> -->
+                                            <a class="btn button_plus " onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#fff;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +136,7 @@
             </div>
         </div> -->
 
-        <!-- <br><br><br><br><br><br> -->
+        <br><br><br><br><br><br>
         <!-- Modal -->
         <div class="modal fade" id="modalCheckout" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered" style="width: 100%; max-width:1700px;">
@@ -202,35 +212,37 @@
             </div>
         </div>
     </div>
-     <footer>
-            <div style="width:100%; background-color: #DADADA; font-size: 15px; padding: 20px;">
+    <!-- <footer >
+        <div class="row" style="background-color: #DADADA; font-size: 15px; padding: 20px;">
+            <div class="col-6">
                 <img src="{{ asset('assets/image/logo_cool.png') }}" width="100px" height="40px">
             </div>
-            <div id="bottom-footer text-center" class="bottom-footer">
-                <div class="text-center" style="padding-top: 150px;">
-                    <img src="{{ asset('assets/image/logo_claris_white.png') }}" width="300px" height="150px">
-                </div>
-                <!-- <div class="row text-center">
-                    <div class="col-12 my-auto mx-auto">
-                        <a href="https://www.facebook.com/" class="mr-1 mr-md-3">
-                            <img src="{{ asset('assets/image/icon_facebook.png') }}" alt="" class="img-fluid" style="width: 7px;">
-                        </a>
-                        <a href="https://www.instagram.com/" class="mr-1 mr-md-3">
-                            <img src="{{ asset('assets/image/icon_instagram.png') }}" alt="" class="img-fluid" style="width: 15px;">
-                        </a>
-                        <a href="https://www.youtube.com/" class="mr-1 mr-md-3">
-                            <img src="{{ asset('assets/image/icon_youtube.png') }}" alt="" class="img-fluid" style="width: 15px;">
-                        </a>
-                        <a href="https://twitter.com/" class="mr-1 mr-md-3">
-                            <img src="{{ asset('assets/image/icon_twitter.png') }}" alt="" class="img-fluid" style="width: 15px;">
-                        </a>
-                    </div>
-                </div> -->
-                <div class="text-center">
-                    <a style="color: #fff; font-size: 20px;">© Copyright 2020</a>
-                </div>
+            <div class="col-6" style="text-align: right;">
+                Follow Us&nbsp;
+                
+                    <a href="https://www.facebook.com/" class="mr-1 mr-md-3">
+                        <img src="{{ asset('assets/image/icon_facebook.png') }}" alt="" class="img-fluid" style="width: 7px;">
+                    </a>
+                    <a href="https://www.instagram.com/" class="mr-1 mr-md-3">
+                        <img src="{{ asset('assets/image/icon_instagram.png') }}" alt="" class="img-fluid" style="width: 15px;">
+                    </a>
+                    <a href="https://www.youtube.com/" class="mr-1 mr-md-3">
+                        <img src="{{ asset('assets/image/icon_youtube.png') }}" alt="" class="img-fluid" style="width: 15px;">
+                    </a>
+                    <a href="https://twitter.com/" class="mr-1 mr-md-3">
+                        <img src="{{ asset('assets/image/icon_twitter.png') }}" alt="" class="img-fluid" style="width: 15px;">
+                    </a>
             </div>
-        </footer>
+        </div>
+        <div id="bottom-footer text-center" class="bottom-footer">
+            <div class="text-center" style="padding-top: 150px;">
+                <img src="{{ asset('assets/image/logo_claris_white.png') }}" width="300px" height="150px">
+            </div>
+            <div class="text-center">
+                <a style="color: #fff; font-size: 20px;">© Copyright 2020</a>
+            </div>
+        </div>
+    </footer> -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         function button_minus_br(id)
@@ -318,6 +330,10 @@
                     location.reload();
                 });
             }
+        }
+
+        function detailImg(id){
+            alert(id+'detail img');
         }
     </script>
 @endsection
