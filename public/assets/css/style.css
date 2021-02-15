@@ -565,7 +565,7 @@ a.register:hover {
 #content .product-price-header {
   float: left;
   font-size: 12px;
-  color: #fff !important;
+  color: #000 !important;
   /*display: block;*/
   /*width: 140px;
   overflow: hidden;
@@ -587,9 +587,9 @@ a.register:hover {
 }
 
 #content .button_plus:hover, #content .button_minus:hover {
-    border: 1px solid #fff !important;
+    /*border: 1px solid #fff !important;*/
     /*background-color: #000 !important;*/
-    color: #fff !important;
+    color: #0097BB !important;
 }
 
 #content .button_plus:focus, #content .button_minus:focus {
@@ -1119,8 +1119,8 @@ a.register:hover {
 }
 
 .bottom-footer{
-  background-color: #3CC2B1 !important;
-  height:120px;
+  background-color: #fff !important;
+  height:80px;
   text-align: center;
 }
 
@@ -1326,7 +1326,7 @@ footer.footer .cart .count-cart-three {
   font-size: 25px !important;
   font-weight: 800 !important;
   text-align: center;
-  color: #fff !important;
+  color: #3CC2B1 !important;
 
 }
 
@@ -1479,9 +1479,9 @@ footer.footer .cart .count-cart-three {
 }
 
 .filter_category {
-  background-color: #41B1CD !important;
+  background-color: #fff !important;
   /*border: 2px solid #41B1CD;*/
-  color: #fff;
+  color: #000;
   /*border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;*/
   border-radius: 100px;
@@ -1490,7 +1490,7 @@ footer.footer .cart .count-cart-three {
 #content .button_eye {
   width: 25px; 
   height: 25px;
-  color: #fff;
+  color: #000;
 }
 
 #content .button_eye:hover {
@@ -1500,6 +1500,20 @@ footer.footer .cart .count-cart-three {
 .text-konfirmasi {
   font-size: 25px;
   color: #fff;
+}
+
+.container {
+  /*background-color: #0097BB !important;*/
+}
+
+.dtl_img{
+  height:500px; 
+  width: 500px;
+}
+
+.button_whatsapp {
+  background-color: #F08029 !important;
+  border-radius: 30px;
 }
 
 

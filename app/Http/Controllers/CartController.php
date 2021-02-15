@@ -31,7 +31,9 @@ class CartController extends Controller
     }
     public function index(Request $request)
     {
-    	$ses_id = $request->header('User-Agent'); //session_id();
+    	$userAgent	= $request->header('User-Agent'); //session_id();
+		$clientIP 	= \Request::getClientIp(true);
+		$ses_id 	= $userAgent.$clientIP;
     	$user_id = Auth::id();
     	if (empty($user_id)) {
     		# code...
@@ -43,7 +45,7 @@ class CartController extends Controller
             ->leftJoin('products', 'products.id', '=', 'carts.product_id')
             ->leftJoin('product_images', 'product_images.product_id', '=', 'carts.product_id')
             ->where('session_id', $ses_id)
-			->select('carts.*', 'products.product_name', 'products.product_harga', 'product_images.image_link')
+			->select('carts.*', 'products.product_name', 'products.product_harga', 'products.product_image')
 			// ->where('product_images.is_tumbnail', 'yes')
             ->get();
         $data['cart'] = $cart;
@@ -56,14 +58,17 @@ class CartController extends Controller
 	{
 		session_start();
 		
-		$user_id = Auth::id();
-		$ses_id = $request->header('User-Agent'); //session_id();
+		$user_id 	= Auth::id();
+		$userAgent	= $request->header('User-Agent'); //session_id();
+		$clientIP 	= \Request::getClientIp(true);
+		$ses_id 	= $userAgent.$clientIP;
 
 		if (empty($user_id)) {
 			# code...
 			$user_id = 0;
 		}
-		$cek = Cart::where([['product_id',$request->product_id],['user_id',$user_id],['session_id',$ses_id]])->first();
+		$cek = Cart::where([['product_id',$request->product_id],['session_id',$ses_id]])->first();
+
 		if (!empty($cek)) {
 			# code...
 			$jumlah = $request->jumlah + $cek->mount;
@@ -83,7 +88,7 @@ class CartController extends Controller
 				'session_id' => $ses_id
 			]);
 		}
-		return redirect()->back()->with(['success' => 'Product Berhasil Dimasukan Kekeranjang']);
+		return redirect()->back()->with(['status' => 'success','data' => $data]);
 	}
 	public function delete($id)
 	{
@@ -107,6 +112,50 @@ class CartController extends Controller
 					]);
 		return response()->json('success');
 	}
+
+	public function update_cart(Request $request)
+	{	
+    	$userAgent	= $request->header('User-Agent'); //session_id();
+		$clientIP 	= \Request::getClientIp(true);
+		$ses_id 	= $userAgent.$clientIP;
+		$user_id 	= Auth::id();
+		$jumlah 	= $request->jumlah;
+		if (empty($user_id)) {
+			# code...
+			$user_id = 0;
+		}
+
+		$cek = Cart::where([['product_id',$request->product_id],['session_id',$ses_id]])->first();
+		if (!empty($cek)) {
+
+			if($jumlah>0){
+				$data = Cart::where('product_id',$request->product_id)
+						->where('user_id',$user_id)
+						->where('session_id', $ses_id)
+						->update([
+							'product_id' => $request->product_id,
+							'mount' => $jumlah,
+							'user_id' => $user_id
+						]);
+			}else{
+				$data = Cart::where('session_id',$ses_id)->where('product_id',$request->product_id)->delete();
+			}
+		}elseif($jumlah>0){
+			$data = Cart::create([
+				'product_id' => $request->product_id,
+				'mount' => $request->jumlah,
+				'user_id' => $user_id,
+				'session_id' => $ses_id
+			]);
+		}
+
+		$count_item = Cart::where('session_id', $ses_id)->count();
+
+		$total_price = DB::Select("SELECT  SUM(A.mount * B.product_harga) AS TOT_HARGA FROM carts AS A INNER JOIN products AS B ON A.product_id = B.id WHERE A.session_id = '".$ses_id."'");
+		
+		return response()->json(['status' => 'success', 'mount' => $count_item, 'total_price' => $total_price[0]->TOT_HARGA ]);
+	}
+
 	public function pay(Request $request)
 	{
 		$data = Pay::create([
@@ -206,5 +255,23 @@ class CartController extends Controller
 		 // return $data; die;
     	return view('layouts.pay',$data);
     	// return view('layouts.test',$data);*/
+	}
+
+	public function footer_list(Request $request)
+	{
+		$userAgent	= $request->header('User-Agent'); //session_id();
+		$clientIP 	= \Request::getClientIp(true);
+		$ses_id 	= $userAgent.$clientIP;
+		$cart = DB::table('carts')
+            ->leftJoin('products', 'products.id', '=', 'carts.product_id')
+            ->where('session_id', $ses_id)
+            ->select('carts.*', 'products.product_name', 'products.product_harga', 'products.product_image')
+            // ->where('product_images.is_tumbnail', 'yes')
+            ->get();
+        // return $cart;die;
+        $data['count_cart'] = count($cart);
+        $data['cart'] = $cart;
+
+        return view('layouts.tampil',$data);
 	}
 }

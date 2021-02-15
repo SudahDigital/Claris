@@ -30,7 +30,9 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $ses_id =  $request->header('User-Agent'); //session_id();
+        $userAgent  = $request->header('User-Agent'); //session_id();
+        $clientIP   = \Request::getClientIp(true);
+        $ses_id     = $userAgent.$clientIP;
 
         $user_id = Auth::id();
         if (empty($user_id)) {

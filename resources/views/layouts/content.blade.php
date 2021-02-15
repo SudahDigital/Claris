@@ -10,13 +10,13 @@
         <div style="width:100%; background-color: #fff; font-size: 15px; padding: 25px;"><b>Top Product </b><span class="fa fa-star" style="color: #3CC2B1;"></span></div>
     </div>
     <div class="banner">
-        <img src="{{ asset('assets/image/top-product.jpg') }}"  style="width:100%;">
+        <img src="{{ asset('assets/image/UI Web Claris New-31.png') }}"  style="width:100%; background-color: #fff;">
         <!-- <div class="txt-banner2" style="color: #fff;"> Top Product <span class="fa fa-star" style="color: #fff;"></span></div> -->
     </div>
     <div class="container" style="{{ $page == 'home' ? 'margin-top: 30px' : 'margin-top: 30px' }}">
         <div class="row align-middle col-md-12">
             <div class="col-md-6">
-                <h3 class="title-page">Product</h3>
+                <h3 class="title-page" style="color: #fff;"><b>Product</b></h3>
             </div>
             <div class="col-md-6 text-right">
                 <!-- <div class="col-md-3 text-right">
@@ -70,25 +70,34 @@
                 <h5 class="ml-3">Pencarian tidak ditemukan!</h5>
             @endif
             @foreach($product as $key => $value)
-                <div class="col-12 col-lg-3 mb-5">  <!--px-5 py-2--><!--col-6 col-lg-4 mb-5-->
+                <div class="col-6 col-md-6 col-lg-3 mb-5"><!-- <div class="col-12 col-lg-3 mb-5"> -->  <!--px-5 py-2--><!--col-6 col-lg-4 mb-5-->
                     <div class="card mx-auto item_product" style="border: none; border-radius:20px;">
-                        <?php
+                        <!-- <?php
                             $bg = ['#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1'];
                             echo '<div id="nmprd" style="background-color: '.$bg[$key].' ; padding:12px; border-top-right-radius: 20px;border-top-left-radius: 20px; color: #fff;">
                                 <div class="col-12 row"><div class="col-3 float-left"><a onclick="detailImg('.$value->id.')"><i class="fa fa-eye button_eye" data-toggle="modal" data-target="#ImgModal" style="cursor: pointer;"></i></a></div><div class="col-9 text-right"><span style="font-size: 12px;"><b>Detail Produk</b></span></div></div></div>';
-                        ?>
+                        ?> -->
                         <!-- <div class="text-center" style="background-color:yellow; padding:15px; border-top-right-radius: 60px;border-top-left-radius: 60px; color: #fff;"> -->
+                        <div id="nmprd" style="background-color: #fff; padding:12px; border-top-right-radius: 20px;border-top-left-radius: 20px; color:#000;">
+                            <div class="col-12 row">
+                                <div class="col-3 float-left">
+                                    <a onclick="detailImg('{{ $value->product_image }}')"><i class="fa fa-eye button_eye" data-toggle="modal" data-target="#ImgModal" style="cursor: pointer;"></i></a>
+                                </div>
+                                <div class="col-9 text-right">
+                                    <span style="font-size: 12px;"><b>Detail Produk</b></span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-img-top" style="position: relative;">
                             <div class="embed-responsive embed-responsive-4by3">
                                 <div class="embed-responsive-item">
                                     <a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->product_name)])}}">
-                                        <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'none.jpg').'') }}" class="img-fluid img-responsive" alt="...">
-                                    </a>
+                                        <img src="{{ asset('assets/image/product/'.(($value->product_image!='') ? $value->product_image : 'none.jpg').'') }}" class="img-fluid img-responsive" alt="...">
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body" style="background-color: {{$bg[$key]}}; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
-                            <div class="p-0" style="background-color: #fff !important;">
+                        <div class="card-body" style="background-color: #fff; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
+                            <div class="p-0" style="background-color: #000 !important;">
                                 <div class="float-left px-1 py-0" style="width: 100%;">
                                     <p class="product-price-header mb-0"><b>{{$value->product_name}}</b></p>
                                 </div>
@@ -101,11 +110,13 @@
                             <div class="p-0 button-cart">
                                 <div class="row col-12">
                                     <div class="float-left px-1 py-2 col-6">
-                                        @csrf
-                                        <input type="hidden" id="{{$value->id}}" name="jumlah" id="jumlah" value="1">
-                                        <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
-                                        <input type="hidden" id="product_id" name="product_id" value="{{$value->id}}">
-                                        <a href="#" type="button" class="btn button_filter" style="color: #fff; font-size: 12px;"><b>Tambah</b></a>
+                                        <!-- <form method="post" action="{{route('add_cart')}}"> -->
+                                            @csrf
+                                            <input type="hidden" id="{{$value->id}}" name="jumlah" id="jumlah" value="0">
+                                            <input type="hidden" id="harga_{{$value->id}}" name="harga_{{$value->id}}" value="{{ $value->product_harga }}">
+                                            <input type="hidden" id="product_id_{{$value->id}}" name="product_id_{{$value->id}}" value="{{$value->id}}">
+                                            <a onclick="insertCart('{{ $value->id }}')" type="button" class="btn button_filter" style="color: #fff; font-size: 12px;"><b>Tambah</b></a>
+                                        <!-- </form> -->
                                     </div>
                                     <div class="float-right px-1 py-2 col-2">
                                          <!-- <form method="post" action="{{route('add_cart')}}">
@@ -113,20 +124,38 @@
                                             <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
                                             <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
                                             <input type="hidden" name="product_id" value="{{$value->id}}"> -->
-                                            <a class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#fff;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                            <a class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></a>
                                         <!-- </form> -->
                                     </div>
                                     <div class="float-right px-1 py-2 col-2">
-                                        <p id="show_{{$value->id}}" class="d-inline" style="color: #fff !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; border: 2px solid #fff;">0</p>
+                                        <?php
+                                            $ses_id = \Request::header('User-Agent');
+                                            $clientIP = \Request::getClientIp(true);
+                                            $user = $ses_id.$clientIP;
+
+                                            // $sql = \DB::select("SELECT A.id, B.mount FROM products AS A LEFT JOIN (SELECT carts.mount, carts.session_id, carts.product_id FROM carts WHERE carts.session_id = '".$user."') AS B ON A.id = B.product_id"); 
+
+                                            $sql = \DB::select("SELECT A.id, B.mount FROM carts AS B LEFT JOIN (SELECT products.id FROM products) AS A ON A.id = B.product_id WHERE B.session_id = '".$user."' AND A.id = '".$value->id."' "); 
+                                            $rst = count($sql);
+
+                                            if($rst > 0){
+                                                foreach ($sql as $key => $val_a) {
+                                                    echo '<span id="show_'.$val_a->id.'" class="d-inline" style="color: #000 !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center;">'.$val_a->mount.'</span>';
+                                                }
+                                            }else{
+                                                echo '<span id="show_'.$value->id.'" class="d-inline" style="color: #000 !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center;">0</span>';
+                                            }
+                                        ?>
+                                        <!-- <span id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center;">0 {{$user}}</span> -->
                                     </div>
                                     <div class="float-right px-1 py-2 col-2">
-                                        <form method="post" action="{{route('add_cart')}}">
+                                        <!-- <form method="post" action="{{route('add_cart')}}"> -->
                                             <!-- @csrf
                                             <input type="hidden" id="{{$value->id}}" name="jumlah" value="0">
                                             <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
                                             <input type="hidden" name="product_id" value="{{$value->id}}"> -->
-                                            <a class="btn button_plus " onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#fff;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                        </form>
+                                            <a class="btn button_plus " onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                        <!-- </form> -->
                                     </div>
                                 </div>
                             </div>
@@ -219,44 +248,144 @@
             </div>
         </div>
     </div>
-    <!-- <footer >
-        <div class="row" style="background-color: #DADADA; font-size: 15px; padding: 20px;">
-            <div class="col-6">
-                <img src="{{ asset('assets/image/logo_cool.png') }}" width="100px" height="40px">
+    <footer class="fixed-bottom"> <!--fixed-bottom-->
+            <div id="footer"> <!--class="fixed-bottom"-->
+                <div class="row" style="background-color: #DADADA; padding: 10px;">
+                    <div id="cart_icon" class="col-5 my-auto align-self-center">
+                        <?php
+                            if(!empty($cart)) {
+                                $total = 0;
+                                foreach($cart as $key => $value) {
+                                    $amount = $value->product_harga * $value->mount;
+                                    $total += $amount;
+                                }
+                        ?>
+                            <a href="#" class="float-center cart" style="position: relative;">
+                                <img src="{{ asset('assets/image/keranjang.png') }}" alt="" style="width: 30px;">
+                                <span id="total_mount" name="total_mount" style="color: #000; font-size: 12px;" class="teks-footer"><strong>Rp {{ number_format($total, 0, ',', '.') }}</strong></span>
+                            </a>
+                               
+                        <?php
+                            } else {
+                        ?>
+                            <p class="float-center p-0 my-auto" style="color: #000; font-size: 12px;"><strong>Rp 0</strong></p>
+                            <a href="{{route('cart')}}" style="position: relative;">
+                                <img src="{{ asset('assets/image/keranjang.png') }}" alt="" style="width: 30px;">
+                            </a>
+                        <?php
+                            }
+                        ?>
+                    </div>
+                    <div id="tombol_click" class="col-2 my-auto align-self-center">
+                        <a href="#" id="clickme" isi="true" style="color: #000 !important">
+                            <i class="fas fa-chevron-up fa-lg"></i>
+                        </a>
+                    </div>
+                    <div class="col-5 my-auto align-self-center" id="sosmed">
+                        <span style="color: #000;" class="teks-footer">
+                            <img src="{{ asset('assets/image/footer-whatsapp.png') }}" alt="" style="width: 20px;">
+                            <strong class="float-center" style="font-size: 12px;">Pesan Sekarang</strong>
+                            <!-- <strong class="float-center">( {{$count_cart}} Item )</strong> -->
+                        </span>
+                    </div>
+                </div>
+                <div class="hidden row" id="book" style="background-color: #fff; max-height: 250px;">
+                    <div class="scroll w-100 h-100" id="table_c" style="display: none;">
+                        @php
+                         $total = 0 ;
+                        @endphp
+                        @foreach($cart as $key => $val_c)
+                        @php
+                        $amount = $val_c->product_harga * $val_c->mount;
+                        $total += $amount;
+                        @endphp
+                        <div class="row mb-3" style="margin-bottom: 40px; margin-top: 10px;">
+                            <div class="col-4">
+                                <div class="text-center">
+                                    <img class="img-thumbnail img-fluid" src="{{ asset('assets/image/product/'.(($val_c->product_image!='') ? $val_c->product_image : 'none.jpg').'') }}" style="max-width: 90px;max-height: 90px;" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="float-left">
+                                    <div class="px-1 py-0">
+                                        <p class="product-price-header2 m-0" style="color: #000 !important;"><strong>{{$val_c->product_name}}</strong></p>
+                                    </div>
+                                    <div class="px-1 py-0">
+                                        <p class="label-harga2 m-0" id="mount2_{{$val_c->product_id}}" style="color: #41B1CD !important; font-weight: bold;"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
+                                    </div>
+                                    <div class="text-left">
+                                        <button type="button" class="btn btn-primary button_minus" onclick="cart('{{$val_c->id}}','min')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-minus"></i></button>
+                                        <span class="product-name mr-1 ml-1" id="show_m2{{$val_c->product_id}}" style="color: #000; padding: 3px; font-weight: bold;"> {{$val_c->mount}} </span>
+                                        <button type="button" class="btn btn-primary button_plus" onclick="cart('{{$val_c->id}}','plus')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-plus"></i></button>
+                                        <input type="hidden" id="{{$val_c->id}}" value="{{$val_c->mount}}">
+                                        <input type="hidden" id="harga_m{{$val_c->id}}" value="{{$amount}}">
+                                        <input type="hidden" id="harga{{$val_c->id}}" value="{{$val_c->product_harga}}">
+                                        <input type="hidden" id="product_id_{{$val_c->id}}" value="{{$val_c->product_id}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2 align-self-center">
+                                <button class="btn btn-sm btn-danger" onclick="valDel('{{$val_c->id}}')" style="border-radius: 10px;"><i class="fa fa-times" style="color: white;"></i></button>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div id="listcart" class="col-12 my-auto text-right" style="background-color: #fff; height: 50px; display: none;">
+                    <!-- {{ $count_cart }} Item | <span id="total_">Rp {{ number_format($total, 0, ',', '.') }}</span> -->
+                    <!-- <div class="col-6"> -->
+                        <a href="{{route('cart')}}" class="btn btn-sm align-self-right button_pesan" style="background-color: #25d366; color: #fff; border-radius: 30px;">
+                        <input type="hidden" id="total" value="{{$total}}">
+                        <img src="{{ asset('assets/image/logo-whatsapp.png') }}" style="width: 20px;"> Pesan Sekarang
+                        </a>  
+                    <!-- </div>   -->
+                </div>
             </div>
-            <div class="col-6" style="text-align: right;">
-                Follow Us&nbsp;
-                
-                    <a href="https://www.facebook.com/" class="mr-1 mr-md-3">
-                        <img src="{{ asset('assets/image/icon_facebook.png') }}" alt="" class="img-fluid" style="width: 7px;">
-                    </a>
-                    <a href="https://www.instagram.com/" class="mr-1 mr-md-3">
-                        <img src="{{ asset('assets/image/icon_instagram.png') }}" alt="" class="img-fluid" style="width: 15px;">
-                    </a>
-                    <a href="https://www.youtube.com/" class="mr-1 mr-md-3">
-                        <img src="{{ asset('assets/image/icon_youtube.png') }}" alt="" class="img-fluid" style="width: 15px;">
-                    </a>
-                    <a href="https://twitter.com/" class="mr-1 mr-md-3">
-                        <img src="{{ asset('assets/image/icon_twitter.png') }}" alt="" class="img-fluid" style="width: 15px;">
-                    </a>
+            <div id="bottom-footer text-center" class="bottom-footer">
+                <div class="col-12 row">
+                    <div class="col-6">    
+                        <div class=" text-center py-2">
+                            <img src="{{ asset('assets/image/logo_claris.png') }}" width="80px" height="40px">
+                            <div class="text-center teks-footer">
+                                <span style="color: #000; font-size: 12px;"><b>© Copyright 2020</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">    
+                        <div class="row text-center py-4">
+                            <div class="col-12 my-auto mx-auto">
+                                <span style="color: #000; font-size: 12px;"><b>Follow Us&nbsp;&nbsp;&nbsp;</b></span>
+                                <a href="https://www.facebook.com/" class="mr-1 mr-md-3">
+                                    <img src="{{ asset('assets/image/UI Web Claris New-20.png') }}" alt="" class="img-fluid" style="width: 20px;">
+                                </a>
+                                <a href="https://www.instagram.com/" class="mr-1 mr-md-3">
+                                    <img src="{{ asset('assets/image/UI Web Claris New-21.png') }}" alt="" class="img-fluid" style="width: 20px;">
+                                </a>
+                                <a href="https://www.youtube.com/" class="mr-1 mr-md-3">
+                                    <img src="{{ asset('assets/image/UI Web Claris New-22.png') }}" alt="" class="img-fluid" style="width: 20px;">
+                                </a>
+                                <a href="https://twitter.com/" class="mr-1 mr-md-3">
+                                    <img src="{{ asset('assets/image/UI Web Claris New-23.png') }}" alt="" class="img-fluid" style="width: 20px;">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div id="bottom-footer text-center" class="bottom-footer">
-            <div class="text-center" style="padding-top: 150px;">
-                <img src="{{ asset('assets/image/logo_claris_white.png') }}" width="300px" height="150px">
-            </div>
-            <div class="text-center">
-                <a style="color: #fff; font-size: 20px;">© Copyright 2020</a>
-            </div>
-        </div>
-    </footer> -->
+            <!-- <div class="footer-copyright text-center py-3" style="background-color: #000">© 2020 Copyright:
+                <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+            </div> -->
+        </footer>
 
     <div class="modal fade" id="ImgModal" role="dialog" style="display: none;">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content" style="background: #fff">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
                 <div class="modal-body">
                     <div class="row justify-content-center">
-                        Image view <p id="id_img"></p>
+                        <img class="dtl_img">
                     </div>
                 </div>
             </div>
@@ -267,7 +396,7 @@
     <script type="text/javascript">
         function button_minus_br(id)
         {
-            var jum = $('#'+id).val();
+            var jum = $('#show_'+id).html();
             var jumlah = parseInt(jum) - 1;
 
             // AMBIL NILAI HARGA
@@ -289,7 +418,7 @@
 
             // alert(jumlah);
 
-            if (jumlah<1) {
+            if (jumlah<0) {
               // alert('Jumlah Tidak Boleh Kurang dari 0')
                 Swal.fire({
                     title: 'Failed',
@@ -304,13 +433,14 @@
             } else {
               $('#'+id).val(jumlah);
               $('#show_'+id).html(jumlah);
+              $('#show_m2'+id).html(jumlah);
               $('#productPrice'+id).text(harga);
             }
         }
 
         function button_plus_br(id)
         {
-            var jum = $('#'+id).val();
+            var jum = $('#show_'+id).html();
             var jumlah = parseInt(jum) + 1;
             // alert(jum);
 
@@ -336,26 +466,70 @@
               alert('Jumlah Tidak Boleh Kosong')
             } else {
 
-              $('#'+id).val(jumlah)
-              $('#show_'+id).html(jumlah)
+              $('#'+id).val(jumlah);
+              $('#show_'+id).html(jumlah);
+              $('#show_m2'+id).html(jumlah);
               $('#productPrice'+id).text(harga);
 
-                Swal.fire({
-                    title: 'Sukses',
-                    text: 'Item Berhasil dimasukan kekeranjang',
-                    icon: 'success',
-                   showConfirmButton: false,
-                   timer: 1500
-                }).then(function(){ 
-                    location.reload();
-                });
+                // Swal.fire({
+                //     title: 'Sukses',
+                //     text: 'Item Berhasil dimasukan kekeranjang',
+                //     icon: 'success',
+                //    showConfirmButton: false,
+                //    timer: 1500
+                // }).then(function(){ 
+                //     location.reload();
+                // });
             }
         }
 
-        function detailImg(id){
-            $('#ImgModal').show();
-            alert(id);
+        function detailImg(img){
 
+            alert(img);
+            $('#ImgModal').show();
+            if(img!=""){
+                $(".dtl_img").attr("src","{{ asset('assets/image/product/') }}"+'/'+img);
+            }else{
+                $(".dtl_img").attr("src","");
+            }
+        }
+
+        function insertCart(id){
+            var product     = $('#product_id_'+id).val();
+            var mount       = $('#'+id).val();
+            var price       = $('#harga_'+id).val();
+            var mount_cart  = $('#show_'+id).html();
+
+            $.ajax({
+                url: '/cart/update_cart?id='+id+'&product_id='+id+'&jumlah='+mount,
+                data:{
+                        id : id,
+                        product_id : product,
+                        jumlah : mount
+                    }, 
+                success : function(data){
+                    if (data['status']=='success') {
+
+                        var total_price = parseFloat(data['total_price']);
+                        var prc = (total_price/1000).toFixed(3);
+                        $('#total_mount').html('<strong>Rp. '+prc+'</strong>');
+
+                        var harga           = $('#harga_'+id).val();
+                        var harga_mount     = $('#show_'+id).html();
+                        var harga_mount1    = parseInt(harga) * parseInt(harga_mount);
+                        harga_mount2        = (harga_mount1/1000).toFixed(3);
+                        $('#mount2_'+id).html('Rp. '+harga_mount2);
+
+                        Swal.fire({
+                            title: 'Sukses',
+                            text: 'Item Berhasil dimasukan kekeranjang',
+                            icon: 'success',
+                           showConfirmButton: false,
+                           timer: 1500
+                        })
+                    }
+                }
+            })
         }
     </script>
 @endsection

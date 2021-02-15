@@ -216,7 +216,7 @@
                 </div>
             </div>
         </nav>
-        <div id="content">
+        <div id="content" style="background-color: #0097bb !important; background-image: url('{{ asset('assets/image/UI Web Claris New-28.png') }}'), url('{{ asset('assets/image/UI Web Claris New-29.png') }}');">
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1.5;">
                 <div class="container-fluid">
                     <!-- <div class="col-4 my-auto">
@@ -226,7 +226,7 @@
                     </div> -->
                     <div class="col-4 my-auto text-center">
                         <a class="navbar-brand ml-md-5 mx-auto" href="/" style="margin: auto !important">
-                            <img src="{{ asset('assets/image/logo_claris.png') }}" width="120px" height="70px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
+                            <img src="{{ asset('assets/image/logo_claris.png') }}" width="100px" height="60px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                         </a>
                     </div>
                     <div class="col-4 my-auto">
@@ -302,127 +302,7 @@
             
         </div>
 
-        <footer class="fixed-bottom"> <!--fixed-bottom-->
-            <div id="footer"> <!--class="fixed-bottom"-->
-                <div class="row" style="background-color: #DADADA; padding: 10px;">
-                    <div id="cart_icon" class="col-5 my-auto align-self-center">
-                        <?php
-                            if(!empty($cart)) {
-                                $total = 0;
-                                foreach($cart as $key => $value) {
-                                    $amount = $value->product_harga * $value->mount;
-                                    $total += $amount;
-                                }
-                        ?>
-                            <a href="#" class="float-center cart" style="position: relative;">
-                                <img src="{{ asset('assets/image/keranjang.png') }}" alt="" style="width: 30px;">
-                                <span style="color: #000; font-size: 12px;" class="teks-footer"><strong>Rp {{ number_format($total, 0, ',', '.') }}</strong></span>
-                            </a>
-                               
-                        <?php
-                            } else {
-                        ?>
-                            <p class="float-center p-0 my-auto" style="color: #000; font-size: 12px;"><strong>Rp 0</strong></p>
-                            <a href="{{route('cart')}}" style="position: relative;">
-                                <img src="{{ asset('assets/image/keranjang.png') }}" alt="" style="width: 30px;">
-                            </a>
-                        <?php
-                            }
-                        ?>
-                    </div>
-                    <div id="tombol_click" class="col-2 my-auto align-self-center">
-                        <a href="#" id="clickme" isi="true" style="color: #000 !important">
-                            <i class="fas fa-chevron-up fa-lg"></i>
-                        </a>
-                    </div>
-                    <div class="col-5 my-auto align-self-center" id="sosmed">
-                        <span style="color: #000;" class="teks-footer">
-                            <img src="{{ asset('assets/image/footer-whatsapp.png') }}" alt="" style="width: 20px;">
-                            <strong class="float-center" style="font-size: 12px;">Pesan Sekarang</strong>
-                            <!-- <strong class="float-center">( {{$count_cart}} Item )</strong> -->
-                        </span>
-                    </div>
-                </div>
-                <div class="hidden row" id="book" style="background-color: #fff; max-height: 250px;">
-                    <div class="scroll w-100 h-100" id="table_c" style="display: none;">
-                        @php
-                         $total = 0 ;
-                        @endphp
-                        @foreach($cart as $key => $value)
-                        @php
-                        $amount = $value->product_harga * $value->mount;
-                        $total += $amount;
-                        @endphp
-                        <div class="row mb-3" style="margin-bottom: 40px; margin-top: 10px;">
-                            <div class="col-4">
-                                <div class="text-center">
-                                    <img class="img-thumbnail img-fluid" src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'none.jpg').'') }}" style="max-width: 90px;max-height: 90px;" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="float-left">
-                                    <div class="px-1 py-0">
-                                        <p class="product-price-header2 m-0" style="color: #000 !important;"><strong>{{$value->product_name}}</strong></p>
-                                    </div>
-                                    <div class="px-1 py-0">
-                                        <p class="label-harga2 m-0" id="mount2_{{$value->id}}" style="color: #41B1CD !important; font-weight: bold;"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
-                                    </div>
-                                    <div class="text-left">
-                                        <button type="button" class="btn btn-primary button_minus" onclick="cart('{{$value->id}}','min')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-minus"></i></button>
-                                        <span class="product-name mr-1 ml-1" id="show_m2{{$value->id}}" style="color: #000; padding: 3px; font-weight: bold;"> {{$value->mount}} </span>
-                                        <button type="button" class="btn btn-primary button_plus" onclick="cart('{{$value->id}}','plus')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-plus"></i></button>
-                                        <input type="hidden" id="{{$value->id}}" value="{{$value->mount}}">
-                                        <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
-                                        <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2 align-self-center">
-                                <button class="btn btn-sm btn-danger" onclick="valDel('{{$value->id}}')" style="border-radius: 10px;"><i class="fa fa-times" style="color: white;"></i></button>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div id="listcart" class="col-12 my-auto text-right" style="background-color: #fff; height: 50px; display: none;">
-                    <!-- {{ $count_cart }} Item | <span id="total_">Rp {{ number_format($total, 0, ',', '.') }}</span> -->
-                    <!-- <div class="col-6"> -->
-                        <a href="{{route('cart')}}" class="btn btn-sm align-self-right button_pesan" style="background-color: #25d366; color: #fff; border-radius: 30px;">
-                        <input type="hidden" id="total" value="{{$total}}">
-                        <img src="{{ asset('assets/image/logo-whatsapp.png') }}" style="width: 20px;"> Pesan Sekarang
-                        </a>  
-                    <!-- </div>   -->
-                </div>
-            </div>
-            <div id="bottom-footer text-center" class="bottom-footer">
-                <div class="text-center py-2">
-                    <img src="{{ asset('assets/image/logo_claris_white.png') }}" width="80px" height="40px">
-                </div>
-                <div class="text-center teks-footer">
-                    <span style="color: #fff; font-size: 12px;"><b>© Copyright 2020</b></span>
-                </div>
-                <div class="row text-center">
-                    <div class="col-12 my-auto mx-auto">
-                        <span style="color: #fff; font-size: 12px;"><b>Follow Us&nbsp;&nbsp;&nbsp;</b></span>
-                        <a href="https://www.facebook.com/" class="mr-1 mr-md-3">
-                            <img src="{{ asset('assets/image/logo-facebook.png') }}" alt="" class="img-fluid" style="width: 20px;">
-                        </a>
-                        <a href="https://www.instagram.com/" class="mr-1 mr-md-3">
-                            <img src="{{ asset('assets/image/logo-instagram.png') }}" alt="" class="img-fluid" style="width: 20px;">
-                        </a>
-                        <a href="https://www.youtube.com/" class="mr-1 mr-md-3">
-                            <img src="{{ asset('assets/image/logo-youtube.png') }}" alt="" class="img-fluid" style="width: 20px;">
-                        </a>
-                        <a href="https://twitter.com/" class="mr-1 mr-md-3">
-                            <img src="{{ asset('assets/image/logo-twitter.png') }}" alt="" class="img-fluid" style="width: 20px;">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="footer-copyright text-center py-3" style="background-color: #000">© 2020 Copyright:
-                <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
-            </div> -->
-        </footer>
+        
     </div>
 
     <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="edit-modal-label" aria-hidden="true">

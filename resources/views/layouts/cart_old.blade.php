@@ -13,30 +13,48 @@
         <!-- <hr class="mb-5"> -->
         <form method="post" action="{{route('cart_pay')}}"> <!-- method="post" action="{{route('cart_pay')}}" -->
         @csrf
-        <div class="row section_content mb-5" style="margin-bottom: 30px">
-            <div class="col-sm-12 col-md-4 col-md-4 mb-5">
-                <div class="card mx-auto cart_card">
+        <div class="row section_content mb-5" style="margin-bottom: 30px; background-color: rgba(245, 245, 245, 0); ">
+            <div class="col-12"> <!--col-md-4 col-md-4 mb-5-->
+                <div class="card mx-auto cart_card" style="background-color: rgba(245, 245, 245, 0); border: none;">
                     <div class="card-body">
                             <div class="form-group">
-                                <input style="border:1px solid #ff0000" type="text" name="costumer_name" class="form-control" placeholder="Nama" id="name">
+                                <label style="color: #fff;">Nama </label>
+                                <input style="border:1px solid #ff0000; border-radius: 30px;" type="text" name="costumer_name" class="form-control" placeholder="Nama" id="name">
                                 <!-- <label for="name" class="cart_label">Nama</label> -->
                             </div>
                             <div class="form-group">
-                                <textarea style="border:1px solid #ff0000" class="form-control"  name="costumer_adress" rows="5" placeholder="Alamat Pengiriman" id="deliveryAddress"></textarea>
+                                <label style="color: #fff;">No. Telp/Handphone </label>
+                                <input style="border:1px solid #ff0000; border-radius: 30px;" type="number"  name="costumer_phone" class="form-control" placeholder="Nomor Telepon" id="phoneNumber">
                                 <!-- <label for="deliveryAddress" class="cart_label">Alamat Pengiriman</label> -->
                             </div>  
                             <div class="form-group">
-                                <input style="border:1px solid #ff0000" type="number"  name="costumer_phone" class="form-control" placeholder="Nomor Telepon" id="phoneNumber">
+                                <label style="color: #fff;">Kabupaten/Kota </label>
+                                <input style="border:1px solid #ff0000; border-radius: 30px;" class="form-control"  name="costumer_city"placeholder="Alamat Pengiriman" id="deliveryCity">
                                 <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                             </div>
                             <div class="form-group">
-                                <input style="border:1px solid #ff0000" type="email"  name="costumer_email" class="form-control" placeholder="Email" id="email" >
-                                <!-- <label for="email" class="cart_label">Email</label> -->
+                                <label style="color: #fff;">Detail Alamat</label>
+                                <textarea style="border:1px solid #ff0000; border-radius: 30px;" class="form-control"  name="costumer_adress"  placeholder="Alamat Pengiriman" id="deliveryAddress" rows="5"></textarea>
+                                <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                             </div>
+                            <div class="form-group">
+                                <label style="color: #fff;">Kode Promo</label>
+                                <input style="border:1px solid #ff0000; border-radius: 30px;" class="form-control col-5"  name="kode_promo" id="kode_promo"></input>
+                            </div>
+                            <div class="form-group">
+                                <label style="color: #fff;">Syarat dan ketentuan belanja dengan Whatsapp Delivery Claris</label>
+                                <textarea style="border:1px solid #ff0000; border-radius: 30px;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="8" disabled>Syarat dan kententuan</textarea>
+                                <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
+                            </div>
+                            <!-- <div class="form-group">
+                                <label style="color: #fff;">Email</label>
+                                <input style="border:1px solid #ff0000; border-radius: 30px;" type="email"  name="costumer_email" class="form-control" placeholder="Email" id="email" >
+                                <label for="email" class="cart_label">Email</label>
+                            </div> -->
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-8 mb-6">
+            <!-- <div class="col-sm-12 col-md-8 mb-6">
                 <div class="card mx-auto cart_card">
                     <div class="card-body table-responsive">
                         <table class="table" style="width: 100%;">
@@ -58,12 +76,11 @@
                                 @endphp
                                 <tr>
                                     <td class="align-middle img-product" scope="row" style="width: 80px">
-                                        <img src="{{ asset('assets/image/product/'.(($value->image_link!='') ? $value->image_link : 'none.jpg').'') }}" class="card-img-top img-fluid">
+                                        <img src="{{ asset('assets/image/product/'.(($value->product_image!='') ? $value->product_image : 'none.jpg').'') }}" class="card-img-top img-fluid">
                                     </td>
                                     <td class="align-left">
                                         <h5 class="product-price-header2" style="color: #000 !important; font-weight: bold;">{{$value->product_name}}</h5><br>  
                                         <p class="label-harga2" id="mount3_{{$value->id}}" style="color: #41B1CD !important; text-align: left"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
-                                        <!-- <div> -->
                                             <button id="minus" value="{{$value->id}}" type="button" class="btn btn-primary button_minus" onclick="cart_minus('{{$value->id}}')" style="padding: 0; text-align: center;"><i class="fa fa-minus"></i></button>
                                             <span class="mr-1 ml-1" id="show_m3{{$value->id}}">{{$value->mount}}</span>
                                             <button id="plus" value="{{$value->id}}" type="button" class="btn btn-primary button_plus" onclick="cart_plus('{{$value->id}}')" style="padding: 0; text-align: center;"><i class="fa fa-plus"></i></button>
@@ -71,10 +88,8 @@
                                             <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
                                             <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">
                                             <input type="hidden" id="total_brg" value="{{$total_brg}}">
-                                        <!-- </div> -->
                                     </td>
                                     <td class="align-middle">
-                                        <!-- <a class="btn btn-sm btn-danger" href="{{route('cart_delete',$value->id)}}" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini dari keranjang belanja Anda?');"><i class="fa fa-times"></i></a> -->
                                         <button id="delete_prod" value="{{$value->id}}" type="button" class="btn btn-sm btn-danger" onclick="valDel('{{ $value->id }}');"><i class="fa fa-times" style="color: white;"></i></button>
                                         
                                     </td>
@@ -91,12 +106,13 @@
                     <div class="card-footer" id="whatsapp">
                         <button onclick="whatsapp();" class="btn btn-primary btn-block button_order">Pesan Sekarang</button>
                     </div>
-                    <!-- <div class="card-footer">
-                        <button type="submit" class="btn btn-success btn-block button_order">
-                            Pesan Sekarang
-                        </button>
-                    </div> -->
                 </div>
+            </div> -->
+            <div class="col-sm-12 col-md-12 text-center" style="text-align: center;">
+                <a class="btn button_whatsapp" onclick="whatsapp();">
+                    <img src="{{ asset('assets/image/logo-whatsapp.png') }}" alt="" style="width: 20px;">
+                    <strong class="float-center" style="font-size: 12px;color: #fff;">Pesan Sekarang</strong>
+                </a>
             </div>
         </div>
         </form>
@@ -120,6 +136,18 @@
             });
 
             $('#deliveryAddress').on('keyup', function(){ 
+
+                var isi = $(this).val();
+                if(isi == ""){
+                     $(this).removeClass('data_input');
+                    $(this).addClass('data_input_empty');
+                }else{
+                     $(this).removeClass('data_input_empty');
+                    $(this).addClass('data_input');
+                }
+            });
+
+            $('#deliveryCity').on('keyup', function(){ 
 
                 var isi = $(this).val();
                 if(isi == ""){
@@ -155,10 +183,23 @@
                 }
             });
 
+            $('#kode_promo').on('keyup', function(){ 
+
+                var isi = $(this).val();
+                if(isi == ""){
+                    $(this).removeClass('data_input');
+                    $(this).addClass('data_input_empty');
+                }else{
+                    $(this).removeClass('data_input_empty');
+                    $(this).addClass('data_input');
+                }
+            });
+
         });
 
         function whatsapp(){
             var nm      = $('#name').val();
+            var kota    = $('#deliveryCity').val(); 
             var almt    = $('#deliveryAddress').val(); 
             var tlp     = $('#phoneNumber').val();
             var email   = $('#email').val();
@@ -166,18 +207,59 @@
             var total_pay = $('#total_pay').val();
             var nm_brg    = $('#nm_brg').val();
 
+            var toastMixin = Swal.mixin({
+                toast: true,
+                icon: 'success',
+                title: 'General Title',
+                animation: false,
+                position: 'top-right',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+
             if(nm!='' && almt!='' && tlp!='' && email!='' && total_brg!=''){
                 window.open('https://api.whatsapp.com/send?phone=+6281290388223&text=*Nama*:%20'+nm+'%0A*Alamat*:%20'+almt+'%0A*Telp*:%20'+tlp+'%0A*Email*:%20'+email+'%0A*Total Item*:%20'+total_brg+'%0A*Total Harga*:%20'+total_pay+'%0A*Pesanan*:%20'+nm_brg);
             }else if (nm==''){
-                Swal.fire({ text: 'Silahkan isi Nama terlebih dahulu!', confirmButtonColor: '#4db849'});
+                // Swal.fire({ text: 'Silahkan isi Nama terlebih dahulu!', confirmButtonColor: '#4db849'});
+                toastMixin.fire({
+                    title: 'Silahkan isi Nama terlebih dahulu!',
+                    icon: 'error'
+                });
             }else if (almt==''){
-                Swal.fire({ text: 'Silahkan isi Alamat terlebih dahulu!', confirmButtonColor: '#4db849'});
+                // Swal.fire({ text: 'Silahkan isi Alamat terlebih dahulu!', confirmButtonColor: '#4db849'});
+                toastMixin.fire({
+                    title: 'Silahkan isi Alamat terlebih dahulu!',
+                    icon: 'error'
+                });
             }else if (tlp==''){
-                Swal.fire({ text: 'Silahkan isi data Telepon terlebih dahulu!', confirmButtonColor: '#4db849'});
+                // Swal.fire({ text: 'Silahkan isi data Telepon terlebih dahulu!', confirmButtonColor: '#4db849'});
+                toastMixin.fire({
+                    title: 'Silahkan isi data Telepon terlebih dahulu!',
+                    icon: 'error'
+                });
             }else if (email==''){
-                Swal.fire({ text: 'Silahkan isi data Email terlebih dahulu!', confirmButtonColor: '#4db849'});
+                // Swal.fire({ text: 'Silahkan isi data Email terlebih dahulu!', confirmButtonColor: '#4db849'});
+                toastMixin.fire({
+                    title: 'Silahkan isi data Email terlebih dahulu!',
+                    icon: 'error'
+                });
             }else if (total_brg==''){
-                Swal.fire({ text: 'Tidak ada barang yang dipesan!', confirmButtonColor: '#4db849'});
+                // Swal.fire({ text: 'Tidak ada barang yang dipesan!', confirmButtonColor: '#4db849'});
+                toastMixin.fire({
+                    title: 'Tidak ada barang yang dipesan!',
+                    icon: 'error'
+                });
+            }else if (kota==''){
+                // Swal.fire({ text: 'Silahkan isi data Kota/Kabupaten terlebih dahulu!', confirmButtonColor: '#4db849'});
+                toastMixin.fire({
+                    title: 'Silahkan isi data Kota/Kabupaten terlebih dahulu!',
+                    icon: 'error'
+                });
             }
         }
 

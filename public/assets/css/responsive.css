@@ -200,4 +200,9 @@
     .detail {
       margin-left: 110px;
     }
+
+    .dtl_img{
+      height:300px; 
+      width: 300px;
+    }
 }

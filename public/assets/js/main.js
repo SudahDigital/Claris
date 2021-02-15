@@ -164,6 +164,7 @@ function cart(id,param)
   var harga = $('#harga'+id).val();
   var total = $('#total').val();
   var mount = $('#'+id).val();
+  var id_prod = $('#product_id_'+id).val();
   var mount_plus = parseInt(mount)+1;
   var mount_min  = parseInt(mount)-1;
 
@@ -176,11 +177,12 @@ function cart(id,param)
           var harga_mount1 = parseInt(harga_mount) + parseInt(harga);
           harga_mount2 = rupiah(harga_mount1);
 
-          $('#show_m2'+id).html(mount1);
+          $('#show_m2'+id_prod).html(mount1);
+          $('#show_'+id_prod).html(mount1);
           $('#'+id).val(mount1);
 
           $('#harga_m'+id).val(harga_mount1);
-          $('#mount2_'+id).html(harga_mount2);
+          $('#mount2_'+id_prod).html(harga_mount2);
           var total1 = parseInt(total)+ parseInt(harga);
 
           $('#total').val(total1);
@@ -201,11 +203,12 @@ function cart(id,param)
             var harga_mount1 = parseInt(harga_mount) - parseInt(harga);
             harga_mount2 = rupiah(harga_mount1);
             
-            $('#show_m2'+id).html(mount1);
+            $('#show_m2'+id_prod).html(mount1);
+            $('#show_'+id_prod).html(mount1);
             $('#'+id).val(mount1);
 
             $('#harga_m'+id).val(harga_mount1);
-            $('#mount2_'+id).html(harga_mount2);
+            $('#mount2_'+id_prod).html(harga_mount2);
             var total1 = parseInt(total)- parseInt(harga);
 
             $('#total').val(total1);

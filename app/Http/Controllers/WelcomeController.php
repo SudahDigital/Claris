@@ -20,15 +20,14 @@ class WelcomeController extends Controller
     {	
         session_start();
 
-        $ses_id =  $request->header('User-Agent'); //session_id();
+        $userAgent  = $request->header('User-Agent'); //session_id();
+        $clientIP   = \Request::getClientIp(true);
+        $ses_id     = $userAgent.$clientIP;
 
         $user_id = Auth::id();
         if (empty($user_id)) {
-            # code...
             $user_id = 0;
         }
-        // return $user_id;die;
-    	// $data['product'] = Product::with(['product_image'])->paginate(12);
 
         $prd = DB::table('products')
             ->leftJoin('product_images', 'products.id', '=', 'product_images.product_id')
@@ -41,11 +40,9 @@ class WelcomeController extends Controller
 
         $cart = DB::table('carts')
             ->leftJoin('products', 'products.id', '=', 'carts.product_id')
-            ->leftJoin('product_images', 'product_images.product_id', '=', 'carts.product_id')
-            ->select('carts.*', 'products.product_name', 'products.product_harga', 'product_images.image_link')
+            ->select('carts.*', 'products.product_name', 'products.product_harga', 'products.product_image')
             ->where('carts.session_id', $ses_id)
             ->get();
-        // return $cart;die;
         $data['count_cart'] = count($cart);
         $data['cart'] = $cart;
 
