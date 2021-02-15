@@ -257,12 +257,9 @@
                     </form>
                 </div>
             </nav> -->
-
-
             @isset($page)
                 @if($page == 'home') {
                     <!-- BANNER -->
-                    <br><br><br>
                     <div role="main" style="margin-top: -4px;">
                         <div id="bannerSlide" class="carousel slide" data-ride="carousel" >
                             <!-- Indicators -->
