@@ -86,7 +86,7 @@
 
         .button_welcome {
             font-family: Open Sans;
-            background: linear-gradient(to bottom, #6a3137, #6a3137); 
+            background: linear-gradient(to bottom, #F08029, #F08029); 
             color:white; 
             padding: 5px 15px; 
             border:none; 
@@ -96,7 +96,7 @@
             font-weight: 800; 
             position: absolute;
             top: 70px;
-            right: 20px;
+            right: 80px;
         }
 
         .button_welcome:hover {
