@@ -84,6 +84,29 @@
             font: 14px arial;
         }
 
+        .button_welcome {
+            font-family: Open Sans;
+            background: linear-gradient(to bottom, #6a3137, #6a3137); 
+            color:white; 
+            padding: 5px 15px; 
+            border:none; 
+            box-shadow: 2px 2px 2px grey; 
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 800; 
+            position: absolute;
+            top: 70px;
+            right: 20px;
+        }
+
+        .button_welcome:hover {
+            outline:0px !important;
+            -webkit-appearance:none;
+            -webkit-transform: translateY(-3px);
+            transform: translateY(-3px);
+            box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3); 
+        }
+
         @media screen and (max-width: 600px) {
             .nav-center {
                 position: absolute;
@@ -119,6 +142,213 @@
                 width: 42%;
                 left: 29%;
                 top: 5%;
+            }
+        }
+
+        @media (max-width: 2560px){
+            .button_welcome {
+                font-size: 34px;
+                padding: 12px 26px;
+                top: 42rem;
+                right: 12%;
+                font-weight: 600;
+                border-radius: 20px;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 1920px){
+            .button_welcome {
+                font-size: 25px;
+                padding: 10px 25px;
+                top: 32rem;
+                right: 12%;
+                font-weight: 600;
+                border-radius: 17px;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 1440px){
+            .button_welcome {
+                font-size: 21px;
+                padding: 10px 17px;
+                top: 24rem;
+                right: 10%;
+                font-weight: 600;
+                border-radius: 15px;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 1366px){
+            .button_welcome {
+                font-size: 19px;
+                padding: 10px 17px;
+                top: 22.4rem;
+                right: 10%;
+                font-weight: 600;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 1024px){
+            .button_welcome {
+                font-size: 15px;
+                padding: 10px 17px;
+                top: 17rem;
+                right: 9%;
+                font-weight: 600;
+            }
+
+            #my-welcome-message {
+                width: 42%;
+                left: 29%;
+                top: 10%;
+            }
+        }
+
+        @media (max-width: 768px){
+            .button_welcome {
+                font-size: 15px;
+                padding: 10px 17px;
+                top: 18.2rem;
+                right: 9.5%;
+                font-weight: 600;
+                border-radius: 14px;
+            }
+
+            #my-welcome-message {
+                width: 60%;
+                left: 20%;
+                top: 20%;
+            }
+        }
+
+        @media (max-width: 600px){
+            .button_welcome {
+                font-size: 15px;
+                padding: 7px 18px;
+                top: 27rem;
+                right: 13%;
+                font-weight: 600;
+            }
+
+            #my-welcome-message {
+                width: 90%;
+                left: 5%;
+                top: 5%;
+            }
+            
+        }
+
+        @media (max-width: 480px){
+            .button_welcome {
+                font-size: 12px;
+                padding: 7px 15px;
+                top: 21.5rem;
+                right: 13%;
+                font-weight: 600;
+            }
+
+            #my-welcome-message {
+                top: 2%;
+            }
+        }
+
+        @media (max-width: 425px){
+            .button_welcome {
+                font-size: 11px;
+                padding: 7px 15px;
+                top: 19rem;
+                right: 12%;
+                font-weight: 600;
+            }
+
+            #my-welcome-message {
+                width: 90%;
+                left: 5%;
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 411px){
+            .button_welcome {
+                font-size: 11px;
+                padding: 7px 14px;
+                top: 18.5rem;
+                right: 12%;
+                font-weight: 600;
+            }
+        }
+
+        @media (max-width: 384px){
+            .button_welcome {
+                font-size: 10px;
+                padding: 7px 13px;
+                top: 17.2rem;
+                right: 12%;
+                font-weight: 600;
+            }
+        }
+
+        @media (max-width: 375px){
+            .button_welcome {
+                font-size: 10px;
+                padding: 7px 13px;
+                top: 16.8rem;
+                right: 12%;
+                font-weight: 600;
+            }
+        }
+
+        @media (max-width: 364px){
+            .button_welcome {
+                font-size: 10px;
+                padding: 7px 12px;
+                top: 16.4rem;
+                right: 12%;
+                font-weight: 600;
+            }
+        }
+
+        @media (max-width: 338px){
+            .button_welcome {
+                font-size: 9px;
+                padding: 7px 12px;
+                top: 15.4rem;
+                right: 12%;
+                font-weight: 600;
+            }
+        }
+
+        @media (max-width: 320px){
+            .button_welcome {
+                font-size: 8px;
+                padding: 7px 12px;
+                top: 14.5rem;
+                right: 12%;
+                font-weight: 600;
             }
         }
     </style>
