@@ -14,33 +14,35 @@
         <!-- <div class="txt-banner2" style="color: #fff;"> Top Product <span class="fa fa-star" style="color: #fff;"></span></div> -->
     </div>
     <div class="container" style="{{ $page == 'home' ? 'margin-top: 30px' : 'margin-top: 30px' }}">
-        <div class="row align-middle col-md-12">
-            <div class="col-md-6">
-                <h3 class="title-page" style="color: #fff;"><b>Product</b></h3>
-            </div>
-            <div class="col-md-6 text-right">
-                <!-- <div class="col-md-3 text-right">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="col-12" style="margin-bottom: 20px;">
+            <div class="row">
+                <div class="col-6 column-left">
+                    <h3 class="title-page" style="color: #fff;"><b>Product</b></h3>
                 </div>
-                <div class="col-md-3 text-right"> -->
-                    <!-- <h6 class="title-page filter_category">Filter by Category <button type="button" class="btn filter_category" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
-                    <i class="fas fa-caret-down fa-lg"></i></button></h6>
-                    <div id="demo" class="collapse" style="">
-                        <div class="col-md-12 px-2 p-0" style="margin-bottom: 20px;"> -->
-                            <div class="dropdown">
-                                <button class="btn filter_category" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <b>Filter By Category</b> <i class="fas fa-caret-down fa-lg"></i>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="{{ url('/') }}" style="color: #3CC2B1;"><b>Semua Produk</b></a>
-                                    @foreach($category as $key => $value)
-                                        <a class="dropdown-item" href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" style="color: #000;"><b>{{$value->category_name}}</b></a>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        <!-- </div>
-                    </div> --> 
-                <!-- </div> -->
+                <div class="col-6 column-right">
+                    <!-- <div class="col-md-3 text-right">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <div class="col-md-3 text-right"> -->
+                        <!-- <h6 class="title-page filter_category">Filter by Category <button type="button" class="btn filter_category" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
+                        <i class="fas fa-caret-down fa-lg"></i></button></h6>
+                        <div id="demo" class="collapse" style="">
+                            <div class="col-md-12 px-2 p-0" style="margin-bottom: 20px;"> -->
+                                <div class="dropdown">
+                                    <button class="btn filter_category" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <b>Filter By Category</b> <i class="fas fa-caret-down fa-lg"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="{{ url('/') }}" style="color: #3CC2B1;"><b>Semua Produk</b></a>
+                                        @foreach($category as $key => $value)
+                                            <a class="dropdown-item" href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" style="color: #000;"><b>{{$value->category_name}}</b></a>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            <!-- </div>
+                        </div> --> 
+                    <!-- </div> -->
+                </div>
             </div>
         </div>
         <!-- <div class="row align-middle" style="{{ $page == 'home' ? 'margin-bottom: 20px' : 'margin-bottom: 10px' }}">
@@ -65,7 +67,7 @@
                 </div>
             @endif
         </div> -->
-        <div class="row section_content" style="margin: 20px;">
+        <div class="row section_content">
             @if(count($product) < 1)
                 <h5 class="ml-3">Pencarian tidak ditemukan!</h5>
             @endif
@@ -79,12 +81,14 @@
                         ?> -->
                         <!-- <div class="text-center" style="background-color:yellow; padding:15px; border-top-right-radius: 60px;border-top-left-radius: 60px; color: #fff;"> -->
                         <div id="nmprd" style="background-color: #fff; padding:12px; border-top-right-radius: 20px;border-top-left-radius: 20px; color:#000;">
-                            <div class="col-12 row">
-                                <div class="col-3 float-left">
-                                    <a onclick="detailImg('{{ $value->product_image }}')"><i class="fa fa-eye button_eye" data-toggle="modal" data-target="#ImgModal" style="cursor: pointer;"></i></a>
-                                </div>
-                                <div class="col-9 text-right">
-                                    <span style="font-size: 12px;"><b>Detail Produk</b></span>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-3 column-left">
+                                        <a onclick="detailImg('{{ $value->product_image }}')"><i class="fa fa-eye button_eye" data-toggle="modal" data-target="#ImgModal" style="cursor: pointer;"></i></a>
+                                    </div>
+                                    <div class="col-9 column-right">
+                                        <span class="title-dtl" style="font-size: 12px;"><b>Detail Produk</b></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +100,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body" style="background-color: #fff; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
+                        <div class="card-body" style="padding: 5px;">
                             <div class="p-0" style="background-color: #000 !important;">
                                 <div class="float-left px-1 py-0" style="width: 100%;">
                                     <p class="product-price-header mb-0"><b>{{$value->product_name}}</b></p>
@@ -107,55 +111,63 @@
                                     <p class="label-harga mb-0"><strong>Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</strong></p>
                                 </div>
                             </div>
-                            <div class="p-0 button-cart">
-                                <div class="row col-12">
-                                    <div class="float-left px-1 py-2 col-6">
-                                        <!-- <form method="post" action="{{route('add_cart')}}"> -->
-                                            @csrf
-                                            <input type="hidden" id="{{$value->id}}" name="jumlah" id="jumlah" value="0">
-                                            <input type="hidden" id="harga_{{$value->id}}" name="harga_{{$value->id}}" value="{{ $value->product_harga }}">
-                                            <input type="hidden" id="product_id_{{$value->id}}" name="product_id_{{$value->id}}" value="{{$value->id}}">
-                                            <a onclick="insertCart('{{ $value->id }}')" type="button" class="btn button_filter" style="color: #fff; font-size: 12px;"><b>Tambah</b></a>
-                                        <!-- </form> -->
+                        </div>
+                        <div class="button-cart" style="background-color: #fff; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <!-- <div class="px-1 py-2"> -->
+                                            <!-- <form method="post" action="{{route('add_cart')}}"> -->
+                                                @csrf
+                                                <input type="hidden" id="{{$value->id}}" name="jumlah" id="jumlah" value="0">
+                                                <input type="hidden" id="harga_{{$value->id}}" name="harga_{{$value->id}}" value="{{ $value->product_harga }}">
+                                                <input type="hidden" id="product_id_{{$value->id}}" name="product_id_{{$value->id}}" value="{{$value->id}}">
+                                                <a onclick="insertCart('{{ $value->id }}')" type="button" class="btn button_filter" style="color: #fff; font-size: 12px;"><b>Tambah</b></a>
+                                            <!-- </form> -->
+                                        <!-- </div> -->
                                     </div>
-                                    <div class="float-right px-1 py-2 col-2">
-                                         <!-- <form method="post" action="{{route('add_cart')}}">
-                                            @csrf
-                                            <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
-                                            <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
-                                            <input type="hidden" name="product_id" value="{{$value->id}}"> -->
-                                            <a class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></a>
-                                        <!-- </form> -->
-                                    </div>
-                                    <div class="float-right px-1 py-2 col-2">
-                                        <?php
-                                            $ses_id = \Request::header('User-Agent');
-                                            $clientIP = \Request::getClientIp(true);
-                                            $user = $ses_id.$clientIP;
+                                    <div class="col-8">
+                                        <div class="float-right text-center">
+                                            <!-- <div class="col-2"> -->
+                                                <!-- <form method="post" action="{{route('add_cart')}}">
+                                                    @csrf
+                                                    <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
+                                                    <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
+                                                    <input type="hidden" name="product_id" value="{{$value->id}}"> -->
+                                                    <a class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                                <!-- </form> -->
+                                            <!-- </div> -->
+                                            <!-- <div class="col-2"> -->
+                                                <?php
+                                                    $ses_id = \Request::header('User-Agent');
+                                                    $clientIP = \Request::getClientIp(true);
+                                                    $user = $ses_id.$clientIP;
 
-                                            // $sql = \DB::select("SELECT A.id, B.mount FROM products AS A LEFT JOIN (SELECT carts.mount, carts.session_id, carts.product_id FROM carts WHERE carts.session_id = '".$user."') AS B ON A.id = B.product_id"); 
+                                                    // $sql = \DB::select("SELECT A.id, B.mount FROM products AS A LEFT JOIN (SELECT carts.mount, carts.session_id, carts.product_id FROM carts WHERE carts.session_id = '".$user."') AS B ON A.id = B.product_id"); 
 
-                                            $sql = \DB::select("SELECT A.id, B.mount FROM carts AS B LEFT JOIN (SELECT products.id FROM products) AS A ON A.id = B.product_id WHERE B.session_id = '".$user."' AND A.id = '".$value->id."' "); 
-                                            $rst = count($sql);
+                                                    $sql = \DB::select("SELECT A.id, B.mount FROM carts AS B LEFT JOIN (SELECT products.id FROM products) AS A ON A.id = B.product_id WHERE B.session_id = '".$user."' AND A.id = '".$value->id."' "); 
+                                                    $rst = count($sql);
 
-                                            if($rst > 0){
-                                                foreach ($sql as $key => $val_a) {
-                                                    echo '<span id="show_'.$val_a->id.'" class="d-inline" style="color: #000 !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center;">'.$val_a->mount.'</span>';
-                                                }
-                                            }else{
-                                                echo '<span id="show_'.$value->id.'" class="d-inline" style="color: #000 !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center;">0</span>';
-                                            }
-                                        ?>
-                                        <!-- <span id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center;">0 {{$user}}</span> -->
-                                    </div>
-                                    <div class="float-right px-1 py-2 col-2">
-                                        <!-- <form method="post" action="{{route('add_cart')}}"> -->
-                                            <!-- @csrf
-                                            <input type="hidden" id="{{$value->id}}" name="jumlah" value="0">
-                                            <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
-                                            <input type="hidden" name="product_id" value="{{$value->id}}"> -->
-                                            <a class="btn button_plus " onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                        <!-- </form> -->
+                                                    if($rst > 0){
+                                                        foreach ($sql as $key => $val_a) {
+                                                            echo '<span id="show_'.$val_a->id.'" class="d-inline title-dtl" style="color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center;">'.$val_a->mount.'</span>';
+                                                        }
+                                                    }else{
+                                                        echo '<span id="show_'.$value->id.'" class="d-inline title-dtl" style="color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center;">0</span>';
+                                                    }
+                                                ?>
+                                                <!-- <span id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center;">0 {{$user}}</span> -->
+                                            <!-- </div> -->
+                                            <!-- <div class="col-2"> -->
+                                                <!-- <form method="post" action="{{route('add_cart')}}"> -->
+                                                    <!-- @csrf
+                                                    <input type="hidden" id="{{$value->id}}" name="jumlah" value="0">
+                                                    <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
+                                                    <input type="hidden" name="product_id" value="{{$value->id}}"> -->
+                                                    <a class="btn button_plus " onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                <!-- </form> -->
+                                            <!-- </div> -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -164,13 +176,13 @@
                 </div>
             @endforeach
         </div>
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
             <div class="row justify-content-center" >
                 <div class="page" style="margin-top:0; margin-bottom:1rem;">
-                    {{ $product->links() }}
+                    {{ $product }}
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <br><br><br><br><br><br>
         <!-- Modal -->
@@ -345,27 +357,27 @@
                 <div class="col-12 row">
                     <div class="col-6">    
                         <div class=" text-center py-2">
-                            <img src="{{ asset('assets/image/logo_claris.png') }}" width="80px" height="40px">
+                            <img class="logo-claris" src="{{ asset('assets/image/logo_claris.png') }}" width="80px" height="40px">
                             <div class="text-center teks-footer">
-                                <span style="color: #000; font-size: 12px;"><b>© Copyright 2020</b></span>
+                                <span class="footer_text" style="color: #000; font-size: 12px;"><b>© Copyright 2020</b></span>
                             </div>
                         </div>
                     </div>
                     <div class="col-6">    
                         <div class="row text-center py-4">
                             <div class="col-12 my-auto mx-auto">
-                                <span style="color: #000; font-size: 12px;"><b>Follow Us&nbsp;&nbsp;&nbsp;</b></span>
+                                <span style="color: #000; font-size: 12px;" class="footer_text"><b>Follow Us&nbsp;&nbsp;&nbsp;</b></span>
                                 <a href="https://www.facebook.com/" class="mr-1 mr-md-3">
-                                    <img src="{{ asset('assets/image/UI Web Claris New-20.png') }}" alt="" class="img-fluid" style="width: 20px;">
+                                    <img src="{{ asset('assets/image/UI Web Claris New-20.png') }}" alt="" class="img-icon" style="width: 20px;">
                                 </a>
                                 <a href="https://www.instagram.com/" class="mr-1 mr-md-3">
-                                    <img src="{{ asset('assets/image/UI Web Claris New-21.png') }}" alt="" class="img-fluid" style="width: 20px;">
+                                    <img src="{{ asset('assets/image/UI Web Claris New-21.png') }}" alt="" class="img-icon" style="width: 20px;">
                                 </a>
                                 <a href="https://www.youtube.com/" class="mr-1 mr-md-3">
-                                    <img src="{{ asset('assets/image/UI Web Claris New-22.png') }}" alt="" class="img-fluid" style="width: 20px;">
+                                    <img src="{{ asset('assets/image/UI Web Claris New-22.png') }}" alt="" class="img-icon" style="width: 20px;">
                                 </a>
                                 <a href="https://twitter.com/" class="mr-1 mr-md-3">
-                                    <img src="{{ asset('assets/image/UI Web Claris New-23.png') }}" alt="" class="img-fluid" style="width: 20px;">
+                                    <img src="{{ asset('assets/image/UI Web Claris New-23.png') }}" alt="" class="img-icon" style="width: 20px;">
                                 </a>
                             </div>
                         </div>

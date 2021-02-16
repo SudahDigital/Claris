@@ -32,7 +32,7 @@ class WelcomeController extends Controller
         $prd = DB::table('products')
             ->leftJoin('product_images', 'products.id', '=', 'product_images.product_id')
             ->select('products.*', 'product_images.image_link')
-            ->paginate(12);
+            ->get();
 
         $data['product'] = $prd;
         $data['category'] = Category::all();

@@ -1325,7 +1325,7 @@ footer.footer .cart .count-cart-three {
 #content .label-harga {
   font-size: 25px !important;
   font-weight: 800 !important;
-  text-align: center;
+  text-align: left;
   color: #3CC2B1 !important;
 
 }
@@ -1491,6 +1491,7 @@ footer.footer .cart .count-cart-three {
   width: 25px; 
   height: 25px;
   color: #000;
+  opacity: 0.3;
 }
 
 #content .button_eye:hover {
@@ -1514,6 +1515,19 @@ footer.footer .cart .count-cart-three {
 .button_whatsapp {
   background-color: #F08029 !important;
   border-radius: 30px;
+}
+
+.column-left {
+  float: left;
+}
+
+.column-right {
+  float: right;
+  text-align: right;
+}
+
+.img-prd{
+  width: 100px !important;
 }
 
 
