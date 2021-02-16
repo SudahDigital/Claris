@@ -52,6 +52,18 @@
             display: none;
         }
 
+        #fvpp-blackout {
+            display: none;
+            z-index: 9997;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: #000;
+            opacity: 0.8;
+        }
+
         #welcome-message {
             /*display: none;*/
             z-index: 9998;
@@ -96,7 +108,7 @@
             font-weight: 800; 
             position: absolute;
             top: 70px;
-            right: 70px;
+            left: 20px;
         }
 
         .button_welcome:hover {
