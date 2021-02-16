@@ -109,6 +109,7 @@
             position: absolute;
             top: 70px;
             left: 20px;
+            right: 70px;
         }
 
         .button_welcome:hover {
