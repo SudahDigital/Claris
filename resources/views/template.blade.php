@@ -107,9 +107,8 @@
             font-size: 15px;
             font-weight: 800; 
             position: absolute;
-            top: 70px;
-            left: 20px;
-            right: 70px;
+            top: 80px;
+            left: 0px;
         }
 
         .button_welcome:hover {
