@@ -58,7 +58,7 @@
             position: fixed;
             border-radius: 10px;
             width: 42%;
-            left: 29%;
+            left: 79%;
             top: 5%;
             padding: 0;
             background: #FDD8AF;
@@ -96,7 +96,7 @@
             font-weight: 800; 
             position: absolute;
             top: 70px;
-            right: 80px;
+            right: 70px;
         }
 
         .button_welcome:hover {

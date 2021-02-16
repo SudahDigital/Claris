@@ -45,7 +45,7 @@
 		}
 
 		$body.append('<div id="fvpp-blackout"></div>');
-		$dialog.append('<a class="btn button_welcome pull-right" id="fvpp-close" style="color:#fff;">Beli Sekarang</a>');
+		$dialog.append('<a class="btn button_welcome pull-left" id="fvpp-close" style="color:#fff;">Beli Sekarang</a>');
 		$blackout = $('#fvpp-blackout');
 
 		if (getCookie('fvpp' + settings.cookieName)) {
