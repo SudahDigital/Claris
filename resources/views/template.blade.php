@@ -109,7 +109,6 @@
             position: absolute;
             top: 80px;
             left: 20px;
-            right: 90px;
         }
 
         .button_welcome:hover {
@@ -384,6 +383,7 @@
 
     <div id="welcome-message" class="">
         <img src="{{ asset('assets/image/lg-popup-welcome.jpg') }}" class="d-none d-md-block d-md-none w-100" alt="popup-cara-belanja-lg-web-demo" style="">
+        <img src="{{ asset('assets/image/lg-popup-welcome.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja-lg-web-demo" style="">
     </div>
 
     <div class="wrapper">
