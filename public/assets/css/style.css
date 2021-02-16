@@ -866,7 +866,7 @@ a.register:hover {
 /* SHOPPING CART */
 
 #content .cart_card:hover {
-  box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.2);
+  /*box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.2);*/
 }
 
 .cart_input {

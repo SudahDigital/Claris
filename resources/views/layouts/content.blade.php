@@ -496,13 +496,11 @@
         }
 
         function detailImg(img){
-
-            alert(img);
             $('#ImgModal').show();
             if(img!=""){
                 $(".dtl_img").attr("src","{{ asset('assets/image/product/') }}"+'/'+img);
             }else{
-                $(".dtl_img").attr("src","");
+                $(".dtl_img").attr("src","{{ asset('assets/image/product/none.jpg') }}");
             }
         }
 

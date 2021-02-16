@@ -85,7 +85,7 @@
                 </ul>
             @endif
         </nav>
-        <div id="content" style="background-color: #3CC2B1; background-image: url('{{ asset('assets/image/UI Web Claris New-26.png') }}'), url('{{ asset('assets/image/UI Web Claris New-27.png') }}');">
+        <div id="content" class="content-cart" style="background-color: #3CC2B1; background-image: url('{{ asset('assets/image/UI Web Claris New-26.png') }}'), url('{{ asset('assets/image/UI Web Claris New-27.png') }}');">
 
            <!--  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1;">
                 <div class="container-fluid">

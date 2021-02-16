@@ -23,6 +23,11 @@
       background-size: 15% 32%, 15% 30%;
     }
 
+    .content-cart {
+      background-position: 0% 65%, 100% 70% !important;
+      background-size: 30% 62%, 30% 60% !important;
+    }
+
     #content .button_add_to_cart {
         width: 50px;
     }

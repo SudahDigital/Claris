@@ -18,31 +18,31 @@
                 <div class="card mx-auto cart_card" style="background-color: rgba(245, 245, 245, 0); border: none;">
                     <div class="card-body">
                             <div class="form-group">
-                                <label style="color: #fff;">Nama </label>
+                                <label style="color: #fff;"><b>Nama<b/></label>
                                 <input style="border:1px solid #ff0000; border-radius: 30px;" type="text" name="costumer_name" class="form-control" placeholder="Nama" id="name">
                                 <!-- <label for="name" class="cart_label">Nama</label> -->
                             </div>
                             <div class="form-group">
-                                <label style="color: #fff;">No. Telp/Handphone </label>
+                                <label style="color: #fff;"><b>No. Telp/Handphone<b/></label>
                                 <input style="border:1px solid #ff0000; border-radius: 30px;" type="number"  name="costumer_phone" class="form-control" placeholder="Nomor Telepon" id="phoneNumber">
                                 <!-- <label for="deliveryAddress" class="cart_label">Alamat Pengiriman</label> -->
                             </div>  
                             <div class="form-group">
-                                <label style="color: #fff;">Kabupaten/Kota </label>
+                                <label style="color: #fff;"><b>Kabupaten/Kota<b/></label>
                                 <input style="border:1px solid #ff0000; border-radius: 30px;" class="form-control"  name="costumer_city"placeholder="Alamat Pengiriman" id="deliveryCity">
                                 <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                             </div>
                             <div class="form-group">
-                                <label style="color: #fff;">Detail Alamat</label>
+                                <label style="color: #fff;"><b>Detail Alamat<b/></label>
                                 <textarea style="border:1px solid #ff0000; border-radius: 30px;" class="form-control"  name="costumer_adress"  placeholder="Alamat Pengiriman" id="deliveryAddress" rows="5"></textarea>
                                 <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                             </div>
                             <div class="form-group">
-                                <label style="color: #fff;">Kode Promo</label>
+                                <label style="color: #fff;"><b>Kode Promo<b/></label>
                                 <input style="border:1px solid #ff0000; border-radius: 30px;" class="form-control col-5"  name="kode_promo" id="kode_promo"></input>
                             </div>
                             <div class="form-group">
-                                <label style="color: #fff;">Syarat dan ketentuan belanja dengan Whatsapp Delivery Claris</label>
+                                <label style="color: #fff;"><b>Syarat dan ketentuan belanja dengan Whatsapp Delivery Claris<b/></label>
                                 <textarea style="border:1px solid #ff0000; border-radius: 30px;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="8" disabled>Syarat dan kententuan</textarea>
                                 <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                             </div>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
             </div> -->
-            <div class="col-sm-12 col-md-12 text-center" style="text-align: center;">
+            <div class="col-sm-12 col-md-12" style="float: center;">
                 <a class="btn button_whatsapp" onclick="whatsapp();">
                     <img src="{{ asset('assets/image/logo-whatsapp.png') }}" alt="" style="width: 20px;">
                     <strong class="float-center" style="font-size: 12px;color: #fff;">Pesan Sekarang</strong>
