@@ -266,4 +266,15 @@
       padding-top: 1rem !important; 
       padding-bottom: 5px !important;
     }
+
+    .view-pesanwa {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .button_whatsapp {
+      padding: 7px;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
 }

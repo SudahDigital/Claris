@@ -85,7 +85,7 @@
                 </ul>
             @endif
         </nav>
-        <div id="content" class="content-cart" style="background-color: #3CC2B1; background-image: url('{{ asset('assets/image/UI Web Claris New-26.png') }}'), url('{{ asset('assets/image/UI Web Claris New-27.png') }}');">
+        <div id="content" class="content-cart" style="background-color: #0097bb; background-image: url('{{ asset('assets/image/UI Web Claris New-26.png') }}'), url('{{ asset('assets/image/UI Web Claris New-27.png') }}');">
 
            <!--  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1;">
                 <div class="container-fluid">
@@ -111,7 +111,7 @@
                         </button>
                     </div> -->
                     <div class="col-12 my-auto text-center">
-                        <a class="navbar-brand ml-md-5 mx-auto" href="/" style="margin: auto !important">
+                        <a class="navbar-brand ml-md-5 mx-auto" href="/" style="margin: 10px !important;">
                             <img src="{{ asset('assets/image/logo_claris.png') }}" width="120px" height="70px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                         </a>
                     </div>

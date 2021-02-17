@@ -468,8 +468,8 @@
                         </button>
                     </div> -->
                     <div class="col-4 my-auto text-center">
-                        <a class="navbar-brand ml-md-5 mx-auto" href="/" style="margin: auto !important">
-                            <img src="{{ asset('assets/image/logo_claris.png') }}" width="100px" height="60px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
+                        <a class="navbar-brand ml-md-5 mx-auto" href="/" style="margin: 10px !important">
+                            <img src="{{ asset('assets/image/logo_claris.png') }}" width="80px" height="50px" class="p-0 m-0 d-inline-block align-top" alt="" loading="lazy">
                         </a>
                     </div>
                     <div class="col-4 my-auto">

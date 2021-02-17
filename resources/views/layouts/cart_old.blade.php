@@ -16,41 +16,67 @@
         <div class="row section_content mb-5" style="margin-bottom: 30px; background-color: rgba(245, 245, 245, 0); ">
             <div class="col-12"> <!--col-md-4 col-md-4 mb-5-->
                 <div class="card mx-auto cart_card" style="background-color: rgba(245, 245, 245, 0); border: none;">
-                    <div class="card-body">
-                            <div class="form-group">
-                                <label style="color: #fff;"><b>Nama<b/></label>
+                    <div class="card-body view-pesanwa">
+                        <div class="input-group">
+                            <div class="col-2">
+                                <label style="color: #fff;"><b>Nama</b></label>
+                            </div>
+                            <div class="col-10">
                                 <input style=" border-radius: 30px;" type="text" name="costumer_name" class="form-control" id="name"> <!--style="border:1px solid #ff0000;-->
-                                <!-- <label for="name" class="cart_label">Nama</label> -->
                             </div>
-                            <div class="form-group">
-                                <label style="color: #fff;"><b>No. Telp/Handphone<b/></label>
+                            <!-- <label for="name" class="cart_label">Nama</label> -->
+                        </div>
+                        <div class="input-group">
+                            <div class="col-2">
+                                <label style="color: #fff;"><b>No. Telp/Handphone<b/></label>   
+                            </div>
+                            <div class="col-10">
                                 <input style=" border-radius: 30px;" type="number"  name="costumer_phone" class="form-control" id="phoneNumber">
-                                <!-- <label for="deliveryAddress" class="cart_label">Alamat Pengiriman</label> -->
-                            </div>  
-                            <div class="form-group">
-                                <label style="color: #fff;"><b>Kabupaten/Kota<b/></label>
+                            </div>
+                            <!-- <label for="deliveryAddress" class="cart_label">Alamat Pengiriman</label> -->
+                        </div>  
+                        <div class="input-group">
+                            <div class="col-2">
+                                <label style="color: #fff;"><b>Kabupaten/Kota</b></label>
+                            </div>
+                            <div class="col-10">
                                 <input style=" border-radius: 30px;" class="form-control"  name="costumer_city" id="deliveryCity">
-                                <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                             </div>
-                            <div class="form-group">
-                                <label style="color: #fff;"><b>Detail Alamat<b/></label>
+                            <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
+                        </div>
+                        <div class="input-group">
+                            <div class="col-2">
+                                <label style="color: #fff;"><b>Detail Alamat</b></label>
+                            </div>
+                            <div class="col-10">
                                 <textarea style=" border-radius: 30px;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="5"></textarea>
-                                <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                             </div>
-                            <div class="form-group">
-                                <label style="color: #fff;"><b>Kode Promo<b/></label>
+                            <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
+                        </div>
+                        <div class="input-group">
+                            <div class="col-2">
+                                <label style="color: #fff;"><b>Kode Promo</b></label>
+                            </div>
+                            <div class="col-10">
                                 <input style=" border-radius: 30px;" class="form-control col-5"  name="kode_promo" id="kode_promo"></input>
                             </div>
-                            <div class="form-group">
-                                <label style="color: #fff;"><b>Syarat dan ketentuan belanja dengan Whatsapp Delivery Claris<b/></label>
-                                <textarea style=" border-radius: 30px; font-weight: bold;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="8" disabled>Syarat dan kententuan</textarea>
-                                <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
-                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="color: #fff;"><b>Syarat dan ketentuan belanja dengan Whatsapp Delivery Claris</b></label>
+                            <textarea style=" border-radius: 30px; font-weight: bold;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="8" disabled>Syarat dan kententuan</textarea>
+                            <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
+                        </div>
                             <!-- <div class="form-group">
                                 <label style="color: #fff;">Email</label>
                                 <input style="border:1px solid #ff0000; border-radius: 30px;" type="email"  name="costumer_email" class="form-control" placeholder="Email" id="email" >
                                 <label for="email" class="cart_label">Email</label>
                             </div> -->
+                        <div class="text-center" style="float: center;">
+                            <a class="btn button_whatsapp" onclick="whatsapp();">
+                                <img src="{{ asset('assets/image/logo-whatsapp.png') }}" alt="" style="width: 20px;">
+                                <strong class="float-center" style="font-size: 15px;color: #fff;">Pesan Sekarang</strong>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -108,12 +134,6 @@
                     </div>
                 </div>
             </div> -->
-            <div class="col-12" style="float: center;">
-                <a class="btn button_whatsapp" onclick="whatsapp();">
-                    <img src="{{ asset('assets/image/logo-whatsapp.png') }}" alt="" style="width: 20px;">
-                    <strong class="float-center" style="font-size: 12px;color: #fff;">Pesan Sekarang</strong>
-                </a>
-            </div>
         </div>
         </form>
     </div>
