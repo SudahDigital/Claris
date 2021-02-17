@@ -11,7 +11,7 @@
             </div>
         </div>
         <!-- <hr class="mb-5"> -->
-        <form method="post" action="{{route('cart_pay')}}"> <!-- method="post" action="{{route('cart_pay')}}" -->
+        <form method="post" action="{{route('cart_pay')}}">
         @csrf
         <div class="row section_content mb-5" style="margin-bottom: 30px; background-color: rgba(245, 245, 245, 0); ">
             <div class="col-12"> <!--col-md-4 col-md-4 mb-5-->
@@ -19,31 +19,31 @@
                     <div class="card-body">
                             <div class="form-group">
                                 <label style="color: #fff;"><b>Nama<b/></label>
-                                <input style="border:1px solid #ff0000; border-radius: 30px;" type="text" name="costumer_name" class="form-control" placeholder="Nama" id="name">
+                                <input style=" border-radius: 30px;" type="text" name="costumer_name" class="form-control" id="name"> <!--style="border:1px solid #ff0000;-->
                                 <!-- <label for="name" class="cart_label">Nama</label> -->
                             </div>
                             <div class="form-group">
                                 <label style="color: #fff;"><b>No. Telp/Handphone<b/></label>
-                                <input style="border:1px solid #ff0000; border-radius: 30px;" type="number"  name="costumer_phone" class="form-control" placeholder="Nomor Telepon" id="phoneNumber">
+                                <input style=" border-radius: 30px;" type="number"  name="costumer_phone" class="form-control" id="phoneNumber">
                                 <!-- <label for="deliveryAddress" class="cart_label">Alamat Pengiriman</label> -->
                             </div>  
                             <div class="form-group">
                                 <label style="color: #fff;"><b>Kabupaten/Kota<b/></label>
-                                <input style="border:1px solid #ff0000; border-radius: 30px;" class="form-control"  name="costumer_city"placeholder="Alamat Pengiriman" id="deliveryCity">
+                                <input style=" border-radius: 30px;" class="form-control"  name="costumer_city" id="deliveryCity">
                                 <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                             </div>
                             <div class="form-group">
                                 <label style="color: #fff;"><b>Detail Alamat<b/></label>
-                                <textarea style="border:1px solid #ff0000; border-radius: 30px;" class="form-control"  name="costumer_adress"  placeholder="Alamat Pengiriman" id="deliveryAddress" rows="5"></textarea>
+                                <textarea style=" border-radius: 30px;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="5"></textarea>
                                 <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                             </div>
                             <div class="form-group">
                                 <label style="color: #fff;"><b>Kode Promo<b/></label>
-                                <input style="border:1px solid #ff0000; border-radius: 30px;" class="form-control col-5"  name="kode_promo" id="kode_promo"></input>
+                                <input style=" border-radius: 30px;" class="form-control col-5"  name="kode_promo" id="kode_promo"></input>
                             </div>
                             <div class="form-group">
                                 <label style="color: #fff;"><b>Syarat dan ketentuan belanja dengan Whatsapp Delivery Claris<b/></label>
-                                <textarea style="border:1px solid #ff0000; border-radius: 30px;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="8" disabled>Syarat dan kententuan</textarea>
+                                <textarea style=" border-radius: 30px; font-weight: bold;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="8" disabled>Syarat dan kententuan</textarea>
                                 <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                             </div>
                             <!-- <div class="form-group">
@@ -108,7 +108,7 @@
                     </div>
                 </div>
             </div> -->
-            <div class="col-sm-12 col-md-12" style="float: center;">
+            <div class="col-12" style="float: center;">
                 <a class="btn button_whatsapp" onclick="whatsapp();">
                     <img src="{{ asset('assets/image/logo-whatsapp.png') }}" alt="" style="width: 20px;">
                     <strong class="float-center" style="font-size: 12px;color: #fff;">Pesan Sekarang</strong>
@@ -123,7 +123,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script type="text/javascript">
         $(document).ready(function() {  
-            $('#name').on('keyup', function(){ 
+           /*$('#name').on('keyup', function(){ 
 
                 var isi = $(this).val();
                 if(isi == ""){
@@ -193,8 +193,7 @@
                     $(this).removeClass('data_input_empty');
                     $(this).addClass('data_input');
                 }
-            });
-
+            });*/
         });
 
         function whatsapp(){

@@ -294,11 +294,13 @@
                         </a>
                     </div>
                     <div class="col-5 my-auto align-self-center" id="sosmed">
-                        <span style="color: #000;" class="teks-footer">
-                            <img src="{{ asset('assets/image/footer-whatsapp.png') }}" alt="" style="width: 20px;">
-                            <strong class="float-center" style="font-size: 12px;">Pesan Sekarang</strong>
-                            <!-- <strong class="float-center">( {{$count_cart}} Item )</strong> -->
-                        </span>
+                        <a href="{{route('cart')}}" class="float-center cart" style="position: relative;">
+                            <span style="color: #000;" class="teks-footer">
+                                <img src="{{ asset('assets/image/footer-whatsapp.png') }}" alt="" style="width: 20px;">
+                                <strong class="float-center" style="font-size: 12px;">Pesan Sekarang</strong>
+                                <!-- <strong class="float-center">( {{$count_cart}} Item )</strong> -->
+                            </span>
+                        </a>
                     </div>
                 </div>
                 <div class="hidden row" id="book" style="background-color: #fff; max-height: 250px;">
@@ -568,13 +570,32 @@
                         harga_mount2        = (harga_mount1/1000).toFixed(3);
                         $('#mount2_'+id).html('Rp. '+harga_mount2);
 
-                        Swal.fire({
+                        /*Swal.fire({
                             title: 'Sukses',
                             text: 'Item Berhasil dimasukan kekeranjang',
                             icon: 'success',
                            showConfirmButton: false,
                            timer: 1500
-                        })
+                        })*/
+
+                        var toastMixin = Swal.mixin({
+                            toast: true,
+                            icon: 'success',
+                            title: 'General Title',
+                            animation: false,
+                            position: 'top-right',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.addEventListener('mouseenter', Swal.stopTimer)
+                              toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        });
+                        toastMixin.fire({
+                            animation: true,
+                            title: 'Item Berhasil dimasukan kekeranjang'
+                        });
                     }
                 }
             })
