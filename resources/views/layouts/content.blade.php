@@ -100,7 +100,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body" style="padding: 5px;">
+                        <div class="card-body view-cart">
                             <div class="p-0" style="background-color: #000 !important;">
                                 <div class="float-left px-1 py-0" style="width: 100%;">
                                     <p class="product-price-header mb-0"><b>{{$value->product_name}}</b></p>

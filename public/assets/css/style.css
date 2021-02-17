@@ -1333,6 +1333,7 @@ footer.footer .cart .count-cart-three {
 #content .button-cart {
   width: 100%; 
   padding: 10px;
+  padding-bottom: 20px;
 }
 
 #content .button_pesan {
@@ -1528,6 +1529,12 @@ footer.footer .cart .count-cart-three {
 
 .img-prd{
   width: 100px !important;
+}
+
+.view-cart {
+  padding-left: 30px; 
+  padding-top: 1rem !important; 
+  padding-bottom: 5px !important;
 }
 
 
