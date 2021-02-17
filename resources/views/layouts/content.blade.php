@@ -302,7 +302,7 @@
                     </div>
                 </div>
                 <div class="hidden row" id="book" style="background-color: #fff; max-height: 250px;">
-                    <div class="scroll w-100 h-100" id="table_c" style="display: none;">
+                    <!-- <div class="scroll w-100 h-100" id="table_c" style="display: none;">
                         @php
                          $total = 0 ;
                         @endphp
@@ -341,16 +341,15 @@
                             </div>
                         </div>
                         @endforeach
+                    </div> -->
+                    <div class="scroll w-100 h-100" id="table_c" style="display: none;">
                     </div>
                 </div>
                 <div id="listcart" class="col-12 my-auto text-right" style="background-color: #fff; height: 50px; display: none;">
-                    <!-- {{ $count_cart }} Item | <span id="total_">Rp {{ number_format($total, 0, ',', '.') }}</span> -->
-                    <!-- <div class="col-6"> -->
                         <a href="{{route('cart')}}" class="btn btn-sm align-self-right button_pesan" style="background-color: #25d366; color: #fff; border-radius: 30px;">
                         <input type="hidden" id="total" value="{{$total}}">
                         <img src="{{ asset('assets/image/logo-whatsapp.png') }}" style="width: 20px;"> Pesan Sekarang
                         </a>  
-                    <!-- </div>   -->
                 </div>
             </div>
             <div id="bottom-footer text-center" class="bottom-footer">
@@ -404,8 +403,47 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="{{ asset('assets/js/main.js')}}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
+        $(document).ready(function() {  
+            $( "#clickme" ).click(function() {
+                $('#table_c').load("{{url('/cart/footer-list')}}");
+
+                var isi = $("#clickme").attr('isi');
+                $( "#book" ).slideDown( "slow", function() {
+                    if (isi=='true') {
+                        $('#tombol_click').removeClass();
+                        $('#tombol_click').addClass('col-2 my-auto');
+                        $('#table_c').css({'display':'block'});
+                        $('.proses_to_chart_slide').css({'display':'block'});
+                        $('#listcart').show();
+                        $('#clickme').html('<i class="fas fa-chevron-down fa-lg"></i>');
+                        $('#clickme').attr('isi','false');
+                        // $('#cart_icon').css({'display':'none'})
+                        // $('#sosmed').css({'display':'none'})
+                        $('.hidden').toggleClass('open');
+                        $('#bottom-footer').css({'display':'none'});
+                    }else{
+                        $('#tombol_click').removeClass();
+                        $('#tombol_click').addClass('col-2 my-auto');
+                        $('.proses_to_chart_slide').css({'display':'none'});
+                        $('#listcart').hide();
+                        $('#clickme').html('<i class="fas fa-chevron-up fa-lg"></i>');
+                        $('#clickme').attr('isi','true');
+                        // $('#cart_icon').css({'display':'block'})
+                        // $('#sosmed').css({'display':'block'})
+                        $('.hidden').toggleClass('open');
+                        $('#table_c').css({'display':'none'});
+                        $('#bottom-footer').css({'display':'block'});
+                    }
+                });
+            });
+        });
         function button_minus_br(id)
         {
             var jum = $('#show_'+id).html();

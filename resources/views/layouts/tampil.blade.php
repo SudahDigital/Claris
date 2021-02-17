@@ -1,42 +1,40 @@
 @csrf
 
 @php
-$total = 0 ;
+ $total = 0 ;
 @endphp
-@foreach($cart as $key => $value)
+@foreach($cart as $key => $val_c)
 @php
-$amount = $value->product_harga * $value->mount;
+$amount = $val_c->product_harga * $val_c->mount;
 $total += $amount;
 @endphp
-<div class="row">
+<div class="row mb-3" style="margin-bottom: 40px; margin-top: 10px;">
     <div class="col-4">
-        <div class="float-left">
-            <img class="img-thumbnail img-fluid" src="{{ asset('assets/image/product/'.(($value->product_image!='') ? $value->product_image : 'none.jpg').'') }}" style="max-width: 100px;max-height: 100px;" class="img-fluid">
+        <div class="text-center">
+            <img class="img-thumbnail img-fluid" src="{{ asset('assets/image/product/'.(($val_c->product_image!='') ? $val_c->product_image : 'none.jpg').'') }}" style="max-width: 90px;max-height: 90px;" class="img-fluid">
         </div>
     </div>
     <div class="col-6">
         <div class="float-left">
-            <h5 class="product-name" style="color: #4db849 !important; font-weight: bold;">{{$value->product_name}}</h5>
-            <span id="mount2_{{$value->id}}" style="color: #000 !important;">Rp {{ number_format($amount, 0, ',', '.') }}</span>
+            <div class="px-1 py-0">
+                <p class="product-price-header2 m-0" style="color: #000 !important;"><strong>{{$val_c->product_name}}</strong></p>
+            </div>
+            <div class="px-1 py-0">
+                <p class="label-harga2 m-0" id="mount2_{{$val_c->product_id}}" style="color: #41B1CD !important; font-weight: bold;"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
+            </div>
             <div class="text-left">
-                <button type="button" class="btn btn-success button_minus" onclick="cart('{{$value->id}}','min')" style="padding: 0; text-align: center;">-</button>
-                <span class="mr-1 ml-1" id="show_m2{{$value->id}}"> {{$value->mount}} </span>
-                <button type="button" class="btn btn-success button_plus" onclick="cart('{{$value->id}}','plus')" style="padding: 0; text-align: center;">+</button>
-                <input type="hidden" id="{{$value->id}}" value="{{$value->mount}}">
-                <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
-                <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">
+                <button type="button" class="btn btn-primary button_minus" onclick="cart('{{$val_c->id}}','min')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-minus"></i></button>
+                <span class="product-name mr-1 ml-1" id="show_m2{{$val_c->product_id}}" style="color: #000; padding: 3px; font-weight: bold;"> {{$val_c->mount}} </span>
+                <button type="button" class="btn btn-primary button_plus" onclick="cart('{{$val_c->id}}','plus')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-plus"></i></button>
+                <input type="hidden" id="{{$val_c->id}}" value="{{$val_c->mount}}">
+                <input type="hidden" id="harga_m{{$val_c->id}}" value="{{$amount}}">
+                <input type="hidden" id="harga{{$val_c->id}}" value="{{$val_c->product_harga}}">
+                <input type="hidden" id="product_id_{{$val_c->id}}" value="{{$val_c->product_id}}">
             </div>
         </div>
     </div>
-    <div class="col-2">
-        <a class="btn btn-sm btn-danger" onclick="valDel('{{$value->id}}')"><i class="fa fa-times" style="color: white;"></i></a>
+    <div class="col-2 align-self-center">
+        <button class="btn btn-sm btn-danger" onclick="valDel('{{$val_c->id}}')" style="border-radius: 10px;"><i class="fa fa-times" style="color: white;"></i></button>
     </div>
 </div>
 @endforeach
-<div class="row">
-    <div class="col-12">
-        <div class="float-left">
-            <span style="background: #ffffff;font-size: 250%">&nbsp;</span>
-        </div>
-    </div>
-</div>
