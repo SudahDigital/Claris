@@ -108,7 +108,7 @@
             font-weight: 800; 
             position: absolute;
             top: 70px;
-            right: 50px;
+            right: 70px;
         }
 
         .button_welcome:hover {
@@ -213,7 +213,7 @@
                 font-size: 19px;
                 padding: 10px 17px;
                 top: 22.4rem;
-                right: 10%;
+                right: 50%;
                 font-weight: 600;
             }
 
@@ -229,7 +229,7 @@
                 font-size: 15px;
                 padding: 10px 17px;
                 top: 17rem;
-                right: 9%;
+                right: 50%
                 font-weight: 600;
             }
 
@@ -383,7 +383,7 @@
 
     <div id="welcome-message" class="">
         <img src="{{ asset('assets/image/lg-popup-welcome.jpg') }}" class="d-none d-md-block d-md-none w-100" alt="popup-cara-belanja-lg-web-demo" style="">
-        <img src="{{ asset('assets/image/lg-popup-welcome.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja-lg-web-demo" style="">
+        <img src="{{ asset('assets/image/lg-popup-welcome.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja-lg-web-demo" style="height: 100px; width: 100px;">
     </div>
 
     <div class="wrapper">

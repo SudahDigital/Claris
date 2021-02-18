@@ -61,7 +61,7 @@
                                 <input style=" border-radius: 30px;" class="form-control col-5"  name="kode_promo" id="kode_promo"></input>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group form-syarat" style="padding-left: 25px; padding-right: 25px;">
                             <label style="color: #fff;"><b>Syarat dan ketentuan belanja dengan Whatsapp Delivery Claris</b></label>
                             <textarea style=" border-radius: 30px; font-weight: bold;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="8" disabled>Syarat dan kententuan</textarea>
                             <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
@@ -242,7 +242,7 @@
             });
 
             if(nm!='' && almt!='' && tlp!='' && email!='' && total_brg!=''){
-                window.open('https://api.whatsapp.com/send?phone=+6281290388223&text=*Nama*:%20'+nm+'%0A*Alamat*:%20'+almt+'%0A*Telp*:%20'+tlp+'%0A*Email*:%20'+email+'%0A*Total Item*:%20'+total_brg+'%0A*Total Harga*:%20'+total_pay+'%0A*Pesanan*:%20'+nm_brg);
+                window.open('https://api.whatsapp.com/send?phone=+6281776492873&text=*Nama*:%20'+nm+'%0A*Alamat*:%20'+almt+'%0A*Telp*:%20'+tlp+'%0A*Email*:%20'+email+'%0A*Total Item*:%20'+total_brg+'%0A*Total Harga*:%20'+total_pay+'%0A*Pesanan*:%20'+nm_brg);
             }else if (nm==''){
                 // Swal.fire({ text: 'Silahkan isi Nama terlebih dahulu!', confirmButtonColor: '#4db849'});
                 toastMixin.fire({
