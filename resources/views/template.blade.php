@@ -140,7 +140,7 @@
             #my-welcome-message {
                 width: 42%;
                 left: 29%;
-                top: 10%;
+                top: 5%;
             }
         }
 
@@ -153,7 +153,7 @@
             #my-welcome-message {
                 width: 42%;
                 left: 29%;
-                top: 10%;
+                top: 5%;
             }
         }
 
@@ -328,7 +328,7 @@
             .button_welcome {
                 font-size: 10px;
                 padding: 7px 13px;
-                top: 16.8rem;
+                top: 18.8rem;
                 right: 12%;
                 font-weight: 600;
             }
@@ -338,7 +338,7 @@
             .button_welcome {
                 font-size: 10px;
                 padding: 7px 12px;
-                top: 16.4rem;
+                top: 18.4rem;
                 right: 12%;
                 font-weight: 600;
             }
@@ -348,7 +348,7 @@
             .button_welcome {
                 font-size: 9px;
                 padding: 7px 12px;
-                top: 15.4rem;
+                top: 16.4rem;
                 right: 12%;
                 font-weight: 600;
             }
@@ -358,7 +358,7 @@
             .button_welcome {
                 font-size: 8px;
                 padding: 7px 12px;
-                top: 14.5rem;
+                top: 15.5rem;
                 right: 12%;
                 font-weight: 600;
             }
