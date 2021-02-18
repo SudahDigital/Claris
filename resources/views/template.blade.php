@@ -383,7 +383,7 @@
 
     <div id="my-welcome-message" class="">
         <img src="{{ asset('assets/image/lg-popup-welcome.jpg') }}" class="d-none d-md-block d-md-none w-100" alt="popup-cara-belanja-lg-web-demo" style="">
-        <img src="{{ asset('assets/image/lg-popup-welcome.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja-lg-web-demo" style="height: 100px; width: 100px;">
+        <img src="{{ asset('assets/image/popup-welcome.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja-lg-web-demo" style="height: 100px; width: 100px;">
     </div>
 
     <div class="wrapper">
