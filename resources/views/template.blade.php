@@ -64,7 +64,7 @@
             opacity: 0.8;
         }
 
-        #welcome-message {
+        #my-welcome-message {
             /*display: none;*/
             z-index: 9998;
             position: fixed;
@@ -125,7 +125,7 @@
                 left: 40%;
             }
 
-            #welcome-message {
+            #my-welcome-message {
                 width: 42%;
                 left: 29%;
                 top: 5%;
@@ -137,7 +137,7 @@
                 left: 45%;
             }
 
-            #welcome-message {
+            #my-welcome-message {
                 width: 42%;
                 left: 29%;
                 top: 5%;
@@ -150,7 +150,7 @@
                 left: 50%;
             }
 
-            #welcome-message {
+            #my-welcome-message {
                 width: 42%;
                 left: 29%;
                 top: 5%;
@@ -381,7 +381,7 @@
         </div>
     </div>
 
-    <div id="welcome-message" class="">
+    <div id="my-welcome-message" class="">
         <img src="{{ asset('assets/image/lg-popup-welcome.jpg') }}" class="d-none d-md-block d-md-none w-100" alt="popup-cara-belanja-lg-web-demo" style="">
         <img src="{{ asset('assets/image/lg-popup-welcome.jpg') }}" class="d-md-none w-100 h-100" alt="popup-cara-belanja-lg-web-demo" style="height: 100px; width: 100px;">
     </div>
@@ -628,7 +628,7 @@
     <script src="{{ asset('assets/js/jquery.firstVisitPopup.js')}}"></script>
     <script type="text/javascript">
         $(function () {
-            $('#welcome-message').firstVisitPopup({
+            $('#my-welcome-message').firstVisitPopup({
                 cookieName : 'homepage',
                 showAgainSelector: '#show-message'
             });
