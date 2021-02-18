@@ -140,7 +140,7 @@
             #my-welcome-message {
                 width: 42%;
                 left: 29%;
-                top: 5%;
+                top: 10%;
             }
         }
 
@@ -153,7 +153,7 @@
             #my-welcome-message {
                 width: 42%;
                 left: 29%;
-                top: 5%;
+                top: 10%;
             }
         }
 
