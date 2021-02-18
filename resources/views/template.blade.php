@@ -107,7 +107,7 @@
             font-size: 15px;
             font-weight: 800; 
             position: absolute;
-            top: 90px;
+            top: 70px;
             right: 70px;
         }
 
@@ -212,8 +212,8 @@
             .button_welcome {
                 font-size: 19px;
                 padding: 10px 17px;
-                top: 22.4rem;
-                right: 50%;
+                top: 30.4rem;
+                right: 70%;
                 font-weight: 600;
             }
 
@@ -228,8 +228,8 @@
             .button_welcome {
                 font-size: 15px;
                 padding: 10px 17px;
-                top: 17rem;
-                right: 50%
+                top: 25rem;
+                right: 60%
                 font-weight: 600;
             }
 
