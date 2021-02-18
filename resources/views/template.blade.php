@@ -212,8 +212,8 @@
             .button_welcome {
                 font-size: 19px;
                 padding: 10px 17px;
-                top: 30.4rem;
-                right: 70%;
+                top: 27.4rem;
+                right: 60%;
                 font-weight: 600;
             }
 
