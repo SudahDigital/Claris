@@ -31,7 +31,7 @@
                                 <label style="color: #fff;"><b>No. Telp/Handphone<b/></label>   
                             </div>
                             <div class="col-10">
-                                <input style=" border-radius: 30px;" type="number"  name="costumer_phone" class="form-control" id="phoneNumber">
+                                <input style=" border-radius: 30px;" type="number"  name="costumer_phone" class="form-control" id="phoneNumber" maxlength="12">
                             </div>
                             <!-- <label for="deliveryAddress" class="cart_label">Alamat Pengiriman</label> -->
                         </div>  
@@ -55,6 +55,15 @@
                         </div>
                         <div class="input-group">
                             <div class="col-2">
+                                <label style="color: #fff;">Email</label>
+                            </div>
+                            <div class="col-10">
+                                <input style="border-radius: 30px;" type="email"  name="costumer_email" class="form-control" id="email" >
+                                <!-- <label for="email" class="cart_label">Email</label> -->
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <div class="col-2">
                                 <label style="color: #fff;"><b>Kode Promo</b></label>
                             </div>
                             <div class="col-10">
@@ -66,11 +75,6 @@
                             <textarea style=" border-radius: 30px; font-weight: bold;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="8" disabled>Syarat dan kententuan</textarea>
                             <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                         </div>
-                            <!-- <div class="form-group">
-                                <label style="color: #fff;">Email</label>
-                                <input style="border:1px solid #ff0000; border-radius: 30px;" type="email"  name="costumer_email" class="form-control" placeholder="Email" id="email" >
-                                <label for="email" class="cart_label">Email</label>
-                            </div> -->
                         <div class="text-center" style="float: center;">
                             <a class="btn button_whatsapp" onclick="whatsapp();">
                                 <img src="{{ asset('assets/image/logo-whatsapp.png') }}" alt="" style="width: 20px;">
@@ -80,6 +84,33 @@
                     </div>
                 </div>
             </div>
+
+            @php
+                $total = 0 ;
+                $total_pay = 0 ;
+                $total_brg = 0 ;
+                $nm_brg = '';
+                @endphp
+                @foreach($cart as $key => $value)
+                    @php
+                    $amount = $value->product_harga * $value->mount;
+                    $total += $amount;
+                    $total_brg = count($cart);
+                    $total_pay += $amount;
+                    $nm_brg .= $value->product_name." (".$value->mount."),";
+                    @endphp
+
+                    <input type="hidden" id="{{$value->id}}" value="{{$value->mount}}">
+                    <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
+                    <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">
+                    <input type="hidden" id="total_brg" value="{{$total_brg}}">
+                @endforeach
+                @php
+                    $all_brg    = substr($nm_brg, 0, strlen($nm_brg) -1);
+                @endphp
+                    <input type="hidden" id="nm_brg" value="{{$all_brg}}">
+                    <input type="hidden" name="total_pay" id="total_pay" value="{{$total}}">
+
             <!-- <div class="col-sm-12 col-md-8 mb-6">
                 <div class="card mx-auto cart_card">
                     <div class="card-body table-responsive">

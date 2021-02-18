@@ -41,13 +41,14 @@ class CartController extends Controller
     	}
     	$count = Cart::where('user_id', $user_id)->sum('mount');
 		
-		$cart = DB::table('carts')
-            ->leftJoin('products', 'products.id', '=', 'carts.product_id')
-            ->leftJoin('product_images', 'product_images.product_id', '=', 'carts.product_id')
+		/*$cart = DB::table('carts')
+            ->innerJoin('products', 'products.id', '=', 'carts.product_id')
             ->where('session_id', $ses_id)
 			->select('carts.*', 'products.product_name', 'products.product_harga', 'products.product_image')
-			// ->where('product_images.is_tumbnail', 'yes')
-            ->get();
+            ->get();*/
+        $sql = "SELECT carts.*, products.product_name, products.product_harga, products.product_image, (products.product_harga * carts.mount) AS total_harga FROM `carts` INNER JOIN products ON products.id = carts.product_id WHERE carts.session_id = '".$ses_id."'"; 
+        $cart = DB::select($sql);
+
         $data['cart'] = $cart;
         $data['count_cart'] = $count;
         $data['category'] = Category::all();
