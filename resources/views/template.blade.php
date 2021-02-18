@@ -107,7 +107,7 @@
             font-size: 15px;
             font-weight: 800; 
             position: absolute;
-            top: 70px;
+            top: 90px;
             right: 70px;
         }
 
