@@ -371,13 +371,12 @@
                                 <a href="https://www.facebook.com/" class="mr-1 mr-md-3">
                                     <img src="{{ asset('assets/image/UI Web Claris New-20.png') }}" alt="" class="img-icon" style="width: 20px;">
                                 </a>
-                                <a href="https://www.instagram.com/" class="mr-1 mr-md-3">
+                                <a href="https://twitter.com/" class="mr-1 mr-md-3">
                                     <img src="{{ asset('assets/image/UI Web Claris New-21.png') }}" alt="" class="img-icon" style="width: 20px;">
                                 </a>
                                 <a href="https://www.youtube.com/" class="mr-1 mr-md-3">
                                     <img src="{{ asset('assets/image/UI Web Claris New-22.png') }}" alt="" class="img-icon" style="width: 20px;">
-                                </a>
-                                <a href="https://twitter.com/" class="mr-1 mr-md-3">
+                                <a href="https://www.instagram.com/" class="mr-1 mr-md-3">
                                     <img src="{{ asset('assets/image/UI Web Claris New-23.png') }}" alt="" class="img-icon" style="width: 20px;">
                                 </a>
                             </div>
@@ -444,6 +443,10 @@
                         $('#bottom-footer').css({'display':'block'});
                     }
                 });
+            });
+
+            $( ".filter_category" ).click(function() {
+                // alert('jalan');
             });
         });
         function button_minus_br(id)
