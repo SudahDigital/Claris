@@ -10,21 +10,98 @@
                 </nav> -->
             </div>
         </div>
-        <!-- <hr class="mb-5"> -->
-        <form method="post" action="{{route('cart_pay')}}">
+        <form method="post" action="{{route('cart_pay')}}" class="form-horizontal">
+            @csrf
+            <div class="card-body view-pesanwa section_content mb-5">
+              <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label" style="color: #fff;"><b>Nama</b></label>
+                <div class="col-sm-10">
+                  <input style=" border-radius: 30px;" type="text" name="costumer_name" class="form-control" id="name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="phoneNumber" class="col-sm-2 col-form-label" style="color: #fff;"><b>No. Telp/Handphone<b/></label>
+                <div class="col-sm-10">
+                  <input style=" border-radius: 30px;" type="number"  name="costumer_phone" class="form-control" id="phoneNumber" maxlength="12">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="deliveryCity" class="col-sm-2 col-form-label" style="color: #fff;"><b>Kabupaten/Kota</b></label>
+                <div class="col-sm-10">
+                  <input style=" border-radius: 30px;" class="form-control"  name="costumer_city" id="deliveryCity">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="deliveryAddress" class="col-sm-2 col-form-label" style="color: #fff;"><b>Detail Alamat</b></label>
+                <div class="col-sm-10">
+                  <textarea style=" border-radius: 30px;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="5"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label" style="color: #fff;"><b>Email</b></label>
+                <div class="col-sm-10">
+                  <input style="border-radius: 30px;" type="email"  name="costumer_email" class="form-control" id="email" >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="kode_promo" class="col-sm-2 col-form-label" style="color: #fff;"><b>Code Promo</b></label>
+                <div class="col-sm-10">
+                  <input style=" border-radius: 30px;" class="form-control col-5"  name="kode_promo" id="kode_promo"></input>
+                </div>
+              </div>
+              <div class="form-group form-syarat">
+                <label style="color: #fff;"><b>Syarat dan ketentuan belanja dengan Whatsapp Delivery Claris</b></label>
+                <textarea style=" border-radius: 30px; font-weight: bold;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="8" disabled>Syarat dan kententuan</textarea>
+                <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
+              </div>
+              <div class="text-center" style="float: center;">
+                <a class="btn button_whatsapp" onclick="whatsapp();">
+                    <img src="{{ asset('assets/image/logo-whatsapp.png') }}" alt="" style="width: 20px;">
+                    <strong class="float-center" style="font-size: 15px;color: #fff;">Pesan Sekarang</strong>
+                </a>
+              </div>
+            </div>
+
+            @php
+                $total = 0 ;
+                $total_pay = 0 ;
+                $total_brg = 0 ;
+                $nm_brg = '';
+            @endphp
+            @foreach($cart as $key => $value)
+                @php
+                $amount = $value->product_harga * $value->mount;
+                $total += $amount;
+                $total_brg = count($cart);
+                $total_pay += $amount;
+                $nm_brg .= $value->product_name." (".$value->mount."),";
+                @endphp
+
+                <input type="hidden" id="{{$value->id}}" value="{{$value->mount}}">
+                <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
+                <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">
+                <input type="hidden" id="total_brg" value="{{$total_brg}}">
+            @endforeach
+            @php
+                $all_brg    = substr($nm_brg, 0, strlen($nm_brg) -1);
+            @endphp
+                <input type="hidden" id="nm_brg" value="{{$all_brg}}">
+                <input type="hidden" name="total_pay" id="total_pay" value="{{$total}}">
+        </form>
+
+        <!-- <form method="post" action="{{route('cart_pay')}}" class="form-horizontal">
         @csrf
-        <div class="row section_content mb-5" style="margin-bottom: 30px; background-color: rgba(245, 245, 245, 0); ">
-            <div class="col-12"> <!--col-md-4 col-md-4 mb-5-->
+        <div class="section_content mb-5" style="margin-bottom: 30px; background-color: rgba(245, 245, 245, 0); ">
+            <div class="col-12">
                 <div class="card mx-auto cart_card" style="background-color: rgba(245, 245, 245, 0); border: none;">
                     <div class="card-body view-pesanwa">
-                        <div class="input-group">
+                        <div class="form-group row">
                             <div class="col-2">
                                 <label style="color: #fff;"><b>Nama</b></label>
                             </div>
                             <div class="col-10">
-                                <input style=" border-radius: 30px;" type="text" name="costumer_name" class="form-control" id="name"> <!--style="border:1px solid #ff0000;-->
+                                <input style=" border-radius: 30px;" type="text" name="costumer_name" class="form-control" id="name">
                             </div>
-                            <!-- <label for="name" class="cart_label">Nama</label> -->
                         </div>
                         <div class="input-group">
                             <div class="col-2">
@@ -33,7 +110,6 @@
                             <div class="col-10">
                                 <input style=" border-radius: 30px;" type="number"  name="costumer_phone" class="form-control" id="phoneNumber" maxlength="12">
                             </div>
-                            <!-- <label for="deliveryAddress" class="cart_label">Alamat Pengiriman</label> -->
                         </div>  
                         <div class="input-group">
                             <div class="col-2">
@@ -42,7 +118,6 @@
                             <div class="col-10">
                                 <input style=" border-radius: 30px;" class="form-control"  name="costumer_city" id="deliveryCity">
                             </div>
-                            <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                         </div>
                         <div class="input-group">
                             <div class="col-2">
@@ -51,7 +126,6 @@
                             <div class="col-10">
                                 <textarea style=" border-radius: 30px;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="5"></textarea>
                             </div>
-                            <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                         </div>
                         <div class="input-group">
                             <div class="col-2">
@@ -59,7 +133,6 @@
                             </div>
                             <div class="col-10">
                                 <input style="border-radius: 30px;" type="email"  name="costumer_email" class="form-control" id="email" >
-                                <!-- <label for="email" class="cart_label">Email</label> -->
                             </div>
                         </div>
                         <div class="input-group">
@@ -73,7 +146,6 @@
                         <div class="form-group form-syarat" style="padding-left: 25px; padding-right: 25px;">
                             <label style="color: #fff;"><b>Syarat dan ketentuan belanja dengan Whatsapp Delivery Claris</b></label>
                             <textarea style=" border-radius: 30px; font-weight: bold;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="8" disabled>Syarat dan kententuan</textarea>
-                            <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                         </div>
                         <div class="text-center" style="float: center;">
                             <a class="btn button_whatsapp" onclick="whatsapp();">
@@ -109,7 +181,7 @@
                     $all_brg    = substr($nm_brg, 0, strlen($nm_brg) -1);
                 @endphp
                     <input type="hidden" id="nm_brg" value="{{$all_brg}}">
-                    <input type="hidden" name="total_pay" id="total_pay" value="{{$total}}">
+                    <input type="hidden" name="total_pay" id="total_pay" value="{{$total}}"> -->
 
             <!-- <div class="col-sm-12 col-md-8 mb-6">
                 <div class="card mx-auto cart_card">
@@ -165,8 +237,8 @@
                     </div>
                 </div>
             </div> -->
-        </div>
-        </form>
+        <!-- </div>
+        </form> -->
     </div>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
