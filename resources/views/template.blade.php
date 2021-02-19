@@ -68,7 +68,7 @@
         }
 
         #my-welcome-message {
-            /*display: none;*/
+            display: none;
             z-index: 9998;
             position: fixed;
             border-radius: 10px;
