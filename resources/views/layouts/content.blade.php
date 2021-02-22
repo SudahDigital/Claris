@@ -20,28 +20,17 @@
                     <h3 class="title-page" style="color: #fff;"><b>Product</b></h3>
                 </div>
                 <div class="col-6 column-right">
-                    <!-- <div class="col-md-3 text-right">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="dropdown">
+                        <button class="btn filter_category" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b>Filter Category</b>
+                            <i class="fas fa-caret-down fa-lg"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                            <a class="dropdown-item" href="{{ url('/') }}" style="color: #3CC2B1;"><b>Semua Produk</b></a>
+                            @foreach($category as $key => $value)
+                                <a class="dropdown-item" href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" style="color: #000;"><b>{{$value->category_name}}</b></a>
+                            @endforeach
+                        </div>
                     </div>
-                    <div class="col-md-3 text-right"> -->
-                        <!-- <h6 class="title-page filter_category">Filter by Category <button type="button" class="btn filter_category" data-toggle="collapse" data-target="#demo" style="background-color: #fff;">
-                        <i class="fas fa-caret-down fa-lg"></i></button></h6>
-                        <div id="demo" class="collapse" style="">
-                            <div class="col-md-12 px-2 p-0" style="margin-bottom: 20px;"> -->
-                                <div class="dropdown">
-                                    <button class="btn filter_category" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <b>Filter By Category</b> <i class="fas fa-caret-down fa-lg"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{{ url('/') }}" style="color: #3CC2B1;"><b>Semua Produk</b></a>
-                                        @foreach($category as $key => $value)
-                                            <a class="dropdown-item" href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" style="color: #000;"><b>{{$value->category_name}}</b></a>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            <!-- </div>
-                        </div> --> 
-                    <!-- </div> -->
                 </div>
             </div>
         </div>
@@ -87,7 +76,7 @@
                                         <a onclick="detailImg('{{ $value->product_image }}')"><i class="fa fa-eye button_eye" data-toggle="modal" data-target="#ImgModal" style="cursor: pointer;"></i></a>
                                     </div>
                                     <div class="col-9 column-right">
-                                        <span class="title-dtl" style="font-size: 12px;"><b>Detail Produk</b></span>
+                                        <a onclick="detailDesc('{{ $value->product_description }}')" class="title-dtl" style="font-size: 12px; cursor: pointer;"><span data-toggle="modal" data-target="#exampleModal"><b>Detail Produk</b></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -404,6 +393,22 @@
         </div>
     </div>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalLabel"><b>Deskripsi Produk<b></h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="detail_desc" style="color: #0097bb;"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
@@ -548,6 +553,10 @@
             }else{
                 $(".dtl_img").attr("src","{{ asset('assets/image/product/none.jpg') }}");
             }
+        }
+
+        function detailDesc(desc){
+            $(".detail_desc").html(desc);
         }
 
         function insertCart(id){

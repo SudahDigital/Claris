@@ -686,9 +686,11 @@
                            icon: 'success',
                            showConfirmButton: false,
                            timer: 1500
-                       }).then(function(){ 
+                       });
+                        $('#table_c').load("{{url('/cart/footer-list')}}");
+                        /*.then(function(){ 
                         location.reload();
-                        });
+                        });*/
                     }         
                 });
               }

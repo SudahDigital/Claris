@@ -40,8 +40,7 @@ class HomeController extends Controller
         }
 
         $prd = DB::table('products')
-            ->leftJoin('product_images', 'products.id', '=', 'product_images.product_id')
-            ->select('products.*', 'product_images.image_link')
+            ->select('products.*', 'products.product_image')
             ->get();
 
         $data['product'] = $prd;
@@ -50,8 +49,7 @@ class HomeController extends Controller
 
         $cart = DB::table('carts')
             ->leftJoin('products', 'products.id', '=', 'carts.product_id')
-            ->leftJoin('product_images', 'product_images.product_id', '=', 'carts.product_id')
-            ->select('carts.*', 'products.product_name', 'products.product_harga', 'product_images.image_link')
+            ->select('carts.*', 'products.product_name', 'products.product_harga', 'products.product_image','products.product_description')
             ->where('carts.session_id', $ses_id)
             ->get();
 
