@@ -264,7 +264,7 @@
             .button_welcome {
                 font-size: 15px;
                 padding: 7px 18px;
-                top: 27rem;
+                top: 32rem;
                 right: 13%;
                 font-weight: 600;
             }
@@ -506,30 +506,27 @@
             @isset($page)
                 @if($page == 'home') {
                     <!-- BANNER -->
-                    <br><br>
+                    <!-- <br><br>
                     <div role="main" style="margin-top: -4px;">
                         <div id="bannerSlide" class="carousel slide" data-ride="carousel" >
-                            <!-- Indicators -->
                             <ul class="carousel-indicators">
                                 <li data-target="#bannerSlide" data-slide-to="0" class="active"></li>
-                                <!-- <li data-target="#bannerSlide" data-slide-to="1"></li>
-                                <li data-target="#bannerSlide" data-slide-to="2"></li> -->
+                                <li data-target="#bannerSlide" data-slide-to="1"></li>
+                                <li data-target="#bannerSlide" data-slide-to="2"></li>
                             </ul>
                             
-                            <!-- The slideshow -->
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                     <img src="{{ asset('assets/image/banner01.jpg') }}" class="w-100 h-100">
                                 </div>
-                                <!-- <div class="carousel-item">
+                                <div class="carousel-item">
                                     <img src="{{ asset('assets/image/logo_claris.png') }}" class="w-100 h-100">
-                                </div> -->
-                                <!-- <div class="carousel-item">
+                                </div>
+                                <div class="carousel-item">
                                     <img src="{{ asset('assets/image/banner-3.jpg') }}" class="w-100">
-                                </div> -->
+                                </div>
                             </div>
                             
-                            <!-- Left and right controls -->
                             <a class="carousel-control-prev" href="#bannerSlide" data-slide="prev">
                                 <span class="carousel-control-prev-icon"></span>
                             </a>
@@ -537,7 +534,7 @@
                                 <span class="carousel-control-next-icon"></span>
                             </a>
                         </div>
-                    </div>    
+                    </div>     -->
                 @endif
             @endisset
             

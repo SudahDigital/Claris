@@ -6,6 +6,32 @@
 
         <!-- <div class="txt-banner"> Menjadi ibu rumah tangga yang aktif dan produktif merupakan suatu hal yang positif untuk dibagikan selain menjadi penopang dalam rumah tangga , anda bisa mengisi keseharian anda dengan banyak hal-hal yang positif. Temukan inspirasi-inspirasi menarik seperti mengatur tatanan rumah, memasak dan bermacam-macam hobi yang bisa anda lakukan.</div> -->
     <!-- </div> -->
+    <div role="main" style="margin-top: -4px;">
+        <div id="bannerSlide" class="carousel slide" data-ride="carousel" >
+            <ul class="carousel-indicators">
+                <li data-target="#bannerSlide" data-slide-to="0" class="active"></li>
+                <!-- <li data-target="#bannerSlide" data-slide-to="1"></li>
+                <li data-target="#bannerSlide" data-slide-to="2"></li> -->
+            </ul>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ asset('assets/image/banner01.jpg') }}" class="w-100 h-100">
+                </div>
+                <!-- <div class="carousel-item">
+                    <img src="{{ asset('assets/image/logo_claris.png') }}" class="w-100 h-100">
+                </div> -->
+                <!-- <div class="carousel-item">
+                    <img src="{{ asset('assets/image/banner-3.jpg') }}" class="w-100">
+                </div> -->
+            </div>
+            <a class="carousel-control-prev" href="#bannerSlide" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#bannerSlide" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+    </div>   
     <div class="banner">
         <div style="width:100%; background-color: #fff; font-size: 15px; padding: 25px;"><b>Top Product </b><span class="fa fa-star" style="color: #3CC2B1;"></span></div>
     </div>
