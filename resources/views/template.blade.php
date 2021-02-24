@@ -659,6 +659,7 @@
         });
 
         function valDel(id){
+
             // $('#edit-modal').modal('show');
             Swal.fire({
               title: 'Hapus barang ?',
@@ -684,6 +685,25 @@
                            showConfirmButton: false,
                            timer: 1500
                        });
+
+                        var harga_st = $('#harga_m'+id).val();
+                        var harga_bf = $('#tot_hrg').val();
+                        var tot_harga_af = parseInt(harga_bf) - parseInt(harga_st);
+
+                        // UBAH FORMAT UANG INDONESIA
+                        var   number_string = tot_harga_af.toString();
+                        var sisa  = number_string.length % 3;
+                        var rupiah    = number_string.substr(0, sisa);
+                        var ribuan    = number_string.substr(sisa).match(/\d{3}/g);
+
+                        if (ribuan) {
+                            separator = sisa ? '.' : '';
+                            rupiah += separator + ribuan.join('.');
+                        }
+
+                        var harga = "<strong> Rp " + rupiah+'</strong>';
+                        $('#total_mount').html(harga);
+
                         $('#table_c').load("{{url('/cart/footer-list')}}");
                         /*.then(function(){ 
                         location.reload();

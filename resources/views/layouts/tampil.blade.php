@@ -38,3 +38,4 @@ $total += $amount;
     </div>
 </div>
 @endforeach
+<input type="hidden" id="tot_hrg" value="{{$total}}">
