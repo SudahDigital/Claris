@@ -7,7 +7,7 @@
 
     <title>Claris</title>
 
-    <link rel="icon" href="{{ asset('assets/image/logo_claris.png')}}" type="image/png" sizes="16x30">
+    <link rel="icon" href="{{ asset('assets/image/logo_claris3.png')}}" type="image/png" sizes="16x16" />
     <!-- Bootstrap CSS CDN -->
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -231,7 +231,7 @@
             .button_welcome {
                 font-size: 15px;
                 padding: 10px 17px;
-                top: 25rem;
+                top: 20rem;
                 right: 60%
                 font-weight: 600;
             }
@@ -247,7 +247,7 @@
             .button_welcome {
                 font-size: 15px;
                 padding: 10px 17px;
-                top: 18.2rem;
+                top: 15.2rem;
                 right: 9.5%;
                 font-weight: 600;
                 border-radius: 14px;
