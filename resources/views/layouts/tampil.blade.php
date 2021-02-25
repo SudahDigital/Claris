@@ -34,7 +34,7 @@ $total += $amount;
         </div>
     </div>
     <div class="col-2 align-self-center">
-        <button class="btn btn-sm btn-danger" onclick="valDel('{{$val_c->id}}')" style="border-radius: 10px;"><i class="fa fa-times" style="color: white;"></i></button>
+        <button class="btn btn-sm btn-danger" onclick="valDel('{{$val_c->id}}','{{$val_c->product_id}}')" style="border-radius: 10px;"><i class="fa fa-times" style="color: white;"></i></button>
     </div>
 </div>
 @endforeach

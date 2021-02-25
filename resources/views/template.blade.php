@@ -658,7 +658,7 @@
             $(".preloader").fadeOut();
         });
 
-        function valDel(id){
+        function valDel(id,prod_id){
 
             // $('#edit-modal').modal('show');
             Swal.fire({
@@ -703,8 +703,12 @@
 
                         var harga = "<strong> Rp " + rupiah+'</strong>';
                         $('#total_mount').html(harga);
+                        $('#show_'+prod_id).html('0');
 
                         $('#table_c').load("{{url('/cart/footer-list')}}");
+
+
+
                         /*.then(function(){ 
                         location.reload();
                         });*/
