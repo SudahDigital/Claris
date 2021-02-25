@@ -173,7 +173,7 @@ a:focus {
 }
 
 .search_input_navbar {
-    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-family: "M PLUS Rounded 1c";
     background: transparent !important;
     color: #875D30 !important;
     width: 100%;
@@ -405,7 +405,7 @@ button.search-sidebar:hover {
 }
 
 .search_input_sidebar {
-    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-family: "M PLUS Rounded 1c";
     background: transparent !important;
     color: #41B1CD !important;
     width: 100%;
@@ -750,7 +750,7 @@ a.register:hover {
 }
 
 .contact_input {
-    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-family: "M PLUS Rounded 1c";
     background: #DFDBD7 !important;
     color: #777;
     width: 100%;
@@ -870,7 +870,7 @@ a.register:hover {
 }
 
 .cart_input {
-  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-family: "M PLUS Rounded 1c";
   background: transparent !important;
   color: #777;
   width: 100%;
@@ -1323,7 +1323,7 @@ footer.footer .cart .count-cart-three {
 } 
 
 #content .label-harga {
-  font-size: 2vw !important;
+  font-size: 20px !important;
   font-weight: 800 !important;
   text-align: left;
   color: #3CC2B1 !important;
@@ -1548,6 +1548,53 @@ footer.footer .cart .count-cart-three {
 .input-group{
   padding: 10px;
 }
+
+.cr {
+  width: 170px;
+  padding: 4px;
+  position: absolute;
+  text-align: center;
+  color: #ec0;
+  font-weight: bold;
+  text-transform: uppercase;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  width: 225px;
+  display: block;
+  /*background: linear-gradient(#F79E05 0%, #8F5408 100%);*/
+  box-shadow: 0 6px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+}
+
+.cr-top    { top: 25px; }
+.cr-bottom { bottom: 25px; }
+.cr-left   { left: -50px; }
+.cr-right  { right: -70px; }
+
+/* Rotations */
+
+.cr-top.cr-left,
+.cr-bottom.cr-right {
+  transform: rotate(-45deg);
+}
+
+.cr-top.cr-right,
+.cr-bottom.cr-left {
+  transform: rotate(45deg);
+}
+
+/* Colors */
+
+.cr-white     { background-color: #f0f0f0; color: #444; }
+.cr-black     { background-color: #333; }
+.cr-grey      { background-color: #999; }
+.cr-blue      { background-color: #39d; }
+.cr-green     { background-color: #2c7; }
+.cr-turquoise { background-color: #1b9; }
+.cr-purple    { background-color: #95b; }
+.cr-red       { background-color: #e43; }
+.cr-orange    { background-color: #e82; }
+.cr-yellow    { background-color: #ec0; }
 
 
 
