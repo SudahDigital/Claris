@@ -100,7 +100,7 @@
         }
 
         .button_welcome {
-            font-family: Open Sans;
+            font-family: "M PLUS Rounded 1c";
             background: linear-gradient(to bottom, #F08029, #F08029); 
             color:white; 
             padding: 5px 15px; 
@@ -121,6 +121,8 @@
             transform: translateY(-3px);
             box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3); 
         }
+
+        
 
         @media screen and (max-width: 600px) {
             .nav-center {

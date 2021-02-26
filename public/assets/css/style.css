@@ -584,6 +584,9 @@ a.register:hover {
   border: none;
   color: #000;
   border-radius: 50px;
+  background:none; 
+  border:none;
+  outline: none;
 }
 
 #content .button_plus:hover, #content .button_minus:hover {
@@ -1547,6 +1550,13 @@ footer.footer .cart .count-cart-three {
 
 .input-group{
   padding: 10px;
+}
+
+.top-banner {
+  width:100%; 
+  background-color: #fff; 
+  font-size: 15px;
+  padding: 25px;
 }
 
 .cr {

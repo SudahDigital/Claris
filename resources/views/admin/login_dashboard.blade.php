@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Admin Login</title>
-  <link rel="icon" href="{{ asset('assets/image/logo_claris.png')}}" type="image/png" sizes="16x30">
+  <link rel="icon" href="{{ asset('assets/image/logo_claris3.png')}}" type="image/png" sizes="16x30">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -28,10 +28,10 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background-color: #0097bb !important;">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Admin Claris</b></a>
+    <a href="#" style="color: #fff;"><b>Admin Claris</b></a>
   </div>
   <div class="card">
     <div class="card-body login-card-body">

@@ -6,7 +6,7 @@
 
         <!-- <div class="txt-banner"> Menjadi ibu rumah tangga yang aktif dan produktif merupakan suatu hal yang positif untuk dibagikan selain menjadi penopang dalam rumah tangga , anda bisa mengisi keseharian anda dengan banyak hal-hal yang positif. Temukan inspirasi-inspirasi menarik seperti mengatur tatanan rumah, memasak dan bermacam-macam hobi yang bisa anda lakukan.</div> -->
     <!-- </div> -->
-    <div role="main" style="margin-top: -4px;">
+    <div role="main" style="margin-top: 4px;">
         <div id="bannerSlide" class="carousel slide" data-ride="carousel" >
             <ul class="carousel-indicators">
                 <li data-target="#bannerSlide" data-slide-to="0" class="active"></li>
@@ -33,7 +33,7 @@
         </div>
     </div>   
     <div class="banner">
-        <div style="width:100%; background-color: #fff; font-size: 15px; padding: 25px;"><b>Top Product </b><span class="fa fa-star" style="color: #3CC2B1;"></span></div>
+        <div class="top-banner"><b>Top Product </b><span class="fa fa-star" style="color: #3CC2B1;"></span></div>
     </div>
     <div class="banner">
         <img src="{{ asset('assets/image/UI Web Claris New-31.png') }}"  style="width:100%; background-color: #fff;">
@@ -87,7 +87,7 @@
                 <h5 class="ml-3">Pencarian tidak ditemukan!</h5>
             @endif
             @foreach($product as $key => $value)
-                <div class="col-6 col-md-6 col-lg-3 mb-5"><!-- <div class="col-12 col-lg-3 mb-5"> -->  <!--px-5 py-2--><!--col-6 col-lg-4 mb-5-->
+                <div id="product_list" class="col-6 col-md-6 col-lg-3 mb-5">
                     <div class="card mx-auto item_product" style="border: none; border-radius:20px;">
                         <!-- <?php
                             $bg = ['#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1'];
@@ -112,6 +112,10 @@
                                 <div class="embed-responsive-item">
                                     <a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->product_name)])}}">
                                         <img src="{{ asset('assets/image/product/'.(($value->product_image!='') ? $value->product_image : 'none.jpg').'') }}" class="img-fluid img-responsive" alt="...">
+                                        <!-- @if($value->product_discount > 0)
+                                            <div class="cr cr-bottom cr-right cr-sticky cr-black">{{$value->product_discount}}% OFF</div>
+                                        @endif -->
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -126,6 +130,9 @@
                                     <p class="label-harga mb-0"><strong>Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</strong></p>
                                 </div>
                             </div>
+                            @if($value->product_stock == 0)
+                                <div class="p-1 mb-0 text-dark text-center" style="border-radius:7px;background-color:#e9eff5;"><small><b>Sisa Stok {{$value->product_stock}}</b></small></div>
+                            @endif
                         </div>
                         <div class="button-cart" style="background-color: #fff; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
                             <div class="col-12">
@@ -137,7 +144,7 @@
                                                 <input type="hidden" id="{{$value->id}}" name="jumlah" id="jumlah" value="0">
                                                 <input type="hidden" id="harga_{{$value->id}}" name="harga_{{$value->id}}" value="{{ $value->product_harga }}">
                                                 <input type="hidden" id="product_id_{{$value->id}}" name="product_id_{{$value->id}}" value="{{$value->id}}">
-                                                <a onclick="insertCart('{{ $value->id }}')" type="button" class="btn button_filter" style="color: #fff; font-size: 12px;"><b>Tambah</b></a>
+                                                <button onclick="insertCart('{{ $value->id }}')" type="button" class="btn button_filter" style="color: #fff; font-size: 12px; <?php if($value->product_stock==0) echo "cursor: no-drop;" ?>" <?php if($value->product_stock==0) echo "disabled"; ?> ><b>Tambah</b></button>
                                             <!-- </form> -->
                                         <!-- </div> -->
                                     </div>
@@ -149,7 +156,7 @@
                                                     <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
                                                     <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
                                                     <input type="hidden" name="product_id" value="{{$value->id}}"> -->
-                                                    <a class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                                    <button class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none; <?php if($value->product_stock==0) echo "cursor: no-drop;" ?>" <?php if($value->product_stock==0) echo "disabled"; ?> ><i class="fa fa-minus" aria-hidden="true"></i></button>
                                                 <!-- </form> -->
                                             <!-- </div> -->
                                             <!-- <div class="col-2"> -->
@@ -179,7 +186,7 @@
                                                     <input type="hidden" id="{{$value->id}}" name="jumlah" value="0">
                                                     <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
                                                     <input type="hidden" name="product_id" value="{{$value->id}}"> -->
-                                                    <a class="btn button_plus " onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                    <button class="btn button_plus " onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none; <?php if($value->product_stock==0) echo "cursor: no-drop;" ?>" <?php if($value->product_stock==0) echo "disabled"; ?> ><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                 <!-- </form> -->
                                             <!-- </div> -->
                                         </div>
