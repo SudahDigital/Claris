@@ -6,6 +6,7 @@
 
         <!-- <div class="txt-banner"> Menjadi ibu rumah tangga yang aktif dan produktif merupakan suatu hal yang positif untuk dibagikan selain menjadi penopang dalam rumah tangga , anda bisa mengisi keseharian anda dengan banyak hal-hal yang positif. Temukan inspirasi-inspirasi menarik seperti mengatur tatanan rumah, memasak dan bermacam-macam hobi yang bisa anda lakukan.</div> -->
     <!-- </div> -->
+    <br><br>
     <div role="main" style="margin-top: 4px;">
         <div id="bannerSlide" class="carousel slide" data-ride="carousel" >
             <ul class="carousel-indicators">
