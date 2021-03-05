@@ -153,7 +153,7 @@
                                                 <input type="hidden" id="prod_img_{{$value->id}}" name="prod_img_{{$value->id}}" value="{{$value->product_image}}">
                                                 <input type="hidden" id="prod_nm_{{$value->id}}" name="prod_nm_{{$value->id}}" value="{{$value->product_name}}">
                                                 <input type="hidden" id="prod_desc_{{$value->id}}" name="prod_desc_{{$value->id}}" value="{{$value->product_description}}">
-                                                <button type="button" class="btn button_filter" data-toggle="modal" data-target="#cekInsert" onclick="cekInsert('{{ $value->id }}')" style="color: #fff; font-size: 12px; <?php if($value->product_stock==0) echo "cursor: no-drop;" ?>" ><b>Tambah</b></button> <!--onclick="insertCart('{{ $value->id }}')"--> <!--<?php if($value->product_stock==0) echo "disabled"; ?>-->
+                                                <button type="button" class="btn button_filter" data-toggle="modal" data-target="#cekInsert" onclick="cekInsert('{{ $value->id }}')" style="color: #fff; font-size: 12px;" ><b>Tambah</b></button> <!--onclick="insertCart('{{ $value->id }}')"--> <!--<?php if($value->product_stock==0) echo "cursor: no-drop;" ?><?php if($value->product_stock==0) echo "disabled"; ?>-->
                                             <!-- </form> -->
                                         <!-- </div> -->
                                     </div>
@@ -165,7 +165,7 @@
                                                     <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
                                                     <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
                                                     <input type="hidden" name="product_id" value="{{$value->id}}"> -->
-                                                    <button class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none; <?php if($value->product_stock==0) echo "cursor: no-drop;" ?>"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                    <button class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                                                     <!--<?php if($value->product_stock==0) echo "disabled"; ?>-->
                                                 <!-- </form> -->
                                             <!-- </div> -->
@@ -196,7 +196,7 @@
                                                     <input type="hidden" id="{{$value->id}}" name="jumlah" value="0">
                                                     <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
                                                     <input type="hidden" name="product_id" value="{{$value->id}}"> -->
-                                                    <button class="btn button_plus " onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none; <?php if($value->product_stock==0) echo "cursor: no-drop;" ?>"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                    <button class="btn button_plus " onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                 <!-- </form> -->
                                             <!-- </div> -->
                                         </div>
