@@ -31,6 +31,10 @@
                       </div>
                     </div>
                     <div class="form-group">
+                        <label for="produk_kode">Product Code</label>
+                        <input type="text" required="true" name="produk_kode" class="form-control" placeholder="Produk Kode" id="produk_kode"required autofocus autocomplete="off" value="">
+                    </div>
+                    <div class="form-group">
                         <label for="produk_nama">Product Name</label>
                         <input type="text" required="true" name="produk_nama" class="form-control" placeholder="Produk Nama" id="produk_nama"required autofocus autocomplete="off" value="{{ $produk_nama }}">
                         <input type="hidden" name="produk_id" id="produk_id" value="{{ $produk_id }}">

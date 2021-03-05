@@ -95,6 +95,7 @@ class DashProductController extends Controller
     	$category = DB::select($sql_c);
 
     	$data['produk_id'] = $product[0]->id;
+        $data['produk_kode'] = $product[0]->product_code;
     	$data['produk_nama'] = $product[0]->product_name;
     	$data['produk_desc'] = $product[0]->product_description;
     	$data['produk_harga'] = $product[0]->product_harga;
@@ -143,6 +144,7 @@ class DashProductController extends Controller
                     $product = DB::insert("
                                 INSERT INTO products (
                                     category_id,
+                                    product_code,
                                     product_name,
                                     product_harga,
                                     product_description,
@@ -154,6 +156,7 @@ class DashProductController extends Controller
                                     created_at
                                 ) VALUES (
                                     '".$_POST['kat_produk']."',
+                                    '".$_POST['produk_kode']."',
                                     '".$_POST['produk_nama']."',
                                     '".$_POST['harga_produk']."',
                                     '".$_POST['ket_produk']."',
@@ -170,7 +173,54 @@ class DashProductController extends Controller
                     }
 		        }
 		    }
-	    }
+	    }else{
+            if (empty($_POST['top_produk'])){ 
+                $top_produk = 'N'; 
+            }else{
+                $top_produk = $_POST['top_produk'];
+            }
+
+            //--price promo--//
+                $price_promo = "NULL";
+                if($_POST['diskon_produk'] > 0){
+                    $diskon         = $_POST['diskon_produk'];
+                    $harga          = $_POST['harga_produk'];
+                    $potongan       = $harga * ($diskon / 100);
+                    $price_promo    = "'".$harga - $potongan."'";
+                }
+            //--price promo--//
+
+            $product = DB::insert("
+                        INSERT INTO products (
+                            category_id,
+                            product_code,
+                            product_name,
+                            product_harga,
+                            product_description,
+                            product_stock,
+                            product_discount,
+                            flag_top,
+                            product_image,
+                            price_promo,
+                            created_at
+                        ) VALUES (
+                            '".$_POST['kat_produk']."',
+                            '".$_POST['produk_kode']."',
+                            '".$_POST['produk_nama']."',
+                            '".$_POST['harga_produk']."',
+                            '".$_POST['ket_produk']."',
+                            '".$_POST['stock_produk']."',
+                            '".$_POST['diskon_produk']."',
+                            '".$top_produk."',
+                            '".$file_name."',
+                            ".$price_promo.",
+                            now()
+                        );
+                    ");
+            if($product){
+                return redirect('admin/dash-produk')->with(['hasil' => 'Success']);
+            }
+        }
 
 		return redirect('admin/dash-produk')->with(['hasil' => 'Failed']);
     }

@@ -14,9 +14,13 @@
                         <label>Upload Image Product</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" id="upl_image" name="upl_image" accept="image/*" required autocomplete="off">
+                                <input type="file" id="upl_image" name="upl_image" accept="image/*" autocomplete="off">
                             </div>
                         </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="produk_kode">Product Code</label>
+                        <input type="text" required="true" name="produk_kode" class="form-control" id="produk_kode" required autofocus autocomplete="off">
                       </div>
                       <div class="form-group">
                         <label for="produk_nama">Product Name</label>

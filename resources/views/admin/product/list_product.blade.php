@@ -38,31 +38,37 @@
       <div class="tab-pane fade show active">
         <table id="tableprod" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
           <thead>
+            <tr>
+              <td colspan="9" class="text-center">Product</td>
+            </tr>
               <tr>
-                  <th>
+                  <td>
                       No
-                  </th>
-                  <th class="text-center">
-                     Image
-                  </th>
-                  <th>
-                      Product Name
-                  </th>
-                  <th>
+                  </td>
+                  <td class="text-center">
+                      Image
+                  </td>
+                  <td>
+                      Code
+                  </td>
+                  <td>
+                      Name
+                  </td>
+                  <td>
                       Category
-                  </th>
-                  <th>
+                  </td>
+                  <td>
                       Price (Rp)
-                  </th>
-                  <th>
+                  </td>
+                  <td>
                       Stock (Pcs)
-                  </th>
-                  <th>
+                  </td>
+                  <td>
                       Discount (%)
-                  </th>
-                  <th style="text-align: center;">
+                  </td>
+                  <td style="text-align: center;">
                     Action
-                  </th>
+                  </td>
               </tr>
           </thead>
           <tbody>
@@ -81,12 +87,17 @@
                   </td>
                   <td>
                       <a>
+                          {{ $value->product_code }}
+                      </a>
+                  </td>
+                  <td>
+                      <a>
                           {{ $value->product_name }}
                       </a>
                   </td>
                   <td>
                       <a>
-                         {{$value->category_id}} - {{ $value->category_name }}
+                          {{ $value->category_name }}
                       </a>
                   </td>
                   <td style="text-align: right;">

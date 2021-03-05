@@ -10,20 +10,25 @@
     <div role="main" style="margin-top: 4px;">
         <div id="bannerSlide" class="carousel slide" data-ride="carousel" >
             <ul class="carousel-indicators">
-                <li data-target="#bannerSlide" data-slide-to="0" class="active"></li>
+                <!-- <li data-target="#bannerSlide" data-slide-to="0" class="active"></li> -->
                 <!-- <li data-target="#bannerSlide" data-slide-to="1"></li>
                 <li data-target="#bannerSlide" data-slide-to="2"></li> -->
             </ul>
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                <!-- <div class="carousel-item active">
                     <img src="{{ asset('assets/image/banner01.jpg') }}" class="w-100 h-100">
-                </div>
+                </div> -->
                 <!-- <div class="carousel-item">
                     <img src="{{ asset('assets/image/logo_claris.png') }}" class="w-100 h-100">
                 </div> -->
                 <!-- <div class="carousel-item">
                     <img src="{{ asset('assets/image/banner-3.jpg') }}" class="w-100">
                 </div> -->
+                @foreach($banner as $key => $value)
+                    <div class="carousel-item {{$value->id == $banner_active ? 'active' : ''}}">
+                        <img src="{{ asset('assets/image/banner/'.$value->image_banner)}}" class="w-100 h-100">
+                    </div>
+                @endforeach
             </div>
             <a class="carousel-control-prev" href="#bannerSlide" data-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
@@ -51,7 +56,7 @@
                         <button class="btn filter_category" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b>Filter Category</b>
                             <i class="fas fa-caret-down fa-lg"></i>
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="height: auto;max-height: 200px;overflow-x: hidden;">
                             <a class="dropdown-item" href="{{ url('/') }}" style="color: #3CC2B1;"><b>Semua Produk</b></a>
                             @foreach($category as $key => $value)
                                 <a class="dropdown-item" href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" style="color: #000;"><b>{{$value->category_name}}</b></a>
@@ -131,9 +136,9 @@
                                     <p class="label-harga mb-0"><strong>Rp {{ number_format($value->product_harga, 0, ',', '.') }},-</strong></p>
                                 </div>
                             </div>
-                            @if($value->product_stock == 0)
+                            <!-- @if($value->product_stock == 0)
                                 <div class="p-1 mb-0 text-dark text-center" style="border-radius:7px;background-color:#e9eff5;"><small><b>Sisa Stok {{$value->product_stock}}</b></small></div>
-                            @endif
+                            @endif -->
                         </div>
                         <div class="button-cart" style="background-color: #fff; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
                             <div class="col-12">
@@ -145,7 +150,10 @@
                                                 <input type="hidden" id="{{$value->id}}" name="jumlah" id="jumlah" value="0">
                                                 <input type="hidden" id="harga_{{$value->id}}" name="harga_{{$value->id}}" value="{{ $value->product_harga }}">
                                                 <input type="hidden" id="product_id_{{$value->id}}" name="product_id_{{$value->id}}" value="{{$value->id}}">
-                                                <button onclick="insertCart('{{ $value->id }}')" type="button" class="btn button_filter" style="color: #fff; font-size: 12px; <?php if($value->product_stock==0) echo "cursor: no-drop;" ?>" <?php if($value->product_stock==0) echo "disabled"; ?> ><b>Tambah</b></button>
+                                                <input type="hidden" id="prod_img_{{$value->id}}" name="prod_img_{{$value->id}}" value="{{$value->product_image}}">
+                                                <input type="hidden" id="prod_nm_{{$value->id}}" name="prod_nm_{{$value->id}}" value="{{$value->product_name}}">
+                                                <input type="hidden" id="prod_desc_{{$value->id}}" name="prod_desc_{{$value->id}}" value="{{$value->product_description}}">
+                                                <button type="button" class="btn button_filter" data-toggle="modal" data-target="#cekInsert" onclick="cekInsert('{{ $value->id }}')" style="color: #fff; font-size: 12px; <?php if($value->product_stock==0) echo "cursor: no-drop;" ?>" <?php if($value->product_stock==0) echo "disabled"; ?> ><b>Tambah</b></button> <!--onclick="insertCart('{{ $value->id }}')"-->
                                             <!-- </form> -->
                                         <!-- </div> -->
                                     </div>
@@ -443,6 +451,70 @@
       </div>
     </div>
 
+    <div class="modal fade" id="cekInsert" tabindex="-1" role="dialog" aria-labelledby="cekInsertLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="modal-title" id="cekInsertLabel"><b>Tambah Barang<b></h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- <div class="card col-12" style="border: none;">
+                <div class="row">
+                    <div class="col-6">
+                        <img class="dtl_img2">
+                    </div>
+                    <div class="col-6">
+                        <p class="detail_nm2" style="color: #0097bb;"></p>
+                        <p class="detail_desc2" style="color: #0097bb;"></p>
+                    </div>
+                </div>
+            </div> -->
+            <div class="card card-solid" style="border: none;">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 col-sm-6">
+                      <div class="col-12">
+                        <div class="row justify-content-center">
+                            <img class="dtl_img2">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <h3><b><p class="detail_nm2" style="color: #0097bb;"></p></b></h3>
+                      <h6 class="my-3"><b><p class="detail_desc2"></p></b></h6>
+                      <h4 class="mb-0">
+                        <b><p class="detail_harga2"></p></b>
+                      </h4>
+                      <hr>
+                      <h6><b>Available Colors</b></h6>
+                      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+                        <select class="form-control select2" style="width: 100%;">
+                            <option value="">--</option>
+                            <option>Biru</option>
+                            <option>Hijau</option>
+                            <option>Pink</option>
+                          </select>
+                      </div>
+                      <div class="mt-4">
+                        <div class="btn button_filter btn-lg btn-flat" style="color: #fff;">
+                          <i class="fas fa-cart-plus fa-lg mr-2"></i>
+                          Add to Cart
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
@@ -648,6 +720,19 @@
                     }
                 }
             })
+        }
+
+        function cekInsert(id){
+            var prod_img    = $('#prod_img_'+id).val();
+            var prod_nm     = $('#prod_nm_'+id).val();
+            var prod_desc   = $('#prod_desc_'+id).val();
+            var harga       = rupiah($('#harga_'+id).val());
+
+            // alert(prod_img+'_'+prod_nm+'_'+prod_desc);
+            $(".dtl_img2").attr("src","{{ asset('assets/image/product/') }}"+'/'+prod_img);
+            $(".detail_nm2").html(prod_nm);
+            $(".detail_desc2").html(prod_desc);
+            $(".detail_harga2").html(harga+',-');
         }
 
         function cart(id,param)

@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css')}}">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -367,6 +366,93 @@
                 right: 12%;
                 font-weight: 600;
             }
+        }
+
+        .text-lightblue {
+          color: #3c8dbc !important;
+        }
+
+        .text-navy {
+          color: #001f3f !important;
+        }
+
+        .text-olive {
+          color: #3d9970 !important;
+        }
+
+        .text-lime {
+          color: #01ff70 !important;
+        }
+
+        .text-fuchsia {
+          color: #f012be !important;
+        }
+
+        .text-maroon {
+          color: #d81b60 !important;
+        }
+
+        .text-blue {
+          color: #007bff !important;
+        }
+
+        .text-indigo {
+          color: #6610f2 !important;
+        }
+
+        .text-purple {
+          color: #6f42c1 !important;
+        }
+
+        .text-pink {
+          color: #e83e8c !important;
+        }
+
+        .text-red {
+          color: #dc3545 !important;
+        }
+
+        .text-orange {
+          color: #fd7e14 !important;
+        }
+
+        .text-yellow {
+          color: #ffc107 !important;
+        }
+
+        .text-green {
+          color: #28a745 !important;
+        }
+
+        .text-teal {
+          color: #20c997 !important;
+        }
+
+        .text-cyan {
+          color: #17a2b8 !important;
+        }
+
+        .text-white {
+          color: #ffffff !important;
+        }
+
+        .text-gray {
+          color: #6c757d !important;
+        }
+
+        .text-gray-dark {
+          color: #343a40 !important;
+        }
+
+        .btn-default {
+          background-color: #f8f9fa;
+          border-color: #ddd;
+          color: #444;
+        }
+
+        .btn-default:hover, .btn-default:active, .btn-default.hover {
+          background-color: #e9ecef;
+          color: #2b2b2b;
         }
     </style>
 
