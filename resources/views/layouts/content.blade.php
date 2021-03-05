@@ -56,7 +56,7 @@
                         <button class="btn filter_category" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b>Filter Category</b>
                             <i class="fas fa-caret-down fa-lg"></i>
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="height: auto;max-height: 200px;overflow-x: hidden;">
+                        <div class="dropdown-menu font_category" aria-labelledby="dropdownMenuButton" style="height: auto;max-height: 200px;overflow-x: hidden;">
                             <a class="dropdown-item" href="{{ url('/') }}" style="color: #3CC2B1;"><b>Semua Produk</b></a>
                             @foreach($category as $key => $value)
                                 <a class="dropdown-item" href="{{route('product_category', ['id'=>$value->id, 'category_name'=>$value->category_name] )}}" style="color: #000;"><b>{{$value->category_name}}</b></a>
@@ -94,7 +94,7 @@
             @endif
             @foreach($product as $key => $value)
                 <div id="product_list" class="col-6 col-md-6 col-lg-3 mb-5">
-                    <div class="card mx-auto item_product" style="border: none; border-radius:20px;">
+                    <div class="card h-100 item_product" style="border: none; border-radius:20px;">
                         <!-- <?php
                             $bg = ['#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1'];
                             echo '<div id="nmprd" style="background-color: '.$bg[$key].' ; padding:12px; border-top-right-radius: 20px;border-top-left-radius: 20px; color: #fff;">
@@ -153,7 +153,7 @@
                                                 <input type="hidden" id="prod_img_{{$value->id}}" name="prod_img_{{$value->id}}" value="{{$value->product_image}}">
                                                 <input type="hidden" id="prod_nm_{{$value->id}}" name="prod_nm_{{$value->id}}" value="{{$value->product_name}}">
                                                 <input type="hidden" id="prod_desc_{{$value->id}}" name="prod_desc_{{$value->id}}" value="{{$value->product_description}}">
-                                                <button type="button" class="btn button_filter" data-toggle="modal" data-target="#cekInsert" onclick="cekInsert('{{ $value->id }}')" style="color: #fff; font-size: 12px; <?php if($value->product_stock==0) echo "cursor: no-drop;" ?>" <?php if($value->product_stock==0) echo "disabled"; ?> ><b>Tambah</b></button> <!--onclick="insertCart('{{ $value->id }}')"-->
+                                                <button type="button" class="btn button_filter" data-toggle="modal" data-target="#cekInsert" onclick="cekInsert('{{ $value->id }}')" style="color: #fff; font-size: 12px; <?php if($value->product_stock==0) echo "cursor: no-drop;" ?>" ><b>Tambah</b></button> <!--onclick="insertCart('{{ $value->id }}')"--> <!--<?php if($value->product_stock==0) echo "disabled"; ?>-->
                                             <!-- </form> -->
                                         <!-- </div> -->
                                     </div>
@@ -165,7 +165,8 @@
                                                     <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
                                                     <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
                                                     <input type="hidden" name="product_id" value="{{$value->id}}"> -->
-                                                    <button class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none; <?php if($value->product_stock==0) echo "cursor: no-drop;" ?>" <?php if($value->product_stock==0) echo "disabled"; ?> ><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                    <button class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none; <?php if($value->product_stock==0) echo "cursor: no-drop;" ?>"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                    <!--<?php if($value->product_stock==0) echo "disabled"; ?>-->
                                                 <!-- </form> -->
                                             <!-- </div> -->
                                             <!-- <div class="col-2"> -->
@@ -195,7 +196,7 @@
                                                     <input type="hidden" id="{{$value->id}}" name="jumlah" value="0">
                                                     <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
                                                     <input type="hidden" name="product_id" value="{{$value->id}}"> -->
-                                                    <button class="btn button_plus " onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none; <?php if($value->product_stock==0) echo "cursor: no-drop;" ?>" <?php if($value->product_stock==0) echo "disabled"; ?> ><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                    <button class="btn button_plus " onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none; <?php if($value->product_stock==0) echo "cursor: no-drop;" ?>"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                 <!-- </form> -->
                                             <!-- </div> -->
                                         </div>
