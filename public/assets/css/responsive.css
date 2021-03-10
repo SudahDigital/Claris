@@ -336,4 +336,18 @@
     .cr-red       { background-color: #e43; }
     .cr-orange    { background-color: #e82; }
     .cr-yellow    { background-color: #ec0; }
+
+    #content .button-color {
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+      background-color: #E9EBEB;
+      font-size: 2.5vw;
+    }
+
+    #content .button-size {
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
+      background-color: #E9EBEB;
+      font-size: 2.5vw;
+    }
 }

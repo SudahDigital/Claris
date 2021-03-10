@@ -11,9 +11,12 @@
         <i class="fas fa-minus"></i></button>
       <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
         <i class="fas fa-times"></i></button> -->
-     <a class="btn btn-success btn-sm" href="{{URL::route('form_produk')}}">
-        <i class="fas fa-plus"></i> Create Product 
-     </a>
+      <a class="btn btn-success btn-sm" href="{{URL::route('import_produk')}}">
+        <i class="fas fa-upload"></i>&nbsp;Import Product
+      </a>
+      <a class="btn btn-success btn-sm" href="{{URL::route('form_produk')}}">
+        <i class="fas fa-plus"></i>&nbsp;Create Product 
+      </a>
     </div>
   </div>
 

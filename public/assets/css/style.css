@@ -1611,5 +1611,23 @@ footer.footer .cart .count-cart-three {
 .cr-orange    { background-color: #e82; }
 .cr-yellow    { background-color: #ec0; }
 
+#content .button-color {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  background-color: #E9EBEB;
+  font-weight: bold;
+}
+
+#content .button-size {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-color: #E9EBEB;
+  font-weight: bold;
+}
+
+#content .text-bold {
+  font-weight: bold;
+}
+
 
 

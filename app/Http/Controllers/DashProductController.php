@@ -293,4 +293,8 @@ class DashProductController extends Controller
         }
         return redirect('admin/dash-produk')->with(['hasil' => 'failed']);
     }
+
+    public function import_view(Request $request){
+        return view ('admin.product.import_product'); 
+    }
 }

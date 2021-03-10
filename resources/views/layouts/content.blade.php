@@ -140,6 +140,24 @@
                                 <div class="p-1 mb-0 text-dark text-center" style="border-radius:7px;background-color:#e9eff5;"><small><b>Sisa Stok {{$value->product_stock}}</b></small></div>
                             @endif -->
                         </div>
+                        <div class="button-cart">
+                            <div class="btn-group" role="group">
+                                <div>
+                                    <select class="form-control button-color" style="font-size: 12px;" data-show-icon="true">
+                                      <option class="text-bold"><i class="fa fa-circle"></i>Biru</option>
+                                      <option class="text-bold">Merah</option>
+                                      <option class="text-bold">Kuning</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <select class="form-control button-size" style="font-size: 12px;">
+                                      <option class="text-bold">Size S</option>
+                                      <option class="text-bold">Size L</option>
+                                      <option class="text-bold">Size M</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="button-cart" style="background-color: #fff; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
                             <div class="col-12">
                                 <div class="row">
@@ -153,7 +171,7 @@
                                                 <input type="hidden" id="prod_img_{{$value->id}}" name="prod_img_{{$value->id}}" value="{{$value->product_image}}">
                                                 <input type="hidden" id="prod_nm_{{$value->id}}" name="prod_nm_{{$value->id}}" value="{{$value->product_name}}">
                                                 <input type="hidden" id="prod_desc_{{$value->id}}" name="prod_desc_{{$value->id}}" value="{{$value->product_description}}">
-                                                <button type="button" class="btn button_filter" data-toggle="modal" data-target="#cekInsert" onclick="cekInsert('{{ $value->id }}')" style="color: #fff; font-size: 12px;" ><b>Tambah</b></button> <!--onclick="insertCart('{{ $value->id }}')"--> <!--<?php if($value->product_stock==0) echo "cursor: no-drop;" ?><?php if($value->product_stock==0) echo "disabled"; ?>-->
+                                                <button type="button" class="btn button_filter" onclick="insertCart('{{ $value->id }}')" style="color: #fff; font-size: 12px;" ><b>Tambah</b></button><!--<?php if($value->product_stock==0) echo "cursor: no-drop;" ?><?php if($value->product_stock==0) echo "disabled"; ?>--><!--data-toggle="modal" data-target="#cekInsert" onclick="cekInsert('{{ $value->id }}')"-->
                                             <!-- </form> -->
                                         <!-- </div> -->
                                     </div>
