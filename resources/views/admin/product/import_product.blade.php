@@ -4,7 +4,7 @@
 @section('content')
 
 <section class="content">
-	<form id="form_validation" method="POST" enctype="multipart/form-data" action="">
+	<form id="form_validation" method="GET" enctype="multipart/form-data" action="{{route('import_data_produk')}}">
     	@csrf
         
         <div class="row section_content mb-5" style="margin-bottom: 30px">
@@ -23,7 +23,7 @@
 				        </div>
 				    </div>
 	                <div class="card-footer text-right">
-	                    <button type="submit" class="btn btn-primary">Submit</button>
+	                    <button type="submit" value="IMPORT" class="btn btn-primary">Submit</button>
 	                    <a class="btn btn-warning" href="{{URL::previous()}}">Cancel</a>
 	                </div>
 	            </div>

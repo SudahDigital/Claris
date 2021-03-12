@@ -11,6 +11,9 @@
         <i class="fas fa-minus"></i></button>
       <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
         <i class="fas fa-times"></i></button> -->
+        <a class="btn btn-success btn-sm" onclick="DownloadTpl();" style="color: #fff;">
+        <i class="fas fa-download"></i>&nbsp;Download Template
+      </a>
       <a class="btn btn-success btn-sm" href="{{URL::route('import_produk')}}">
         <i class="fas fa-upload"></i>&nbsp;Import Product
       </a>
@@ -384,6 +387,23 @@
             $('#stock').html(stock);
             $('#flag_top').html(flag_top);
           }         
+      });
+    }
+
+    function DownloadTpl(){
+      $.ajax({
+          url: "{{url('/admin/download_tpl_produk')}}",
+          type: "GET",
+          responseType: "blob"
+      })
+      .then((response) => {
+
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', 'tes.xlsx'); //or any other extension
+          document.body.appendChild(link);
+          link.click();
       });
     }
 </script>

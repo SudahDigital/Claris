@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ProductsImport;
+
 use App\Product;
 use App\ProductImage;
 use App\Category;
@@ -296,5 +299,37 @@ class DashProductController extends Controller
 
     public function import_view(Request $request){
         return view ('admin.product.import_product'); 
+    }
+
+    public function import_data(Request $request)
+    {
+        \Validator::make($request->all(), [
+            "file" => "required|mimes:xls,xlsx"
+        ])->validate();
+        
+        // $data = Excel::toArray(new ProductsImport, request()->file('file')); 
+
+        // $update = collect(head($data))
+        //     ->each(function ($row, $key){
+        //         DB::table('products')
+        //             ->where('id', $row['product_code'])
+        //             ->update(Arr::except($row,['product_code']));   
+        //     });
+        
+        // if($update){
+        //     return redirect()->route('import_produk')->with('status', 'File successfully upload'); 
+        // }
+
+        Excel::import(new ProductsImport, $request->file('file'));
+
+        return redirect()->route('import_produk')->with('status', 'File successfully upload'); 
+    }
+
+    public function download_tpl(Request $request){
+        $path       = public_path('tpl\tes.xlsx');
+        $name       = 'tes.xlsx';
+        $headers    = ['Content-Type: application/vnd.ms-excel'];
+
+        return response()->download($path, $name, $headers);
     }
 }
