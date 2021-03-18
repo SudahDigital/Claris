@@ -303,9 +303,9 @@ class DashProductController extends Controller
 
     public function import_data(Request $request)
     {
-        \Validator::make($request->all(), [
-            "file" => "required|mimes:xls,xlsx"
-        ])->validate();
+        // \Validator::make($request->all(), [
+        //     "file" => "required|mimes:xls,xlsx"
+        // ])->validate();
         
         // $data = Excel::toArray(new ProductsImport, request()->file('file')); 
 
@@ -320,14 +320,21 @@ class DashProductController extends Controller
         //     return redirect()->route('import_produk')->with('status', 'File successfully upload'); 
         // }
 
-        Excel::import(new ProductsImport, $request->file('file'));
+        // print_r($_FILES['upl_file']);exit();
+
+        $file_name = $_FILES['upl_file']['name'];
+        $file_size = $_FILES['upl_file']['size'];
+        $file_tmp = $_FILES['upl_file']['tmp_name'];
+        $file_type = $_FILES['upl_file']['type'];
+
+        Excel::import(new ProductsImport, $file_tmp);
 
         return redirect()->route('import_produk')->with('status', 'File successfully upload'); 
     }
 
     public function download_tpl(Request $request){
-        $path       = public_path('tpl\tes.xlsx');
-        $name       = 'tes.xlsx';
+        $path       = public_path('tpl\product.xlsx');
+        $name       = 'product.xlsx';
         $headers    = ['Content-Type: application/vnd.ms-excel'];
 
         return response()->download($path, $name, $headers);

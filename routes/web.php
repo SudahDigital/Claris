@@ -121,7 +121,7 @@ Route::middleware('auth')->group(function () {
 	Route::get('/admin/view-produk', 'DashProductController@view')->name('view_produk');
 	Route::get('/admin/exec-produk/{id}', 'DashProductController@execute')->name('exec_produk');
 	Route::get('/admin/import-produk', 'DashProductController@import_view')->name('import_produk');
-	Route::get('/admin/import_data_produk', 'DashProductController@import_data')->name('import_data_produk');
+	Route::post('/admin/import_data_produk', 'DashProductController@import_data')->name('import_data_produk');
 	Route::get('/admin/download_tpl_produk', 'DashProductController@download_tpl')->name('download_tpl_produk');
 
 	// admin kategori
