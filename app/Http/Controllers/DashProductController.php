@@ -333,7 +333,7 @@ class DashProductController extends Controller
     }
 
     public function download_tpl(Request $request){
-        $path       = public_path('tpl\product.xlsx');
+        $path       = public_path('tpl/product.xlsx');
         $name       = 'product.xlsx';
         $headers    = ['Content-Type: application/vnd.ms-excel'];
 
