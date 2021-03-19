@@ -116,12 +116,12 @@
                         <div class="card-img-top" style="position: relative;">
                             <div class="embed-responsive embed-responsive-4by3">
                                 <div class="embed-responsive-item">
-                                    <a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->product_name)])}}">
+                                    <!-- <a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->product_name)])}}"> -->
                                         <img src="{{ asset('assets/image/product/'.(($value->product_image!='') ? $value->product_image : 'none.jpg').'') }}" class="img-fluid img-responsive" alt="...">
                                         <!-- @if($value->product_discount > 0)
                                             <div class="cr cr-bottom cr-right cr-sticky cr-black">{{$value->product_discount}}% OFF</div>
                                         @endif -->
-                                    </a>
+                                    <!-- </a> -->
                                 </div>
                             </div>
                         </div>
@@ -140,23 +140,19 @@
                                 <div class="p-1 mb-0 text-dark text-center" style="border-radius:7px;background-color:#e9eff5;"><small><b>Sisa Stok {{$value->product_stock}}</b></small></div>
                             @endif -->
                         </div>
-                        <div class="button-cart">
-                            <div class="btn-group" role="group">
-                                <div>
-                                    <select class="form-control button-color" style="font-size: 12px;" data-show-icon="true">
-                                      <option class="text-bold"><i class="fa fa-circle"></i>Biru</option>
-                                      <option class="text-bold">Merah</option>
-                                      <option class="text-bold">Kuning</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <select class="form-control button-size" style="font-size: 12px;">
-                                      <option class="text-bold">Size S</option>
-                                      <option class="text-bold">Size L</option>
-                                      <option class="text-bold">Size M</option>
-                                    </select>
-                                </div>
-                            </div>
+                        <div class="card-body view-cart">
+                            <select class="form-control button-color" style="font-size: 12px;" data-show-icon="true">
+                                <?php
+                                    $color = explode(",", $value->product_color);
+                                    $count_clr = count($color);
+
+                                    for ($i=0; $i < $count_clr; $i++) { 
+                                        $hsl = $color[$i];
+                                        
+                                        echo "<option class=\"text-bold\"><i class=\"fa fa-circle\"></i> $hsl </option>";
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <div class="button-cart" style="background-color: #fff; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
                             <div class="col-12">

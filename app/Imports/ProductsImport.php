@@ -11,7 +11,9 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class ProductsImport implements ToModel, WithHeadingRow
+use Illuminate\Support\Facades\DB;
+
+class ProductsImport implements ToModel, WithHeadingRow, WithMultipleSheets
 {
     use Importable;
     /**
@@ -31,26 +33,43 @@ class ProductsImport implements ToModel, WithHeadingRow
     {
 
     	// print_r($data);exit();
-    	// echo $data['product_code'];exit();
-    	foreach ($data as $key => $row) {  
-	        $dateNow = date('Y-m-d H:i:s');
+        $dateNow = date('Y-m-d H:i:s');
 
-	        //echo $data['product_code'];
+        $sql = "SELECT * FROM products WHERE product_code = '".$data['product_code']."' ";
+        $rst = DB::select($sql);
+        $row = count($rst);
 
-	        // if($row[0] != 'Product Code' && $row[1] != 'Product Name' && $row[2] != 'Product Price' && $row[3] != 'Product Description' && $row[4] != 'Category ID' && $row[5] != 'Product Stock' && $row[6] != 'Product Discount' && $row[7] != 'Product Image'){
-		        Product::updateOrCreate([
-		            'product_code'=>$data['product_code'],
-		            'product_name' => $data['product_name'],
-		            'product_harga' => $data['product_price'],
-		            'product_description'=>$data['product_description'],
-		            'category_id'=>$data['category_id'],
-		            'product_stock' => $data['product_stock'],
-		            'product_discount'=>$data['product_discount'],
-		            'product_image'=>$data['product_image'],
-		            'created_at'=>$dateNow
-		        ]);
-		    // }
-	    } //exit();
+        if($row>0){
+        	$sql_upt = "UPDATE products SET 
+        					product_name = '".$data['product_name']."',
+        				    product_harga = '".$data['product_price']."',
+        				    product_description = '".$data['product_description']."',
+        				    category_id = '".$data['category_id']."',
+        				    product_stock  = '".$data['product_stock']."',
+        				    product_discount = '".$data['product_discount']."',
+        				    product_image = '".$data['product_image']."',
+        				    product_color = '".$data['product_color']."',
+        				    updated_at = '".$dateNow."'
+        				WHERE 
+        					product_code = '".$data['product_code']."'";
+        	$rst_upt = DB::update($sql_upt);
+
+        }else{
+
+        	$sql_insert = Product::Create([
+	            'product_code'=>$data['product_code'],
+	            'product_name' => $data['product_name'],
+	            'product_harga' => $data['product_price'],
+	            'product_description'=>$data['product_description'],
+	            'category_id'=>$data['category_id'],
+	            'product_stock' => $data['product_stock'],
+	            'product_discount'=>$data['product_discount'],
+	            'product_image'=>$data['product_image'],
+	            'product_color'=>$data['product_color'],
+	            'created_at'=>$dateNow
+	        ]);
+
+        }
     }
 
     

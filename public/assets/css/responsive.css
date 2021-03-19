@@ -338,8 +338,7 @@
     .cr-yellow    { background-color: #ec0; }
 
     #content .button-color {
-      border-top-left-radius: 25px;
-      border-bottom-left-radius: 25px;
+      border-radius: 25px;
       background-color: #E9EBEB;
       font-size: 2.5vw;
     }
