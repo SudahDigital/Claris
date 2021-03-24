@@ -619,7 +619,7 @@ a.register:hover {
     z-index: 0;
     background-color: #F08029 !important;
     border-radius: 7px;
-    padding: 5px 15px;
+    /*padding: 5px 15px;*/
     margin: 0 auto;
     border-radius: 20px;
 }

@@ -106,6 +106,7 @@ class DashProductController extends Controller
         $data['produk_stock'] = $product[0]->product_stock;
         $data['diskon_produk'] = $product[0]->product_discount;
     	$data['image_nama'] = $product[0]->product_image;
+        $data['warna_produk'] = $product[0]->product_color;
     	$data['kategori'] = $category;
 
         return view ('admin.product.edit_product', $data);   
@@ -153,6 +154,7 @@ class DashProductController extends Controller
                                     product_description,
                                     product_stock,
                                     product_discount,
+                                    product_color,
                                     flag_top,
                                     product_image,
                                     price_promo,
@@ -165,6 +167,7 @@ class DashProductController extends Controller
                                     '".$_POST['ket_produk']."',
                                     '".$_POST['stock_produk']."',
                                     '".$_POST['diskon_produk']."',
+                                    '".$_POST['warna_produk']."',
                                     '".$top_produk."',
                                     '".$file_name."',
                                     ".$price_promo.",
@@ -202,6 +205,7 @@ class DashProductController extends Controller
                             product_description,
                             product_stock,
                             product_discount,
+                            product_color,
                             flag_top,
                             product_image,
                             price_promo,
@@ -214,6 +218,7 @@ class DashProductController extends Controller
                             '".$_POST['ket_produk']."',
                             '".$_POST['stock_produk']."',
                             '".$_POST['diskon_produk']."',
+                            '".$_POST['warna_produk']."',
                             '".$top_produk."',
                             '".$file_name."',
                             ".$price_promo.",
@@ -269,6 +274,7 @@ class DashProductController extends Controller
                         product_harga = '".$request->harga_produk."',
                         product_stock = '".$request->stock_produk."',
                         product_discount = '".$request->diskon_produk."', 
+                        product_color = '".$request->warna_produk."',
                         flag_top = '".$top_produk."',
                         price_promo = ".$price_promo.",
                         $product_image
@@ -290,7 +296,12 @@ class DashProductController extends Controller
 
     public function delete(Request $request)
     {
-    	$delete = DB::update("UPDATE products SET flag_draft = 'Y' WHERE id = '".$request->id."'");
+        if($request->par == ''){
+            $delete = DB::update("UPDATE products SET flag_draft = 'Y' WHERE id = '".$request->id."'");
+        }else{
+            $delete = Product::where('id',$request->id)->delete();
+        }
+
         if($delete){
 		  return redirect('admin/dash-produk')->with(['hasil' => 'success']);
         }

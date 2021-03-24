@@ -11,7 +11,7 @@
         <i class="fas fa-minus"></i></button>
       <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
         <i class="fas fa-times"></i></button> -->
-        <a class="btn btn-success btn-sm" onclick="DownloadTpl();" style="color: #fff;">
+        <a class="btn btn-success btn-sm" href="{{URL::route('download_tpl_produk')}}" style="color: #fff;">
         <i class="fas fa-download"></i>&nbsp;Download Template
       </a>
       <a class="btn btn-success btn-sm" href="{{URL::route('import_produk')}}">
@@ -133,7 +133,7 @@
                           <i class="fas fa-pencil-alt">
                           </i>
                       </a>
-                      <a class="btn btn-danger btn-sm" href="#"  onclick="delProduct('{{ $value->id }}');">
+                      <a class="btn btn-danger btn-sm" href="#"  onclick="delProduct('{{ $value->id }}','{{ Request::get('status') }}');">
                           <i class="fas fa-trash">
                           </i>
                       </a>
@@ -246,6 +246,7 @@
     }
 
     function delProduct(id, par){
+      alert(par);
         Swal.fire({
           title: 'Hapus Produk ?',
           icon: 'warning',
@@ -261,12 +262,22 @@
                 url: "{{url('/admin/hapus-produk')}}"+'/'+id,
                 data: {id:id, par: par},
                 success: function (data) {
-                    Swal.fire({
-                       title: 'Sukses',
-                       text: 'Item ini berhasil di draft',
-                       icon: 'success'}).then(function(){ 
-                    location.reload();
-                    });
+                    if(par == ''){
+                      Swal.fire({
+                         title: 'Sukses',
+                         text: 'Item ini berhasil di draft',
+                         icon: 'success'}).then(function(){ 
+                         location.reload();
+                      });
+                    }else{
+                      Swal.fire({
+                         title: 'Sukses',
+                         text: 'Item ini berhasil di hapus',
+                         icon: 'success'}).then(function(){ 
+                         location.reload();
+                      });
+                    }
+                    
                 }         
             });
           }
@@ -299,22 +310,22 @@
       });
     }
 
-    function DownloadTpl(){
-      $.ajax({
-          url: "{{url('/admin/download_tpl_produk')}}",
-          type: "GET",
-          responseType: "blob"
-      })
-      .then((response) => {
+    // function DownloadTpl(){
+    //   $.ajax({
+    //       url: "{{url('/admin/download_tpl_produk')}}",
+    //       type: "GET",
+    //       responseType: "blob"
+    //   })
+    //   .then((response) => {
 
-          const url = window.URL.createObjectURL(new Blob([response.data]));
-          const link = document.createElement('a');
-          link.href = url;
-          link.setAttribute('download', 'product.xlsx'); //or any other extension
-          document.body.appendChild(link);
-          link.click();
-      });
-    }
+    //       const url = window.URL.createObjectURL(new Blob([response.data]));
+    //       const link = document.createElement('a');
+    //       link.href = url;
+    //       link.setAttribute('download', 'product.xlsx');
+    //       document.body.appendChild(link);
+    //       link.click();
+    //   });
+    // }
 </script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

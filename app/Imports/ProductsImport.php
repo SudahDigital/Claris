@@ -39,6 +39,12 @@ class ProductsImport implements ToModel, WithHeadingRow, WithMultipleSheets
         $rst = DB::select($sql);
         $row = count($rst);
 
+        $product_color = strtoupper($data['product_color']);
+        $diskon         = $data['product_discount'];
+        $harga          = $data['product_price'];
+        $potongan       = $harga * ($diskon / 100);
+        $price_promo    = "'".$harga - $potongan."'";
+
         if($row>0){
         	$sql_upt = "UPDATE products SET 
         					product_name = '".$data['product_name']."',
@@ -48,7 +54,8 @@ class ProductsImport implements ToModel, WithHeadingRow, WithMultipleSheets
         				    product_stock  = '".$data['product_stock']."',
         				    product_discount = '".$data['product_discount']."',
         				    product_image = '".$data['product_image']."',
-        				    product_color = '".$data['product_color']."',
+        				    product_color = '".$product_color."',
+        				    price_promo = '".$price_promo."',
         				    updated_at = '".$dateNow."'
         				WHERE 
         					product_code = '".$data['product_code']."'";
@@ -65,7 +72,8 @@ class ProductsImport implements ToModel, WithHeadingRow, WithMultipleSheets
 	            'product_stock' => $data['product_stock'],
 	            'product_discount'=>$data['product_discount'],
 	            'product_image'=>$data['product_image'],
-	            'product_color'=>$data['product_color'],
+	            'product_color'=>$product_color,
+	            'price_promo'=>$price_promo,
 	            'created_at'=>$dateNow
 	        ]);
 
