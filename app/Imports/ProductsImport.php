@@ -42,8 +42,11 @@ class ProductsImport implements ToModel, WithHeadingRow, WithMultipleSheets
         $product_color = strtoupper($data['product_color']);
         $diskon         = $data['product_discount'];
         $harga          = $data['product_price'];
-        $potongan       = $harga * ($diskon / 100);
-        $price_promo    = "'".$harga - $potongan."'";
+        $price_promo 	= "";
+        if($diskon!='' || $diskon != '0'){
+	        $potongan       = $harga * ($diskon / 100);
+	        $price_promo    = $harga - $potongan;
+	    }
 
         if($row>0){
         	$sql_upt = "UPDATE products SET 
