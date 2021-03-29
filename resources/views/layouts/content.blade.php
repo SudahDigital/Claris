@@ -141,7 +141,7 @@
                             @endif -->
                         </div>
                         <div class="card-body view-cart">
-                            <select class="form-control button-color" style="font-size: 12px;" data-show-icon="true">
+                            <!-- <select class="form-control button-color" style="font-size: 12px;" data-show-icon="true">
                                 <?php
                                     $color = explode(",", $value->product_color);
                                     $count_clr = count($color);
@@ -152,7 +152,29 @@
                                         echo "<option class=\"text-bold\"><i class=\"fa fa-circle\"></i> $hsl </option>";
                                     }
                                 ?>
-                            </select>
+                            </select> -->
+                            <div>
+                                <?php
+                                    $color = explode(",", $value->product_color);
+                                    $count_clr = count($color);
+
+                                    for ($i=0; $i < $count_clr; $i++) { 
+                                        $hsl = $color[$i];
+
+                                        echo "<div class=\"row\">
+                                                <div><span class=\"$hsl\"><i class=\"fa fa-circle fa-xs\"></i></span></div>
+                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                    <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus\" aria-hidden=\"true\"></i></button>
+                                                    <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center;\">0</span>
+                                                    <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i></button>
+                                                </div>
+                                            </div><br>";
+                                    }
+                                ?>
+                            </div>
+                            <div>
+                                
+                            </div>
                         </div>
                         <div class="button-cart" style="background-color: #fff; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
                             <div class="col-12">
