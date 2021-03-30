@@ -619,7 +619,7 @@ a.register:hover {
     z-index: 0;
     background-color: #F08029 !important;
     border-radius: 7px;
-    /*padding: 5px 15px;*/
+    padding: 5px 15px;
     margin: 0 auto;
     border-radius: 20px;
 }
@@ -1637,6 +1637,16 @@ footer.footer .cart .count-cart-three {
 .MERAH     { color: #e43; }
 .ORANGE    { color: #e82; }
 .KUNING    { color: #ec0; }
+
+.view-color {
+  padding-left: 10px; 
+  padding-top: 1rem !important; 
+  padding-bottom: 5px !important;
+}
+
+.ic_color{
+  padding: 5px !important; 
+}
 
 
 

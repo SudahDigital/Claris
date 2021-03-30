@@ -140,7 +140,8 @@
                                 <div class="p-1 mb-0 text-dark text-center" style="border-radius:7px;background-color:#e9eff5;"><small><b>Sisa Stok {{$value->product_stock}}</b></small></div>
                             @endif -->
                         </div>
-                        <div class="card-body view-cart">
+
+                        <div class="card-body view-color">
                             <!-- <select class="form-control button-color" style="font-size: 12px;" data-show-icon="true">
                                 <?php
                                     $color = explode(",", $value->product_color);
@@ -153,35 +154,35 @@
                                     }
                                 ?>
                             </select> -->
-                            <div>
-                                <?php
-                                    $color = explode(",", $value->product_color);
-                                    $count_clr = count($color);
 
-                                    for ($i=0; $i < $count_clr; $i++) { 
-                                        $hsl = $color[$i];
+                            <?php
+                                $color = explode(",", $value->product_color);
+                                $count_clr = count($color);
 
-                                        echo "<div class=\"row\">
-                                                <div><span class=\"$hsl\"><i class=\"fa fa-circle fa-xs\"></i></span></div>
-                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
-                                                    <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus\" aria-hidden=\"true\"></i></button>
-                                                    <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center;\">0</span>
-                                                    <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i></button>
-                                                </div>
-                                            </div><br>";
-                                    }
-                                ?>
-                            </div>
-                            <div>
-                                
-                            </div>
+                                for ($i=0; $i < $count_clr; $i++) { 
+                                    $hsl = $color[$i];
+
+                                    echo "
+                                    <div class=\"row\">
+                                        <div class=\"col-sm-6\">
+                                            <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                <span class=\"$hsl ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>
+                                                <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    ";
+                                }
+                            ?>
+
                         </div>
+
                         <div class="button-cart" style="background-color: #fff; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
                             <div class="col-12">
                                 <div class="row">
-                                    <div class="col-4">
-                                        <!-- <div class="px-1 py-2"> -->
-                                            <!-- <form method="post" action="{{route('add_cart')}}"> -->
+                                    <!-- <div class="col-4"> -->
                                                 @csrf
                                                 <input type="hidden" id="{{$value->id}}" name="jumlah" id="jumlah" value="0">
                                                 <input type="hidden" id="harga_{{$value->id}}" name="harga_{{$value->id}}" value="{{ $value->product_harga }}">
@@ -189,29 +190,15 @@
                                                 <input type="hidden" id="prod_img_{{$value->id}}" name="prod_img_{{$value->id}}" value="{{$value->product_image}}">
                                                 <input type="hidden" id="prod_nm_{{$value->id}}" name="prod_nm_{{$value->id}}" value="{{$value->product_name}}">
                                                 <input type="hidden" id="prod_desc_{{$value->id}}" name="prod_desc_{{$value->id}}" value="{{$value->product_description}}">
-                                                <button type="button" class="btn button_filter" onclick="insertCart('{{ $value->id }}')" style="color: #fff; font-size: 12px;" ><b>Tambah</b></button><!--<?php if($value->product_stock==0) echo "cursor: no-drop;" ?><?php if($value->product_stock==0) echo "disabled"; ?>--><!--data-toggle="modal" data-target="#cekInsert" onclick="cekInsert('{{ $value->id }}')"-->
-                                            <!-- </form> -->
-                                        <!-- </div> -->
-                                    </div>
-                                    <div class="col-8">
+                                                <button type="button" class="btn button_filter btn-lg btn-block" onclick="insertCart('{{ $value->id }}')" style="color: #fff; font-size: 12px;" ><b>Tambah</b></button>
+                                    <!-- </div> -->
+                                    <!-- <div class="col-8">
                                         <div class="float-right text-center">
-                                            <!-- <div class="col-2"> -->
-                                                <!-- <form method="post" action="{{route('add_cart')}}">
-                                                    @csrf
-                                                    <input type="hidden" id="{{$value->id}}" name="jumlah" value="1">
-                                                    <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
-                                                    <input type="hidden" name="product_id" value="{{$value->id}}"> -->
                                                     <button class="btn button_plus d-inline-display" onclick="button_minus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                                    <!--<?php if($value->product_stock==0) echo "disabled"; ?>-->
-                                                <!-- </form> -->
-                                            <!-- </div> -->
-                                            <!-- <div class="col-2"> -->
                                                 <?php
                                                     $ses_id = \Request::header('User-Agent');
                                                     $clientIP = \Request::getClientIp(true);
                                                     $user = $ses_id.$clientIP;
-
-                                                    // $sql = \DB::select("SELECT A.id, B.mount FROM products AS A LEFT JOIN (SELECT carts.mount, carts.session_id, carts.product_id FROM carts WHERE carts.session_id = '".$user."') AS B ON A.id = B.product_id"); 
 
                                                     $sql = \DB::select("SELECT A.id, B.mount FROM carts AS B LEFT JOIN (SELECT products.id FROM products) AS A ON A.id = B.product_id WHERE B.session_id = '".$user."' AND A.id = '".$value->id."' "); 
                                                     $rst = count($sql);
@@ -224,19 +211,9 @@
                                                         echo '<span id="show_'.$value->id.'" class="d-inline title-dtl" style="color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center;">0</span>';
                                                     }
                                                 ?>
-                                                <!-- <span id="show_{{$value->id}}" class="d-inline" style="color: #000 !important; font-size: 15px; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center;">0 {{$user}}</span> -->
-                                            <!-- </div> -->
-                                            <!-- <div class="col-2"> -->
-                                                <!-- <form method="post" action="{{route('add_cart')}}"> -->
-                                                    <!-- @csrf
-                                                    <input type="hidden" id="{{$value->id}}" name="jumlah" value="0">
-                                                    <input type="hidden" id="harga{{$value->id}}" name="harga" value="{{ $value->product_harga }}">
-                                                    <input type="hidden" name="product_id" value="{{$value->id}}"> -->
                                                     <button class="btn button_plus " onclick="button_plus_br('{{$value->id}}')" style="padding: 0; border-radius: 100%; color:#000;outline:none;"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                <!-- </form> -->
-                                            <!-- </div> -->
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

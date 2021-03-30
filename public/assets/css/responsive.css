@@ -74,7 +74,7 @@
 
     #content .button_filter {
         padding: 5px 5px;
-        width: 50px;
+        width: 100px;
         font-size: 2.5vw !important;
     }
 
@@ -348,5 +348,10 @@
       border-bottom-right-radius: 25px;
       background-color: #E9EBEB;
       font-size: 2.5vw;
+    }
+
+    .ic_color{
+      padding: 5px !important; 
+      font-size: 0.5rem !important;
     }
 }
