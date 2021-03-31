@@ -159,7 +159,118 @@
                                 $color = explode(",", $value->product_color);
                                 $count_clr = count($color);
 
-                                for ($i=0; $i < $count_clr; $i++) { 
+                                if($count_clr=="1"){
+                                    echo "<div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                <span class=\"$hsl ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>
+                                                <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                                            </div>";
+                                }elseif ($count_clr=="2") {
+                                    for ($i=0; $i < $count_clr; $i++) { 
+                                        $hsl0 = $color[0];  
+                                        $hsl1 = $color[1]; 
+                                    }
+
+                                    echo "
+                                        <div class=\"row\">
+                                            <div class=\"col-6\">
+                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                    <span class=\"$hsl0 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                    <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                    <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>
+                                                    <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class=\"col-6\">
+                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                    <span class=\"$hsl1 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                    <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                    <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>
+                                                    <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ";
+                                }elseif ($count_clr=="3") {
+                                    for ($i=0; $i < $count_clr; $i++) { 
+                                        $hsl0 = $color[0];  
+                                        $hsl1 = $color[1]; 
+                                        $hsl2 = $color[2]; 
+                                    }
+
+                                    echo "
+                                        <div class=\"row\">
+                                            <div class=\"col-6\">
+                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                    <span class=\"$hsl0 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                    <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                    <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>
+                                                    <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                </div>
+
+                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                    <span class=\"$hsl1 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                    <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                    <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>
+                                                    <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class=\"col-6\">
+                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                    <span class=\"$hsl2 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                    <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                    <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>
+                                                    <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ";
+                                }elseif ($count_clr=="4") {
+                                    for ($i=0; $i < $count_clr; $i++) { 
+                                        $hsl0 = $color[0];  
+                                        $hsl1 = $color[1]; 
+                                        $hsl2 = $color[2]; 
+                                        $hsl3 = $color[3]; 
+                                    }
+
+                                    echo "
+                                        <div class=\"row\">
+                                            <div class=\"col-6\">
+                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                    <span class=\"$hsl0 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                    <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                    <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>
+                                                    <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                </div>
+
+                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                    <span class=\"$hsl1 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                    <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                    <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>
+                                                    <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class=\"col-6\">
+                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                    <span class=\"$hsl2 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                    <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                    <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>
+                                                    <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                </div>
+
+                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                    <span class=\"$hsl3 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                    <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                    <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>
+                                                    <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ";
+                                }
+
+                                /*for ($i=0; $i < $count_clr; $i++) { 
                                     $hsl = $color[$i];
 
                                     echo "
@@ -174,7 +285,7 @@
                                         </div>
                                     </div>
                                     ";
-                                }
+                                }*/
                             ?>
 
                         </div>
