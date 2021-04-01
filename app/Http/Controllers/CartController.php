@@ -80,13 +80,15 @@ class CartController extends Controller
 						'product_id' => $request->product_id,
 						'mount' => $jumlah,
 						'user_id' => $user_id,
+						'qty_color' => $request->product_id
 					]);
 		}else{
 			$data = Cart::create([
 				'product_id' => $request->product_id,
 				'mount' => $request->jumlah,
 				'user_id' => $user_id,
-				'session_id' => $ses_id
+				'session_id' => $ses_id,
+				'qty_color' => $request->product_id
 			]);
 		}
 		return redirect()->back()->with(['status' => 'success','data' => $data]);
