@@ -123,6 +123,7 @@ Route::middleware('auth')->group(function () {
 	Route::get('/admin/import-produk', 'DashProductController@import_view')->name('import_produk');
 	Route::post('/admin/import_data_produk', 'DashProductController@import_data')->name('import_data_produk');
 	Route::get('/admin/download_tpl_produk', 'DashProductController@download_tpl')->name('download_tpl_produk');
+	Route::get('/admin/export_all_produk', 'DashProductController@export_all')->name('export_all_produk');
 
 	// admin kategori
 	Route::get('/admin/dash-kategori', 'DashCategoryController@index')->name('dash_kategori');

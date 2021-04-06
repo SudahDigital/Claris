@@ -160,9 +160,9 @@
                                 $count_clr = count($color);
 
                                 if($count_clr=="1"){
-                                    echo "<div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                    echo "<div class=\"mb-1 box-color\">
                                                 <span class=\"$hsl ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                <input id=\"qty_color_1\" style=\"color: #000 !important; font-weight: bold; text-align: center; font-size: 12px; background-color: #D3D3D3; border: none;\" value=\"0\" placeholder=\"0\">
+                                                <input id=\"qty_color_1\" placeholder=\"0\" class=\"qty-color\">
                                             </div>";
                                 }elseif ($count_clr=="2") {
                                     for ($i=0; $i < $count_clr; $i++) { 
@@ -173,16 +173,16 @@
                                     echo "
                                         <div class=\"row\">
                                             <div class=\"col-6\">
-                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                <div class=\"mb-1 box-color\">
                                                     <span class=\"$hsl0 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl0\" style=\"color: #000 !important; font-weight: bold; text-align: center; font-size: 12px; background-color: #D3D3D3; border: none;\" value=\"0\" placeholder=\"0\">
-                                                </div>
+                                                    <input id=\"qty_color_$hsl0\" class=\"qty-color\" placeholder=\"0\">
+                                                    </div>
                                             </div>
                                             <div class=\"col-6\">
-                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                <div class=\"mb-1 box-color\">
                                                     <span class=\"$hsl1 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl1\" style=\"color: #000 !important; font-weight: bold; text-align: center; font-size: 12px; background-color: #D3D3D3; border: none;\" value=\"0\" placeholder=\"0\">
-                                                </div>
+                                                    <input id=\"qty_color_$hsl1\" class=\"qty-color\" placeholder=\"0\">
+                                                    </div>
                                             </div>
                                         </div>
                                     ";
@@ -196,21 +196,21 @@
                                     echo "
                                         <div class=\"row\">
                                             <div class=\"col-6\">
-                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                <div class=\"mb-1 box-color\">
                                                     <span class=\"$hsl0 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl0\" style=\"color: #000 !important; font-weight: bold; text-align: center; font-size: 12px; background-color: #D3D3D3; border: none;\" value=\"0\" placeholder=\"0\">
-                                                </div>
+                                                    <input id=\"qty_color_$hsl0\" class=\"qty-color\" placeholder=\"0\">
+                                                    </div>
 
-                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                <div class=\"mb-1 box-color\">
                                                     <span class=\"$hsl1 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl1\" style=\"color: #000 !important; font-weight: bold; text-align: center; font-size: 12px; background-color: #D3D3D3; border: none;\" value=\"0\" placeholder=\"0\">
-                                                </div>
+                                                    <input id=\"qty_color_$hsl1\" class=\"qty-color\" placeholder=\"0\">
+                                                    </div>
                                             </div>
                                             <div class=\"col-6\">
-                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                <div class=\"mb-1 box-color\">
                                                     <span class=\"$hsl2 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl2\" style=\"color: #000 !important; font-weight: bold; text-align: center; font-size: 12px; background-color: #D3D3D3; border: none;\" value=\"0\" placeholder=\"0\">
-                                                </div>
+                                                    <input id=\"qty_color_$hsl2\" class=\"qty-color\" placeholder=\"0\">
+                                                    </div>
                                             </div>
                                         </div>
                                     ";
@@ -225,26 +225,26 @@
                                     echo "
                                         <div class=\"row\">
                                             <div class=\"col-6\">
-                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                <div class=\"mb-1 box-color\">
                                                     <span class=\"$hsl0 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl0\" style=\"color: #000 !important; font-weight: bold; text-align: center; font-size: 12px; background-color: #D3D3D3; border: none;\" value=\"0\" placeholder=\"0\">
-                                                </div>
+                                                    <input id=\"qty_color_$hsl0\" class=\"qty-color\" placeholder=\"0\">
+                                                    </div>
 
-                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                <div class=\"mb-1 box-color\">
                                                     <span class=\"$hsl1 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl1\" style=\"color: #000 !important; font-weight: bold; text-align: center; font-size: 12px; background-color: #D3D3D3; border: none;\" value=\"0\" placeholder=\"0\">
-                                                </div>
+                                                    <input id=\"qty_color_$hsl1\" class=\"qty-color\" placeholder=\"0\">
+                                                    </div>
                                             </div>
                                             <div class=\"col-6\">
-                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                <div class=\"mb-1 box-color\">
                                                     <span class=\"$hsl2 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl2\" style=\"color: #000 !important; font-weight: bold; text-align: center; font-size: 12px; background-color: #D3D3D3; border: none;\" value=\"0\" placeholder=\"0\">
-                                                </div>
+                                                    <input id=\"qty_color_$hsl2\" class=\"qty-color\" placeholder=\"0\">
+                                                    </div>
 
-                                                <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                                <div class=\"mb-1 box-color\">
                                                     <span class=\"$hsl3 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl3\" style=\"color: #000 !important; font-weight: bold; text-align: center; font-size: 12px; background-color: #D3D3D3; border: none;\" value=\"0\" placeholder=\"0\">
-                                                </div>
+                                                    <input id=\"qty_color_$hsl3\" class=\"qty-color\" placeholder=\"0\">
+                                                    </div>
                                             </div>
                                         </div>
                                     ";
@@ -256,7 +256,7 @@
                                     echo "
                                     <div class=\"row\">
                                         <div class=\"col-sm-6\">
-                                            <div style=\"border-radius: 20px; background-color: #D3D3D3;\">
+                                            <div class=\"box-color\">
                                                 <span class=\"$hsl ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
                                                 <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
                                                 <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>

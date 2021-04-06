@@ -11,7 +11,10 @@
         <i class="fas fa-minus"></i></button>
       <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
         <i class="fas fa-times"></i></button> -->
-        <a class="btn btn-success btn-sm" href="{{URL::route('download_tpl_produk')}}" style="color: #fff;">
+      <a class="btn btn-success btn-sm" href="{{URL::route('export_all_produk')}}" style="color: #fff;">
+        <i class="fas fa-file-excel"></i>&nbsp;Export Product
+      </a>
+      <a class="btn btn-success btn-sm" href="{{URL::route('download_tpl_produk')}}" style="color: #fff;">
         <i class="fas fa-download"></i>&nbsp;Download Template
       </a>
       <a class="btn btn-success btn-sm" href="{{URL::route('import_produk')}}">

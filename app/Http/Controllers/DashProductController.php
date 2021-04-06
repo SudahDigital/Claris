@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ProductsImport;
+use App\Exports\ProductsExport;
 
 use App\Product;
 use App\ProductImage;
@@ -349,5 +350,9 @@ class DashProductController extends Controller
         $headers    = ['Content-Type: application/vnd.ms-excel'];
 
         return response()->download($path, $name, $headers);
+    }
+
+    public function export_all() {
+        return Excel::download( new ProductsExport(), 'Products.xlsx');
     }
 }

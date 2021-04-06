@@ -1648,5 +1648,20 @@ footer.footer .cart .count-cart-three {
   padding: 5px !important; 
 }
 
+.box-color {
+  border-radius: 20px; 
+  background-color: #D3D3D3;
+}
+
+.qty-color {
+  color: #000 !important; 
+  font-weight: bold; 
+  text-align: center; 
+  font-size: 12px; 
+  background-color: #D3D3D3; 
+  border: none;
+  width: 50px;
+}
+
 
 
