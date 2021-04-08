@@ -128,6 +128,19 @@ class CartController extends Controller
 			$user_id = 0;
 		}
 
+		$qty_color = $request->qty;
+
+			$data = [];
+			$jmlh = 0;
+			foreach ($qty_color as $key => $value) {
+				$hsl = explode("_", $value);
+
+				$clr = $hsl[0];
+				$qty = $hsl[1];
+
+				$jmlh += $qty;
+			}
+
 		$cek = Cart::where([['product_id',$request->product_id],['session_id',$ses_id]])->first();
 		if (!empty($cek)) {
 
@@ -144,12 +157,32 @@ class CartController extends Controller
 				$data = Cart::where('session_id',$ses_id)->where('product_id',$request->product_id)->delete();
 			}
 		}elseif($jumlah>0){
-			$data = Cart::create([
+
+			$qty_color = $request->qty;
+
+			$data = [];
+			foreach ($qty_color as $key => $value) {
+				$hsl = explode("_", $value);
+
+				$clr = $hsl[0];
+				$qty = $hsl[1];
+
+				$data = Cart::create([
+					'product_id' => $request->product_id,
+					'mount' => $qty,
+					'user_id' => $user_id,
+					'session_id' => $ses_id,
+					'color' => $clr
+				]);
+
+			}
+
+			/*$data = Cart::create([
 				'product_id' => $request->product_id,
 				'mount' => $request->jumlah,
 				'user_id' => $user_id,
 				'session_id' => $ses_id
-			]);
+			]);*/
 		}
 
 		$count_item = Cart::where('session_id', $ses_id)->count();

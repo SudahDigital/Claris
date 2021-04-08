@@ -162,93 +162,50 @@
                                 if($count_clr=="1"){
                                     echo "<div class=\"mb-1 box-color\">
                                                 <span class=\"$hsl ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                <input id=\"qty_color_1\" placeholder=\"0\" class=\"qty-color\">
+                                                <input id=\"qty_color_".$value->id."_1\" placeholder=\"0\" class=\"qty-color\">
                                             </div>";
-                                }elseif ($count_clr=="2") {
+                                }else{
+
+                                    echo "<div class=\"row\">";
+
                                     for ($i=0; $i < $count_clr; $i++) { 
                                         $hsl0 = $color[0];  
                                         $hsl1 = $color[1]; 
+
+                                        echo "<div class=\"col-6\">
+                                                <div class=\"mb-1 box-color\">
+                                                    <span class=\"$color[$i] ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                    <input id=\"qty_color_".$value->id."_".$i."\" class=\"qty-color\" placeholder=\"0\">
+                                                    <input type=\"hidden\" name=\"ket_color_".$value->id."_".$i."\" id=\"ket_color_".$value->id."_".$i."\" value=\"".$color[$i]."\">
+                                                    </div>
+                                            </div>";
                                     }
 
-                                    echo "
-                                        <div class=\"row\">
-                                            <div class=\"col-6\">
-                                                <div class=\"mb-1 box-color\">
-                                                    <span class=\"$hsl0 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl0\" class=\"qty-color\" placeholder=\"0\">
-                                                    </div>
-                                            </div>
-                                            <div class=\"col-6\">
-                                                <div class=\"mb-1 box-color\">
-                                                    <span class=\"$hsl1 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl1\" class=\"qty-color\" placeholder=\"0\">
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    ";
-                                }elseif ($count_clr=="3") {
-                                    for ($i=0; $i < $count_clr; $i++) { 
-                                        $hsl0 = $color[0];  
-                                        $hsl1 = $color[1]; 
-                                        $hsl2 = $color[2]; 
-                                    }
+                                    echo "</div>";
 
-                                    echo "
-                                        <div class=\"row\">
-                                            <div class=\"col-6\">
-                                                <div class=\"mb-1 box-color\">
-                                                    <span class=\"$hsl0 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl0\" class=\"qty-color\" placeholder=\"0\">
-                                                    </div>
-
-                                                <div class=\"mb-1 box-color\">
-                                                    <span class=\"$hsl1 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl1\" class=\"qty-color\" placeholder=\"0\">
-                                                    </div>
-                                            </div>
-                                            <div class=\"col-6\">
-                                                <div class=\"mb-1 box-color\">
-                                                    <span class=\"$hsl2 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl2\" class=\"qty-color\" placeholder=\"0\">
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    ";
-                                }elseif ($count_clr=="4") {
-                                    for ($i=0; $i < $count_clr; $i++) { 
-                                        $hsl0 = $color[0];  
-                                        $hsl1 = $color[1]; 
-                                        $hsl2 = $color[2]; 
-                                        $hsl3 = $color[3]; 
-                                    }
-
-                                    echo "
-                                        <div class=\"row\">
-                                            <div class=\"col-6\">
-                                                <div class=\"mb-1 box-color\">
-                                                    <span class=\"$hsl0 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl0\" class=\"qty-color\" placeholder=\"0\">
-                                                    </div>
-
-                                                <div class=\"mb-1 box-color\">
-                                                    <span class=\"$hsl1 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl1\" class=\"qty-color\" placeholder=\"0\">
-                                                    </div>
-                                            </div>
-                                            <div class=\"col-6\">
-                                                <div class=\"mb-1 box-color\">
-                                                    <span class=\"$hsl2 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl2\" class=\"qty-color\" placeholder=\"0\">
-                                                    </div>
-
-                                                <div class=\"mb-1 box-color\">
-                                                    <span class=\"$hsl3 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl3\" class=\"qty-color\" placeholder=\"0\">
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    ";
                                 }
+
+                                /*echo "
+                                    <div class=\"row\">
+                                        <div class=\"col-6\">
+                                            <div class=\"mb-1 box-color\">
+                                                <span class=\"$hsl0 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                <input id=\"qty_color_$hsl0\" class=\"qty-color\" placeholder=\"0\">
+                                                </div>
+
+                                            <div class=\"mb-1 box-color\">
+                                                <span class=\"$hsl1 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                <input id=\"qty_color_$hsl1\" class=\"qty-color\" placeholder=\"0\">
+                                                </div>
+                                        </div>
+                                        <div class=\"col-6\">
+                                            <div class=\"mb-1 box-color\">
+                                                <span class=\"$hsl2 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                <input id=\"qty_color_$hsl2\" class=\"qty-color\" placeholder=\"0\">
+                                                </div>
+                                        </div>
+                                    </div>
+                                ";*/
 
                                 /*for ($i=0; $i < $count_clr; $i++) { 
                                     $hsl = $color[$i];
@@ -275,6 +232,7 @@
                                 <div class="row">
                                     <!-- <div class="col-4"> -->
                                                 @csrf
+                                                <input type="hidden" name="jumlah_clr_{{$value->id}}" id="jumlah_clr_{{$value->id}}" value="{{$count_clr}}">
                                                 <input type="hidden" id="{{$value->id}}" name="jumlah" id="jumlah" value="0">
                                                 <input type="hidden" id="harga_{{$value->id}}" name="harga_{{$value->id}}" value="{{ $value->product_harga }}">
                                                 <input type="hidden" id="product_id_{{$value->id}}" name="product_id_{{$value->id}}" value="{{$value->id}}">
@@ -776,12 +734,24 @@
             var price       = $('#harga_'+id).val();
             var mount_cart  = $('#show_'+id).html();
 
+            var jumlah_clr  = $('#jumlah_clr_'+id).val();
+
+            var qtyarr = [];
+            for(var i=0; i<jumlah_clr; i++){
+                var qty     = $('#qty_color_'+id+'_'+i).val();
+                var color   = $('#ket_color_'+id+'_'+i).val();
+
+                qtyarr.push(color+'_'+qty);
+            }
+
             $.ajax({
                 url: '/cart/update_cart?id='+id+'&product_id='+id+'&jumlah='+mount,
                 data:{
                         id : id,
                         product_id : product,
-                        jumlah : mount
+                        jumlah : mount,
+                        jumlah_clr : jumlah_clr,
+                        qty : qtyarr
                     }, 
                 success : function(data){
                     if (data['status']=='success') {

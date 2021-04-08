@@ -1628,15 +1628,19 @@ footer.footer .cart .count-cart-three {
   font-weight: bold;
 }
 
-.PUTIH     { color: #f0f0f0; }
-.HITAM     { color: #333; }
-.ABU       { color: #999; }
-.BIRU      { color: #39d; }
-.HIJAU     { color: #2c7; }
-.UNGU      { color: #95b; }
-.MERAH     { color: #e43; }
-.ORANGE    { color: #e82; }
-.KUNING    { color: #ec0; }
+.PTH      { color: #f0f0f0; }
+.HTM      { color: #333; }
+.ABU      { color: #999; }
+.BRU      { color: #39d; }
+.HJU      { color: #2c7; }
+.UNGU     { color: #95b; }
+.MRH      { color: #e43; }
+.ORANGE   { color: #e82; }
+.KNG      { color: #ec0; }
+.CRM      { color: #EECE9D }
+.PNK      { color: #F71784 }
+.CKT      { color: #6E2C00 }
+.TRANSPARANT { color: #ffffff; opacity: .4; }
 
 .view-color {
   padding-left: 10px; 
@@ -1650,7 +1654,7 @@ footer.footer .cart .count-cart-three {
 
 .box-color {
   border-radius: 20px; 
-  background-color: #D3D3D3;
+  background-color: #E5E5E5;
 }
 
 .qty-color {
@@ -1658,7 +1662,7 @@ footer.footer .cart .count-cart-three {
   font-weight: bold; 
   text-align: center; 
   font-size: 12px; 
-  background-color: #D3D3D3; 
+  background-color: #E5E5E5; 
   border: none;
   width: 50px;
 }
