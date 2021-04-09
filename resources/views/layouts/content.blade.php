@@ -95,12 +95,7 @@
             @foreach($product as $key => $value)
                 <div id="product_list" class="col-6 col-md-6 col-lg-3 mb-5">
                     <div class="card h-100 item_product" style="border: none; border-radius:20px;">
-                        <!-- <?php
-                            $bg = ['#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1','#0097BB','#B34394','#B5CF32','#3CC2B1'];
-                            echo '<div id="nmprd" style="background-color: '.$bg[$key].' ; padding:12px; border-top-right-radius: 20px;border-top-left-radius: 20px; color: #fff;">
-                                <div class="col-12 row"><div class="col-3 float-left"><a onclick="detailImg('.$value->id.')"><i class="fa fa-eye button_eye" data-toggle="modal" data-target="#ImgModal" style="cursor: pointer;"></i></a></div><div class="col-9 text-right"><span style="font-size: 12px;"><b>Detail Produk</b></span></div></div></div>';
-                        ?> -->
-                        <!-- <div class="text-center" style="background-color:yellow; padding:15px; border-top-right-radius: 60px;border-top-left-radius: 60px; color: #fff;"> -->
+                       
                         <div id="nmprd" style="background-color: #fff; padding:12px; border-top-right-radius: 20px;border-top-left-radius: 20px; color:#000;">
                             <div class="col-12">
                                 <div class="row">

@@ -1655,7 +1655,7 @@ footer.footer .cart .count-cart-three {
 
 .box-color {
   border-radius: 20px; 
-  background-color: #E5E5E5;
+  background-color: #DADADA;
 }
 
 .qty-color {
@@ -1663,7 +1663,7 @@ footer.footer .cart .count-cart-three {
   font-weight: bold; 
   text-align: center; 
   font-size: 12px; 
-  background-color: #E5E5E5; 
+  background-color: #DADADA; 
   border: none;
   width: 50px;
 }
