@@ -74,7 +74,7 @@
                 $total += $amount;
                 $total_brg = count($cart);
                 $total_pay += $amount;
-                $nm_brg .= $value->product_name." (".$value->mount."),";
+                $nm_brg .= $value->product_name." (".$value->color."-".$value->mount."),";
                 @endphp
 
                 <input type="hidden" id="{{$value->id}}" value="{{$value->mount}}">

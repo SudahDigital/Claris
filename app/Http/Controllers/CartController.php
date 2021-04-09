@@ -128,7 +128,8 @@ class CartController extends Controller
 			$user_id = 0;
 		}
 
-		$qty_color = $request->qty;
+		$qty_color 	= $request->qty;
+		$datenow 	= date('Y-m-d H:i:s');
 
 			$data = [];
 			$jmlh = 0;
@@ -144,7 +145,7 @@ class CartController extends Controller
 		$cek = Cart::where([['product_id',$request->product_id],['session_id',$ses_id]])->first();
 		if (!empty($cek)) {
 
-			if($jumlah>0){
+			if($jmlh>0){
 				$data = Cart::where('product_id',$request->product_id)
 						->where('user_id',$user_id)
 						->where('session_id', $ses_id)
@@ -156,7 +157,7 @@ class CartController extends Controller
 			}else{
 				$data = Cart::where('session_id',$ses_id)->where('product_id',$request->product_id)->delete();
 			}
-		}elseif($jumlah>0){
+		}elseif($jmlh>0){
 
 			$qty_color = $request->qty;
 
@@ -172,7 +173,10 @@ class CartController extends Controller
 					'mount' => $qty,
 					'user_id' => $user_id,
 					'session_id' => $ses_id,
-					'color' => $clr
+					'color' => $clr,
+					'user_ip' => $clientIP,
+					'created_at' => $datenow,
+					'updated_at' => NULL
 				]);
 
 			}
@@ -298,12 +302,13 @@ class CartController extends Controller
 		$userAgent	= $request->header('User-Agent'); //session_id();
 		$clientIP 	= \Request::getClientIp(true);
 		$ses_id 	= $userAgent.$clientIP;
-		$cart = DB::table('carts')
+		/*$cart = DB::table('carts')
             ->leftJoin('products', 'products.id', '=', 'carts.product_id')
-            ->where('session_id', $ses_id)
+            ->where('carts.session_id', $ses_id)
             ->select('carts.*', 'products.product_name', 'products.product_harga', 'products.product_image')
-            // ->where('product_images.is_tumbnail', 'yes')
-            ->get();
+            ->get();*/
+
+        $cart = DB::select("SELECT a.*, b.product_name, b.product_harga, b.product_image, a.user_ip, (b.product_harga * SUM(a.mount)) total FROM carts a LEFT JOIN products b ON a.product_id = b.id WHERE a.session_id = '".$ses_id."' GROUP BY a.user_ip");
         // return $cart;die;
         $data['count_cart'] = count($cart);
         $data['cart'] = $cart;

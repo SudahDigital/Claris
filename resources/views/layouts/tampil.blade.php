@@ -16,16 +16,16 @@ $total += $amount;
     </div>
     <div class="col-6">
         <div class="float-left">
-            <div class="px-1 py-0">
-                <p class="product-price-header2 m-0" style="color: #000 !important;"><strong>{{$val_c->product_name}}</strong></p>
-            </div>
-            <div class="px-1 py-0">
-                <p class="label-harga2 m-0" id="mount2_{{$val_c->product_id}}" style="color: #41B1CD !important; font-weight: bold;"><strong>Rp {{ number_format($amount, 0, ',', '.') }}</strong></p>
+            <div class="text-left">
+                <span class="product-price-header2 m-0" style="color: #000 !important;"><strong>{{$val_c->product_name}}</strong></span>
             </div>
             <div class="text-left">
-                <button type="button" class="btn btn-primary button_minus" onclick="cart('{{$val_c->id}}','min')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-minus"></i></button>
+                <span class="label-harga2 m-0" id="mount2_{{$val_c->product_id}}" ><strong>Rp {{ number_format($val_c->total, 0, ',', '.') }}</strong></span>
+            </div>
+            <div class="text-left">
+                <!-- <button type="button" class="btn btn-primary button_minus" onclick="cart('{{$val_c->id}}','min')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-minus"></i></button>
                 <span class="product-name mr-1 ml-1" id="show_m2{{$val_c->product_id}}" style="color: #000; padding: 3px; font-weight: bold;"> {{$val_c->mount}} </span>
-                <button type="button" class="btn btn-primary button_plus" onclick="cart('{{$val_c->id}}','plus')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-plus"></i></button>
+                <button type="button" class="btn btn-primary button_plus" onclick="cart('{{$val_c->id}}','plus')" style="padding: 0; text-align: center; border: none; background-color: #fff; color: #000; border-radius: 50px;"><i class="fa fa-plus"></i></button> -->
                 <input type="hidden" id="{{$val_c->id}}" value="{{$val_c->mount}}">
                 <input type="hidden" id="harga_m{{$val_c->id}}" value="{{$amount}}">
                 <input type="hidden" id="harga{{$val_c->id}}" value="{{$val_c->product_harga}}">
