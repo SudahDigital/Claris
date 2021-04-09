@@ -157,7 +157,7 @@
                                 if($count_clr=="1"){
                                     echo "<div class=\"mb-1 box-color\">
                                                 <span class=\"$hsl ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                <input id=\"qty_color_".$value->id."_1\" placeholder=\"0\" class=\"qty-color\">
+                                                <input id=\"qty_color_".$value->id."_0\" placeholder=\"0\" class=\"qty-color\">
                                             </div>";
                                 }else{
 

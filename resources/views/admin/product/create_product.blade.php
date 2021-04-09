@@ -47,7 +47,7 @@
                       </div>
                       <div class="form-group">
                         <label for="harga_produk">Product Color </label>
-                        <input type="text" required="true" name="warna_produk" class="form-control" placeholder="MERAH,KUNING,HITAM" id="warna_produk" required autofocus autocomplete="off">
+                        <input type="text" required="true" name="warna_produk" class="form-control" placeholder="Ex: MRH,KNG,HTM" id="warna_produk" required autofocus autocomplete="off">
                       </div>
                       <div class="form-group">
                         <label for="diskon_produk">Product Stock (Pcs)</label>
