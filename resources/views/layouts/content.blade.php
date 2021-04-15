@@ -108,7 +108,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-img-top" style="position: relative;">
+                        <div class="card-img-top" style="position: static;">
                             <div class="embed-responsive embed-responsive-4by3">
                                 <div class="embed-responsive-item">
                                     <!-- <a href="{{URL::route('product_detail', ['id'=>$value->id, 'product_name'=>urlencode($value->product_name)])}}"> -->
@@ -157,11 +157,11 @@
                                 if($count_clr=="1"){
                                     echo "<div class=\"mb-1 box-color\">
                                                 <span class=\"$hsl ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                <button class=\"btn button_plus\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
-                                                <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>
-                                                <button class=\"btn button_plus\" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
-                                                <input id=\"qty_color_".$value->id."_0\" placeholder=\"0\" class=\"qty-color\" type=\"hidden\">
+                                                <button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$hsl')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                <input id=\"qty_color_".$value->id."_0\" placeholder=\"0\" class=\"qty-color\">
+                                                <button class=\"btn button_plus\" onclick=\"button_plus_color('$value->id','$hsl')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
                                                 <input type=\"hidden\" name=\"ket_color_".$value->id."_0\" id=\"ket_color_".$value->id."_0\" value=\"".$hsl."\">
+                                                <input type=\"hidden\" name=\"count_color_".$value->id."\" id=\"count_color_".$value->id."\" value=\"".$count_clr."\">
                                             </div>";
                                 }else{
 
@@ -174,11 +174,11 @@
                                         echo "<div class=\"col-6\">
                                                 <div class=\"mb-1 box-color\">
                                                     <span class=\"$color[$i] ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <button class=\"btn button_plus\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
-                                                    <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>
-                                                    <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
-                                                    <input id=\"qty_color_".$value->id."_".$i."\" class=\"qty-color\" placeholder=\"0\" type=\"hidden\">
+                                                    <button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$color[$i]')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                        <input id=\"qty_color_".$value->id."_".$i."\" class=\"qty-color\" placeholder=\"0\">
+                                                        <button class=\"btn button_plus \" onclick=\"button_plus_color('$value->id','$color[$i]')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
                                                     <input type=\"hidden\" name=\"ket_color_".$value->id."_".$i."\" id=\"ket_color_".$value->id."_".$i."\" value=\"".$color[$i]."\">
+                                                    <input type=\"hidden\" name=\"count_color_".$value->id."\" id=\"count_color_".$value->id."\" value=\"".$count_clr."\">
                                                     </div>
                                             </div>";
                                     }
@@ -897,6 +897,22 @@
               })
             }
           }
-}
+        }
+
+        function button_minus_color(id,color){
+            alert(id+'_'+color+'-Minus');
+        }
+
+        function button_plus_color(id,color){
+
+            var count = $('#count_color_'+id).val(); 
+            if(count == '1'){
+                var qty = $('#qty_color_'+id+'_0').val();
+            }else{
+                var qty = $('#qty_color_'+id+'_0').val();
+            }
+
+            // alert(count+'_'+id+'_'+color+'-Plus');
+        }
     </script>
 @endsection

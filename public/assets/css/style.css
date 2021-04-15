@@ -1665,7 +1665,12 @@ footer.footer .cart .count-cart-three {
   font-size: 12px; 
   background-color: #DADADA; 
   border: none;
-  width: 50px;
+  width: 20px;
+}
+
+.img-fluid{
+  height: 100% !important;
+  width: 100% !important;
 }
 
 
