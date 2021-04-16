@@ -169,16 +169,18 @@ class CartController extends Controller
 				$clr = $hsl[0];
 				$qty = $hsl[1];
 
-				$data = Cart::create([
-					'product_id' => $request->product_id,
-					'mount' => $qty,
-					'user_id' => $user_id,
-					'session_id' => $ses_id,
-					'color' => $clr,
-					'user_ip' => $clientIP,
-					'created_at' => $datenow,
-					'updated_at' => NULL
-				]);
+				if($qty != 0){
+					$data = Cart::create([
+						'product_id' => $request->product_id,
+						'mount' => $qty,
+						'user_id' => $user_id,
+						'session_id' => $ses_id,
+						'color' => $clr,
+						'user_ip' => $clientIP,
+						'created_at' => $datenow,
+						'updated_at' => NULL
+					]);
+				}
 
 			}
 
@@ -309,7 +311,7 @@ class CartController extends Controller
             ->select('carts.*', 'products.product_name', 'products.product_harga', 'products.product_image')
             ->get();*/
 
-        $cart = DB::select("SELECT a.*, b.product_name, b.product_harga, b.product_image, a.user_ip, (b.product_harga * SUM(a.mount)) total FROM carts a LEFT JOIN products b ON a.product_id = b.id WHERE a.session_id = '".$ses_id."' GROUP BY a.user_ip");
+        $cart = DB::select("SELECT a.*, b.product_name, b.product_harga, b.product_image, a.user_ip, (b.product_harga * SUM(a.mount)) total FROM carts a LEFT JOIN products b ON a.product_id = b.id WHERE a.session_id = '".$ses_id."' GROUP BY a.user_ip, a.product_id");
         // return $cart;die;
         $data['count_cart'] = count($cart);
         $data['cart'] = $cart;
