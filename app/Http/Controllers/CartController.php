@@ -313,6 +313,9 @@ class CartController extends Controller
         $data['count_cart'] = count($cart);
         $data['cart'] = $cart;
 
+        $color = DB::select("SELECT a.* FROM carts a WHERE a.session_id = '".$ses_id."'");
+        $data['color'] = $color;
+
         return view('layouts.tampil',$data);
 	}
 }

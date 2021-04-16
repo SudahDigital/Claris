@@ -807,6 +807,28 @@
             });
         }
 
+        function button_minus_color2(id,seq){
+            var qty     = $('#qty2_color_'+id+'_'+seq).val();
+            if(qty==''){qty = "0";}
+            var mount   = parseInt(qty)-1;
+            $('#qty2_color_'+id+'_'+seq).val(mount);
+        }
+
+        function button_plus_color2(id,seq){
+            var qty     = $('#qty2_color_'+id+'_'+seq).val();
+            if(qty==''){qty = "0";}
+            var mount   = parseInt(qty)+1;
+            $('#qty2_color_'+id+'_'+seq).val(mount);
+        }
+
+        function qty_number(id,value){
+            var str = value;
+            var set = str.replace(/[^0-9.]/g,"");
+            var hasil = $('#'+id).val(set);
+            return hasil;
+
+        }
+
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
