@@ -138,6 +138,7 @@ class CartController extends Controller
 
 				$clr = $hsl[0];
 				$qty = $hsl[1];
+				if($qty==""){$qty = "0";}
 
 				$jmlh += $qty;
 			}
