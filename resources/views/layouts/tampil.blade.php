@@ -67,7 +67,7 @@ $total += $amount;
                                         <td><button class=\"btn button_plus\" onclick=\"button_minus_color2('$val->product_id','$key')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button></td>
                                         <td><input id=\"qty2_color_".$val->product_id."_".$key."\" placeholder=\"0\" class=\"qty-color\" onkeyup=\"qty_number(this.id,this.value)\" value=\"".$val->mount."\"></td>
                                         <td><button class=\"btn button_plus\" onclick=\"button_plus_color2('$val->product_id','$key')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
-                                        <input type=\"hidden\" name=\"ket_color_".$val->product_id."_".$key."\" id=\"ket_color_".$val->product_id."_".$key."\" value=\"".$val->color."\">
+                                        <input type=\"hidden\" name=\"ket2_color_".$val->product_id."_".$key."\" id=\"ket2_color_".$val->product_id."_".$key."\" value=\"".$val->color."\">
                                         <input type=\"hidden\" name=\"count_color_".$val->product_id."\" id=\"count_color_".$val->product_id."\" value=\"\"></td>
                                     </tr>
                                 </tbody>

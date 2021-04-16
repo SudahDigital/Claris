@@ -164,7 +164,7 @@
                                                     <tr>
                                                         <td><span class=\"$hsl ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span></td>
                                                         <td><button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$i')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button></td>
-                                                        <td><input id=\"qty_color_".$value->id."_0\" placeholder=\"0\" class=\"qty-color\" onkeyup=\"qty_number(this.id,this.value)\"></td>
+                                                        <td><input id=\"qty_color_".$value->id."_1\" placeholder=\"0\" class=\"qty-color\" onkeyup=\"qty_number(this.id,this.value)\"></td>
                                                         <td><button class=\"btn button_plus\" onclick=\"button_plus_color('$value->id','$i')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
                                                             <input type=\"hidden\" name=\"ket_color_".$value->id."_0\" id=\"ket_color_".$value->id."_0\" value=\"".$hsl."\">
                                                             <input type=\"hidden\" name=\"count_color_".$value->id."\" id=\"count_color_".$value->id."\" value=\"".$count_clr."\"></td>

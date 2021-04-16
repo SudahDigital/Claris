@@ -102,16 +102,16 @@ class CartController extends Controller
 	}
 	public function update_mount(Request $request)
 	{	
-    	$input = $request->all();
-    	if ($input['type']=='plus') {
-    		# code...
-    		$mount = $input['mount'] + 1;
-    	}else{
-    		$mount = $input['mount'] - 1;
-    	}
-    	$cart = Cart::where('id',$input['id'])
+    	$input 		= $request->all();
+    	$userAgent	= $request->header('User-Agent'); //session_id();
+		$clientIP 	= \Request::getClientIp(true);
+		$ses_id 	= $userAgent.$clientIP;
+    	
+    	$cart = Cart::where('product_id',$request->id)
+    				->where('session_id',$ses_id)
+    				->where('color',$request->color)
 					->update([
-						'mount' => $mount,
+						'mount' => $request->mount,
 					]);
 		return response()->json('success');
 	}
