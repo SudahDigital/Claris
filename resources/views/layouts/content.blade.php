@@ -166,7 +166,7 @@
                                                         <td><button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$i')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button></td>
                                                         <td><input id=\"qty_color_".$value->id."_1\" placeholder=\"0\" class=\"qty-color\" onkeyup=\"qty_number(this.id,this.value)\"></td>
                                                         <td><button class=\"btn button_plus\" onclick=\"button_plus_color('$value->id','$i')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
-                                                            <input type=\"hidden\" name=\"ket_color_".$value->id."_0\" id=\"ket_color_".$value->id."_0\" value=\"".$hsl."\">
+                                                            <input type=\"hidden\" name=\"ket_color_".$value->id."_1\" id=\"ket_color_".$value->id."_1\" value=\"".$hsl."\">
                                                             <input type=\"hidden\" name=\"count_color_".$value->id."\" id=\"count_color_".$value->id."\" value=\"".$count_clr."\"></td>
                                                     </tr>
                                                 </tbody>
@@ -763,9 +763,17 @@
             var jumlah_clr  = $('#jumlah_clr_'+id).val();
 
             var qtyarr = [];
-            for(var i=0; i<jumlah_clr; i++){
-                var qty     = $('#qty_color_'+id+'_'+i).val();
-                var color   = $('#ket_color_'+id+'_'+i).val();
+
+            if(jumlah_clr>1){
+                for(var i=0; i<jumlah_clr; i++){
+                    var qty     = $('#qty_color_'+id+'_'+i).val();
+                    var color   = $('#ket_color_'+id+'_'+i).val();
+
+                    qtyarr.push(color+'_'+qty);
+                }
+            }else{
+                var qty     = $('#qty_color_'+id+'_1').val();
+                var color   = $('#ket_color_'+id+'_1').val();
 
                 qtyarr.push(color+'_'+qty);
             }
