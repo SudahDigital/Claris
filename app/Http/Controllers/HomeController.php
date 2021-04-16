@@ -57,6 +57,14 @@ class HomeController extends Controller
         $data['cart'] = $cart;
         $data['status_login'] = '';
 
+        $banner = DB::Select('SELECT * FROM banner_images');
+
+        $banner_active = "SELECT MIN(id) AS ID_AWAL FROM banner_images";
+        $rst_banneract = DB::select($banner_active);
+
+        $data['banner'] = $banner;
+        $data['banner_active'] = $rst_banneract[0]->ID_AWAL;
+
         return view('layouts.content',$data);
     }
 }

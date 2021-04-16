@@ -8,7 +8,7 @@
 $amount = $val_c->product_harga * $val_c->mount;
 $total += $amount;
 @endphp
-<div class="row mb-3" style="margin-bottom: 40px; margin-top: 10px;">
+<div class="row mb-3" style="margin-bottom: 40px; margin-top: 10px; margin-left: 10px; margin-right: 10px;">
     <div class="col-3 card" style="border:none;">
         <div class="text-center card-img-top">
             <img class="img-thumbnail img-fluid" src="{{ asset('assets/image/product/'.(($val_c->product_image!='') ? $val_c->product_image : 'none.jpg').'') }}" style="max-width: 90px;max-height: 90px;" class="img-fluid">

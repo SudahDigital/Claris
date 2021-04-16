@@ -811,6 +811,7 @@
             var qty     = $('#qty2_color_'+id+'_'+seq).val();
             if(qty==''){qty = "0";}
             var mount   = parseInt(qty)-1;
+            var param   = "min";
             $('#qty2_color_'+id+'_'+seq).val(mount);
         }
 
@@ -818,7 +819,40 @@
             var qty     = $('#qty2_color_'+id+'_'+seq).val();
             if(qty==''){qty = "0";}
             var mount   = parseInt(qty)+1;
+            var param   = "plus";
+
             $('#qty2_color_'+id+'_'+seq).val(mount);
+
+            $.ajax({
+              url: '/cart/update_mount?id='+id+'&mount='+mount+'&type='+param,
+              success : function(data){
+                if (data=='success') {
+                  $('#table_c').load("{{url('/cart/footer-list')}}");
+
+                  var mount1 = parseInt(mount)+1;
+                  var harga_mount1 = parseInt(harga_mount) + parseInt(harga);
+                  harga_mount2 = rupiah(harga_mount1);
+
+                  $('#show_m2'+id_prod).html(mount1);
+                  $('#show_'+id_prod).html(mount1);
+                  $('#'+id).val(mount1);
+
+                  $('#harga_m'+id).val(harga_mount1);
+                  $('#mount2_'+id_prod).html(harga_mount2);
+                  var total1 = parseInt(total)+ parseInt(harga);
+
+                  $('#total').val(total1);
+                  var total2 = rupiah(total1);
+                  $('#total_').html(total2);
+
+                  var hrg = $('#tot_hrg').val();
+                  var hrg2 = parseInt(hrg) + parseInt(harga);
+                  var hrg3 = rupiah(hrg2);
+
+                  $('#total_mount').html('<strong>'+hrg3+'</strong>');
+                }
+              }
+            })
         }
 
         function qty_number(id,value){
