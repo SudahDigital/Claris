@@ -414,8 +414,8 @@
                         </a>
                     </div>
                     <div class="col-5 my-auto align-self-center" id="sosmed">
-                        <a href="{{route('cart')}}" class="float-center cart" style="position: relative;">
-                            <span style="color: #000;" class="teks-footer">
+                        <a class="float-center cart" style="position: relative;"> <!--href="{{route('cart')}}"-->
+                            <span style="color: #000;" class="teks-footer" data-toggle="modal" data-target="#checkoutModal">
                                 <img src="{{ asset('assets/image/footer-whatsapp.png') }}" alt="" style="width: 20px;">
                                 <strong class="float-center" style="font-size: 12px;">Pesan Sekarang</strong>
                                 <!-- <strong class="float-center">( {{$count_cart}} Item )</strong> -->
@@ -468,7 +468,7 @@
                     </div>
                 </div>
                 <div id="listcart" class="col-12 my-auto text-right" style="background-color: #fff; height: 50px; display: none;">
-                        <a href="{{route('cart')}}" class="btn btn-sm align-self-right button_pesan" style="background-color: #25d366; color: #fff; border-radius: 30px;">
+                        <a class="btn btn-sm align-self-right button_pesan" style="background-color: #25d366; color: #fff; border-radius: 30px;"> <!--href="{{route('cart')}}"-->
                         <input type="hidden" id="total" value="{{$total}}">
                         <img src="{{ asset('assets/image/logo-whatsapp.png') }}" style="width: 20px;"> Pesan Sekarang
                         </a>  
@@ -540,6 +540,100 @@
       </div>
     </div>
 
+    <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <img src="{{ asset('assets/image/logo-claris.png') }}" style="width: 20px;">
+            <h6 class="modal-title" id="checkoutModalLabel"><b>Konfirmasi Pesanan<b></h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="background: #0097BB">
+            <form method="post" action="{{route('cart_pay')}}" class="form-horizontal">
+                @csrf
+                <div class="card-body view-pesanwa section_content mb-5">
+                  <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label" style="color: #fff;"><b>Nama</b></label>
+                    <div class="col-sm-10">
+                      <input style=" border-radius: 30px;" type="text" name="costumer_name" class="form-control" id="name">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="phoneNumber" class="col-sm-2 col-form-label" style="color: #fff;"><b>No. Telp/ Handphone<b/></label>
+                    <div class="col-sm-10">
+                      <input style=" border-radius: 30px;" type="number"  name="costumer_phone" class="form-control" id="phoneNumber" maxlength="12">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="deliveryCity" class="col-sm-2 col-form-label" style="color: #fff;"><b>Kabupaten/Kota</b></label>
+                    <div class="col-sm-10">
+                      <input style=" border-radius: 30px;" class="form-control"  name="costumer_city" id="deliveryCity">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="deliveryAddress" class="col-sm-2 col-form-label" style="color: #fff;"><b>Detail Alamat</b></label>
+                    <div class="col-sm-10">
+                      <textarea style=" border-radius: 30px;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="5"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label" style="color: #fff;"><b>Email</b></label>
+                    <div class="col-sm-10">
+                      <input style="border-radius: 30px;" type="email"  name="costumer_email" class="form-control" id="email" >
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="kode_promo" class="col-sm-2 col-form-label" style="color: #fff;"><b>Code Promo</b></label>
+                    <div class="col-sm-10">
+                      <input style=" border-radius: 30px;" class="form-control col-5"  name="kode_promo" id="kode_promo"></input>
+                    </div>
+                  </div>
+                  <div class="form-group form-syarat">
+                    <label style="color: #fff;"><b>Syarat dan ketentuan belanja dengan Whatsapp Delivery Claris</b></label>
+                    <textarea style=" border-radius: 30px; font-weight: bold;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="8" disabled>Syarat dan kententuan</textarea>
+                    <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
+                  </div>
+                  <div class="text-center" style="float: center;">
+                    <a class="btn button_whatsapp" onclick="whatsapp();">
+                        <img src="{{ asset('assets/image/logo-whatsapp.png') }}" alt="" style="width: 20px;">
+                        <strong class="float-center" style="font-size: 15px;color: #fff;">Pesan Sekarang</strong>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- @php
+                    $total = 0 ;
+                    $total_pay = 0 ;
+                    $total_brg = 0 ;
+                    $nm_brg = '';
+                @endphp
+                @foreach($cart as $key => $value)
+                    @php
+                    $amount = $value->product_harga * $value->mount;
+                    $total += $amount;
+                    $total_brg = count($cart);
+                    $total_pay += $amount;
+                    $nm_brg .= $value->product_name." (".$value->color."-".$value->mount."),";
+                    @endphp
+
+                    <input type="hidden" id="{{$value->id}}" value="{{$value->mount}}">
+                    <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
+                    <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">
+                    <input type="hidden" id="total_brg" value="{{$total_brg}}">
+                @endforeach
+                @php
+                    $all_brg    = substr($nm_brg, 0, strlen($nm_brg) -1);
+                @endphp
+                    <input type="hidden" id="nm_brg" value="{{$all_brg}}">
+                    <input type="hidden" name="total_pay" id="total_pay" value="{{$total}}"> -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="modal fade" id="cekInsert" tabindex="-1" role="dialog" aria-labelledby="cekInsertLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -550,17 +644,6 @@
             </button>
           </div>
           <div class="modal-body">
-            <!-- <div class="card col-12" style="border: none;">
-                <div class="row">
-                    <div class="col-6">
-                        <img class="dtl_img2">
-                    </div>
-                    <div class="col-6">
-                        <p class="detail_nm2" style="color: #0097bb;"></p>
-                        <p class="detail_desc2" style="color: #0097bb;"></p>
-                    </div>
-                </div>
-            </div> -->
             <div class="card card-solid" style="border: none;">
                 <div class="card-body">
                   <div class="row">
