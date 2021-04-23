@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use App\Cities;
 use App\Product;
 use App\Category;
 use App\Cart;
@@ -64,6 +65,22 @@ class HomeController extends Controller
 
         $data['banner'] = $banner;
         $data['banner_active'] = $rst_banneract[0]->ID_AWAL;
+
+        $data['cities'] = Cities::All();
+
+        $count = Cart::where('user_id', $user_id)->sum('mount');
+        
+        /*$cart = DB::table('carts')
+            ->innerJoin('products', 'products.id', '=', 'carts.product_id')
+            ->where('session_id', $ses_id)
+            ->select('carts.*', 'products.product_name', 'products.product_harga', 'products.product_image')
+            ->get();*/
+        $sql = "SELECT carts.*, products.product_name, products.product_harga, products.product_image, (products.product_harga * carts.mount) AS total_harga FROM `carts` INNER JOIN products ON products.id = carts.product_id WHERE carts.session_id = '".$ses_id."'"; 
+        $cart_wa = DB::select($sql);
+
+        $data['cart_wa'] = $cart_wa;
+        $data['count_cart'] = $count;
+        $data['category'] = Category::all();
 
         return view('layouts.content',$data);
     }

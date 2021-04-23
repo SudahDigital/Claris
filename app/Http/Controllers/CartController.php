@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 use Veritrans_Config;
 use Veritrans_Snap;
@@ -147,14 +148,39 @@ class CartController extends Controller
 		if (!empty($cek)) {
 
 			if($jmlh>0){
-				$data = Cart::where('product_id',$request->product_id)
-						->where('user_id',$user_id)
-						->where('session_id', $ses_id)
-						->update([
+
+				$data = Cart::where('session_id',$ses_id)->where('product_id',$request->product_id)->delete();
+
+				$qty_color = $request->qty;
+
+				$data = [];
+				foreach ($qty_color as $key => $value) {
+					$hsl = explode("_", $value);
+
+					$clr = $hsl[0];
+					$qty = $hsl[1];
+
+					if($qty != 0){
+						$data = Cart::create([
 							'product_id' => $request->product_id,
-							'mount' => $jumlah,
-							'user_id' => $user_id
+							'mount' => $qty,
+							'user_id' => $user_id,
+							'session_id' => $ses_id,
+							'color' => $clr,
+							'user_ip' => $clientIP,
+							'created_at' => $datenow,
+							'updated_at' => NULL
 						]);
+						/*$data = Cart::where('product_id',$request->product_id)
+								->where('user_id',$user_id)
+								->where('session_id', $ses_id)
+								->update([
+									'product_id' => $request->product_id,
+									'mount' => $qty,
+									'user_id' => $user_id
+								]);*/
+					}
+				}
 			}else{
 				$data = Cart::where('session_id',$ses_id)->where('product_id',$request->product_id)->delete();
 			}
@@ -201,103 +227,141 @@ class CartController extends Controller
 
 	public function pay(Request $request)
 	{
-		$data = Pay::create([
-			'name_cust' => $request->costumer_name,
-			'alamat_cust' => $request->costumer_adress,
-			'telepon_cust' => $request->costumer_phone,
-			'email_cust' => $request->costumer_email,
-			'amount' => $request->total_pay
-		]);
+		$userAgent	= $request->header('User-Agent'); //session_id();
+		$clientIP 	= \Request::getClientIp(true);
+		$ses_id 	= $userAgent.$clientIP;
+		$date 		= date('Y-m-d H:i:s');
+		$dt 		= date('YmdHis');
 
 
-		return redirect('cart')->with(['success' => 'Product Berhasil di Proses']);
+		$inv_pay 	= $dt;
 
-		/*$user_id = Auth::id();
-    	if (empty($user_id)) {
-			# code...
-			$user_id = 0;
-		}
-		$data['address'] = array(
-			'name' => $request->costumer_name,
-			'adress' => $request->costumer_adress,
-			'phone' => $request->costumer_phone,
-			'user_id' => $user_id,
-			'email' => $request->costumer_email,
-		);
-		// alamat::create($data['address']);
-		// cart
-		$cart = DB::table('carts')
-            ->leftJoin('products', 'products.id', '=', 'carts.product_id')
-            ->leftJoin('product_images', 'product_images.product_id', '=', 'carts.product_id')
-			->select('carts.*', 'products.product_name', 'products.product_harga', 'product_images.image_link')
-			// ->where('product_images.is_tumbnail', 'yes')
-            ->get();
-        $data['cart'] = $cart;
-        $data['category'] = Category::all();
-		// Enable sanitization
-		Veritrans_Config::$isSanitized = true;
+		$input_pay = "INSERT INTO pay (
+						invoice_pay,
+						name_cust,
+						alamat_cust,
+						telepon_cust,
+						email_cust,
+						total_price,
+						order_date,
+						status,
+						created_at
+					) VALUES (
+						'".$inv_pay."',
+						'".$request->costumer_name."',
+						'".$request->costumer_adress."',
+						'".$request->costumer_phone."',
+						'".$request->costumer_email."',
+						'".$request->total_pay."',
+						now(),
+						'SUBMIT',
+						now()
+					); 
+				";
 
-		// Enable 3D-Secure
-		Veritrans_Config::$is3ds = true;
+		$rst_pay = DB::insert($input_pay);
 
+		$cart = DB::select("SELECT * FROM carts where session_id = '".$ses_id."'");
+        foreach ($cart as $key => $value) {
 
-		
-		// Optional
-		$item1_details = array(
-		  'id' => 'a1',
-		  'price' => 18000,
-		  'quantity' => 3,
-		  'name' => "Apple"
-		);
+			$sql  = DB::table('products')
+					->where('id', $value->product_id)
+					->select('products.product_stock','products.product_code')->get();
 
-		// Optional
-		$item2_details = array(
-		  'id' => 'a2',
-		  'price' => 20000,
-		  'quantity' => 2,
-		  'name' => "Orange"
-		);
-		$total = null;
-		foreach ($cart as $key => $value) {
-			# code...
-			$total += $value->product_harga;
-			$item_details[$key]['id'] = $value->id;
-			$item_details[$key]['price'] = $value->product_harga;
-			$item_details[$key]['name'] = $value->product_name;
-			$item_details[$key]['quantity'] = $value->mount;
-		}
-		// Required
-		$transaction_details = array(
-		  'order_id' => rand(),
-		  'gross_amount' => $total, // no decimal allowed for creditcard
-		);
+			$pcode 		= $sql[0]->product_code;
+			$qty_before = $sql[0]->product_stock;
+			$qty_after 	= ($qty_before - $value->mount);
 
-		// Optional
-		$customer_details = array(
-		  'first_name'    => $request->costumer_name,
-		  'address'       => $request->costumer_adress,
-		  'email'         => $request->costumer_email,
-		  'phone'         => $request->costumer_phone,
-		);
+			$prod = Product::where('id',$value->product_id)
+				->update([
+					'product_stock' => $qty_after
+			]);
 
-		// Optional, remove this to display all available payment methods
-		// $enable_payments = array('credit_card','cimb_clicks','mandiri_clickpay','echannel');
+			$input_pay_detail = "INSERT INTO pay_d (
+						invoice_pay,
+						name_cust,
+						alamat_cust,
+						telepon_cust,
+						email_cust,
+						mount,
+						order_date,
+						product_id,
+						product_code,
+						status
+					) VALUES (
+						'".$inv_pay."',
+						'".$request->costumer_name."',
+						'".$request->costumer_adress."',
+						'".$request->costumer_phone."',
+						'".$request->costumer_email."',
+						'".$value->mount."',
+						now(),
+						'".$value->product_id."',
+						'".$pcode."',
+						'SUBMIT'
+					); 
+				";
+			$rst_pay_detail = DB::insert($input_pay_detail);
+        	
+        }
 
-		// Fill transaction details
-		$transaction = array(
-		  // 'enabled_payments' => $enable_payments,
-		  'transaction_details' => $transaction_details,
-		  'customer_details' => $customer_details,
-		  'item_details' => $item_details,
-		);
+		// return redirect('home')->with(['success' => 'Product Berhasil di Proses']);
+		if($rst_pay){
+			$href='*Hello Admin Claris*,  %0ANo. Hp %3A' .$request->costumer_phone.', %0AAlamat %3A' .$request->costumer_adress.', %0AKota/kab %3A' .$request->city_name.',%0APesanan %3A%0A';
 
-		$snapToken = Veritrans_Snap::getSnapToken($transaction);
-    	$count = Cart::where('user_id', $user_id)->sum('mount');
-		$data['snapToken'] = $snapToken;
-		$data['count_cart'] = $count;
-		 // return $data; die;
-    	return view('layouts.pay',$data);
-    	// return view('layouts.test',$data);*/
+            $pesan = DB::select("
+				            	SELECT 
+				            		* 
+				            	FROM pay_d a
+				            	INNER JOIN pay b ON a.invoice_pay = b.invoice_pay
+				            	INNER JOIN products c ON a.product_id = c.id
+				            	WHERE a.telepon_cust = '".$request->costumer_phone."'
+            						
+            ");
+            foreach($pesan as $key=>$wa){
+                $href.='*'.$wa->product_name.'%20(Qty %3A%20'.$wa->mount.' Pcs)%0A';
+            }
+
+            if($request->kode_promo !=""){
+	            $sql_promo  = DB::table('vouchers')
+						->where('code', $request->kode_promo)
+						->select('vouchers.code','vouchers.name','vouchers.discount_amount')->get();
+
+				$promo_cd 		= $sql_promo[0]->code;
+				$promo_nm 		= $sql_promo[0]->name;
+				$promo_dis 		= $sql_promo[0]->discount_amount;
+
+				$sql_cart 	= "SELECT SUM((products.product_harga * carts.mount)) AS total_harga FROM `carts` INNER JOIN products ON products.id = carts.product_id WHERE carts.session_id = '".$ses_id."'";
+				$rst_cart2 	= DB::select($sql_cart);
+				$jumlah_byr = $rst_cart2[0]->total_harga;
+
+				$diskon 		= $promo_dis/100;
+				$potongan 		= $jumlah_byr*$diskon;
+				$total_bayar 	= $jumlah_byr-$potongan;
+
+				if($promo_cd !=""){
+					$info_harga = 'Total Pesanan %3A Rp.'.number_format(($jumlah_byr), 0, ',', '.').'%0ADiskon %3A '.number_format(($promo_dis), 0, ',', '.').'% %0AJenis Diskon %3A '.$promo_nm.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
+
+				}
+			}else{
+				$sql_cart 	= "SELECT SUM((products.product_harga * carts.mount)) AS total_harga FROM `carts` INNER JOIN products ON products.id = carts.product_id WHERE carts.session_id = '".$ses_id."'";
+				$rst_cart2 	= DB::select($sql_cart);
+				$jumlah_byr = $rst_cart2[0]->total_harga;
+				
+				$info_harga = 'Total Pembayaran %3A Rp.'.number_format(($jumlah_byr), 0, ',', '.').'%0A';
+			}
+
+			$del_cart = "DELETE FROM carts
+					WHERE 
+						session_id 	= '".$ses_id."'
+					";
+			$rst_cart = DB::statement($del_cart);
+
+			$text_wa=$href.'%0A'.$info_harga;
+            $url = "https://api.whatsapp.com/send?phone=6281776492873&text=$text_wa";
+            return Redirect::to($url);
+	        
+	    }
 	}
 
 	public function footer_list(Request $request)

@@ -1673,5 +1673,15 @@ footer.footer .cart .count-cart-three {
   width: 100% !important;
 }
 
+.input-cust {
+  font-weight: bold; 
+  font-size: 12px; 
+}
+
+.bck-cust {
+  background-position: 0% 5%;
+  /*background-size: 1% 2%;*/
+}
+
 
 

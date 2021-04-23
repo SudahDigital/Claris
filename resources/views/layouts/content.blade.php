@@ -50,6 +50,7 @@
             <div class="row">
                 <div class="col-6 column-left">
                     <h3 class="title-page" style="color: #fff;"><b>Product</b></h3>
+                    <!-- <button onclick="getLocation()">Current Location</button> -->
                 </div>
                 <div class="col-6 column-right">
                     <div class="dropdown">
@@ -541,93 +542,79 @@
     </div>
 
     <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <img src="{{ asset('assets/image/logo-claris.png') }}" style="width: 20px;">
+            <img src="{{ asset('assets/image/logo_claris.png') }}" style="width: 50px;">
             <h6 class="modal-title" id="checkoutModalLabel"><b>Konfirmasi Pesanan<b></h6>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body" style="background: #0097BB">
+          <div class="modal-body bck-cust" style="background: #0097BB; font-size: 12px; background-image: url('{{ asset('assets/image/UI Web Claris New-28.png') }}')">
             <form method="post" action="{{route('cart_pay')}}" class="form-horizontal">
                 @csrf
-                <div class="card-body view-pesanwa section_content mb-5">
+                <div class="card-body view-pesanwa section_content">
+                  <!-- <div class="form-group row">
+                    <label for="name" class="col-sm-3 col-form-label" style="color: #fff;"><b>Nama</b></label>
+                    <div class="col-sm-9">
+                      <input style=" border-radius: 20px;" type="text" name="costumer_name" class="form-control" id="name">
+                    </div>
+                  </div> -->
                   <div class="form-group row">
-                    <label for="name" class="col-sm-2 col-form-label" style="color: #fff;"><b>Nama</b></label>
-                    <div class="col-sm-10">
-                      <input style=" border-radius: 30px;" type="text" name="costumer_name" class="form-control" id="name">
+                    <label for="phoneNumber" class="col-sm-3 col-form-label" style="color: #fff;"><b>No. Telp/ Handphone<b/></label>
+                    <div class="col-sm-9">
+                      <input style=" border-radius: 20px;" type="number"  name="costumer_phone" class="form-control input-cust" id="costumer_phone" maxlength="12">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="phoneNumber" class="col-sm-2 col-form-label" style="color: #fff;"><b>No. Telp/ Handphone<b/></label>
-                    <div class="col-sm-10">
-                      <input style=" border-radius: 30px;" type="number"  name="costumer_phone" class="form-control" id="phoneNumber" maxlength="12">
+                    <label for="deliveryCity" class="col-sm-3 col-form-label" style="color: #fff;"><b>Kabupaten/Kota</b></label>
+                    <div class="col-sm-9">
+                      <!-- <input style=" border-radius: 20px;" class="form-control"  name="costumer_city" id="deliveryCity"> -->
+                      <select id="city_name" name="city_name" class="form-control select2 input-cust" style="width: 100%; border-radius: 20px;">
+                        <option value="">--</option>
+                        @foreach($cities as $key => $value)
+                            <option id="city_name" value="{{$value->city_name}}">{{$value->city_name}}</option>
+                        @endforeach
+                      </select>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="deliveryCity" class="col-sm-2 col-form-label" style="color: #fff;"><b>Kabupaten/Kota</b></label>
-                    <div class="col-sm-10">
-                      <input style=" border-radius: 30px;" class="form-control"  name="costumer_city" id="deliveryCity">
+                    <label for="deliveryAddress" class="col-sm-3 col-form-label" style="color: #fff;"><b>Detail Alamat</b></label>
+                    <div class="col-sm-9">
+                      <textarea style=" border-radius: 20px;" class="form-control input-cust"  name="costumer_adress" id="deliveryAddress" rows="2"></textarea>
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <label for="deliveryAddress" class="col-sm-2 col-form-label" style="color: #fff;"><b>Detail Alamat</b></label>
-                    <div class="col-sm-10">
-                      <textarea style=" border-radius: 30px;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="5"></textarea>
+                  <!-- <div class="form-group row">
+                    <label for="email" class="col-sm-3 col-form-label" style="color: #fff;"><b>Email</b></label>
+                    <div class="col-sm-9">
+                      <input style="border-radius: 20px;" type="email"  name="costumer_email" class="form-control" id="email" >
                     </div>
-                  </div>
+                  </div> -->
                   <div class="form-group row">
-                    <label for="email" class="col-sm-2 col-form-label" style="color: #fff;"><b>Email</b></label>
-                    <div class="col-sm-10">
-                      <input style="border-radius: 30px;" type="email"  name="costumer_email" class="form-control" id="email" >
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="kode_promo" class="col-sm-2 col-form-label" style="color: #fff;"><b>Code Promo</b></label>
-                    <div class="col-sm-10">
-                      <input style=" border-radius: 30px;" class="form-control col-5"  name="kode_promo" id="kode_promo"></input>
+                    <label for="kode_promo" class="col-sm-3 col-form-label" style="color: #fff;"><b>Code Promo</b></label>
+                    <div class="col-sm-9">
+                      <input style=" border-radius: 20px;" class="form-control col-5 input-cust"  name="kode_promo" id="kode_promo"></input>
                     </div>
                   </div>
                   <div class="form-group form-syarat">
-                    <label style="color: #fff;"><b>Syarat dan ketentuan belanja dengan Whatsapp Delivery Claris</b></label>
-                    <textarea style=" border-radius: 30px; font-weight: bold;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="8" disabled>Syarat dan kententuan</textarea>
+                    <label style="color: #fff;"><b>Syarat dan ketentuan belanja dengan Whatsapp Delivery Claris :</b></label>
+                    <textarea style=" border-radius: 30px; font-weight: bold; font-size: 12px;" class="form-control"  name="costumer_adress" id="deliveryAddress" rows="8" disabled>1. Jam operasional order mulai pukul 08.00 – 16.00 WIB (Senin – Jumat).
+2. Batas pemesanan order untuk penggirman hari yang sama yaitu pukul 12.00 WIB, jika order lewat pukul 12.00 akan dikirim pada hari berikutnya atau mengikuti waktu operasional.
+3. Sebelum pengiriman, admin akan menginformasikan total belanja diluar ongkos kirim.
+4. Masukan kode promo jika ada.
+5. Penggiriman produk akan dilakukan setelah admin verfikasi pembayaran.
+6. Pembayaran dilakukan system transfer ke nomor rekening yang telah ditentukan.
+                    </textarea>
                     <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                   </div>
                   <div class="text-center" style="float: center;">
-                    <a class="btn button_whatsapp" onclick="whatsapp();">
-                        <img src="{{ asset('assets/image/logo-whatsapp.png') }}" alt="" style="width: 20px;">
+                    <button id="savecookie" class="btn button_whatsapp" type="submit">
+                        <img src="{{ asset('assets/image/logo-whatsapp.png') }}" alt="" style="width: 20px; font-size: 12px;">
                         <strong class="float-center" style="font-size: 15px;color: #fff;">Pesan Sekarang</strong>
-                    </a>
+                    </button>
                   </div>
                 </div>
-
-                <!-- @php
-                    $total = 0 ;
-                    $total_pay = 0 ;
-                    $total_brg = 0 ;
-                    $nm_brg = '';
-                @endphp
-                @foreach($cart as $key => $value)
-                    @php
-                    $amount = $value->product_harga * $value->mount;
-                    $total += $amount;
-                    $total_brg = count($cart);
-                    $total_pay += $amount;
-                    $nm_brg .= $value->product_name." (".$value->color."-".$value->mount."),";
-                    @endphp
-
-                    <input type="hidden" id="{{$value->id}}" value="{{$value->mount}}">
-                    <input type="hidden" id="harga_m{{$value->id}}" value="{{$amount}}">
-                    <input type="hidden" id="harga{{$value->id}}" value="{{$value->product_harga}}">
-                    <input type="hidden" id="total_brg" value="{{$total_brg}}">
-                @endforeach
-                @php
-                    $all_brg    = substr($nm_brg, 0, strlen($nm_brg) -1);
-                @endphp
-                    <input type="hidden" id="nm_brg" value="{{$all_brg}}">
-                    <input type="hidden" name="total_pay" id="total_pay" value="{{$total}}"> -->
             </form>
           </div>
         </div>
@@ -696,6 +683,7 @@
     <script src="{{ asset('assets_admin/plugins/jquery/jquery.min.js') }}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript">
         $(document).ready(function() {  
             $( "#clickme" ).click(function() {
@@ -733,6 +721,13 @@
 
             $( ".filter_category" ).click(function() {
                 // alert('jalan');
+            });
+
+            $( "#savecookie" ).click(function() {
+                // $.cookie("telp", $("#costumer_phone").val());
+                // $.cookie("alamat", $("#costumer_adress").val());
+
+                // alert($.cookie("telp"));
             });
         });
         function button_minus_br(id)
@@ -1028,5 +1023,32 @@
             return hasil;
 
         }
+
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          }
+        }
+
+        function showPosition(position) {
+            alert("Latitude: " + position.coords.latitude + 
+            "<br>Longitude: " + position.coords.longitude);
+
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+
+            // var latlng = new google.maps.LatLng(lat, lng);
+            // var geocoder = geocoder = new google.maps.Geocoder();
+            // geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+            //     if (status == google.maps.GeocoderStatus.OK) {
+            //         if (results[1]) {
+            //             alert("Location: " + results[1].formatted_address);
+            //         }
+            //     }
+            // });
+
+          // window.open('http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false&key=AIzaSyB91xF1eApIPDQccEYjXKA6Q4tKB8vV35s');
+        }
+
     </script>
 @endsection

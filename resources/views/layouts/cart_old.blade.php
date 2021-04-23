@@ -345,7 +345,10 @@
             });
 
             if(nm!='' && almt!='' && tlp!='' && email!='' && total_brg!=''){
-                window.open('https://api.whatsapp.com/send?phone=+6281776492873&text=*Nama*:%20'+nm+'%0A*Alamat*:%20'+almt+'%0A*Telp*:%20'+tlp+'%0A*Email*:%20'+email+'%0A*Total Item*:%20'+total_brg+'%0A*Total Harga*:%20'+total_pay+'%0A*Pesanan*:%20'+nm_brg);
+                var href ='Hello Admin Claris,  %0ANama %3A '+nm+', %0AEmail %3A '+email+', %0ANo. Hp %3A' +tlp+', %0AAlamat %3A' +almt+',%0AIngin membeli %3A%0A';
+
+                // window.open('https://api.whatsapp.com/send?phone=+6281776492873&text=*Nama*:%20'+nm+'%0A*Alamat*:%20'+almt+'%0A*Telp*:%20'+tlp+'%0A*Email*:%20'+email+'%0A*Total Item*:%20'+total_brg+'%0A*Total Harga*:%20'+total_pay+'%0A*Pesanan*:%20'+nm_brg);
+                window.open('https://api.whatsapp.com/send?phone=+6281776492873&text='+href);
             }else if (nm==''){
                 // Swal.fire({ text: 'Silahkan isi Nama terlebih dahulu!', confirmButtonColor: '#4db849'});
                 toastMixin.fire({
