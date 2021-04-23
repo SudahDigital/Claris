@@ -469,7 +469,7 @@
                     </div>
                 </div>
                 <div id="listcart" class="col-12 my-auto text-right" style="background-color: #fff; height: 50px; display: none;">
-                        <a class="btn btn-sm align-self-right button_pesan" style="background-color: #25d366; color: #fff; border-radius: 30px;"> <!--href="{{route('cart')}}"-->
+                        <a class="btn btn-sm align-self-right button_pesan" style="background-color: #25d366; color: #fff; border-radius: 30px;" data-toggle="modal" data-target="#checkoutModal"> <!--href="{{route('cart')}}"-->
                         <input type="hidden" id="total" value="{{$total}}">
                         <img src="{{ asset('assets/image/logo-whatsapp.png') }}" style="width: 20px;"> Pesan Sekarang
                         </a>  
@@ -684,6 +684,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {  
             $( "#clickme" ).click(function() {
@@ -724,8 +726,12 @@
             });
 
             $( "#savecookie" ).click(function() {
-                // $.cookie("telp", $("#costumer_phone").val());
-                // $.cookie("alamat", $("#costumer_adress").val());
+                // $.cookie('telp', $("#costumer_phone").val());
+                // $.cookie('alamat', $("#costumer_adress").val());
+
+                // setCookie('telp', $("#costumer_phone").val());
+                // setCookie('alamat', $("#costumer_adress").val());
+                // return true;
 
                 // alert($.cookie("telp"));
             });
