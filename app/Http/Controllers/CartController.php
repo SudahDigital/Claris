@@ -12,7 +12,7 @@ use Veritrans_Config;
 use Veritrans_Snap;
 use Veritrans_Notification;
  
-
+use App\CustomerOrder;
 use App\Product;
 use App\Category;
 use App\Cart;
@@ -349,6 +349,19 @@ class CartController extends Controller
 				$jumlah_byr = $rst_cart2[0]->total_harga;
 				
 				$info_harga = 'Total Pembayaran %3A Rp.'.number_format(($jumlah_byr), 0, ',', '.').'%0A';
+			}
+
+			$sql_cust_order = DB::select("SELECT * FROM customer_order WHERE ip_address = '".$clientIP."' AND user_agent = '".$userAgent."'");
+			$count_cust_order = count($sql_cust_order);
+
+			if($count_cust_order <= 0){
+				$insert_cust_order = CustomerOrder::create([
+						'no_telp' => $request->costumer_phone,
+						'address' => $request->costumer_adress,
+						'city' => $request->city_name,
+						'ip_address' => $clientIP,
+						'user_agent' => $userAgent
+					]);
 			}
 
 			$del_cart = "DELETE FROM carts

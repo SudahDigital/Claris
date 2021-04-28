@@ -82,6 +82,16 @@ class HomeController extends Controller
         $data['count_cart'] = $count;
         $data['category'] = Category::all();
 
+        $sql_cust_order = "SELECT * FROM customer_order WHERE ip_address = '".$clientIP."' AND user_agent = '".$userAgent."'";
+        $cust_order     = DB::select($sql_cust_order);
+
+        $data['cust_order_telp']    = $data['cust_order_address'] = $data['cust_order_city']    = "";
+        if($cust_order){
+            $data['cust_order_telp']    = $cust_order[0]->no_telp;
+            $data['cust_order_address'] = $cust_order[0]->address;
+            $data['cust_order_city']    = $cust_order[0]->city;
+        }
+
         return view('layouts.content',$data);
     }
 }

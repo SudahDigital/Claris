@@ -564,7 +564,7 @@
                   <div class="form-group row">
                     <label for="phoneNumber" class="col-sm-3 col-form-label" style="color: #fff;"><b>No. Telp/ Handphone<b/></label>
                     <div class="col-sm-9">
-                      <input style=" border-radius: 20px;" type="number"  name="costumer_phone" class="form-control input-cust" id="costumer_phone" maxlength="12">
+                      <input style=" border-radius: 20px;" type="number"  name="costumer_phone" class="form-control input-cust" id="costumer_phone" maxlength="12" value="{{$cust_order_telp}}">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -574,7 +574,7 @@
                       <select id="city_name" name="city_name" class="form-control select2 input-cust" style="width: 100%; border-radius: 20px;">
                         <option value="">--</option>
                         @foreach($cities as $key => $value)
-                            <option id="city_name" value="{{$value->city_name}}">{{$value->city_name}}</option>
+                            <option id="city_name" value="{{$value->city_name}}" <?php if($cust_order_city == $value->city_name) echo "selected";?>>{{$value->city_name}}</option>
                         @endforeach
                       </select>
                     </div>
@@ -582,7 +582,7 @@
                   <div class="form-group row">
                     <label for="deliveryAddress" class="col-sm-3 col-form-label" style="color: #fff;"><b>Detail Alamat</b></label>
                     <div class="col-sm-9">
-                      <textarea style=" border-radius: 20px;" class="form-control input-cust"  name="costumer_adress" id="deliveryAddress" rows="2"></textarea>
+                      <textarea style=" border-radius: 20px;" class="form-control input-cust"  name="costumer_adress" id="deliveryAddress" rows="2">{{ $cust_order_address }}</textarea>
                     </div>
                   </div>
                   <!-- <div class="form-group row">
