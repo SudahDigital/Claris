@@ -89,10 +89,11 @@ class DashProductController extends Controller
                     a.* ,
                     b.category_name
                 FROM products a 
-                INNER JOIN categorys b ON b.id = a.category_id
+                LEFT JOIN categorys b ON b.id = a.category_id
                 WHERE 
                     a.id = '".$request->id."'
             ";
+
     	$product = DB::select($sql);
 
     	$sql_c = "select * from categorys";
