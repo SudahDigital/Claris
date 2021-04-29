@@ -244,6 +244,7 @@ class DashProductController extends Controller
 	      	$file_size = $_FILES['upl_image']['size'];
 	      	$file_tmp = $_FILES['upl_image']['tmp_name'];
 	      	$file_type = $_FILES['upl_image']['type'];
+
 		      
 		    if($file_size > 2097152) {
 		        $errors[]='File size must be excately 2 MB';
@@ -252,7 +253,7 @@ class DashProductController extends Controller
             $product_image ="";
             if($file_name) { $product_image = "product_image = '".$file_name."'," ;}
 
-		    if(empty($errors)==true){
+		    // if(empty($errors)==true){
 
                 if (empty($request->top_produk)){ 
                     $top_produk = 'N'; 
@@ -290,7 +291,7 @@ class DashProductController extends Controller
 			    if($product) {
                     move_uploaded_file($file_tmp,"assets/image/product/".$file_name);
 		        }
-		    }
+		    // }
 	    }
 
 		return redirect('admin/dash-produk')->with(['success' => 'Product Berhasil di Update']);
