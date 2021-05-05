@@ -59,20 +59,16 @@ $total += $amount;
                     $sql = \DB::select("SELECT a.* FROM carts a WHERE a.session_id = '".$val_c->session_id."' and a.product_id = '".$val_c->product_id."'"); 
                     $rst = count($sql);
                     foreach ($sql as $key => $val) {
-                        echo "<div class=\"mb-1 box-color\">
-                            <table width=\"100%\">
-                                <tbody>
-                                    <tr>
-                                        <td><span class=\"$val->color ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span></td>
-                                        <td><button class=\"btn button_plus\" onclick=\"button_minus_color2('$val->product_id','$key')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button></td>
-                                        <td><input id=\"qty2_color_".$val->product_id."_".$key."\" placeholder=\"0\" class=\"qty-color\" onkeyup=\"qty_number(this.id,this.value)\" value=\"".$val->mount."\"></td>
-                                        <td><button class=\"btn button_plus\" onclick=\"button_plus_color2('$val->product_id','$key')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                        echo "<div class=\"row mb-0 px-1 input-group\">
+                                    <div class=\"input-group-append\">
+                                        <span class=\"$val->color ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                        <button class=\"btn button_plus\" onclick=\"button_minus_color2('$val->product_id','$key')\" style=\"padding: 0;border-bottom-left-radius:7px;border-top-left-radius:7px; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                        <input id=\"qty2_color_".$val->product_id."_".$key."\" placeholder=\"0\" class=\"qty-color\" onkeyup=\"qty_number(this.id,this.value)\" value=\"".$val->mount."\">
+                                        <button class=\"btn button_plus\" onclick=\"button_plus_color2('$val->product_id','$key')\" style=\"padding: 0; border-bottom-right-radius:7px;border-top-right-radius:7px; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
                                         <input type=\"hidden\" name=\"ket2_color_".$val->product_id."_".$key."\" id=\"ket2_color_".$val->product_id."_".$key."\" value=\"".$val->color."\">
-                                        <input type=\"hidden\" name=\"count_color_".$val->product_id."\" id=\"count_color_".$val->product_id."\" value=\"\"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>";
+                                        <input type=\"hidden\" name=\"count_color_".$val->product_id."\" id=\"count_color_".$val->product_id."\" value=\"\">
+                                    </div>
+                                </div>";
                     }
                 ?>
             </div>

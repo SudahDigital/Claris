@@ -31,7 +31,6 @@ class ProductController extends Controller
         $data['category'] = Category::all();
         // return $input;die;        
         $user_id = Auth::id();
-        $ses_id =  $request->header('User-Agent'); //session_id();
         if (empty($user_id)) {
             # code...
             $user_id = 0;
@@ -40,8 +39,7 @@ class ProductController extends Controller
         $data['page'] = 'category';
         $cart = DB::table('carts')
             ->leftJoin('products', 'products.id', '=', 'carts.product_id')
-            ->leftJoin('product_images', 'product_images.product_id', '=', 'carts.product_id')
-            ->select('carts.*', 'products.product_name', 'products.product_harga', 'product_images.image_link')
+            ->select('carts.*', 'products.product_name', 'products.product_harga', 'products.product_image','products.product_description')
             ->where('carts.session_id', $ses_id)
             ->get();
 
@@ -103,8 +101,7 @@ class ProductController extends Controller
         $data['page'] = 'search';
         $cart = DB::table('carts')
             ->leftJoin('products', 'products.id', '=', 'carts.product_id')
-            ->leftJoin('product_images', 'product_images.product_id', '=', 'carts.product_id')
-            ->select('carts.*', 'products.product_name', 'products.product_harga', 'product_images.image_link')
+            ->select('carts.*', 'products.product_name', 'products.product_harga', 'products.product_image','products.product_description')
             ->where('carts.session_id', $ses_id)
             ->get();
 
