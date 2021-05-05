@@ -377,4 +377,8 @@
       padding-top: 1rem !important; 
       padding-bottom: 5px !important;
     }
+
+    .input-group{
+      padding: 5px;
+    }
 }

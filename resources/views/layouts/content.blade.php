@@ -160,9 +160,9 @@
                                     // $rst = count($sql);
 
                                     if($count_clr=="1"){
-                                        echo "<div class=\"row\">
+                                        echo "
                                                 <div class=\"col-6\">
-                                                    <div class=\"row mb-1 px-1 input-group\">
+                                                    <div class=\"row mb-0 px-1 input-group\">
                                                         <div class=\"input-group-append\">
                                                             <span class=\"$hsl ic_color\"><i class=\"fa fa-circle\"></i></span>
                                                             <button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$i')\" style=\"padding: 0;color:#000;outline:none;border-bottom-left-radius:7px;border-top-left-radius:7px;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
@@ -173,7 +173,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>";
+                                            ";
 
                                     }else{
 
@@ -183,87 +183,36 @@
                                             $hsl0 = $color[0];  
                                             $hsl1 = $color[1]; 
 
-                                            echo "<div class=\"col-6\">
-                                                    <div class=\"row mb-1 px-1 input-group\">
-                                                        <div class=\"input-group-append\">
-                                                            <span class=\"$color[$i] ic_color\"><i class=\"fa fa-circle\"></i></span>
-                                                            <button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$i')\" style=\"padding: 0; color:#000;outline:none;background-color: #DADADA;border-bottom-left-radius:7px;border-top-left-radius:7px;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
-                                                            <input id=\"qty_color_".$value->id."_".$i."\" class=\"qty-color\" placeholder=\"0\" onkeyup=\"qty_number(this.id,this.value)\">
-                                                            <button class=\"btn button_plus \" onclick=\"button_plus_color('$value->id','$i')\" style=\"padding: 0;color:#000;outline:none;background-color: #DADADA;border-bottom-right-radius:7px;border-top-right-radius:7px;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
-                                                                <input type=\"hidden\" name=\"ket_color_".$value->id."_".$i."\" id=\"ket_color_".$value->id."_".$i."\" value=\"".$color[$i]."\">
-                                                                <input type=\"hidden\" name=\"count_color_".$value->id."\" id=\"count_color_".$value->id."\" value=\"".$count_clr."\">
-                                                        </div>
+                                            echo "<div class=\"col-6 px-2 input-group\">
+                                                    <div class=\"input-group-append\"> <!--row-->
+                                                        <span class=\"$color[$i] ic_color\"><i class=\"fa fa-circle\"></i></span>
+                                                        <button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$i')\" style=\"padding: 0; color:#000;outline:none;background-color: #DADADA;border-bottom-left-radius:7px;border-top-left-radius:7px;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                        <input id=\"qty_color_".$value->id."_".$i."\" class=\"qty-color\" placeholder=\"0\" onkeyup=\"qty_number(this.id,this.value)\">
+                                                        <button class=\"btn button_plus \" onclick=\"button_plus_color('$value->id','$i')\" style=\"padding: 0;color:#000;outline:none;background-color: #DADADA;border-bottom-right-radius:7px;border-top-right-radius:7px;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                            <input type=\"hidden\" name=\"ket_color_".$value->id."_".$i."\" id=\"ket_color_".$value->id."_".$i."\" value=\"".$color[$i]."\">
+                                                            <input type=\"hidden\" name=\"count_color_".$value->id."\" id=\"count_color_".$value->id."\" value=\"".$count_clr."\">
                                                     </div>
                                                 </div>";
+
+                                            /*echo "<div class=\"col-6\">
+                                                <div class=\"mb-1 box-color\">
+                                                    <table width=\"100%\">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><span class=\"$color[$i] ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span></td>
+                                                                <td><button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$i')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button></td>
+                                                                <td><input id=\"qty_color_".$value->id."_".$i."\" class=\"qty-color\" placeholder=\"0\" onkeyup=\"qty_number(this.id,this.value)\"></td>
+                                                                <td><button class=\"btn button_plus \" onclick=\"button_plus_color('$value->id','$i')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                                    <input type=\"hidden\" name=\"ket_color_".$value->id."_".$i."\" id=\"ket_color_".$value->id."_".$i."\" value=\"".$color[$i]."\">
+                                                                    <input type=\"hidden\" name=\"count_color_".$value->id."\" id=\"count_color_".$value->id."\" value=\"".$count_clr."\"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>";*/
                                         }
-
                                         echo "</div>";
-
-                                        /*echo "<div class=\"button-cart\" style=\"background-color: #fff; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;\">
-                                            <div class=\"col-12\">
-                                                <div class=\"row\">
-                                                    <div class=\"col-4\">
-                                                                <button type=\"button\" class=\"btn button_filter btn-lg btn-block\" onclick=\"insertCart('{{ $value->id }}')\" style=\"color: #fff; font-size: 12px;\" ><b>Tambah</b></button>
-                                                    </div>
-                                                    <div class=\"col-8\">
-                                                        <div class=\"float-right text-center\">
-                                                                    <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus\" aria-hidden=\"true\"></i></button>
-                                                                    <span id=\"show_'.$value->id.'\" class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center;\">0</span>
-                                                                    <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i></button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>";*/
-
                                     }
-
-                                    /*echo "<div class=\"col-6\">
-                                        <div class=\"mb-1 box-color\">
-                                            <span class=\"$color[$i] ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                            <input id=\"qty_color_".$value->id."_".$i."\" class=\"qty-color\" placeholder=\"0\">
-                                            <input type=\"hidden\" name=\"ket_color_".$value->id."_".$i."\" id=\"ket_color_".$value->id."_".$i."\" value=\"".$color[$i]."\">
-                                            </div>
-                                    </div>";*/
-
-                                    /*echo "
-                                        <div class=\"row\">
-                                            <div class=\"col-6\">
-                                                <div class=\"mb-1 box-color\">
-                                                    <span class=\"$hsl0 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl0\" class=\"qty-color\" placeholder=\"0\">
-                                                    </div>
-
-                                                <div class=\"mb-1 box-color\">
-                                                    <span class=\"$hsl1 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl1\" class=\"qty-color\" placeholder=\"0\">
-                                                    </div>
-                                            </div>
-                                            <div class=\"col-6\">
-                                                <div class=\"mb-1 box-color\">
-                                                    <span class=\"$hsl2 ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <input id=\"qty_color_$hsl2\" class=\"qty-color\" placeholder=\"0\">
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    ";*/
-
-                                    /*for ($i=0; $i < $count_clr; $i++) { 
-                                        $hsl = $color[$i];
-
-                                        echo "
-                                        <div class=\"row\">
-                                            <div class=\"col-sm-6\">
-                                                <div class=\"box-color\">
-                                                    <span class=\"$hsl ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
-                                                    <button class=\"btn button_plus d-inline-display\" onclick=\"button_minus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
-                                                    <span class=\"d-inline title-dtl\" style=\"color: #000 !important; border-radius: 5px; padding: 2px; font-weight: bold; text-align: center; font-size: 12px;\">0</span>
-                                                    <button class=\"btn button_plus \" onclick=\"button_plus_br('{{$value->id}}')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        ";
-                                    }*/
                                 ?>
 
                             </div>
