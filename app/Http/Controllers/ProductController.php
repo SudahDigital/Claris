@@ -90,7 +90,9 @@ class ProductController extends Controller
     public function search(Request $request)
     {
     	$input = $request->all();
-        $ses_id =  $request->header('User-Agent'); //session_id();
+        $userAgent  = $request->header('User-Agent'); //session_id();
+        $clientIP   = \Request::getClientIp(true);
+        $ses_id     = $userAgent.$clientIP;
         $user_id = Auth::id();
         if (empty($user_id)) {
             # code...
@@ -117,6 +119,32 @@ class ProductController extends Controller
 
         $data['banner'] = $banner;
         $data['banner_active'] = $rst_banneract[0]->ID_AWAL;
+
+        $data['cities'] = Cities::All();
+
+        $count = Cart::where('user_id', $user_id)->sum('mount');
+        
+        /*$cart = DB::table('carts')
+            ->innerJoin('products', 'products.id', '=', 'carts.product_id')
+            ->where('session_id', $ses_id)
+            ->select('carts.*', 'products.product_name', 'products.product_harga', 'products.product_image')
+            ->get();*/
+        $sql = "SELECT carts.*, products.product_name, products.product_harga, products.product_image, (products.product_harga * carts.mount) AS total_harga FROM `carts` INNER JOIN products ON products.id = carts.product_id WHERE carts.session_id = '".$ses_id."'"; 
+        $cart_wa = DB::select($sql);
+
+        $data['cart_wa'] = $cart_wa;
+        $data['count_cart'] = $count;
+        $data['category'] = Category::all();
+
+        $sql_cust_order = "SELECT * FROM customer_order WHERE ip_address = '".$clientIP."' AND user_agent = '".$userAgent."'";
+        $cust_order     = DB::select($sql_cust_order);
+
+        $data['cust_order_telp']    = $data['cust_order_address'] = $data['cust_order_city']    = "";
+        if($cust_order){
+            $data['cust_order_telp']    = $cust_order[0]->no_telp;
+            $data['cust_order_address'] = $cust_order[0]->address;
+            $data['cust_order_city']    = $cust_order[0]->city;
+        }
 
     	return view('layouts.content',$data);
     }

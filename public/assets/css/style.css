@@ -579,11 +579,11 @@ a.register:hover {
 
 #content .button_plus, #content .button_minus {
   width: 25px; 
-  height: 25px;
-  /*background-color: #fff !important; */
+  height: 30px;
+  background-color: #CECECE !important; 
   border: none;
   color: #000;
-  border-radius: 50px;
+  /*border-radius: 50px;*/
   background:none; 
   border:none;
   outline: none;
@@ -1651,21 +1651,24 @@ footer.footer .cart .count-cart-three {
 
 .ic_color{
   padding: 5px !important; 
+  text-align: center;
 }
 
 .box-color {
   border-radius: 20px; 
-  background-color: #DADADA;
+  /*background-color: #DADADA;*/
+  /*padding-left: 5px;*/
 }
 
 .qty-color {
   color: #000 !important; 
   font-weight: bold; 
   text-align: center; 
-  font-size: 12px; 
+  /*font-size: 12px; */
   background-color: #DADADA; 
   border: none;
-  width: 20px;
+  width: 25px; 
+  height: 30px;
 }
 
 .img-fluid{
@@ -1681,6 +1684,10 @@ footer.footer .cart .count-cart-three {
 .bck-cust {
   background-position: 0% 5%;
   /*background-size: 1% 2%;*/
+}
+
+.color-padding {
+  padding: 10px;
 }
 
 

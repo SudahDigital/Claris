@@ -64,6 +64,7 @@ class CartController extends Controller
 		$userAgent	= $request->header('User-Agent'); //session_id();
 		$clientIP 	= \Request::getClientIp(true);
 		$ses_id 	= $userAgent.$clientIP;
+		$datenow 	= date('Y-m-d H:i:s');
 
 		if (empty($user_id)) {
 			# code...
@@ -81,7 +82,8 @@ class CartController extends Controller
 						'product_id' => $request->product_id,
 						'mount' => $jumlah,
 						'user_id' => $user_id,
-						'qty_color' => $request->product_id
+						'qty_color' => $request->product_id,
+						'carts_date' => $datenow
 					]);
 		}else{
 			$data = Cart::create([
@@ -89,7 +91,8 @@ class CartController extends Controller
 				'mount' => $request->jumlah,
 				'user_id' => $user_id,
 				'session_id' => $ses_id,
-				'qty_color' => $request->product_id
+				'qty_color' => $request->product_id,
+				'carts_date' => $datenow
 			]);
 		}
 		return redirect()->back()->with(['status' => 'success','data' => $data]);
@@ -168,6 +171,7 @@ class CartController extends Controller
 							'session_id' => $ses_id,
 							'color' => $clr,
 							'user_ip' => $clientIP,
+							'carts_date' => $datenow,
 							'created_at' => $datenow,
 							'updated_at' => NULL
 						]);
@@ -203,6 +207,7 @@ class CartController extends Controller
 						'session_id' => $ses_id,
 						'color' => $clr,
 						'user_ip' => $clientIP,
+						'carts_date' => $datenow,
 						'created_at' => $datenow,
 						'updated_at' => NULL
 					]);
@@ -287,6 +292,8 @@ class CartController extends Controller
 						order_date,
 						product_id,
 						product_code,
+						color,
+						carts_date,
 						status
 					) VALUES (
 						'".$inv_pay."',
@@ -298,6 +305,8 @@ class CartController extends Controller
 						now(),
 						'".$value->product_id."',
 						'".$pcode."',
+						'".$value->color."',
+						'".$value->carts_date."',
 						'SUBMIT'
 					); 
 				";
@@ -315,21 +324,24 @@ class CartController extends Controller
 				            	FROM pay_d a
 				            	INNER JOIN pay b ON a.invoice_pay = b.invoice_pay
 				            	INNER JOIN products c ON a.product_id = c.id
+				            	INNER JOIN carts d ON a.product_id = c.id AND a.carts_date = d.carts_date AND a.color = d.color
 				            	WHERE a.telepon_cust = '".$request->costumer_phone."'
             						
             ");
             foreach($pesan as $key=>$wa){
-                $href.='*'.$wa->product_name.'%20(Qty %3A%20'.$wa->mount.' Pcs)%0A';
+                $href.='*'.$wa->product_name.'%20(Qty %3A%20'.$wa->mount.' Pcs, Color %3A%20'.$wa->color.')%0A';
             }
 
             if($request->kode_promo !=""){
 	            $sql_promo  = DB::table('vouchers')
 						->where('code', $request->kode_promo)
-						->select('vouchers.code','vouchers.name','vouchers.discount_amount')->get();
+						->select('vouchers.code','vouchers.name','vouchers.discount_amount','vouchers.uses','vouchers.max_uses')->get();
 
 				$promo_cd 		= $sql_promo[0]->code;
 				$promo_nm 		= $sql_promo[0]->name;
 				$promo_dis 		= $sql_promo[0]->discount_amount;
+				$promo_uses 	= $sql_promo[0]->uses;
+				$promo_max_uses	= $sql_promo[0]->max_uses;
 
 				$sql_cart 	= "SELECT SUM((products.product_harga * carts.mount)) AS total_harga FROM `carts` INNER JOIN products ON products.id = carts.product_id WHERE carts.session_id = '".$ses_id."'";
 				$rst_cart2 	= DB::select($sql_cart);
@@ -342,6 +354,14 @@ class CartController extends Controller
 				if($promo_cd !=""){
 					$info_harga = 'Total Pesanan %3A Rp.'.number_format(($jumlah_byr), 0, ',', '.').'%0ADiskon %3A '.number_format(($promo_dis), 0, ',', '.').'% %0AJenis Diskon %3A '.$promo_nm.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
 
+					$uses 				= $promo_uses+1;
+					if($promo_max_uses!=$uses){
+						$upd_used_voucher 	= "UPDATE vouchers SET 
+													uses = '$uses'
+												WHERE code = '$request->kode_promo'
+											";
+						$rst_used_voucher 	= DB::update($upd_used_voucher);
+					}
 				}
 			}else{
 				$sql_cart 	= "SELECT SUM((products.product_harga * carts.mount)) AS total_harga FROM `carts` INNER JOIN products ON products.id = carts.product_id WHERE carts.session_id = '".$ses_id."'";
