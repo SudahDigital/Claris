@@ -161,7 +161,7 @@
 
                                     if($count_clr=="1"){
                                         echo "
-                                                <div class=\"col-6\">
+                                                <div class=\"col-6 p-1\">
                                                     <div class=\"row mb-0 px-1 input-group\">
                                                         <div class=\"input-group-append\">
                                                             <span class=\"$hsl ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
@@ -183,7 +183,7 @@
                                             $hsl0 = $color[0];  
                                             $hsl1 = $color[1]; 
 
-                                            echo "<div class=\"col-6 px-2 input-group\">
+                                            echo "<div class=\"col-6 p-1 input-group\">
                                                     <div class=\"input-group-append\"> <!--row-->
                                                         <span class=\"$color[$i] ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
                                                         <button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$i')\" style=\"padding: 0; color:#000;outline:none;background-color: #DADADA;border-bottom-left-radius:7px;border-top-left-radius:7px;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
