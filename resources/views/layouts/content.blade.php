@@ -573,7 +573,7 @@
                     <!-- <label for="phoneNumber" class="cart_label">Nomor Telepon</label> -->
                   </div>
                   <div class="text-center" style="float: center;">
-                    <button id="savecookie" class="btn button_whatsapp" type="submit">
+                    <button id="savecookie" class="btn button_whatsapp" type="submit" onclick="pesan_wa();">
                         <img src="{{ asset('assets/image/logo-whatsapp.png') }}" alt="" style="width: 20px; font-size: 12px;">
                         <strong class="float-center" style="font-size: 15px;color: #fff;">Pesan Sekarang</strong>
                     </button>
@@ -994,6 +994,21 @@
 
         }
 
+        function pesan_wa() {
+            alert('jalan');
+            
+            Swal.fire({
+            title: 'Memesan',
+            text: "Anda melakukan pesanan melalui whatsapp",
+            icon: 'success',
+            showCancelButton: false,
+            confirmButtonText: "Ok",
+            confirmButtonColor: '#4db849'
+            }).then(function(){ 
+                location.reload();
+            });
+        }
+
         function validasiVouchers(value) {
             alert(value);
         }
@@ -1023,6 +1038,7 @@
 
           // window.open('http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false&key=AIzaSyB91xF1eApIPDQccEYjXKA6Q4tKB8vV35s');
         }
+
 
     </script>
 @endsection
