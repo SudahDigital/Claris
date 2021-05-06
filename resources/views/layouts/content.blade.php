@@ -95,7 +95,7 @@
             @endif
             @foreach($product as $key => $value)
                 @if($value->product_stock > 0)
-                    <div id="product_list" class="col-6 col-md-6 col-lg-3 mb-5">
+                    <div id="product_list" class="col-6 col-md-6 col-lg-3 mb-4 p-2">
                         <div class="card h-100 item_product" style="border: none; border-radius:20px;">
                            
                             <div id="nmprd" style="background-color: #fff; padding:12px; border-top-right-radius: 20px;border-top-left-radius: 20px; color:#000;">
