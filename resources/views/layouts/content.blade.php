@@ -995,7 +995,6 @@
         }
 
         function pesan_wa() {
-            alert('jalan');
             
             Swal.fire({
             title: 'Memesan',

@@ -322,7 +322,6 @@ class CartController extends Controller
         	
         }
 
-		// return redirect('home')->with(['success' => 'Product Berhasil di Proses']);
 		if($rst_pay){
 			$href='*Hello Admin Claris*,  %0ANo. Hp %3A' .$request->costumer_phone.', %0AAlamat %3A' .$request->costumer_adress.', %0AKota/kab %3A' .$request->city_name.',%0APesanan %3A%0A';
 
@@ -400,7 +399,7 @@ class CartController extends Controller
 
 			$text_wa=$href.'%0A'.$info_harga;
             $url = "https://api.whatsapp.com/send?phone=6281776492873&text=$text_wa";
-            
+
             // return redirect('home')->with(['success' => 'Product Berhasil di Proses']);
             return Redirect::to($url);
 	        
