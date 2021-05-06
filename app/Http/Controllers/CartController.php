@@ -400,6 +400,7 @@ class CartController extends Controller
 
 			$text_wa=$href.'%0A'.$info_harga;
             $url = "https://api.whatsapp.com/send?phone=6281776492873&text=$text_wa";
+            return redirect('home')->with(['success' => 'Product Berhasil di Proses']);
             return Redirect::to($url);
 	        
 	    }
