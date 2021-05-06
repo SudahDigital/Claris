@@ -826,7 +826,7 @@
             $.ajax({
               url: '/cart/update_mount?id='+id+'&mount='+mount+'&color='+color,
               success : function(data){
-                if (data=='success') {
+                if (data['status']=='success') {
                   $('#table_c').load("{{url('/cart/footer-list')}}");
 
                   var mount1 = mount;
@@ -847,7 +847,7 @@
 
                   var hrg = $('#tot_hrg').val();
                   var hrg2 = parseInt(hrg) + parseInt(harga);
-                  var hrg3 = rupiah(hrg2);
+                  var hrg3 = rupiah(data['total']);
 
                   $('#total_mount').html('<strong>'+hrg3+'</strong>');
                 }
@@ -874,7 +874,7 @@
             $.ajax({
               url: '/cart/update_mount?id='+id+'&mount='+mount+'&color='+color,
               success : function(data){
-                if (data=='success') {
+                if (data['status']=='success') {
                   $('#table_c').load("{{url('/cart/footer-list')}}");
 
                   var mount1 = mount;
@@ -895,9 +895,7 @@
 
                   var hrg = $('#tot_hrg').val();
                   var hrg2 = parseInt(hrg) + parseInt(harga);
-                  var hrg3 = rupiah(hrg2);
-
-                  // alert(hrg+'_'+harga);
+                  var hrg3 = rupiah(data['total']);
 
                   $('#total_mount').html('<strong>'+hrg3+'</strong>');
                 }

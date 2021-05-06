@@ -117,7 +117,15 @@ class CartController extends Controller
 					->update([
 						'mount' => $request->mount,
 					]);
-		return response()->json('success');
+
+		$sql_tot = "SELECT SUM(A.total) tot FROM (SELECT (b.product_harga * SUM(a.mount)) total FROM carts a LEFT JOIN products b ON a.product_id = b.id WHERE a.session_id = '".$ses_id."' GROUP BY a.user_ip, a.product_id) as A";
+        $rst_tot = DB::select($sql_tot);
+
+        $total = 0;
+        if($rst_tot){
+        	$total = $rst_tot[0]->tot;
+        }
+		return response()->json([ 'status' => 'success', 'total' => $total]);
 	}
 
 	public function update_cart(Request $request)
@@ -412,6 +420,14 @@ class CartController extends Controller
         // return $cart;die;
         $data['count_cart'] = count($cart);
         $data['cart'] = $cart;
+
+        $sql_tot = "SELECT SUM(A.total) tot FROM (SELECT (b.product_harga * SUM(a.mount)) total FROM carts a LEFT JOIN products b ON a.product_id = b.id WHERE a.session_id = '".$ses_id."' GROUP BY a.user_ip, a.product_id) as A";
+        $rst_tot = DB::select($sql_tot);
+
+        $data['total_hrg'] = 0;
+        if($rst_tot){
+        	$data['total_hrg'] = $rst_tot[0]->tot;
+        }
 
         $color = DB::select("SELECT a.* FROM carts a WHERE a.session_id = '".$ses_id."'");
         $data['color'] = $color;
