@@ -88,7 +88,7 @@
                     @if($value->uses == '')
                       0
                     @else
-                      $value->uses
+                      {{ $value->uses }}
                     @endif
                   </td>
                   <td>

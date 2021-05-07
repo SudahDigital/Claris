@@ -557,8 +557,12 @@
                   </div> -->
                   <div class="form-group row">
                     <label for="kode_promo" class="col-sm-3 col-form-label" style="color: #fff;"><b>Code Promo</b></label>
-                    <div class="col-sm-9">
-                      <input style=" border-radius: 20px;" class="form-control col-5 input-cust"  name="kode_promo" id="kode_promo" onkeydown="validasiVouchers(this.value());"></input>
+                    <div class="col-sm-9 input-group">
+                        <div class="input-group-append">
+                            <input style=" border-bottom-left-radius: 20px; border-top-left-radius: 20px;" class="form-control col-5 input-cust"  name="kode_promo" id="kode_promo"></input>
+                            <span class="btn" onclick="validasiVouchers();" style="background-color: #CECECE !important; border: none;color: #000;border-bottom-right-radius:20px;border-top-right-radius:20px; font-size: 12px;"><strong>Terapkan</strong></span>
+                            <span class="icon-promo" style="color: #fff;"></span>
+                        </div>
                     </div>
                   </div>
                   <div class="form-group form-syarat">
@@ -995,7 +999,7 @@
         }
 
         function pesan_wa() {
-            
+
             Swal.fire({
             title: 'Memesan',
             text: "Anda melakukan pesanan melalui whatsapp",
@@ -1008,8 +1012,30 @@
             });
         }
 
-        function validasiVouchers(value) {
-            alert(value);
+        function validasiVouchers() {
+            var kode_promo = $('#kode_promo').val();
+
+            $.ajax({
+                url: '/cart/check_vouchers?voucher='+kode_promo,
+                success : function(data){
+                  if (data['status']=='success') {
+                        Swal.fire({
+                        text: data['validasi'],
+                        icon: 'info',
+                        showCancelButton: false,
+                        confirmButtonText: "Ok",
+                        confirmButtonColor: '#4db849'
+                        }); 
+
+                        if(data['validasi'] == '' || data['validasi'] == 'Promo Expired!'){
+                            $('#kode_promo').val('');
+                        }else{
+                            $('.icon-promo').html('<i class="fas fa-check-circle fa-lg"></i>');
+                        }
+                  }
+                }
+              })
+            
         }
 
         function getLocation() {

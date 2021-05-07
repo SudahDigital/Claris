@@ -342,13 +342,17 @@ class CartController extends Controller
             if($request->kode_promo !=""){
 	            $sql_promo  = DB::table('vouchers')
 						->where('code', $request->kode_promo)
-						->select('vouchers.code','vouchers.name','vouchers.discount_amount','vouchers.uses','vouchers.max_uses')->get();
+						->select('vouchers.code','vouchers.name','vouchers.discount_amount','vouchers.uses','vouchers.max_uses','vouchers.expires_at')->get();
 
-				$promo_cd 		= $sql_promo[0]->code;
-				$promo_nm 		= $sql_promo[0]->name;
-				$promo_dis 		= $sql_promo[0]->discount_amount;
-				$promo_uses 	= $sql_promo[0]->uses;
-				$promo_max_uses	= $sql_promo[0]->max_uses;
+				$promo_cd = $promo_nm = $promo_dis = $promo_uses = $promo_max_uses = $expired_date = "";
+				if($sql_promo){		
+					$promo_cd 		= $sql_promo[0]->code;
+					$promo_nm 		= $sql_promo[0]->name;
+					$promo_dis 		= $sql_promo[0]->discount_amount;
+					$promo_uses 	= $sql_promo[0]->uses;
+					$promo_max_uses	= $sql_promo[0]->max_uses;
+					$expired_date	= $sql_promo[0]->expires_at;
+				}
 
 				$sql_cart 	= "SELECT SUM((products.product_harga * carts.mount)) AS total_harga FROM `carts` INNER JOIN products ON products.id = carts.product_id WHERE carts.session_id = '".$ses_id."'";
 				$rst_cart2 	= DB::select($sql_cart);
@@ -359,15 +363,18 @@ class CartController extends Controller
 				$total_bayar 	= $jumlah_byr-$potongan;
 
 				if($promo_cd !=""){
-					$info_harga = 'Total Pesanan %3A Rp.'.number_format(($jumlah_byr), 0, ',', '.').'%0ADiskon %3A '.number_format(($promo_dis), 0, ',', '.').'% %0AJenis Diskon %3A '.$promo_nm.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
 
 					$uses 				= $promo_uses+1;
 					if($promo_max_uses!=$uses){
+						$info_harga = 'Total Pesanan %3A Rp.'.number_format(($jumlah_byr), 0, ',', '.').'%0ADiskon %3A '.number_format(($promo_dis), 0, ',', '.').'% %0AJenis Diskon %3A '.$promo_nm.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
+
 						$upd_used_voucher 	= "UPDATE vouchers SET 
 													uses = '$uses'
 												WHERE code = '$request->kode_promo'
 											";
 						$rst_used_voucher 	= DB::update($upd_used_voucher);
+					}else{
+						$info_harga = 'Total Pembayaran %3A Rp.'.number_format(($jumlah_byr), 0, ',', '.').'%0A';
 					}
 				}
 			}else{
@@ -434,5 +441,26 @@ class CartController extends Controller
         $data['color'] = $color;
 
         return view('layouts.tampil',$data);
+	}
+
+	public function check_vouchers(Request $request)
+	{
+		$vouchers = $request->voucher;
+		$dateNow  = date("Y-m-d");
+
+		$sql = "SELECT * FROM vouchers WHERE code='".$vouchers."'";
+		$rst = DB::select($sql);
+
+		$status = "";
+		if($rst){
+			$tgl_exp = $rst[0]->expires_at;
+
+			$status = "Promo berhasil dimasukkan!";
+			if(strtotime($dateNow) > strtotime($tgl_exp)){
+				$status = "Promo Expired!";
+			}
+		}
+
+		return response()->json([ 'status' => 'success', 'validasi' => $status]);
 	}
 }

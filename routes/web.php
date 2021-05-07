@@ -40,6 +40,7 @@ Route::get('/logout', 'LoginController@logout')->name('cust_logout');
 	Route::get('/cart/delete/{id}', 'CartController@delete')->name('cart_delete');
 	Route::get('/cart/update_mount/', 'CartController@update_mount')->name('update_mount');
 	Route::get('/cart/update_cart/', 'CartController@update_cart')->name('update_cart');
+	Route::get('/cart/check_vouchers/', 'CartController@check_vouchers')->name('check_vouchers');
 	Route::post('/cart/pay', 'CartController@pay')->name('cart_pay');
 	Route::get('/cart/footer-list', 'CartController@footer_list')->name('footer_list');
 
