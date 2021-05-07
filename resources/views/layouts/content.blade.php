@@ -845,7 +845,7 @@
                         var total_price = parseFloat(data['total_price']);
                         var prc = (total_price/1000).toFixed(3);
                         var prc2 = rupiah(data['total_price']);
-                        $('#total_mount').html('<strong>Rp. '+prc2+'</strong>');
+                        $('#total_mount').html('<strong>'+prc2+'</strong>');
 
                         var harga           = $('#harga_'+id).val();
                         var harga_mount     = $('#show_'+id).html();
