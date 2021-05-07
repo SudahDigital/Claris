@@ -780,7 +780,7 @@
                         var tot_harga_af = parseInt(harga_bf) - parseInt(harga_st);
 
                         // UBAH FORMAT UANG INDONESIA
-                        var   number_string = tot_harga_af.toString();
+                        var   number_string = data['total'].toString();
                         var sisa  = number_string.length % 3;
                         var rupiah    = number_string.substr(0, sisa);
                         var ribuan    = number_string.substr(sisa).match(/\d{3}/g);
@@ -903,7 +903,23 @@
             })
         }
 
-        function qty_number(id,value){
+        function qty_number(id,value,color,prod_id){
+
+            var mount = value;
+
+            $.ajax({
+              url: '/cart/update_mount?id='+prod_id+'&mount='+mount+'&color='+color,
+              success : function(data){
+                if (data['status']=='success') {
+                  $('#table_c').load("{{url('/cart/footer-list')}}");
+
+                  var hrg3 = rupiah(data['total']);
+
+                  $('#total_mount').html('<strong>'+hrg3+'</strong>');
+                }
+              }
+            })
+
             var str = value;
             var set = str.replace(/[^0-9.]/g,"");
             var hasil = $('#'+id).val(set);

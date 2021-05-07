@@ -562,6 +562,7 @@
                             <input style=" border-bottom-left-radius: 20px; border-top-left-radius: 20px;" class="form-control col-5 input-cust"  name="kode_promo" id="kode_promo"></input>
                             <span class="btn" onclick="validasiVouchers();" style="background-color: #CECECE !important; border: none;color: #000;border-bottom-right-radius:20px;border-top-right-radius:20px; font-size: 12px;"><strong>Terapkan</strong></span>
                             <span class="icon-promo" style="color: #fff;"></span>
+                            <input type="hidden" name="verfikasi" id="verfikasi">
                         </div>
                     </div>
                   </div>
@@ -1029,9 +1030,12 @@
                         }); 
 
                         if(data['validasi'] == '' || data['validasi'] == 'Promo Expired!'){
+                            $('.icon-promo').html('');
                             $('#kode_promo').val('');
+                            $('#verfikasi').val('expired');
                         }else{
                             $('.icon-promo').html('<i class="fas fa-check-circle fa-lg"></i>');
+                            $('#verfikasi').val('success');
                         }
                   }
                 }

@@ -97,12 +97,24 @@ class CartController extends Controller
 		}
 		return redirect()->back()->with(['status' => 'success','data' => $data]);
 	}
-	public function delete($id)
+	public function delete($id, Request $request)
 	{
+		$userAgent	= $request->header('User-Agent'); //session_id();
+		$clientIP 	= \Request::getClientIp(true);
+		$ses_id 	= $userAgent.$clientIP;
 
 		$delete = Cart::where('id',$id)->delete();
 
-		return redirect('cart')->with(['success' => 'Product Berhasil Dihapus Dari Kekeranjang']);
+		$sql_tot = "SELECT SUM(A.total) tot FROM (SELECT (b.product_harga * SUM(a.mount)) total FROM carts a LEFT JOIN products b ON a.product_id = b.id WHERE a.session_id = '".$ses_id."' GROUP BY a.user_ip, a.product_id) as A";
+        $rst_tot = DB::select($sql_tot);
+
+        $total = 0;
+        if($rst_tot){
+        	$total = $rst_tot[0]->tot;
+        }
+
+		// return redirect('cart')->with(['success' => 'Product Berhasil Dihapus Dari Kekeranjang', 'total' => $total]);
+		return response()->json([ 'status' => 'success', 'total' => $total]);
 	}
 	public function update_mount(Request $request)
 	{	
@@ -339,7 +351,7 @@ class CartController extends Controller
                 $href.='*'.$wa->product_name.'%20(Qty %3A%20'.$wa->mount.' Pcs, Color %3A%20'.$wa->color.')%0A';
             }
 
-            if($request->kode_promo !=""){
+            if($request->kode_promo !="" && $request->verfikasi != "expired"){
 	            $sql_promo  = DB::table('vouchers')
 						->where('code', $request->kode_promo)
 						->select('vouchers.code','vouchers.name','vouchers.discount_amount','vouchers.uses','vouchers.max_uses','vouchers.expires_at')->get();

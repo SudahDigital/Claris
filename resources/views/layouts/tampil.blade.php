@@ -62,7 +62,7 @@ $amount = $val_c->product_harga * $val_c->mount;
                                     <div class=\"input-group-append\">
                                         <span class=\"$val->color ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
                                         <button class=\"btn button_plus\" onclick=\"button_minus_color2('$val->product_id','$key')\" style=\"padding: 0;border-bottom-left-radius:7px;border-top-left-radius:7px; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
-                                        <input id=\"qty2_color_".$val->product_id."_".$key."\" placeholder=\"0\" class=\"qty-color\" onkeyup=\"qty_number(this.id,this.value)\" value=\"".$val->mount."\">
+                                        <input id=\"qty2_color_".$val->product_id."_".$key."\" placeholder=\"0\" class=\"qty-color\" onkeyup=\"qty_number(this.id,this.value,'$val->color','$val->product_id')\" value=\"".$val->mount."\">
                                         <button class=\"btn button_plus\" onclick=\"button_plus_color2('$val->product_id','$key')\" style=\"padding: 0; border-bottom-right-radius:7px;border-top-right-radius:7px; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
                                         <input type=\"hidden\" name=\"ket2_color_".$val->product_id."_".$key."\" id=\"ket2_color_".$val->product_id."_".$key."\" value=\"".$val->color."\">
                                         <input type=\"hidden\" name=\"count_color_".$val->product_id."\" id=\"count_color_".$val->product_id."\" value=\"\">
