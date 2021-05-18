@@ -185,7 +185,7 @@
 
                                             echo "<div class=\"col-6 p-1 input-group\">
                                                     <div class=\"input-group-append\"> <!--row-->
-                                                        <span class=\"$color[$i] ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span>
+                                                        <span class=\"$color[$i] ic_color\"><i class=\"fa fa-circle fa-xs\" style=\" background-color: black; border-radius: 80px; padding: 2px;\"></i></span>
                                                         <button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$i')\" style=\"padding: 0; color:#000;outline:none;background-color: #DADADA;border-bottom-left-radius:7px;border-top-left-radius:7px;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
                                                         <input id=\"qty_color_".$value->id."_".$i."\" class=\"qty-color\" placeholder=\"0\" onkeyup=\"qty_number(this.id,this.value)\">
                                                         <button class=\"btn button_plus \" onclick=\"button_plus_color('$value->id','$i')\" style=\"padding: 0;color:#000;outline:none;background-color: #DADADA;border-bottom-right-radius:7px;border-top-right-radius:7px;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
@@ -229,7 +229,7 @@
                                                     <input type="hidden" id="prod_img_{{$value->id}}" name="prod_img_{{$value->id}}" value="{{$value->product_image}}">
                                                     <input type="hidden" id="prod_nm_{{$value->id}}" name="prod_nm_{{$value->id}}" value="{{$value->product_name}}">
                                                     <input type="hidden" id="prod_desc_{{$value->id}}" name="prod_desc_{{$value->id}}" value="{{$value->product_description}}">
-                                                    <button type="button" class="btn button_filter btn-lg btn-block" onclick="insertCart('{{ $value->id }}')" style="color: #fff; font-size: 12px;" ><b>Tambah</b></button>
+                                                    <button type="button" class="btn button_tambah btn-lg btn-block" onclick="insertCart('{{ $value->id }}')" style="color: #fff; font-size: 12px;"><b>Tambah</b></button>
                                         <!-- </div> -->
                                         <!-- <div class="col-8">
                                             <div class="float-right text-center">

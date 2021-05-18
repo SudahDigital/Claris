@@ -78,6 +78,11 @@
         font-size: 2.5vw !important;
     }
 
+    #content .button_tambah {
+        padding: 5px 5px;
+        font-size: 2.5vw !important;
+    }
+
     #content .button_plus, #content .button_minus {
         font-size: 2.5vw !important;
         width: 17px; 
