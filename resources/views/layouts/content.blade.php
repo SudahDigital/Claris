@@ -185,15 +185,14 @@
 
                                             echo "<div class=\"col-6 p-1 input-group\">
                                                     <div class=\"input-group-append\"> <!--row-->
-                                                        <span class=\"$color[$i] ic_color\"><i class=\"fa fa-circle fa-xs\" style=\" background-color: black; border-radius: 80px; padding: 2px;\"></i></span>
+                                                        <span class=\"$color[$i] ic_color\"><i class=\"fa fa-circle fa-lg\" style=\" background-color: #cecece; border-radius: 80px; padding: 2px;\"></i></span>
                                                         <button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$i')\" style=\"padding: 0; color:#000;outline:none;background-color: #DADADA;border-bottom-left-radius:7px;border-top-left-radius:7px;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
                                                         <input id=\"qty_color_".$value->id."_".$i."\" class=\"qty-color\" placeholder=\"0\" onkeyup=\"qty_number(this.id,this.value)\">
                                                         <button class=\"btn button_plus \" onclick=\"button_plus_color('$value->id','$i')\" style=\"padding: 0;color:#000;outline:none;background-color: #DADADA;border-bottom-right-radius:7px;border-top-right-radius:7px;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
                                                             <input type=\"hidden\" name=\"ket_color_".$value->id."_".$i."\" id=\"ket_color_".$value->id."_".$i."\" value=\"".$color[$i]."\">
                                                             <input type=\"hidden\" name=\"count_color_".$value->id."\" id=\"count_color_".$value->id."\" value=\"".$count_clr."\">
                                                     </div>
-                                                </div>";
-
+                                                </div>"; 
                                             /*echo "<div class=\"col-6\">
                                                 <div class=\"mb-1 box-color\">
                                                     <table width=\"100%\">
