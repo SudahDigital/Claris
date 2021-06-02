@@ -272,6 +272,7 @@ class DashProductController extends Controller
                 //--price promo--//
 
                 $update = "UPDATE products SET 
+                        product_code = '".$request->produk_kode."', 
                         product_name = '".$request->produk_nama."', 
                         product_description = '".$request->ket_produk."', 
                         product_harga = '".$request->harga_produk."',
