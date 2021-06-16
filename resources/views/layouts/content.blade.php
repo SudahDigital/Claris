@@ -105,7 +105,8 @@
                                             <a onclick="detailImg('{{ $value->product_image }}')"><i class="fa fa-eye button_eye" data-toggle="modal" data-target="#ImgModal" style="cursor: pointer;"></i></a>
                                         </div>
                                         <div class="col-9 column-right">
-                                            <a onclick="detailDesc('{{ $value->product_description }}')" class="title-dtl" style="font-size: 12px; cursor: pointer;"><span data-toggle="modal" data-target="#exampleModal"><b>Detail Produk</b></span></a>
+                                            <input type="hidden" name="descrip_{{$value->id}}" id="descrip_{{$value->id}}" value="{{$value->product_description}}">
+                                            <a onclick="detailDesc('{{ $value->id }}')" class="title-dtl" style="font-size: 12px; cursor: pointer;"><span data-toggle="modal" data-target="#exampleModal"><b>Detail Produk</b></span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -802,8 +803,9 @@
             }
         }
 
-        function detailDesc(desc){
-            $(".detail_desc").html(desc);
+        function detailDesc(id){
+            var desc = $('#descrip_'+id).val();
+            $(".detail_desc").text(desc);
         }
 
         function insertCart(id){
