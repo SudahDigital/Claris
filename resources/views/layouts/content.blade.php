@@ -499,8 +499,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <!-- <span class="detail_desc" style="color: #0097bb;"></span> -->
-            <textarea class="detail_desc" style="color: #0097bb; font-weight: bold; resize: none; border: none;" disabled rows="12" cols="50"></textarea>
+            <textarea class="detail_desc form-control" style="color: #0097bb; font-weight: bold; resize: none; border: none; min-width: 100%; width: 300px; height: 300px;" disabled ></textarea>
           </div>
         </div>
       </div>
