@@ -526,16 +526,16 @@
                     </div>
                   </div> -->
                   <div class="form-group row">
-                    <label for="phoneNumber" class="col-sm-3 col-form-label" style="color: #fff;"><b>No. Telp/ Handphone<b/></label>
+                    <label for="phoneNumber" class="col-sm-3 col-form-label" style="color: #fff;"><b>No. Telp/ Handphone *<b/></label>
                     <div class="col-sm-9">
-                      <input style=" border-radius: 20px;" type="number"  name="costumer_phone" class="form-control input-cust" id="costumer_phone" maxlength="12" value="{{$cust_order_telp}}">
+                      <input style=" border-radius: 20px;" type="number"  name="costumer_phone" class="form-control input-cust" id="costumer_phone" maxlength="12" value="{{$cust_order_telp}}" required>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="deliveryCity" class="col-sm-3 col-form-label" style="color: #fff;"><b>Kabupaten/Kota</b></label>
+                    <label for="deliveryCity" class="col-sm-3 col-form-label" style="color: #fff;"><b>Kabupaten/Kota *</b></label>
                     <div class="col-sm-9">
                       <!-- <input style=" border-radius: 20px;" class="form-control"  name="costumer_city" id="deliveryCity"> -->
-                      <select id="city_name" name="city_name" class="form-control select2 input-cust" style="width: 100%; border-radius: 20px;">
+                      <select id="city_name" name="city_name" class="form-control select2 input-cust" style="width: 100%; border-radius: 20px;" required>
                         <option value="">--</option>
                         @foreach($cities as $key => $value)
                             <option id="city_name" value="{{$value->city_name}}" <?php if($cust_order_city == $value->city_name) echo "selected";?>>{{$value->city_name}}</option>
@@ -544,9 +544,9 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="deliveryAddress" class="col-sm-3 col-form-label" style="color: #fff;"><b>Detail Alamat</b></label>
+                    <label for="deliveryAddress" class="col-sm-3 col-form-label" style="color: #fff;"><b>Detail Alamat *</b></label>
                     <div class="col-sm-9">
-                      <textarea style=" border-radius: 20px;" class="form-control input-cust"  name="costumer_adress" id="deliveryAddress" rows="2">{{ $cust_order_address }}</textarea>
+                      <textarea style=" border-radius: 20px;" class="form-control input-cust"  name="costumer_adress" id="costumer_adress" rows="2" required>{{ $cust_order_address }}</textarea>
                     </div>
                   </div>
                   <!-- <div class="form-group row">
@@ -1002,17 +1002,31 @@
         }
 
         function pesan_wa() {
+            var costumer_phone = $('#costumer_phone').val();
+            var city_name = $('#city_name').val();
+            var costumer_adress = $('#costumer_adress').val();
 
-            Swal.fire({
-            title: 'Memesan',
-            text: "Anda melakukan pesanan melalui whatsapp",
-            icon: 'success',
-            showCancelButton: false,
-            confirmButtonText: "Ok",
-            confirmButtonColor: '#4db849'
-            }).then(function(){ 
-                location.reload();
-            });
+            if(costumer_phone!='' && city_name!='' && costumer_adress!=''){
+                Swal.fire({
+                    title: 'Memesan',
+                    text: "Anda melakukan pesanan melalui whatsapp",
+                    icon: 'success',
+                    showCancelButton: false,
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: '#4db849'
+                }).then(function(){ 
+                    location.reload();
+                });
+            }else{
+                Swal.fire({
+                    title: 'Warning',
+                    text: "Silahkan melengkapi data terlebih dahulu!",
+                    icon: 'failed',
+                    showCancelButton: false,
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: '#4db849'
+                });
+            }
         }
 
         function validasiVouchers() {

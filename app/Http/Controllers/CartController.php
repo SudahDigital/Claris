@@ -261,168 +261,189 @@ class CartController extends Controller
 
 		$inv_pay 	= $dt;
 
-		$input_pay = "INSERT INTO pay (
-						invoice_pay,
-						name_cust,
-						alamat_cust,
-						telepon_cust,
-						email_cust,
-						total_price,
-						order_date,
-						status,
-						created_at
-					) VALUES (
-						'".$inv_pay."',
-						'".$request->costumer_name."',
-						'".$request->costumer_adress."',
-						'".$request->costumer_phone."',
-						'".$request->costumer_email."',
-						'".$request->total_pay."',
-						now(),
-						'SUBMIT',
-						now()
-					); 
-				";
+		if($request->costumer_phone!="" && $request->costumer_adress!="" && $request->city_name!=""){
 
-		$rst_pay = DB::insert($input_pay);
+			$cart_h = DB::select("SELECT SUM(b.product_harga) as harga FROM carts as a INNER JOIN products as b ON a.product_id = b.id where a.session_id = '".$ses_id."'");
+			$pay_amount = $cart_h[0]->harga;
 
-		$cart = DB::select("SELECT * FROM carts where session_id = '".$ses_id."'");
-        foreach ($cart as $key => $value) {
-
-			$sql  = DB::table('products')
-					->where('id', $value->product_id)
-					->select('products.product_stock','products.product_code')->get();
-
-			$pcode 		= $sql[0]->product_code;
-			$qty_before = $sql[0]->product_stock;
-			$qty_after 	= ($qty_before - $value->mount);
-
-			$prod = Product::where('id',$value->product_id)
-				->update([
-					'product_stock' => $qty_after
-			]);
-
-			$input_pay_detail = "INSERT INTO pay_d (
-						invoice_pay,
-						name_cust,
-						alamat_cust,
-						telepon_cust,
-						email_cust,
-						mount,
-						order_date,
-						product_id,
-						product_code,
-						color,
-						carts_date,
-						status
-					) VALUES (
-						'".$inv_pay."',
-						'".$request->costumer_name."',
-						'".$request->costumer_adress."',
-						'".$request->costumer_phone."',
-						'".$request->costumer_email."',
-						'".$value->mount."',
-						now(),
-						'".$value->product_id."',
-						'".$pcode."',
-						'".$value->color."',
-						'".$value->carts_date."',
-						'SUBMIT'
-					); 
-				";
-			$rst_pay_detail = DB::insert($input_pay_detail);
-        	
-        }
-
-		if($rst_pay){
-			$href='*Hello Admin Claris*,  %0ANo. Hp %3A' .$request->costumer_phone.', %0AAlamat %3A' .$request->costumer_adress.', %0AKota/kab %3A' .$request->city_name.',%0APesanan %3A%0A';
-
-            $pesan = DB::select("
-				            	SELECT 
-				            		* 
-				            	FROM pay_d a
-				            	INNER JOIN pay b ON a.invoice_pay = b.invoice_pay
-				            	INNER JOIN products c ON a.product_id = c.id
-				            	INNER JOIN carts d ON a.product_id = c.id AND a.carts_date = d.carts_date AND a.color = d.color
-				            	WHERE a.telepon_cust = '".$request->costumer_phone."'
-            						
-            ");
-            foreach($pesan as $key=>$wa){
-                $href.='*'.$wa->product_name.'%20(Qty %3A%20'.$wa->mount.' Pcs, Color %3A%20'.$wa->color.')%0A';
-            }
-
-            if($request->kode_promo !="" && $request->verfikasi != "expired"){
-	            $sql_promo  = DB::table('vouchers')
-						->where('code', $request->kode_promo)
-						->select('vouchers.code','vouchers.name','vouchers.discount_amount','vouchers.uses','vouchers.max_uses','vouchers.expires_at')->get();
-
-				$promo_cd = $promo_nm = $promo_dis = $promo_uses = $promo_max_uses = $expired_date = "";
-				if($sql_promo){		
-					$promo_cd 		= $sql_promo[0]->code;
-					$promo_nm 		= $sql_promo[0]->name;
-					$promo_dis 		= $sql_promo[0]->discount_amount;
-					$promo_uses 	= $sql_promo[0]->uses;
-					$promo_max_uses	= $sql_promo[0]->max_uses;
-					$expired_date	= $sql_promo[0]->expires_at;
-				}
-
-				$sql_cart 	= "SELECT SUM((products.product_harga * carts.mount)) AS total_harga FROM `carts` INNER JOIN products ON products.id = carts.product_id WHERE carts.session_id = '".$ses_id."'";
-				$rst_cart2 	= DB::select($sql_cart);
-				$jumlah_byr = $rst_cart2[0]->total_harga;
-
-				$diskon 		= $promo_dis/100;
-				$potongan 		= $jumlah_byr*$diskon;
-				$total_bayar 	= $jumlah_byr-$potongan;
-
-				if($promo_cd !=""){
-
-					$uses 				= $promo_uses+1;
-					if($promo_max_uses!=$uses){
-						$info_harga = 'Total Pesanan %3A Rp.'.number_format(($jumlah_byr), 0, ',', '.').'%0ADiskon %3A '.number_format(($promo_dis), 0, ',', '.').'% %0AJenis Diskon %3A '.$promo_nm.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
-
-						$upd_used_voucher 	= "UPDATE vouchers SET 
-													uses = '$uses'
-												WHERE code = '$request->kode_promo'
-											";
-						$rst_used_voucher 	= DB::update($upd_used_voucher);
-					}else{
-						$info_harga = 'Total Pembayaran %3A Rp.'.number_format(($jumlah_byr), 0, ',', '.').'%0A';
-					}
-				}
-			}else{
-				$sql_cart 	= "SELECT SUM((products.product_harga * carts.mount)) AS total_harga FROM `carts` INNER JOIN products ON products.id = carts.product_id WHERE carts.session_id = '".$ses_id."'";
-				$rst_cart2 	= DB::select($sql_cart);
-				$jumlah_byr = $rst_cart2[0]->total_harga;
-				
-				$info_harga = 'Total Pembayaran %3A Rp.'.number_format(($jumlah_byr), 0, ',', '.').'%0A';
-			}
-
-			$sql_cust_order = DB::select("SELECT * FROM customer_order WHERE ip_address = '".$clientIP."' AND user_agent = '".$userAgent."'");
-			$count_cust_order = count($sql_cust_order);
-
-			if($count_cust_order <= 0){
-				$insert_cust_order = CustomerOrder::create([
-						'no_telp' => $request->costumer_phone,
-						'address' => $request->costumer_adress,
-						'city' => $request->city_name,
-						'ip_address' => $clientIP,
-						'user_agent' => $userAgent
-					]);
-			}
-
-			$del_cart = "DELETE FROM carts
-					WHERE 
-						session_id 	= '".$ses_id."'
+			$input_pay = "INSERT INTO pay (
+							invoice_pay,
+							name_cust,
+							alamat_cust,
+							city_cust,
+							telepon_cust,
+							email_cust,
+							total_price,
+							order_date,
+							status,
+							created_at
+						) VALUES (
+							'".$inv_pay."',
+							'".$request->costumer_name."',
+							'".$request->costumer_adress."',
+							'".$request->city_name."',
+							'".$request->costumer_phone."',
+							'".$request->costumer_email."',
+							'".$pay_amount."',
+							now(),
+							'SUBMIT',
+							now()
+						); 
 					";
-			$rst_cart = DB::statement($del_cart);
 
-			$text_wa=$href.'%0A'.$info_harga;
-            $url = "https://api.whatsapp.com/send?phone=6281776492873&text=$text_wa";
+			$rst_pay = DB::insert($input_pay);
 
-            // return redirect('home')->with(['success' => 'Product Berhasil di Proses']);
-            return Redirect::to($url);
-	        
-	    }
+			$cart = DB::select("SELECT * FROM carts where session_id = '".$ses_id."'");
+	        foreach ($cart as $key => $value) {
+
+				$sql  = DB::table('products')
+						->where('id', $value->product_id)
+						->select('products.product_stock','products.product_code')->get();
+
+				$pcode 		= $sql[0]->product_code;
+				$qty_before = $sql[0]->product_stock;
+				$qty_after 	= ($qty_before - $value->mount);
+
+				$prod = Product::where('id',$value->product_id)
+					->update([
+						'product_stock' => $qty_after
+				]);
+
+				$input_pay_detail = "INSERT INTO pay_d (
+							invoice_pay,
+							name_cust,
+							alamat_cust,
+							city_cust,
+							telepon_cust,
+							email_cust,
+							mount,
+							order_date,
+							product_id,
+							product_code,
+							color,
+							carts_date,
+							status
+						) VALUES (
+							'".$inv_pay."',
+							'".$request->costumer_name."',
+							'".$request->costumer_adress."',
+							'".$request->city_name."',
+							'".$request->costumer_phone."',
+							'".$request->costumer_email."',
+							'".$value->mount."',
+							now(),
+							'".$value->product_id."',
+							'".$pcode."',
+							'".$value->color."',
+							'".$value->carts_date."',
+							'SUBMIT'
+						); 
+					";
+				$rst_pay_detail = DB::insert($input_pay_detail);
+	        	
+	        }
+
+			if($rst_pay){
+				$href='*Hello Admin Claris*,  %0ANo. Hp %3A' .$request->costumer_phone.', %0AAlamat %3A' .$request->costumer_adress.', %0AKota/kab %3A' .$request->city_name.',%0APesanan %3A%0A';
+
+	            $pesan = DB::select("
+					            	SELECT 
+					            		* 
+					            	FROM pay_d a
+					            	INNER JOIN pay b ON a.invoice_pay = b.invoice_pay
+					            	INNER JOIN products c ON a.product_id = c.id
+					            	INNER JOIN carts d ON a.product_id = c.id AND a.carts_date = d.carts_date AND a.color = d.color
+					            	WHERE a.telepon_cust = '".$request->costumer_phone."'
+	            						
+	            ");
+	            foreach($pesan as $key=>$wa){
+	                $href.='*'.$wa->product_name.'%20(Qty %3A%20'.$wa->mount.' Pcs, Color %3A%20'.$wa->color.')%0A';
+	            }
+
+	            if($request->kode_promo !="" && $request->verfikasi != "expired"){
+		            $sql_promo  = DB::table('vouchers')
+							->where('code', $request->kode_promo)
+							->select('vouchers.code','vouchers.name','vouchers.discount_amount','vouchers.uses','vouchers.max_uses','vouchers.expires_at')->get();
+
+					$promo_cd = $promo_nm = $promo_dis = $promo_uses = $promo_max_uses = $expired_date = "";
+					if($sql_promo){		
+						$promo_cd 		= $sql_promo[0]->code;
+						$promo_nm 		= $sql_promo[0]->name;
+						$promo_dis 		= $sql_promo[0]->discount_amount;
+						$promo_uses 	= $sql_promo[0]->uses;
+						$promo_max_uses	= $sql_promo[0]->max_uses;
+						$expired_date	= $sql_promo[0]->expires_at;
+					}
+
+					$sql_cart 	= "SELECT SUM((products.product_harga * carts.mount)) AS total_harga FROM `carts` INNER JOIN products ON products.id = carts.product_id WHERE carts.session_id = '".$ses_id."'";
+					$rst_cart2 	= DB::select($sql_cart);
+					$jumlah_byr = $rst_cart2[0]->total_harga;
+
+					$diskon 		= $promo_dis/100;
+					$potongan 		= $jumlah_byr*$diskon;
+					$total_bayar 	= $jumlah_byr-$potongan;
+
+					if($promo_cd !=""){
+
+						$uses 				= $promo_uses+1;
+						if($promo_max_uses!=$uses){
+							$info_harga = 'Total Pesanan %3A Rp.'.number_format(($jumlah_byr), 0, ',', '.').'%0ADiskon %3A '.number_format(($promo_dis), 0, ',', '.').'% %0AJenis Diskon %3A '.$promo_nm.' %0ATotal Pembayaran %3A Rp.'.number_format(($total_bayar), 0, ',', '.').'%0A';
+
+							$upd_used_voucher 	= "UPDATE vouchers SET 
+														uses = '$uses'
+													WHERE code = '$request->kode_promo'
+												";
+							$rst_used_voucher 	= DB::update($upd_used_voucher);
+						}else{
+							$info_harga = 'Total Pembayaran %3A Rp.'.number_format(($jumlah_byr), 0, ',', '.').'%0A';
+						}
+					}
+				}else{
+					$sql_cart 	= "SELECT SUM((products.product_harga * carts.mount)) AS total_harga FROM `carts` INNER JOIN products ON products.id = carts.product_id WHERE carts.session_id = '".$ses_id."'";
+					$rst_cart2 	= DB::select($sql_cart);
+					$jumlah_byr = $rst_cart2[0]->total_harga;
+					
+					$info_harga = 'Total Pembayaran %3A Rp.'.number_format(($jumlah_byr), 0, ',', '.').'%0A';
+				}
+
+				$sql_cust_order = DB::select("SELECT * FROM customer_order WHERE ip_address = '".$clientIP."' AND user_agent = '".$userAgent."'");
+				$count_cust_order = count($sql_cust_order);
+
+				if($count_cust_order <= 0){
+					$insert_cust_order = CustomerOrder::create([
+							'no_telp' => $request->costumer_phone,
+							'address' => $request->costumer_adress,
+							'city' => $request->city_name,
+							'ip_address' => $clientIP,
+							'user_agent' => $userAgent
+						]);
+				}else{
+
+					$update_cust_order = CustomerOrder::where('ip_address',$clientIP)
+						->where('user_agent',$userAgent)
+						->update([
+							'no_telp' => $request->costumer_phone,
+							'address' => $request->costumer_adress,
+							'city' => $request->city_name,
+							'ip_address' => $clientIP,
+							'user_agent' => $userAgent
+					]);
+				}
+
+				$del_cart = "DELETE FROM carts
+						WHERE 
+							session_id 	= '".$ses_id."'
+						";
+				$rst_cart = DB::statement($del_cart);
+
+				$text_wa=$href.'%0A'.$info_harga;
+	            $url = "https://api.whatsapp.com/send?phone=6281776492873&text=$text_wa";
+
+	            // return redirect('home')->with(['success' => 'Product Berhasil di Proses']);
+	            return Redirect::to($url);
+		        
+		    }
+		}
 	}
 
 	public function footer_list(Request $request)
