@@ -511,7 +511,7 @@
                   <div class="form-group row">
                     <label for="costumer_name" class="col-sm-3 col-form-label" style="color: #fff;"><b>Nama *</b></label>
                     <div class="col-sm-9">
-                      <input style=" border-radius: 20px;" type="text" name="costumer_name" class="form-control input-cust" id="costumer_name" value="{{$name}}" required>
+                      <input style=" border-radius: 20px;" type="text" name="costumer_name" class="form-control input-cust" id="costumer_name" value="" required>
                     </div>
                   </div>
                   <div class="form-group row">
