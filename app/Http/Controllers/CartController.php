@@ -344,7 +344,7 @@ class CartController extends Controller
 	        }
 
 			if($rst_pay){
-				$href='*Hello Admin Claris*,  %0ANo. Hp %3A' .$request->costumer_phone.', %0AAlamat %3A' .$request->costumer_adress.', %0AKota/kab %3A' .$request->city_name.',%0APesanan %3A%0A';
+				$href='*Hello Admin Claris*,  %0ANama %3A' .$request->costumer_name.', %0ANo. Hp %3A' .$request->costumer_phone.', %0AAlamat %3A' .$request->costumer_adress.', %0AKota/kab %3A' .$request->city_name.',%0APesanan %3A%0A';
 
 	            $pesan = DB::select("
 					            	SELECT 
