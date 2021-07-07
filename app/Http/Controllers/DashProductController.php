@@ -57,6 +57,7 @@ class DashProductController extends Controller
     public function add()
     {
         $data['category'] = Category::all();
+        $data['colors'] = DB::select("SELECT * FROM colors ORDER BY id ASC");
         return view ('admin.product.create_product', $data);   
     }
 
@@ -111,6 +112,11 @@ class DashProductController extends Controller
         $data['warna_produk'] = $product[0]->product_color;
     	$data['kategori'] = $category;
 
+        $clr = str_replace(" ", "", $product[0]->product_color);
+        $color = explode(",", $clr);
+        $data['array_colors'] = $color;
+        $data['colors'] = DB::select("SELECT * FROM colors ORDER BY id ASC");
+
         return view ('admin.product.edit_product', $data);   
     }
 
@@ -147,6 +153,15 @@ class DashProductController extends Controller
                         }
                     //--price promo--//
 
+                    //colors
+                        $color = $request->color_produk;
+                        $array_clr = "";
+                        for ($i=0; $i < count($color); $i++) { 
+                            $array_clr .= $color[$i].",";
+                        }
+                        $array_clr = substr($array_clr, 0, strlen($array_clr) -1);
+                    //colors
+
                     $product = DB::insert("
                                 INSERT INTO products (
                                     category_id,
@@ -169,7 +184,7 @@ class DashProductController extends Controller
                                     '".$_POST['ket_produk']."',
                                     '".$_POST['stock_produk']."',
                                     '".$_POST['diskon_produk']."',
-                                    '".$_POST['warna_produk']."',
+                                    '".$array_clr."',
                                     '".$top_produk."',
                                     '".$file_name."',
                                     ".$price_promo.",
@@ -197,6 +212,14 @@ class DashProductController extends Controller
                     $price_promo    = "'".$harga - $potongan."'";
                 }
             //--price promo--//
+            //colors
+                $color = $request->color_produk;
+                $array_clr = "";
+                for ($i=0; $i < count($color); $i++) { 
+                    $array_clr .= $color[$i].",";
+                }
+                $array_clr = substr($array_clr, 0, strlen($array_clr) -1);
+            //colors
 
             $product = DB::insert("
                         INSERT INTO products (
@@ -220,7 +243,7 @@ class DashProductController extends Controller
                             '".$_POST['ket_produk']."',
                             '".$_POST['stock_produk']."',
                             '".$_POST['diskon_produk']."',
-                            '".$_POST['warna_produk']."',
+                            '".$array_clr."',
                             '".$top_produk."',
                             '".$file_name."',
                             ".$price_promo.",
@@ -271,6 +294,15 @@ class DashProductController extends Controller
                 }
                 //--price promo--//
 
+                //colors
+                    $color = $request->color_produk;
+                    $array_clr = "";
+                    for ($i=0; $i < count($color); $i++) { 
+                        $array_clr .= $color[$i].",";
+                    }
+                    $array_clr = substr($array_clr, 0, strlen($array_clr) -1);
+                //colors
+
                 $update = "UPDATE products SET 
                         product_code = '".$request->produk_kode."', 
                         product_name = '".$request->produk_nama."', 
@@ -278,7 +310,7 @@ class DashProductController extends Controller
                         product_harga = '".$request->harga_produk."',
                         product_stock = '".$request->stock_produk."',
                         product_discount = '".$request->diskon_produk."', 
-                        product_color = '".$request->warna_produk."',
+                        product_color = '".$array_clr."',
                         flag_top = '".$top_produk."',
                         price_promo = ".$price_promo.",
                         $product_image
@@ -357,5 +389,90 @@ class DashProductController extends Controller
 
     public function export_all() {
         return Excel::download( new ProductsExport(), 'Products.xlsx');
+    }
+
+    public function index_color(Request $request)
+    {
+        $sql = "SELECT 
+                *
+            FROM colors 
+            ORDER BY
+                id ASC
+        ";
+        $color = DB::select($sql);
+        $data['colors'] = $color;
+
+        return view ('admin.color.list_color', $data);   
+    }
+
+    public function add_color()
+    {
+        return view ('admin.color.create_color');   
+    }
+
+    public function create_color(Request $request)
+    {
+        $color = DB::insert("
+                    INSERT INTO colors (
+                        color_id,
+                        color_name,
+                        color_code
+                    ) VALUES (
+                        '".strtoupper($_POST['color_id'])."',
+                        '".strtoupper($_POST['color_name'])."',
+                        '".$_POST['color_code']."'
+                    );
+                ");
+        if($color){
+            return redirect('admin/dash-color')->with(['hasil' => 'Success']);
+        }
+
+        return redirect('admin/dash-color')->with(['hasil' => 'Failed']);
+    }
+
+    public function edit_color(Request $request)
+    {
+        $sql = "SELECT 
+                    *
+                FROM colors 
+                WHERE 
+                    id = '".$request->id."'
+            ";
+
+        $color = DB::select($sql);
+
+        $data['id'] = $color[0]->id;
+        $data['color_id'] = $color[0]->color_id;
+        $data['color_name'] = $color[0]->color_name;
+        $data['color_code'] = $color[0]->color_code;
+
+        return view ('admin.color.edit_color', $data);   
+    }
+
+    public function update_color(Request $request)
+    {
+        $update = "UPDATE colors SET 
+                        color_id = '".$request->color_id."', 
+                        color_name = '".$request->color_name."', 
+                        color_code = '".$request->color_code."'
+                    WHERE id = '".$request->clr_id."' 
+            ";
+        $color = DB::update($update);
+
+        if($color){
+            return redirect('admin/dash-color')->with(['hasil' => 'Success']);
+        }
+
+        return redirect('admin/dash-color')->with(['hasil' => 'Failed']);
+    }
+
+    public function delete_color(Request $request)
+    {
+        $delete = DB::delete("DELETE FROM colors WHERE id = '".$request->id."'");
+
+        if($delete){
+          return redirect('admin/dash-color')->with(['hasil' => 'success']);
+        }
+        return redirect('admin/dash-color')->with(['hasil' => 'failed']);
     }
 }

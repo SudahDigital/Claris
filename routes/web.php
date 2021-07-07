@@ -125,6 +125,13 @@ Route::middleware('auth')->group(function () {
 	Route::post('/admin/import_data_produk', 'DashProductController@import_data')->name('import_data_produk');
 	Route::get('/admin/download_tpl_produk', 'DashProductController@download_tpl')->name('download_tpl_produk');
 	Route::get('/admin/export_all_produk', 'DashProductController@export_all')->name('export_all_produk');
+	Route::get('/admin/dash-color', 'DashProductController@index_color')->name('index_color');
+	Route::get('/admin/form-color', 'DashProductController@add_color')->name('form_color');
+	Route::get('/admin/view-color', 'DashProductController@view_color')->name('view_color');
+	Route::get('/admin/form-edit-color', 'DashProductController@edit_color')->name('form_edit_color');
+	Route::post('/admin/input-color', 'DashProductController@create_color')->name('input_color');
+	Route::post('/admin/edit-color', 'DashProductController@update_color')->name('edit_color');
+	Route::get('/admin/hapus-color/{id}', 'DashProductController@delete_color')->name('hapus_color');
 
 	// admin kategori
 	Route::get('/admin/dash-kategori', 'DashCategoryController@index')->name('dash_kategori');
@@ -172,6 +179,7 @@ Route::middleware('auth')->group(function () {
   	Route::get('/admin/form-edit-voucher', 'DashVoucherController@edit')->name('form_edit_voucher');
   	Route::post('/admin/edit-voucher', 'DashVoucherController@update')->name('edit_voucher');
 	Route::get('/admin/hapus-voucher/{id}', 'DashVoucherController@delete')->name('hapus_voucher');
+
 });
 
 

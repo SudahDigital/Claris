@@ -47,7 +47,39 @@
                       </div>
                       <div class="form-group">
                         <label for="harga_produk">Product Color </label>
-                        <input type="text" required="true" name="warna_produk" class="form-control" placeholder="Ex: MRH,KNG,HTM" id="warna_produk" required autofocus autocomplete="off">
+                        <!-- <input type="text" required="true" name="warna_produk" class="form-control" placeholder="Ex: MRH,KNG,HTM" id="warna_produk" required autofocus autocomplete="off"> -->
+                        <!-- <div class="input-group">
+                          <div class="input-group-append">
+                            <select class="form-control" required="true"  name="color_produk"  id="color_produk" required autofocus autocomplete="off">
+                              <option value="">--</option>
+                              @foreach($colors as $key => $value)
+                                <option value="{{ $value->id }}">{{ $value->color_id }} - {{ $value->color_name }}</option>
+                              @endforeach
+                            </select>
+                            <span id="addRow" class="btn btn-success"><i class="fa fa-plus"></i></span>
+                            <span id="deleteRow" class="btn btn-danger"><i class="fa fa-minus"></i></span>
+                          </div>
+                        </div>
+                        <br>
+                        <label>List Color :</label>
+                        <div class="input-group">
+                          <div class="input-group-append">
+                            <table id="rowTable" style="width: 100%;">
+                              <tbody>
+                                  <tr>   
+                                    <td></td>    
+                                  </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div> -->
+                        <div class="form-group">
+                          <select multiple class="form-control" required="true"  name="color_produk[]"  id="color_produk[]" required autofocus autocomplete="off">
+                              @foreach($colors as $key => $value)
+                                <option value="{{ $value->color_id }}">{{ $value->color_id }} - {{ $value->color_name }}</option>
+                              @endforeach
+                          </select>
+                        </div>
                       </div>
                       <div class="form-group">
                         <label for="diskon_produk">Product Stock (Pcs)</label>
@@ -86,6 +118,29 @@
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+
+    $('#addRow').click( function() {      
+     var tableID = "rowTable";
+     var table = document.getElementById(tableID);
+     var rowCount = table.rows.length;
+     var row = table.insertRow(rowCount);
+
+     var nilai = $("#color_produk").val();
+     
+     var element1 = "<input type=\"text\" name=\"color\" class=\"form-control\" id=\"color_"+nilai+"\" value=\""+nilai+"\" disabled>";
+     row.innerHTML = element1; 
+    }); 
+
+    $('#deleteRow').click( function() {  
+      var tableID = "rowTable";
+      var table = document.getElementById(tableID);
+      var rowCount = table.rows.length;
+      console.log(rowCount);
+      if(rowCount != 1) {   
+       rowCount = rowCount - 1;
+       table.deleteRow(rowCount);
+      }   
+    }); 
 
 </script>
 

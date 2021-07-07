@@ -184,34 +184,23 @@
                                             $hsl0 = $color[0];  
                                             $hsl1 = $color[1]; 
 
-                                            echo "<div class=\"col-6 p-1 input-group\">
-                                                    <div class=\"input-group-append\">
-                                                        <span class=\"$color[$i] ic_color\"><i class=\"fa fa-circle fa-lg\" style=\" background-color: #cecece; border-radius: 80px; padding: 2px;\"></i></span>
-                                                        <button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$i')\" style=\"padding: 0; color:#000;outline:none;background-color: #DADADA;border-bottom-left-radius:7px;border-top-left-radius:7px;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
-                                                        <input id=\"qty_color_".$value->id."_".$i."\" class=\"qty-color\" placeholder=\"0\" onkeyup=\"qty_number(this.id,this.value)\">
-                                                        <button class=\"btn button_plus \" onclick=\"button_plus_color('$value->id','$i')\" style=\"padding: 0;color:#000;outline:none;background-color: #DADADA;border-bottom-right-radius:7px;border-top-right-radius:7px;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
-                                                            <input type=\"hidden\" name=\"ket_color_".$value->id."_".$i."\" id=\"ket_color_".$value->id."_".$i."\" value=\"".$color[$i]."\">
-                                                            <input type=\"hidden\" name=\"count_color_".$value->id."\" id=\"count_color_".$value->id."\" value=\"".$count_clr."\">
-                                                    </div>
-                                                </div>"; 
-                                            /*echo "<div class=\"col-6\">
-                                                <div class=\"mb-1 box-color\">
-                                                    <table width=\"100%\">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td><span class=\"$color[$i] ic_color\"><i class=\"fa fa-circle fa-xs\"></i></span></td>
-                                                                <td><button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$i')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button></td>
-                                                                <td><input id=\"qty_color_".$value->id."_".$i."\" class=\"qty-color\" placeholder=\"0\" onkeyup=\"qty_number(this.id,this.value)\"></td>
-                                                                <td><button class=\"btn button_plus \" onclick=\"button_plus_color('$value->id','$i')\" style=\"padding: 0; border-radius: 100%; color:#000;outline:none;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
-                                                                    <input type=\"hidden\" name=\"ket_color_".$value->id."_".$i."\" id=\"ket_color_".$value->id."_".$i."\" value=\"".$color[$i]."\">
-                                                                    <input type=\"hidden\" name=\"count_color_".$value->id."\" id=\"count_color_".$value->id."\" value=\"".$count_clr."\"></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>";*/
+                                            $sql_color = \DB::select("SELECT color_code FROM colors WHERE color_id = '".$color[$i]."'");
+
+                                            foreach ($sql_color as $key_color => $val_color) {
+                                                echo "<div class=\"col-6 p-1 input-group\">
+                                                        <div class=\"input-group-append\">
+                                                            <span class=\"ic_color\"><i class=\"fa fa-circle fa-lg\" style=\" background-color: #cecece; border-radius: 80px; padding: 2px; color:".$val_color->color_code."; \"></i></span>
+                                                            <button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$i')\" style=\"padding: 0; color:#000;outline:none;background-color: #DADADA;border-bottom-left-radius:7px;border-top-left-radius:7px;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                            <input id=\"qty_color_".$value->id."_".$i."\" class=\"qty-color\" placeholder=\"0\" onkeyup=\"qty_number(this.id,this.value)\">
+                                                            <button class=\"btn button_plus \" onclick=\"button_plus_color('$value->id','$i')\" style=\"padding: 0;color:#000;outline:none;background-color: #DADADA;border-bottom-right-radius:7px;border-top-right-radius:7px;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
+                                                                <input type=\"hidden\" name=\"ket_color_".$value->id."_".$i."\" id=\"ket_color_".$value->id."_".$i."\" value=\"".$color[$i]."\">
+                                                                <input type=\"hidden\" name=\"count_color_".$value->id."\" id=\"count_color_".$value->id."\" value=\"".$count_clr."\">
+                                                        </div>
+                                                    </div>"; 
+                                            }
                                         }
                                         echo "</div>";
+                                        // exit();
                                     }
                                 ?>
 
@@ -519,16 +508,16 @@
             <form method="post" action="{{route('cart_pay')}}" class="form-horizontal">
                 @csrf
                 <div class="card-body view-pesanwa section_content">
-                  <!-- <div class="form-group row">
-                    <label for="name" class="col-sm-3 col-form-label" style="color: #fff;"><b>Nama</b></label>
-                    <div class="col-sm-9">
-                      <input style=" border-radius: 20px;" type="text" name="costumer_name" class="form-control" id="name">
-                    </div>
-                  </div> -->
                   <div class="form-group row">
-                    <label for="phoneNumber" class="col-sm-3 col-form-label" style="color: #fff;"><b>No. Telp/ Handphone *<b/></label>
+                    <label for="costumer_name" class="col-sm-3 col-form-label" style="color: #fff;"><b>Nama *</b></label>
                     <div class="col-sm-9">
-                      <input style=" border-radius: 20px;" type="number"  name="costumer_phone" class="form-control input-cust" id="costumer_phone" maxlength="12" value="{{$cust_order_telp}}" required>
+                      <input style=" border-radius: 20px;" type="text" name="costumer_name" class="form-control input-cust" id="costumer_name" value="{{$name}}" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="costumer_phone" class="col-sm-3 col-form-label" style="color: #fff;"><b>No. Telp/ Handphone *</b></label>
+                    <div class="col-sm-9">
+                      <input style=" border-radius: 20px;" type="text" name="costumer_phone" class="form-control input-cust" id="costumer_phone" maxlength="12" value="{{$cust_order_telp}}" onkeyup="isNumbers(this.value);" required>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -705,6 +694,15 @@
                 // alert($.cookie("telp"));
             });
         });
+
+        function isNumbers(val){
+            // var value = val.replace(/\D/g,'');
+            var str = val;
+            var set = str.replace(/[^0-9.]/g,"");
+            var hasil = $('#costumer_phone').val(set);
+            return hasil;
+        }
+
         function button_minus_br(id)
         {
             var jum = $('#show_'+id).html();

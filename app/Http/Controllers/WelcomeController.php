@@ -77,6 +77,7 @@ class WelcomeController extends Controller
 
         $data['cust_order_telp']    = $data['cust_order_address'] = $data['cust_order_city']    = "";
         if($cust_order){
+            $data['name']               = $cust_order[0]->name;
             $data['cust_order_telp']    = $cust_order[0]->no_telp;
             $data['cust_order_address'] = $cust_order[0]->address;
             $data['cust_order_city']    = $cust_order[0]->city;

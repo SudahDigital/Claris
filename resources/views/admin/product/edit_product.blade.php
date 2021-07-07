@@ -60,7 +60,14 @@
                     </div>
                     <div class="form-group">
                         <label for="harga_produk">Product Color </label>
-                        <input type="text" required="true" name="warna_produk" class="form-control" placeholder="MERAH,KUNING,HITAM" id="warna_produk" required autofocus autocomplete="off" value="{{ $warna_produk }}">
+                        <!-- <input type="text" required="true" name="warna_produk" class="form-control" placeholder="MERAH,KUNING,HITAM" id="warna_produk" required autofocus autocomplete="off" value="{{ $warna_produk }}"> -->
+                        <div class="form-group">
+                          <select multiple class="form-control" required="true"  name="color_produk[]"  id="color_produk[]" required autofocus autocomplete="off"> 
+                              @foreach($colors as $key => $value)
+                                <option value="{{ $value->color_id }}" <?php if (in_array($value->color_id, $array_colors)){echo "selected";} ?> >{{ $value->color_id }} - {{ $value->color_name }}</option>
+                              @endforeach
+                          </select>
+                        </div>
                       </div>
                     <div class="form-group">
                       <label for="diskon_produk">Product Stock (Pcs)</label>

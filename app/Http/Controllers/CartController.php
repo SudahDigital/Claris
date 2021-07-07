@@ -430,11 +430,13 @@ class CartController extends Controller
 					]);
 				}
 
-				$del_cart = "DELETE FROM carts
-						WHERE 
-							session_id 	= '".$ses_id."'
-						";
-				$rst_cart = DB::statement($del_cart);
+				if($pesan){
+					$del_cart = "DELETE FROM carts
+							WHERE 
+								session_id 	= '".$ses_id."'
+							";
+					$rst_cart = DB::statement($del_cart);
+				}
 
 				$text_wa=$href.'%0A'.$info_harga;
 	            $url = "https://api.whatsapp.com/send?phone=628119591668&text=$text_wa";

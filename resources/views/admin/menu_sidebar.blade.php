@@ -62,6 +62,12 @@
 				    </a>
 				  </li>
 			  @endif
+			  <li class="nav-item has-treeview">
+			    <a href="{{URL::route('index_color')}}" class="nav-link">
+			        <i class="fas fa-tags nav-icon"></i>
+			        <p>Manage Color Product</p>
+			    </a>
+			  </li>
 
 			  <!-- <li class="nav-header">PREFERENCES</li>
 			  <li class="nav-item has-treeview">
