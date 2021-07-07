@@ -154,7 +154,8 @@
                                 </select> -->
 
                                 <?php
-                                    $color = explode(",", $value->product_color);
+                                    $product_color = str_replace(" ", "", $value->product_color);
+                                    $color = explode(",", $product_color);
                                     $count_clr = count($color);
 
                                     // $sql = \DB::select("SELECT A.id, B.mount FROM carts AS B LEFT JOIN (SELECT products.id FROM products) AS A ON A.id = B.product_id WHERE B.session_id = '".$user."' AND A.id = '".$value->id."' "); 
@@ -511,7 +512,7 @@
                   <div class="form-group row">
                     <label for="costumer_name" class="col-sm-3 col-form-label" style="color: #fff;"><b>Nama *</b></label>
                     <div class="col-sm-9">
-                      <input style=" border-radius: 20px;" type="text" name="costumer_name" class="form-control input-cust" id="costumer_name" value="" required>
+                      <input style=" border-radius: 20px;" type="text" name="costumer_name" class="form-control input-cust" id="costumer_name" value="{{$name}}" required>
                     </div>
                   </div>
                   <div class="form-group row">
