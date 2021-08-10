@@ -1,5 +1,5 @@
 
-  <nav class="main-header navbar navbar-expand navbar-light" style="background-color: #A1C4D8; position: fixed; width: 178vh;">
+  <nav class="main-header navbar navbar-expand navbar-light" style="background-color: #A1C4D8;">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- <ul class="navbar-nav">
         <li class="nav-item">

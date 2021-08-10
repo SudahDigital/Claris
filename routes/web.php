@@ -180,6 +180,14 @@ Route::middleware('auth')->group(function () {
   	Route::post('/admin/edit-voucher', 'DashVoucherController@update')->name('edit_voucher');
 	Route::get('/admin/hapus-voucher/{id}', 'DashVoucherController@delete')->name('hapus_voucher');
 
+	//admin manage whatsapp number
+	Route::get('/admin/dash-area-number', 'NumberWhatsappController@index')->name('dash_area_number');
+	Route::get('/admin/form-area-number', 'NumberWhatsappController@add')->name('form_area_number');
+	Route::post('/admin/input-area-number', 'NumberWhatsappController@create')->name('input_area_number');
+  	Route::get('/admin/form-edit-area-number', 'NumberWhatsappController@edit')->name('form_edit_area_number');
+  	Route::post('/admin/edit-area-number', 'NumberWhatsappController@update')->name('edit_area_number');
+	Route::get('/admin/hapus-area-number/{id}', 'NumberWhatsappController@delete')->name('hapus_area_number');
+
 });
 
 

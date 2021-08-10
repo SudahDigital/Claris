@@ -71,12 +71,13 @@ class ProductController extends Controller
         $data['count_cart'] = $count;
         $data['category'] = Category::all();
 
-        $sql_cust_order = "SELECT * FROM customer_order WHERE ip_address = '".$clientIP."' AND user_agent = '".$userAgent."'";
+        $sql_cust_order = "SELECT * FROM customer_order WHERE ip_address = '".$clientIP."'"; // AND user_agent = '".$userAgent."'
         $cust_order     = DB::select($sql_cust_order);
 
-        $data['cust_order_telp']    = $data['cust_order_address'] = $data['cust_order_city']    = "";
+        $data['cust_order_name']    = $data['cust_order_email'] = $data['cust_order_telp']    = $data['cust_order_address'] = $data['cust_order_city']    = "";
         if($cust_order){
-            $data['name']               = $cust_order[0]->name;
+            $data['cust_order_name']    = $cust_order[0]->name;
+            $data['cust_order_email']   = $cust_order[0]->email;
             $data['cust_order_telp']    = $cust_order[0]->no_telp;
             $data['cust_order_address'] = $cust_order[0]->address;
             $data['cust_order_city']    = $cust_order[0]->city;
@@ -134,12 +135,13 @@ class ProductController extends Controller
         $data['count_cart'] = $count;
         $data['category'] = Category::all();
 
-        $sql_cust_order = "SELECT * FROM customer_order WHERE ip_address = '".$clientIP."' AND user_agent = '".$userAgent."'";
+        $sql_cust_order = "SELECT * FROM customer_order WHERE ip_address = '".$clientIP."'"; //AND user_agent = '".$userAgent."'
         $cust_order     = DB::select($sql_cust_order);
 
-        $data['cust_order_telp']    = $data['cust_order_address'] = $data['cust_order_city']    = "";
+        $data['cust_order_name']    = $data['cust_order_email'] = $data['cust_order_telp']    = $data['cust_order_address'] = $data['cust_order_city']    = "";
         if($cust_order){
-            $data['name']               = $cust_order[0]->name;
+            $data['cust_order_name']    = $cust_order[0]->name;
+            $data['cust_order_email']   = $cust_order[0]->email;
             $data['cust_order_telp']    = $cust_order[0]->no_telp;
             $data['cust_order_address'] = $cust_order[0]->address;
             $data['cust_order_city']    = $cust_order[0]->city;

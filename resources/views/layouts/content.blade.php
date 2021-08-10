@@ -162,11 +162,17 @@
                                     // $rst = count($sql);
 
                                     if($count_clr=="1"){
-                                        echo "
+
+                                        $color = $value->product_color;
+
+                                        $sql_color = \DB::select("SELECT color_code FROM colors WHERE color_id = '".$color."'");
+
+                                        foreach ($sql_color as $key_color => $val_color) {
+                                            echo "
                                                 <div class=\"col-6 p-1\">
                                                     <div class=\"row mb-0 px-1 input-group\">
                                                         <div class=\"input-group-append\">
-                                                            <span class=\"$hsl ic_color\"><i class=\"fa fa-circle fa-lg\" style=\" background-color: #cecece; border-radius: 80px; padding: 2px;\"></i></span>
+                                                            <span class=\"ic_color\"><i class=\"fa fa-circle fa-lg\" style=\" background-color: #cecece; border-radius: 80px; padding: 2px; color:".$val_color->color_code.";\"></i></span>
                                                             <button class=\"btn button_plus\" onclick=\"button_minus_color('$value->id','$i')\" style=\"padding: 0;color:#000;outline:none;border-bottom-left-radius:7px;border-top-left-radius:7px;\"><i class=\"fa fa-minus fa-xs\" aria-hidden=\"true\"></i></button>
                                                             <input id=\"qty_color_".$value->id."_1\" placeholder=\"0\" class=\"qty-color\" onkeyup=\"qty_number(this.id,this.value)\">
                                                             <button class=\"btn button_plus\" onclick=\"button_plus_color('$value->id','$i')\" style=\"padding: 0;color:#000;outline:none;border-bottom-right-radius:7px;border-top-right-radius:7px;\"><i class=\"fa fa-plus fa-xs\" aria-hidden=\"true\"></i></button>
@@ -176,6 +182,7 @@
                                                     </div>
                                                 </div>
                                             ";
+                                        }
 
                                     }else{
 
@@ -512,7 +519,7 @@
                   <div class="form-group row">
                     <label for="costumer_name" class="col-sm-3 col-form-label" style="color: #fff;"><b>Nama *</b></label>
                     <div class="col-sm-9">
-                      <input style=" border-radius: 20px;" type="text" name="costumer_name" class="form-control input-cust" id="costumer_name" required>
+                      <input style=" border-radius: 20px;" type="text" name="costumer_name" class="form-control input-cust" id="costumer_name" value="{{$cust_order_name}}" required>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -522,13 +529,19 @@
                     </div>
                   </div>
                   <div class="form-group row">
+                    <label for="email" class="col-sm-3 col-form-label" style="color: #fff;"><b>Email *</b></label>
+                    <div class="col-sm-9">
+                      <input style="border-radius: 20px;" type="email"  name="costumer_email" class="form-control input-cust" id="costumer_email" value="{{$cust_order_email}}" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
                     <label for="deliveryCity" class="col-sm-3 col-form-label" style="color: #fff;"><b>Kabupaten/Kota *</b></label>
                     <div class="col-sm-9">
                       <!-- <input style=" border-radius: 20px;" class="form-control"  name="costumer_city" id="deliveryCity"> -->
                       <select id="city_name" name="city_name" class="form-control select2 input-cust" style="width: 100%; border-radius: 20px;" required>
                         <option value="">--</option>
                         @foreach($cities as $key => $value)
-                            <option id="city_name" value="{{$value->city_name}}" <?php if($cust_order_city == $value->city_name) echo "selected";?>>{{$value->city_name}}</option>
+                            <option id="city_name" value="{{$value->id}}_{{$value->city_name}}" <?php if($cust_order_city == $value->city_name) echo "selected";?>>{{$value->city_name}}</option>
                         @endforeach
                       </select>
                     </div>
@@ -536,15 +549,11 @@
                   <div class="form-group row">
                     <label for="deliveryAddress" class="col-sm-3 col-form-label" style="color: #fff;"><b>Detail Alamat *</b></label>
                     <div class="col-sm-9">
-                      <textarea style=" border-radius: 20px;" class="form-control input-cust"  name="costumer_adress" id="costumer_adress" rows="2" required>{{ $cust_order_address }}</textarea>
+                        <input type="checkbox" name="val_address" id="val_address" value="on" style="margin-bottom: 10px;">&nbsp;<span style="color: #fff;">Kirim ke Alamat Lain</span>
+                        <textarea style=" border-radius: 20px;" class="form-control input-cust"  name="costumer_adress" id="costumer_adress" rows="2" required>{{ $cust_order_address }}</textarea>
+                        <textarea style=" border-radius: 20px; display: none;" class="form-control input-cust"  name="other_address" id="other_address" rows="2"></textarea>
                     </div>
                   </div>
-                  <!-- <div class="form-group row">
-                    <label for="email" class="col-sm-3 col-form-label" style="color: #fff;"><b>Email</b></label>
-                    <div class="col-sm-9">
-                      <input style="border-radius: 20px;" type="email"  name="costumer_email" class="form-control" id="email" >
-                    </div>
-                  </div> -->
                   <div class="form-group row">
                     <label for="kode_promo" class="col-sm-3 col-form-label" style="color: #fff;"><b>Code Promo</b></label>
                     <div class="col-sm-9 input-group">
@@ -693,6 +702,19 @@
                 // return true;
 
                 // alert($.cookie("telp"));
+            });
+
+            $( "#val_address" ).click(function() {
+                if(document.getElementById("val_address").checked) {
+                    $('#costumer_adress').hide();
+                    $('#other_address').show();
+                    $('#val_address').val('on');
+                }else{
+                    $('#costumer_adress').show();
+                    $('#other_address').hide();
+                    $('#val_address').val('');
+                }
+
             });
         });
 

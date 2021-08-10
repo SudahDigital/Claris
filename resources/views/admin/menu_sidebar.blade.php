@@ -64,8 +64,14 @@
 			  @endif
 			  <li class="nav-item has-treeview">
 			    <a href="{{URL::route('index_color')}}" class="nav-link">
-			        <i class="fas fa-tags nav-icon"></i>
+			        <i class="fas fa-cog nav-icon"></i>
 			        <p>Manage Color Product</p>
+			    </a>
+			  </li>
+			  <li class="nav-item has-treeview">
+			    <a href="{{URL::route('dash_area_number')}}" class="nav-link">
+			        <i class="fas fa-comment nav-icon"></i>
+			        <p>Manage Whatsapp Number</p>
 			    </a>
 			  </li>
 

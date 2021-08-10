@@ -258,10 +258,21 @@ class CartController extends Controller
 		$date 		= date('Y-m-d H:i:s');
 		$dt 		= date('YmdHis');
 
+		if ($request->city_name) {
+			$city =explode("_",$request->city_name);
+			$city_id = $city[0];
+			$city_name = $city[1];
+		}
+
+		if($request->val_address == 'on'){
+			$insert_address = $request->other_address;
+		}else{
+			$insert_address = $request->costumer_adress;
+		}
 
 		$inv_pay 	= $dt;
 
-		if($request->costumer_phone!="" && $request->costumer_adress!="" && $request->city_name!=""){
+		if($request->costumer_phone!="" && $city_name!=""){
 
 			$cart_h = DB::select("SELECT SUM(b.product_harga) as harga FROM carts as a INNER JOIN products as b ON a.product_id = b.id where a.session_id = '".$ses_id."'");
 			$pay_amount = $cart_h[0]->harga;
@@ -280,8 +291,8 @@ class CartController extends Controller
 						) VALUES (
 							'".$inv_pay."',
 							'".$request->costumer_name."',
-							'".$request->costumer_adress."',
-							'".$request->city_name."',
+							'".$insert_address."',
+							'".$city_name."',
 							'".$request->costumer_phone."',
 							'".$request->costumer_email."',
 							'".$pay_amount."',
@@ -326,8 +337,8 @@ class CartController extends Controller
 						) VALUES (
 							'".$inv_pay."',
 							'".$request->costumer_name."',
-							'".$request->costumer_adress."',
-							'".$request->city_name."',
+							'".$insert_address."',
+							'".$city_name."',
 							'".$request->costumer_phone."',
 							'".$request->costumer_email."',
 							'".$value->mount."',
@@ -344,7 +355,7 @@ class CartController extends Controller
 	        }
 
 			if($rst_pay){
-				$href='*Hello Admin Claris*,  %0ANama %3A' .$request->costumer_name.', %0ANo. Hp %3A' .$request->costumer_phone.', %0AAlamat %3A' .$request->costumer_adress.', %0AKota/kab %3A' .$request->city_name.',%0APesanan %3A%0A';
+				$href='*Hello Admin Claris*,  %0ANama %3A' .$request->costumer_name.', %0ANo. Hp %3A' .$request->costumer_phone.', %0AAlamat %3A' .$insert_address.', %0AKota/kab %3A' .$city_name.',%0APesanan %3A%0A';
 
 	            $pesan = DB::select("
 					            	SELECT 
@@ -406,28 +417,29 @@ class CartController extends Controller
 					$info_harga = 'Total Pembayaran %3A Rp.'.number_format(($jumlah_byr), 0, ',', '.').'%0A';
 				}
 
-				$sql_cust_order = DB::select("SELECT * FROM customer_order WHERE ip_address = '".$clientIP."' AND user_agent = '".$userAgent."'");
+				$sql_cust_order = DB::select("SELECT * FROM customer_order WHERE ip_address = '".$clientIP."'"); // AND user_agent = '".$userAgent."'
 				$count_cust_order = count($sql_cust_order);
 
 				if($count_cust_order <= 0){
 					$insert_cust_order = CustomerOrder::create([
 							'no_telp' => $request->costumer_phone,
 							'address' => $request->costumer_adress,
-							'city' => $request->city_name,
+							'email' => $request->costumer_email,
+							'city' => $city_name,
 							'ip_address' => $clientIP,
 							'user_agent' => $userAgent
 						]);
 				}else{
 
 					$update_cust_order = CustomerOrder::where('ip_address',$clientIP)
-						->where('user_agent',$userAgent)
 						->update([
 							'no_telp' => $request->costumer_phone,
 							'address' => $request->costumer_adress,
-							'city' => $request->city_name,
+							'email' => $request->costumer_email,
+							'city' => $city_name,
 							'ip_address' => $clientIP,
 							'user_agent' => $userAgent
-					]);
+					]); //->where('user_agent',$userAgent)
 				}
 
 				if($pesan){
@@ -438,8 +450,16 @@ class CartController extends Controller
 					$rst_cart = DB::statement($del_cart);
 				}
 
+				$sql_city = DB::select("SELECT wa.area_number AS area_number FROM cities ct INNER JOIN whatsapp_area wa ON ct.area_id = wa.id WHERE ct.id = '".$city_id."'");
+
+				$no_wa = "628119591668";
+				foreach ($sql_city as $key => $value) {
+					$no_wa = $value->area_number;
+				}
+
+				$whatsapp_number = $no_wa;
 				$text_wa=$href.'%0A'.$info_harga;
-	            $url = "https://api.whatsapp.com/send?phone=628119591668&text=$text_wa";
+	            $url = "https://api.whatsapp.com/send?phone=$whatsapp_number&text=$text_wa";
 
 	            // return redirect('home')->with(['success' => 'Product Berhasil di Proses']);
 	            return Redirect::to($url);
