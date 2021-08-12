@@ -112,11 +112,12 @@ class DashProductController extends Controller
         $data['warna_produk'] = $product[0]->product_color;
     	$data['kategori'] = $category;
 
-        $clr = str_replace(" ", "", $product[0]->product_color);
+        // $clr = str_replace(" ", "", $product[0]->product_color);
+        $clr = $product[0]->product_color;
         $color = explode(",", $clr);
         $data['array_colors'] = $color;
         $data['colors'] = DB::select("SELECT * FROM colors ORDER BY id ASC");
-
+        
         return view ('admin.product.edit_product', $data);   
     }
 

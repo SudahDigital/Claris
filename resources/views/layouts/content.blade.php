@@ -102,7 +102,7 @@
                                 <div class="col-12">
                                     <div class="row">
                                         <div class="col-3 column-left">
-                                            <a onclick="detailImg('{{ $value->product_image }}')"><i class="fa fa-eye button_eye" data-toggle="modal" data-target="#ImgModal" style="cursor: pointer;"></i></a>
+                                            <a onclick="detailImg('{{ $value->product_image }}','{{ $value->product_code }} - {{ $value->product_name }}')"><i class="fa fa-eye button_eye" data-toggle="modal" data-target="#ImgModal" style="cursor: pointer;"></i></a>
                                         </div>
                                         <div class="col-9 column-right">
                                             <input type="hidden" name="descrip_{{$value->id}}" id="descrip_{{$value->id}}" value="{{$value->product_description}}">
@@ -154,7 +154,8 @@
                                 </select> -->
 
                                 <?php
-                                    $product_color = str_replace(" ", "", $value->product_color);
+                                    // $product_color = str_replace(" ", "", $value->product_color);
+                                    $product_color = $value->product_color;
                                     $color = explode(",", $product_color);
                                     $count_clr = count($color);
 
@@ -475,6 +476,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content" style="background: #fff">
                 <div class="modal-header">
+                    <label class="label-prod"></label>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -815,11 +817,13 @@
             }
         }
 
-        function detailImg(img){
+        function detailImg(img, prod){
             $('#ImgModal').show();
             if(img!=""){
+                $(".label-prod").text(prod);
                 $(".dtl_img").attr("src","{{ asset('assets/image/product/') }}"+'/'+img);
             }else{
+                $(".label-prod").text(prod);
                 $(".dtl_img").attr("src","{{ asset('assets/image/product/none.jpg') }}");
             }
         }
