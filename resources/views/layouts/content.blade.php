@@ -106,6 +106,8 @@
                                         </div>
                                         <div class="col-9 column-right">
                                             <input type="hidden" name="descrip_{{$value->id}}" id="descrip_{{$value->id}}" value="{{$value->product_description}}">
+                                            <input type="hidden" name="descripid_{{$value->id}}" id="descripid_{{$value->id}}" value="{{$value->product_code}}">
+                                            <input type="hidden" name="descripname_{{$value->id}}" id="descripname_{{$value->id}}" value="{{$value->product_name}}">
                                             <a onclick="detailDesc('{{ $value->id }}')" class="title-dtl" style="font-size: 12px; cursor: pointer;"><span data-toggle="modal" data-target="#exampleModal"><b>Detail Produk</b></span></a>
                                         </div>
                                     </div>
@@ -498,7 +500,9 @@
             </button>
           </div>
           <div class="modal-body">
-            <textarea class="detail_desc form-control" style="color: #0097bb; font-weight: bold; resize: none; border: none; min-width: 100%; width: 300px; height: 300px;" disabled ></textarea>
+            <p class="detail_code form-control" style="border: none; color: #0097bb; font-weight: bold;background-color: #D4ECF7 !important;"></p>
+            <p class="detail_name form-control" style="border: none; color: #0097bb; font-weight: bold;background-color: #D4ECF7 !important;"></p>
+            <textarea class="detail_desc form-control" style="background-color: #D4ECF7 !important; color: #0097bb; font-weight: bold; resize: none; border: none; min-width: 100%; width: 300px; height: 300px;" disabled ></textarea>
           </div>
         </div>
       </div>
@@ -830,7 +834,12 @@
 
         function detailDesc(id){
             var desc = $('#descrip_'+id).val();
-            $(".detail_desc").text(desc);
+            var prd_code = $('#descripid_'+id).val();
+            var prd_name = $('#descripname_'+id).val();
+            $(".detail_code").text('Product Code :'+prd_code);
+            $(".detail_name").text('Product Name :'+prd_name);
+            $(".detail_desc").text('Product Description :'+desc);
+
         }
 
         function insertCart(id){
